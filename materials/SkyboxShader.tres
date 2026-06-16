@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bt40wysa6gkfh"]
+
+[sub_resource type="Shader" id="Shader_wta8l"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform sampler2D TEXTURE;
+
+void fragment() {
+	vec4 vtex = texture(TEXTURE, SCREEN_UV);
+	ALBEDO = vtex.rgb;
+}
+"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_wta8l")

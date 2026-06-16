@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://41ftb7bb8fot"]
+
+[ext_resource type="Script" uid="uid://4nlwt7isnm3" path="res://src/base/FPSC_LoadingScreen.gd" id="1_6gmh0"]
+[ext_resource type="FontFile" uid="uid://dfp34iarqtkw3" path="res://vgui/vgui_hudfont_dejavu.ttf" id="2_6gmh0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6t3v2"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.39215687, 0.39215687, 0.39215687, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_in8mi"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.7882353, 0.39215687, 0, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 6
+
+[node name="LoadingScreenTest" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6gmh0")
+
+[node name="PreviousLevel" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 408.0
+offset_top = -104.0
+offset_right = -439.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_6t3v2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_in8mi")
+max_value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="ProgressBar"]
+layout_mode = 1
+offset_top = -23.0
+offset_right = 89.0
+theme_override_fonts/font = ExtResource("2_6gmh0")
+text = "LOADING..."

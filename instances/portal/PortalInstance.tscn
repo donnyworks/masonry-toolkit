@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6lemoo8ic8o2"]
+
+[ext_resource type="Script" uid="uid://rak8vmaeqnag" path="res://src/base/skybox/FPSC_ViewTexture.gd" id="1_8et20"]
+[ext_resource type="Script" uid="uid://d2y3d3rralsll" path="res://src/portal/FPSC_Portal.gd" id="1_ovfy8"]
+[ext_resource type="Script" uid="uid://bnv2jm2c2bulh" path="res://src/portal/FPSC_FollowCamera.gd" id="2_ovfy8"]
+[ext_resource type="Texture2D" uid="uid://sav8ot3s5160" path="res://icon.svg" id="4_53dg3"]
+
+[sub_resource type="Shader" id="Shader_30d18"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform sampler2D TEXTURE;
+
+void fragment() {
+	vec4 vtex = texture(TEXTURE, SCREEN_UV);
+	ALBEDO = vtex.rgb;
+}
+"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5dvjp"]
+viewport_path = NodePath("Portal1Texture")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sepu0"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_30d18")
+shader_parameter/TEXTURE = SubResource("ViewportTexture_5dvjp")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_53dg3"]
+size = Vector3(0.13480957, 2.0166626, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ovfy8"]
+size = Vector3(0.35158446, 2.0166626, 1)
+
+[node name="MTK_Portal" type="CSGBox3D" groups=["Portals"]]
+layers = 2
+size = Vector3(0.001, 2, 1)
+material = SubResource("ShaderMaterial_sepu0")
+script = ExtResource("1_ovfy8")
+
+[node name="Portal1Texture" type="SubViewport" parent="."]
+size = Vector2i(1358, 622)
+script = ExtResource("1_8et20")
+metadata/_custom_type_script = "uid://rak8vmaeqnag"
+
+[node name="FPSC_FollowCamera" type="Camera3D" parent="Portal1Texture" node_paths=PackedStringArray("SelfOrigin")]
+transform = Transform3D(0.36483714, -0.09806092, -0.92589307, 0, 0.99443835, -0.10532052, 0.93107134, 0.03842483, 0.36280805, -5.9697485, 0.468377, 6.0568123)
+cull_mask = 1048573
+fov = 70.01
+script = ExtResource("2_ovfy8")
+SelfOrigin = NodePath("../..")
+metadata/_custom_type_script = "uid://bnv2jm2c2bulh"
+
+[node name="PassthroughArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PassthroughArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2804027, -0.0023498535, 0)
+shape = SubResource("BoxShape3D_53dg3")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03329224, -0.0023498535, 0)
+shape = SubResource("BoxShape3D_ovfy8")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.080581814, 0, 0)
+target_position = Vector3(-0.1, 0, 0)
+
+[node name="A1" type="Sprite3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.006144643, -0.5392544, 0)
+pixel_size = 0.0075
+texture = ExtResource("4_53dg3")
+
+[node name="A2" type="Sprite3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.006144643, 0.49857676, 0)
+pixel_size = 0.0075
+texture = ExtResource("4_53dg3")
+
+[connection signal="body_entered" from="PassthroughArea" to="." method="_on_passthrough_area_body_entered"]
+[connection signal="body_exited" from="PassthroughArea" to="." method="_on_passthrough_area_body_exited"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

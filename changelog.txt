@@ -1,0 +1,39 @@
+FPSC (Masonry Engine) version 2:
+	Renamed ViewTexture.gd to FPSC_ViewTexture.gd to fit the naming scheme better
+	Renamed FPSC_WeaponSourcebox.gd to sourcebox_superuselessweshouldntevenhavethisanymoretypeweapon.gd because of deprecation
+	REMOVED:
+		weapon_srcbox - SourceBox weapon (In-game instance)
+		srcfall.tscn - Viewmodel for weapon_srcbox
+		w3d.tres - World3D for srcfall
+		playa.png - Blue tint used for "source box"
+		player_chrome1.png - Texture used on...
+		player.scn - Player model used in srcfall
+		srcbox_default.tres - These are self-explanitory
+		srcbox_hover.tres
+		srcbox_selectd.tres
+		res://lockbox/* - LOCK//BOX is a completed project from DonnyWorks Game Studios. This project used to incorporate it.
+		res://src/sourcebox/* - Folder containing all sourcebox source code.
+	FIXED:
+		TODO: Fix infinitely looping undraw animation on weapons
+		PROPOSED SOLUTION:
+			Make weapons run with process enabled while paused
+			PROBLEM: This would break the weapon deprocess code (the same one that makes sure weapons don't load with their feature flag disabled)
+			SOLUTION: Just... code it to return on all functions if the feature flag isn't enabled.
+			PROBLEM WITH SOLUTION: There's no master "do or don't process" code.
+	FIX:
+		Add code to make the player stop calling currentWeapon.FPSC_End[Primary &/or Secondary]Fire()
+	Added: HOLY SHIT ARE THOSE PORTALS???
+
+FPSC (Masonry Engine) version 3 - June 6, 2026:
+	Reorganized baiscally every source file
+	Looks more Source Engine than ever
+	Added skybox textures
+	Added Spotters (from OS95 Plus!)
+	Added triggers
+	Added conditionals for triggers
+	Added activatables for better management with FPSC_TriggerRelay
+	Removed FPSC_InteractabilityObjectDeclaritor
+	Added the entire Innovation Inc. map (Remove next update, probably)
+	Added loading screens
+	Upgraded the export categories in the player code to be groups instead
+	Added AI (No, not generative AI. No, not machine learning. I mean NPC, pathfinding...)

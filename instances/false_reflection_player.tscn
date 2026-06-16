@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://wfu5ngni0gak"]
+
+[ext_resource type="Script" uid="uid://c4rdeonjlw6mr" path="res://src/misc/reylap_noitcelfer_eslaf.gd" id="1_bmkek"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjyo5"]
+albedo_color = Color(0.97982866, 0.4564759, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_aef7p"]
+material = SubResource("StandardMaterial3D_xjyo5")
+
+[node name="reyalP" type="Node3D"]
+process_mode = 3
+script = ExtResource("1_bmkek")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_aef7p")

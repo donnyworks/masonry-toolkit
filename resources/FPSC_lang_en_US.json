@@ -1,0 +1,17 @@
+{
+	"TestNPC.01":"[b][TestNPC][/b] Hello. It's me, the test NPC.",
+	"TestNPC.02":"[b][TestNPC][/b] I'm here to demonstrate the importance of being a rectangular prism.",
+	"TestNPC.03":"[b][TestNPC][/b] However, you are an orange capsule.",
+	"TestNPC.04":"[b][TestNPC][/b] This means I must kill you.",
+	"Spotter.Catch":"[i][Spotter Target Detained][/i]",
+	"Spotter.Countdown":"[i][Spotter Countdown][/i]",
+	"Spotter.Spot":"[i][Spotter Target Noticed][/i]",
+	"Spotter.Question":"[i][Spotter Questioning][/i]",
+	"Spotter.BackToPatrol":"[i][Spotter Resume Patrol][/i]",
+	"Spotter.Damage":"[i][Spotter Damage][/i]",
+	"Spotter.Dead":"[i][Spotter Death][/i]",
+	"Player.InteractionFailed":"[i][Can't Use][/i]",
+	"Player.Death":"[i][Death][/i]",
+	"Generic.ButtonPress":"[i][Button Pressed][/i]",
+	"Generic.ButtonDisabled":"[i][Button Access Denied][/i]"
+}

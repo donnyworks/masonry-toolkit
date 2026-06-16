@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm04rqdktssx2"]
+
+[ext_resource type="Script" uid="uid://l3nex0dry1s1" path="res://src/base/skybox/FPSC_JokeElementStellaOctangulaBGTest.gd" id="1_705f4"]
+
+[node name="octangula" type="Node3D"]
+script = ExtResource("1_705f4")
+
+[node name="CSGCombiner3D" type="CSGCylinder3D" parent="."]
+height = 0.5
+sides = 3
+cone = true
+
+[node name="CSGCombiner3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.49999997, -7.5710346e-08, 0.86602545, 0, -1, -8.742278e-08, 0.86602545, 4.3711385e-08, -0.49999997, 0, -0.25071716, 0)
+height = 0.5
+sides = 3
+cone = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.66653866, 0.7252065, -0.17263205, 0.47671804, -0.59269094, -0.6491976, -0.5731197, 0.35041848, -0.74077034, -1, -1.9999998, -3)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.8637993, -0.452838, -0.22088137, 0.47671792, -0.592691, -0.6491976, 0.16306692, -0.6660745, 0.72784203, -1, -2.0000002, 2)
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.6665387, -0.72520643, 0.17263189, 0.47671792, -0.59269077, -0.6491977, 0.5731197, -0.3504187, 0.7407703, 2.0000005, -2.0000002, 2)
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="."]
+transform = Transform3D(0.8637993, 0.4528378, 0.2208817, 0.47671804, -0.59269106, -0.64919746, -0.16306654, 0.66607463, -0.72784203, 1.9999996, -1.9999998, -3)

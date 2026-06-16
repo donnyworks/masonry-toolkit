@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://2l8sdeagmlqg"]
+
+[ext_resource type="Script" uid="uid://cvqwminfd04m8" path="res://src/base/FPSC_CaptionSystem.gd" id="1_1ttv7"]
+[ext_resource type="PackedScene" uid="uid://cwrc1444pjpel" path="res://vgui/vgui_baseboard_recreation.tscn" id="2_lbka7"]
+[ext_resource type="FontFile" uid="uid://wu4hku12n2ab" path="res://vgui/vgui_boardfont_verdana.ttf" id="3_lbka7"]
+
+[sub_resource type="FontVariation" id="FontVariation_hn7qg"]
+base_font = ExtResource("3_lbka7")
+variation_embolden = 0.8
+
+[sub_resource type="FontVariation" id="FontVariation_kipj8"]
+base_font = ExtResource("3_lbka7")
+variation_embolden = 0.8
+variation_transform = Transform2D(1, 0.37, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_u5521"]
+base_font = ExtResource("3_lbka7")
+variation_transform = Transform2D(1, 0.37, 0, 1, 0, 0)
+
+[node name="CaptionSystem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1ttv7")
+
+[node name="1line" parent="." instance=ExtResource("2_lbka7")]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 89.0
+offset_top = -71.0
+offset_right = -60.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+baseboard_color = Color(0.47843137, 0.47843137, 0.47843137, 0.4117647)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="1line"]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_lbka7")
+theme_override_fonts/bold_font = SubResource("FontVariation_hn7qg")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_kipj8")
+theme_override_fonts/italics_font = SubResource("FontVariation_u5521")
+bbcode_enabled = true
+vertical_alignment = 2
+
+[node name="2line" parent="." instance=ExtResource("2_lbka7")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 89.0
+offset_top = -115.0
+offset_right = -60.0
+offset_bottom = -31.0
+grow_vertical = 0
+baseboard_color = Color(0.47843137, 0.47843137, 0.47843137, 0.4117647)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="2line"]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_lbka7")
+theme_override_fonts/bold_font = SubResource("FontVariation_hn7qg")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_kipj8")
+theme_override_fonts/italics_font = SubResource("FontVariation_u5521")
+bbcode_enabled = true
+fit_content = true
+vertical_alignment = 2
+
+[node name="CaptionFadeTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CaptionFadeTimer" to="." method="_on_caption_fade_timer_timeout"]

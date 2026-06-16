@@ -1,0 +1,169 @@
+[gd_scene load_steps=14 format=3 uid="uid://cc4iwacm6rskv"]
+
+[ext_resource type="Script" uid="uid://dfge137rweqns" path="res://src/base/FPSC_Player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://cwrc1444pjpel" path="res://vgui/vgui_baseboard_recreation.tscn" id="2_i3pqv"]
+[ext_resource type="FontFile" uid="uid://wu4hku12n2ab" path="res://vgui/vgui_boardfont_verdana.ttf" id="3_hqtel"]
+[ext_resource type="Script" uid="uid://glaujpf0b0t0" path="res://src/base/player/FPSC_DebugMenuButton.gd" id="4_hqtel"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjyo5"]
+albedo_color = Color(0.97982866, 0.4564759, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hqtel"]
+material = SubResource("StandardMaterial3D_xjyo5")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4flbx"]
+viewport_path = NodePath("ViewmodelRenderer")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i3pqv"]
+
+[sub_resource type="Sky" id="Sky_hqtel"]
+sky_material = SubResource("ProceduralSkyMaterial_i3pqv")
+
+[sub_resource type="Environment" id="Environment_sweqy"]
+background_mode = 2
+sky = SubResource("Sky_hqtel")
+
+[sub_resource type="World3D" id="World3D_2hs0m"]
+environment = SubResource("Environment_sweqy")
+
+[sub_resource type="FontVariation" id="FontVariation_sweqy"]
+base_font = ExtResource("3_hqtel")
+variation_embolden = 0.8
+
+[node name="Player" type="CharacterBody3D"]
+process_mode = 3
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_hqtel")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -1000)
+
+[node name="GrabCast" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -10)
+
+[node name="RayEndpoint" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_4flbx")
+
+[node name="ViewmodelRenderer" type="SubViewport" parent="."]
+own_world_3d = true
+world_3d = SubResource("World3D_2hs0m")
+transparent_bg = true
+
+[node name="Camera3D" type="Camera3D" parent="ViewmodelRenderer"]
+
+[node name="BaseGUIElement" parent="." instance=ExtResource("2_i3pqv")]
+visible = false
+anchors_preset = -1
+anchor_left = 0.96000004
+anchor_top = 0.505
+anchor_right = 0.96000004
+anchor_bottom = 0.64000005
+offset_left = -183.92004
+offset_top = -0.23999023
+offset_right = 0.079956055
+offset_bottom = 0.27996826
+baseboard_color = Color(0.41215247, 0.41215247, 0.41215247, 0.45882353)
+
+[node name="HintText" type="RichTextLabel" parent="BaseGUIElement"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_hqtel")
+theme_override_fonts/bold_font = SubResource("FontVariation_sweqy")
+theme_override_fonts/bold_italics_font = ExtResource("3_hqtel")
+theme_override_fonts/italics_font = ExtResource("3_hqtel")
+theme_override_fonts/mono_font = ExtResource("3_hqtel")
+bbcode_enabled = true
+scroll_active = false
+horizontal_alignment = 2
+
+[node name="MenuGUIElement" parent="." instance=ExtResource("2_i3pqv")]
+visible = false
+anchors_preset = -1
+offset_left = 43.0
+offset_top = 30.0
+offset_right = 499.0
+offset_bottom = 296.0
+baseboard_color = Color(0.41215247, 0.41215247, 0.41215247, 0.45882353)
+
+[node name="TemplateButton" type="Button" parent="MenuGUIElement"]
+visible = false
+layout_mode = 0
+offset_left = -1.0
+offset_top = -5.0
+offset_right = 72.0
+offset_bottom = 26.0
+text = "Map: %s"
+script = ExtResource("4_hqtel")
+
+[node name="GridContainer" type="GridContainer" parent="MenuGUIElement"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 6
+
+[node name="MapControls" type="VBoxContainer" parent="MenuGUIElement/GridContainer"]
+layout_mode = 2
+
+[node name="WeaponControls" type="VBoxContainer" parent="MenuGUIElement/GridContainer"]
+layout_mode = 2
+
+[node name="PlayerControls" type="VBoxContainer" parent="MenuGUIElement/GridContainer"]
+layout_mode = 2
+
+[node name="SkyControls" type="VBoxContainer" parent="MenuGUIElement/GridContainer"]
+layout_mode = 2
+
+[node name="PhysicsControls" type="VBoxContainer" parent="MenuGUIElement/GridContainer"]
+layout_mode = 2
+
+[node name="ViewControls" type="VBoxContainer" parent="MenuGUIElement/GridContainer"]
+layout_mode = 2
+
+[node name="MapSelectionLabel" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.5
+offset_top = -93.0
+offset_right = 100.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Map Selector
+< %s >"
+horizontal_alignment = 1
+
+[node name="TransFade" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

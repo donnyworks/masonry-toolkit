@@ -1,0 +1,342 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwrc1444pjpel"]
+
+[ext_resource type="Texture2D" uid="uid://c1lk2pvuf55x6" path="res://vgui/textures/iconset_marlett.png" id="1_0a05j"]
+[ext_resource type="Texture2D" uid="uid://dcc5chijofec5" path="res://vgui/textures/800corner1.png" id="1_t27i6"]
+[ext_resource type="Texture2D" uid="uid://snm5p4fdd66i" path="res://vgui/textures/800corner2.png" id="2_cpudp"]
+[ext_resource type="FontFile" uid="uid://wu4hku12n2ab" path="res://vgui/vgui_boardfont_verdana.ttf" id="2_opgtf"]
+[ext_resource type="Texture2D" uid="uid://dn26djbv5w5p2" path="res://vgui/textures/800corner3.png" id="3_0b0jt"]
+[ext_resource type="Texture2D" uid="uid://dwjx172r42h7o" path="res://vgui/textures/800corner4.png" id="4_cs0vr"]
+
+[sub_resource type="GDScript" id="GDScript_nxppy"]
+resource_name = "baseboard_element_script"
+script/source = "@tool
+extends Control
+
+@export var baseboard_color = Color(1,1,1,1)
+
+@export_category(\"Window configuration\")
+
+@export var baseboard_window_text_color = Color(0,0,0,1)
+
+@export var baseboard_window_button_color = Color(0,0,0,1)
+
+@export var baseboard_is_window_panel = false
+
+@export var baseboard_window_title = \"VGUI Recreation Window\"
+
+@export_category(\"Binding configuration\")
+@export var baseboard_window_to_snap_to : Window ## Set to nothing to disable.
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	$ColorRect.color = baseboard_color
+	$\"PanelMode/800corner1\".self_modulate = baseboard_color
+	$\"PanelMode/800corner2\".self_modulate = baseboard_color
+	$\"PanelMode/800corner3\".self_modulate = baseboard_color
+	$\"PanelMode/800corner4\".self_modulate = baseboard_color
+	$PanelMode/ColorRect2.color = baseboard_color
+	$PanelMode/ColorRect3.color = baseboard_color
+	$PanelMode/ColorRect4.color = baseboard_color
+	$PanelMode/ColorRect5.color = baseboard_color
+	$\"WindowMode/800corner1\".self_modulate = baseboard_color
+	$\"WindowMode/800corner2\".self_modulate = baseboard_color
+	$\"WindowMode/800corner3\".self_modulate = baseboard_color
+	$\"WindowMode/800corner4\".self_modulate = baseboard_color
+	$WindowMode/Label.self_modulate = baseboard_window_text_color
+	$WindowMode/btn_close.self_modulate = baseboard_window_button_color
+	for element in $WindowMode.get_children():
+		if element is ColorRect:
+			element.color = baseboard_color
+	$PanelMode.visible = not baseboard_is_window_panel
+	$WindowMode.visible = baseboard_is_window_panel
+	$WindowMode/Label.text = baseboard_window_title
+	if baseboard_window_to_snap_to != null:
+		visible = baseboard_window_to_snap_to.visible
+		size = baseboard_window_to_snap_to.size
+		position = baseboard_window_to_snap_to.position
+	pass
+
+
+func _on_btn_close_pressed() -> void:
+	if baseboard_window_to_snap_to != null:
+		baseboard_window_to_snap_to.emit_signal(\"close_requested\")
+	pass # Replace with function body.
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxppy"]
+atlas = ExtResource("1_0a05j")
+region = Rect2(400, 0, 30, 30)
+
+[node name="BaseGUIElement" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_nxppy")
+
+[node name="PanelMode" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="800corner1" type="TextureRect" parent="PanelMode"]
+texture_filter = 1
+layout_mode = 1
+offset_left = -8.0
+offset_top = -8.0
+texture = ExtResource("1_t27i6")
+
+[node name="800corner2" type="TextureRect" parent="PanelMode"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = -8.0
+offset_right = 8.0
+grow_horizontal = 0
+texture = ExtResource("2_cpudp")
+
+[node name="800corner3" type="TextureRect" parent="PanelMode"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_0b0jt")
+
+[node name="800corner4" type="TextureRect" parent="PanelMode"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_vertical = 0
+texture = ExtResource("4_cs0vr")
+
+[node name="ColorRect2" type="ColorRect" parent="PanelMode"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+
+[node name="ColorRect3" type="ColorRect" parent="PanelMode"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+
+[node name="ColorRect4" type="ColorRect" parent="PanelMode"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = -8.0
+grow_horizontal = 2
+
+[node name="ColorRect5" type="ColorRect" parent="PanelMode"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 8.0
+grow_horizontal = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WindowMode" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="800corner1" type="TextureRect" parent="WindowMode"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = -8.0
+offset_bottom = -8.0
+texture = ExtResource("1_t27i6")
+
+[node name="800corner2" type="TextureRect" parent="WindowMode"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = -8.0
+grow_horizontal = 0
+texture = ExtResource("2_cpudp")
+
+[node name="800corner3" type="TextureRect" parent="WindowMode"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_0b0jt")
+
+[node name="800corner4" type="TextureRect" parent="WindowMode"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 16.0
+grow_vertical = 0
+texture = ExtResource("4_cs0vr")
+
+[node name="ColorRect2" type="ColorRect" parent="WindowMode"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+
+[node name="ColorRect6" type="ColorRect" parent="WindowMode"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+grow_horizontal = 2
+
+[node name="ColorRect3" type="ColorRect" parent="WindowMode"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 16.0
+grow_horizontal = 2
+
+[node name="ColorRect8" type="ColorRect" parent="WindowMode"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+
+[node name="ColorRect4" type="ColorRect" parent="WindowMode"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -8.0
+offset_right = -8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+
+[node name="ColorRect9" type="ColorRect" parent="WindowMode"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = -8.0
+grow_horizontal = 2
+
+[node name="ColorRect5" type="ColorRect" parent="WindowMode"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -8.0
+offset_right = 16.0
+offset_bottom = 8.0
+grow_horizontal = 2
+
+[node name="ColorRect7" type="ColorRect" parent="WindowMode"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 8.0
+grow_horizontal = 2
+
+[node name="btn_close" type="TextureButton" parent="WindowMode"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1.0
+offset_top = -15.0
+offset_right = 29.0
+offset_bottom = 15.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+texture_normal = SubResource("AtlasTexture_nxppy")
+
+[node name="Label" type="Label" parent="WindowMode"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -11.0
+offset_top = -16.0
+offset_right = -11.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_opgtf")
+theme_override_font_sizes/font_size = 12
+text = "VGUI Recreation Window"
+text_overrun_behavior = 3
+
+[connection signal="pressed" from="WindowMode/btn_close" to="." method="_on_btn_close_pressed"]

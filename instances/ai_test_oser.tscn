@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqmfhclx73jmh"]
+
+[ext_resource type="Script" uid="uid://dcgo46miewvl5" path="res://src/base/ai/FPSC_BaseMotionAI.gd" id="1_8178u"]
+[ext_resource type="PackedScene" path="res://models/npc/oser/oser_dr_lavenir.scn" id="2_p6fqu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qourh"]
+size = Vector3(0.75, 2, 0.75)
+
+[node name="AIOser" type="CharacterBody3D" node_paths=PackedStringArray("animation_player", "agent")]
+script = ExtResource("1_8178u")
+animation_player = NodePath("oser_dr_lavenir/AnimationPlayer")
+agent = NodePath("_agentic_ mfs when")
+metadata/_custom_type_script = "uid://dcgo46miewvl5"
+
+[node name="oser_dr_lavenir" parent="." instance=ExtResource("2_p6fqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Skeleton3D" parent="oser_dr_lavenir/Armature" index="0"]
+bones/0/position = Vector3(0, -0.030000001, 0)
+bones/8/position = Vector3(3.7748915e-09, 0.07500008, -0.28999993)
+bones/8/rotation = Quaternion(-0.99586344, -0.025689444, 0.0022475405, 0.08712664)
+bones/9/rotation = Quaternion(1.5522131e-24, 2.220446e-16, -6.9905464e-09, 1)
+bones/11/position = Vector3(-3.1240466e-09, 0.07500008, 0.28999993)
+bones/11/rotation = Quaternion(0.70260924, 0.07951496, 0.70579946, 0.0431849)
+bones/12/rotation = Quaternion(-6.9905464e-09, 2.2883803e-08, -3.6780124e-16, 1)
+bones/14/position = Vector3(0, -0.04, -0.12)
+
+[node name="glasses" parent="oser_dr_lavenir/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.1736481, 0.98480767, 5.727627e-08, -0.98480767, 0.17364809, -7.310601e-08, -8.194129e-08, -4.3711385e-08, 1, 0.23765585, 0.87879395, -2.9300768e-08)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_qourh")
+
+[node name="_agentic_ mfs when" type="NavigationAgent3D" parent="."]
+
+[editable path="oser_dr_lavenir"]
