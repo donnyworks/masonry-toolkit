@@ -1,4 +1,47 @@
-FPSC (Masonry Engine) version 2:
+FPSC (Masonry Toolkit) version 0 - April 30, 2026:
+    Added:
+        Map FPSC_Test
+        Player functionality
+        Weapons
+        Viewmodels
+        DYNAMO lighting system
+        Textures:
+            muzzleFlash.png - Muzzle flash with FPSC_TestWeapon
+        Scripts:
+            FPSC_Weapon.gd
+            FPSC_TestWeapon.gd
+            player.gd (Later renamed to FPSC_Player.gd)
+        Notes:
+            Predates source folder reorganization,
+            all files (except crowbar model) stored in root directory
+
+FPSC (Masonry Toolkit) version 1 - Time period between May 1, 2026 and May 4, 2026*:
+    * Most of the game's source code in the FPSC directory was last modified May 4, 2026,
+      However, w3d.tres, located in res://viewmodel, has a date modified of May 26, 2026.
+    Secretly (super secret) reorganizes everything
+    Added:
+        Sourcebox (res://src/sourcebox/*, res://lockbox/*)
+        Textures:
+            player_chrome1.png to FPSC's root directory
+            playa.png - Cyan shade used in the SourceBox cube object
+            lockbox/player_chrome1.png
+            lockbox/INTERLOPER7.png
+        Materials:
+            srcbox_default.tres
+            srcbox_hover.tres
+            srcbox_selecetd.tres
+        Instances:
+            weapon_sourcebox.tscn
+            lockbox/LOCKBOX.tscn
+            lockbox/AIPlayer.tscn
+            lockbox/AIPlayerIsPlayer.tscn
+            lockbox/world.tscn
+        Scripts:
+            src/ViewTexture.gd
+            src/weapons/FPSC_WeaponSourcebox.gd
+            src/config/FPSC_BuildDefineFeatures.gd - foreshadowing for the removal of SRCBOX
+
+FPSC (Masonry Engine) version 2 - Unknown time between May 4, 2026* and June 4, 2026:
 	Renamed ViewTexture.gd to FPSC_ViewTexture.gd to fit the naming scheme better
 	Renamed FPSC_WeaponSourcebox.gd to sourcebox_superuselessweshouldntevenhavethisanymoretypeweapon.gd because of deprecation
 	REMOVED:
@@ -22,6 +65,8 @@ FPSC (Masonry Engine) version 2:
 			PROBLEM WITH SOLUTION: There's no master "do or don't process" code.
 	FIX:
 		Add code to make the player stop calling currentWeapon.FPSC_End[Primary &/or Secondary]Fire()
+          - Needed more detail. The player used to continually call End[Primary/Secondary]Fire() while the game was paused
+            This caused animations to loop
 	Added: HOLY SHIT ARE THOSE PORTALS???
 
 FPSC (Masonry Engine) version 3 - June 6, 2026:
@@ -37,3 +82,7 @@ FPSC (Masonry Engine) version 3 - June 6, 2026:
 	Added loading screens
 	Upgraded the export categories in the player code to be groups instead
 	Added AI (No, not generative AI. No, not machine learning. I mean NPC, pathfinding...)
+
+FPSC (Masonry TOOLKIT) version 3.5 - June 16, 2026:
+    Reorganized everything all over again
+    MORE FOLDERS!
