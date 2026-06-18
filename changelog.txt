@@ -99,6 +99,7 @@ FPSC (Masonry Toolkit) version 4 - June 17, 2026:
     Updated licensing terms (again) to include the new texture.
     Made the Temu equivalent of sp_a2_trust_fling
     Added FPSC_DoorActivatable
+    Added FPSC_InstanceActivatable
     Fixed catapults (they were broken before, don't ask)
     Fixed portals (they were broken before, just check the commit history)
     Added non-portalable surfaces
