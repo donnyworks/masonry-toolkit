@@ -12,7 +12,7 @@ THIRD PARTY LICENSING DETAILS:
 	Valve Software [Crowbar viewmodel and textures, elevbell1.wav, VGUI corner assets (I don't know if they care about 8x8 corner textures though)]
     Madattak [Innovation. Inc map (May be removed)]
     Gev Creates [Particle textures, Spotters (npc_spotter_instance.tscn, npc_spotter_i_oldasf[||]kdontuse.tscn, npc_spotter_old_instance.tscn, os95plus_spotterCarcass.tscn), OSER models, os_01]
-	Donovan's Dimension of Art [os_01 (The original game was created by Gev Creates, however, the version of os_01 used is from OS98.)]
+	Donovan's Dimension of Art [os_01 (The original game was created by Gev Creates, however, the version of os_01 used is from OS98.), target_endpoint.png (from PlatREFormer)]
 
 - Deprecated asset holders are:
 	xen-42 [Original portal shader. You may be wondering what relation this has to Masonry Toolkit. For about 3 years, all of Masonry Toolkit's father-projects have used their portal shader as a base for the screenspace UV shader used in SkyboxShader.tres]

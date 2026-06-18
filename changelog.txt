@@ -95,3 +95,11 @@ FPSC (Masonry Toolkit) version 4 - June 17, 2026:
     Added floor/ceiling portals that (gasp) actually work!
     Changed devtest_portals to use these features
     Updated licensing terms to include the new bell sound effect included with the SDK (from Half-Life)
+    ----------- Beta 2
+    Updated licensing terms (again) to include the new texture.
+    Made the Temu equivalent of sp_a2_trust_fling
+    Added FPSC_DoorActivatable
+    Fixed catapults (they were broken before, don't ask)
+    Fixed portals (they were broken before, just check the commit history)
+    Added non-portalable surfaces
+    Added devtest_catapults

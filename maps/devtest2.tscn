@@ -171,11 +171,11 @@ size = Vector3(0.5576782, 2, 0.34375)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="ViewTexture" type="SubViewport" parent="Skybox"]
-size = Vector2i(1358, 606)
+size = Vector2i(1358, 838)
 script = ExtResource("2_7vurj")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(0.9883649, -0.051907487, 0.14296867, 0, 0.9399642, 0.34127194, -0.15210007, -0.33730122, 0.9290279, 0.2579665, 38.358486, 0.8023629)
+transform = Transform3D(0.9997622, -0.00026792136, 0.02179185, 0, 0.99992394, 0.012293636, -0.021793498, -0.012290715, 0.99968654, 0.19114865, 39.100555, 1.5531497)
 fov = 70.01
 script = ExtResource("3_v0o45")
 CameraOrigin = NodePath("../../SkyCameraPivot")
@@ -214,7 +214,7 @@ shape = SubResource("BoxShape3D_51cni")
 [node name="FPSC_TriggerCatapult" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
 script = ExtResource("5_nnlrr")
-destination = NodePath("")
+destination = NodePath("../Marker3D")
 metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerCatapult"]
@@ -226,7 +226,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 size = Vector3(2, 1, 1)
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="Marker3D" node_paths=PackedStringArray("activated")]
 script = ExtResource("6_0yfu1")

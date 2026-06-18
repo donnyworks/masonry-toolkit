@@ -17,20 +17,53 @@ func FPSC_Reload():
 	current_portal2 = null
 	pass
 
-func FPSC_CanPrimaryFire():
-	return OwnerPlayer.get_node("Camera3D/RayCast3D").is_colliding()
+func Portalgun_CanFire():
+	var base = OwnerPlayer.get_node("Camera3D/RayCast3D").is_colliding()
+	if not base:
+		return false
+	if not OwnerPlayer.get_node("Camera3D/RayCast3D").get_collider().is_in_group("Non-Portalable"):
+		return true
+	return false
 
-func FPSC_CanSecondaryFire():
-	return OwnerPlayer.get_node("Camera3D/RayCast3D").is_colliding()
+func FPSC_CanPrimaryFire(): return Portalgun_CanFire()
 
-func ModifyHelper(portal,point,normal):
-	print("ModifyHelper: Normal is ",normal)
-	var prepNormal = Vector3(0,normal.z*-90,normal.y*90)
-	if normal.y < 0.0:
-		prepNormal.y += normal.y*-180
-	print("ModifyHelper: Calculated normal is ",prepNormal)
+func FPSC_CanSecondaryFire(): return Portalgun_CanFire()
+
+func get_euler_from_normal(normal: Vector3) -> Vector3:
+	# 1. Use World UP as a reference. If looking straight up/down, use Forward.
+	var up_reference = Vector3.UP if abs(normal.dot(Vector3.UP)) < 0.99 else Vector3.FORWARD
+	
+	# 2. Calculate correct perpendicular X and Z axes
+	var right = normal.cross(up_reference).normalized()
+	var forward = right.cross(normal).normalized()
+	
+	# 3. Build a fresh, clean Basis
+	var basis = Basis(right, normal, forward)
+	
+	# 4. Extract the correct Euler angles
+	return basis.get_euler()
+
+func ModifyHelper(portal : FPSC_Portal, point, normal):
+	if portal.marked_collider != null:
+		portal.marked_collider.use_collision = true
+	if portal.marked_other_collider != null:
+		portal.marked_other_collider.use_collision = true
 	portal.global_position = point
-	portal.global_rotation_degrees = prepNormal
+	
+	# 1. Establish stable world sky reference
+	var up_reference = Vector3.UP if abs(normal.dot(Vector3.UP)) < 0.99 else Vector3.FORWARD
+	
+	# 2. Calculate horizontal side vector perpendicular to the wall
+	var calculated_z = normal.cross(up_reference).normalized()
+	
+	# 3. Calculate true vertical vector perpendicular to both
+	var calculated_y = calculated_z.cross(normal).normalized()
+	
+	# 4. Map vectors directly to your X-oriented CSG mesh layout
+	# X = Wall Normal, Y = Sky Up, Z = Side Horizon
+	portal.global_transform.basis = Basis(normal, calculated_y, calculated_z)
+	if normal.y == 1 or normal.y == -1:
+		portal.rotation.y = OwnerPlayer.rotation.y - deg_to_rad(90)
 
 func get_cam_raycast():
 	return OwnerPlayer.get_node("Camera3D/RayCast3D")

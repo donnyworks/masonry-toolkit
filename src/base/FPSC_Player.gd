@@ -292,9 +292,7 @@ func modify_velocity(is_jumping:bool,move_vector:Vector2,delta:float):
 		if is_on_floor():
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
-		else:
-			velocity.x = move_toward(velocity.x, SPEED, DRAG*delta)
-			velocity.z = move_toward(velocity.z, SPEED, DRAG*delta)
+
 
 var isSimulated = Monolyth.isMultiplayer and not Monolyth.isClient and not isListenServer
 
@@ -349,7 +347,22 @@ func _physics_process(delta: float) -> void:
 		modify_velocity(Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd"),delta)
 		# We simulate movement on the client side as well as sending it to the server
 	move_and_slide()
-
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		# 3. Check if the object we bumped into is a RigidBody
+		# Use RigidBody2D for 2D projects
+		if collider is RigidBody3D: 
+			# Calculate the push direction (away from the player)
+			var push_dir = -collision.get_normal()
+			
+			# Define how heavy/strong the push force should be
+			var push_force = 2.0 
+			
+			# Apply an impulse to the RigidBody
+			# For 2D: collider.apply_impulse(push_dir * push_force)
+			collider.apply_impulse(push_dir * push_force, collision.get_position() - collider.global_position)
 func _input(event):
 	if not is_inside_tree(): return
 	if isSimulated: return

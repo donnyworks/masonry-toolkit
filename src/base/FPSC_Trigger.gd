@@ -17,19 +17,19 @@ func _ready():
 
 func _flagsEval(body:Node3D): # Evaluate interact_with flags
 	if interact_with & 1 and body is FPSC_Player:
-		print("This is the player crossing the border")
+		#print("This is the player crossing the border")
 		return true
 	if interact_with & 2 and (body is StaticBody3D or body is CSGShape3D):
-		print("Bringing the world and the coastal border")
+		#print("Bringing the world and the coastal border")
 		return true
 	if interact_with & 4 and body is RigidBody3D:
-		print("Letters for the physics")
+		#print("Letters for the physics")
 		return true
 	if interact_with & 8 and (body is CharacterBody3D and not body is FPSC_Player):
-		print("Letters for the poor")
+		#print("Letters for the poor")
 		return true
 	if interact_with & 16:
-		print("The shop in the world or the girl next door")
+		#print("The shop in the world or the girl next door")
 		return true
 	return false
 

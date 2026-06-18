@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://co87h3g6cdrf6"]
+[gd_scene load_steps=18 format=3 uid="uid://co87h3g6cdrf6"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_xkxlm"]
 [ext_resource type="Texture2D" uid="uid://sav8ot3s5160" path="res://icon.svg" id="2_5dvjp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://rfwg0hemxvb6" path="res://src/portal/FPSC_TextureApplyFeatureMarker.gd" id="3_sepu0"]
 [ext_resource type="PackedScene" uid="uid://cm04rqdktssx2" path="res://instances/stellaoctangula.tscn" id="4_sepu0"]
 [ext_resource type="PackedScene" uid="uid://plpnja5gt1i4" path="res://instances/portal/weapon_portalgun.tscn" id="6_5dvjp"]
+[ext_resource type="Script" uid="uid://l3j5m0d3m6rj" path="res://src/base/triggers/FPSC_TriggerCatapult.gd" id="8_e0nvk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxwue"]
 albedo_texture = ExtResource("2_5dvjp")
@@ -47,6 +48,9 @@ sky_material = SubResource("ProceduralSkyMaterial_ah5jf")
 [sub_resource type="Environment" id="Environment_di4mo"]
 background_mode = 2
 sky = SubResource("Sky_di4mo")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_udncq"]
+size = Vector3(2, 0.072265625, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -118,6 +122,12 @@ script = ExtResource("3_sepu0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0.5)
 use_collision = true
 size = Vector3(2, 3, 31)
+script = ExtResource("3_sepu0")
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="."]
+transform = Transform3D(0.7071067, -0.70710677, 0, 0.70710677, 0.7071067, 0, 0, 0, 1, -13.730293, 0.7697069, -0.0330925)
+use_collision = true
+size = Vector3(0.3486328, 3, 3)
 script = ExtResource("3_sepu0")
 
 [node name="CSGBox3D17" type="CSGBox3D" parent="."]
@@ -229,7 +239,7 @@ size = Vector2i(1358, 606)
 script = ExtResource("2_nwn6f")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(0.99972117, 0.008730402, -0.02193365, 0, 0.92910385, 0.3698177, 0.023607312, -0.3697146, 0.92884505, 0.2992109, 38.269817, 0.7706385)
+transform = Transform3D(0.9375704, 0.16169365, -0.30792287, 0, 0.8853571, 0.46491075, 0.347795, -0.43588656, 0.8300849, -0.16954117, 38.36795, 0.5529813)
 fov = 70.01
 script = ExtResource("3_5dvjp")
 CameraOrigin = NodePath("../../SkyCameraPivot")
@@ -259,3 +269,20 @@ shadow_enabled = true
 
 [node name="WeaponPortalgun" parent="." instance=ExtResource("6_5dvjp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3626709, 0.22647941, -2.1089408)
+
+[node name="FPSC_TriggerCatapult" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+script = ExtResource("8_e0nvk")
+destination = NodePath("../Marker3D")
+metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerCatapult"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.4638672, 0)
+shape = SubResource("BoxShape3D_udncq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="FPSC_TriggerCatapult"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.46240234, 0)
+size = Vector3(2, 0.07519531, 1)
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5, 0)

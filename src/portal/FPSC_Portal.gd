@@ -148,9 +148,7 @@ func _on_passthrough_area_body_entered(body: Node3D) -> void:
 
 # Clean up the array when they leave the destination portal
 func _on_passthrough_area_body_exited(body: Node3D) -> void:
-	if body in bodies_to_ignore:
-		bodies_to_ignore.erase(body)
-		return # Skip the rest of your collision resetting logic for this frame if needed
+	bodies_to_ignore.erase(body) # Let's just be safe
 
 	# --- YOUR EXISTING COLLISION RESETTING LOGIC ---
 	if body is CharacterBody3D or body is RigidBody3D:

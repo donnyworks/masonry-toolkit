@@ -4,6 +4,7 @@ class_name FPSC_GlobalState
 static var maps_listed = {
 	"DYNAMO lighting system test":"res://maps/FPSC_Test.tscn",
 	"Physics testing area":"res://maps/devtest2.tscn",
+	"Temu Trust Fling":"res://maps/devtest_trust_flings.tscn",
 	"Portal testing area":"res://maps/devtest_portals.tscn",
 	"Spotter testing area":"res://maps/devtest_os95_spotter_diff.tscn",
 	"NPC testing area":"res://maps/devtest_pathfinder.tscn"}
