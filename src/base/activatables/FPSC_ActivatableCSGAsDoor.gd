@@ -3,9 +3,11 @@ class_name FPSC_DoorActivatable
 
 @export var object_as_door : CSGShape3D
 
-@export var time : float ## Time it takes to happen
+@export var time : float = 1.0 ## Time it takes to happen
 
 @export_enum("Up:1","Down:2","Left:3","Right:4","Forward:5","Backward:6") var move_direction := 1
+
+@export var stay_open : bool = false
 
 var starting_position : Vector3
 
@@ -28,17 +30,32 @@ func _ready():
 		6:
 			ep_vector = -Vector3.FORWARD
 	ending_position = object_as_door.position + object_as_door.get_aabb().size * ep_vector
+	await get_tree().process_frame # Wait a frame, recalcuate to be safe
+	ending_position = object_as_door.position + object_as_door.get_aabb().size * ep_vector
 
+var bodies_entered = []
+
+func animate_door_open():
+	var t1 = create_tween()
+	t1.tween_property(object_as_door,"position",ending_position,time)
 
 func on_enter(_body:Node3D):
 	print("Bodyiingg")
-	var t1 = create_tween()
-	t1.tween_property(object_as_door,"position",ending_position,time)
+	bodies_entered.append(_body)
+	animate_door_open()
 	pass
+
+func animate_door_close():
+	var t1 = create_tween()
+	t1.tween_property(object_as_door,"position",starting_position,time)
 
 func on_exit(_body:Node3D):
 	print("Bodiing")
-	var t1 = create_tween()
-	t1.tween_property(object_as_door,"position",starting_position,time)
+	if _body in bodies_entered:
+		bodies_entered.erase(_body)
+	if len(bodies_entered) > 0:
+		return
+	if not stay_open:
+		animate_door_close()
 	
 	pass

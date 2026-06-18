@@ -15,6 +15,7 @@
 [node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
 script = ExtResource("1_nqxa6")
 activated = [NodePath("FPSC_SoundPlayerActivatable"), NodePath("FPSC_TextureChangeActivatable")]
+UseActivationDelay = true
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
 [node name="FPSC_SoundPlayerActivatable" type="Node" parent="FPSC_TriggerRelay" node_paths=PackedStringArray("stream_player")]

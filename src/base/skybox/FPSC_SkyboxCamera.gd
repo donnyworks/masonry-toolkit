@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 			position = CameraOrigin.global_position + modpos/MovementScale + Offset
 			fov = FPSC_Player.sessionPlayer.get_node("Camera3D").fov
 		else:
-			var pc = EditorInterface.get_editor_viewport_3d().get_camera_3d()
+			var pc = Engine.get_singleton("EditorInterface").get_editor_viewport_3d().get_camera_3d()
 			rotation = pc.global_rotation
 			var modpos = pc.global_position * Vector3(1,1,1)
 			position = CameraOrigin.global_position + modpos/MovementScale + Offset

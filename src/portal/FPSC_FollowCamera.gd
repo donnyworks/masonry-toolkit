@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 			if FPSC_Player.sessionPlayer == null: return
 			pc = FPSC_Player.sessionPlayer.get_node("Camera3D")
 		else:
-			pc = EditorInterface.get_editor_viewport_3d().get_camera_3d()
+			pc = Engine.get_singleton("EditorInterface").get_editor_viewport_3d().get_camera_3d()
 		
 		if pc == null: return
 		fov = pc.fov

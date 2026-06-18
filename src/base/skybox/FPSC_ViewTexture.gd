@@ -6,7 +6,7 @@ class_name FPSC_ViewTexture
 func _process(delta: float) -> void:
 	var ws = get_window().size
 	if Engine.is_editor_hint():
-		ws = EditorInterface.get_editor_viewport_3d().size
+		ws = Engine.get_singleton("EditorInterface").get_editor_viewport_3d().size
 	if size != ws:
 		size = ws
 	pass

@@ -1,19 +1,18 @@
-[gd_scene load_steps=45 format=3 uid="uid://cuhvidifycg2q"]
+[gd_scene load_steps=39 format=3 uid="uid://dik2totmegp5g"]
 
-[ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_63bkp"]
-[ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="2_63bkp"]
-[ext_resource type="Script" uid="uid://rak8vmaeqnag" path="res://src/base/skybox/FPSC_ViewTexture.gd" id="2_r60v4"]
-[ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/FPSC_ActivatableCreateFromInstance.gd" id="3_qoyqb"]
-[ext_resource type="PackedScene" uid="uid://ceh1kr5c3yqsc" path="res://maps/devtest_hallway.tscn" id="3_r60v4"]
-[ext_resource type="Script" uid="uid://ckyi0gdrrolk1" path="res://src/base/skybox/FPSC_SkyboxCamera.gd" id="3_x25pd"]
-[ext_resource type="PackedScene" uid="uid://cm04rqdktssx2" path="res://instances/stellaoctangula.tscn" id="4_s07qk"]
-[ext_resource type="Script" uid="uid://l3j5m0d3m6rj" path="res://src/base/triggers/FPSC_TriggerCatapult.gd" id="5_8n2k8"]
-[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="6_nhj0d"]
-[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="6_r60v4"]
-[ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/AudioQueueMarker.tscn" id="6_s15dw"]
-[ext_resource type="PackedScene" uid="uid://cihvtue137xn7" path="res://instances/prefab_chamber_entryway.tscn" id="8_r60v4"]
-[ext_resource type="Texture2D" uid="uid://wmpactx1jwkd" path="res://textures/target_endpoint.png" id="12_qlk6d"]
-[ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="14_x25pd"]
+[ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_iuha7"]
+[ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="2_3ivli"]
+[ext_resource type="PackedScene" uid="uid://ceh1kr5c3yqsc" path="res://maps/devtest_hallway.tscn" id="3_mbiq4"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_3xn4n"]
+[ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/FPSC_ActivatableCreateFromInstance.gd" id="5_kopnv"]
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="6_hl4n7"]
+[ext_resource type="Script" uid="uid://l3j5m0d3m6rj" path="res://src/base/triggers/FPSC_TriggerCatapult.gd" id="7_dwn1l"]
+[ext_resource type="Script" uid="uid://rak8vmaeqnag" path="res://src/base/skybox/FPSC_ViewTexture.gd" id="8_4kisq"]
+[ext_resource type="Script" uid="uid://ckyi0gdrrolk1" path="res://src/base/skybox/FPSC_SkyboxCamera.gd" id="9_qyi0l"]
+[ext_resource type="PackedScene" uid="uid://cm04rqdktssx2" path="res://instances/stellaoctangula.tscn" id="10_uep4l"]
+[ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/AudioQueueMarker.tscn" id="11_yv31q"]
+[ext_resource type="Texture2D" uid="uid://wmpactx1jwkd" path="res://textures/target_endpoint.png" id="12_pbdm2"]
+[ext_resource type="PackedScene" uid="uid://plpnja5gt1i4" path="res://instances/portal/weapon_portalgun.tscn" id="13_4q08s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s15dw"]
 shading_mode = 0
@@ -21,13 +20,15 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xl6ql"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1nl8k"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.35686275)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_x25pd"]
 size = Vector3(4, 3, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s07qk"]
 albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hj7uh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_63bkp"]
 albedo_color = Color(1, 0, 0, 1)
@@ -42,18 +43,10 @@ albedo_color = Color(0.6790145, 2.815649e-06, 5.7756904e-07, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s07qk"]
 size = Vector3(2, 1, 2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mcebn"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0.5411765)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7vt6"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8n2k8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tg331"]
 albedo_color = Color(0.5251013, 0.5251013, 0.5251013, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0n1i5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r7vt6"]
 size = Vector3(4.011963, 5.0145874, 0.44482422)
@@ -111,17 +104,10 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_xl6ql"]
 size = Vector3(108, 1, 145)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8n2k8"]
-size = Vector3(71, 1, 69)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nhj0d"]
-transparency = 1
-albedo_color = Color(0.30980393, 0.4862745, 0.12156863, 0.5058824)
-
 [node name="Node3D" type="Node3D"]
 
-[node name="Player" parent="." instance=ExtResource("1_63bkp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.455708, -12.467211, 16.488125)
+[node name="Player" parent="." instance=ExtResource("1_iuha7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -148,21 +134,21 @@ size = Vector3(15, 4, 8)
 material = SubResource("StandardMaterial3D_xl6ql")
 
 [node name="CSGBox3D23" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, -15.5, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, -15.5, -6)
 use_collision = true
-size = Vector3(10, 4, 6)
+size = Vector3(10, 4, 8)
 material = SubResource("StandardMaterial3D_xl6ql")
 
 [node name="CSGBox3D44" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.902344, -14.803333, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.902344, -14.803333, -6)
 use_collision = true
-size = Vector3(0.1953125, 4, 6)
+size = Vector3(0.1953125, 4, 8)
 material = SubResource("StandardMaterial3D_xl6ql")
 
 [node name="CSGBox3D49" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.902344, -14.803333, -9.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.902344, -14.803333, -12.553955)
 use_collision = true
-size = Vector3(0.1953125, 4, 3)
+size = Vector3(0.1953125, 4, 5.10791)
 material = SubResource("StandardMaterial3D_xl6ql")
 
 [node name="CSGBox3D45" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
@@ -172,13 +158,13 @@ size = Vector3(5.184082, 4, 0.23815918)
 material = SubResource("StandardMaterial3D_xl6ql")
 
 [node name="CSGBox3D47" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.970093, -14.803333, -8.11908)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.970093, -14.803333, -10.11908)
 use_collision = true
 size = Vector3(4.3308105, 4, 0.23815918)
 material = SubResource("StandardMaterial3D_xl6ql")
 
 [node name="CSGBox3D48" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.364502, -14.803333, -11.11908)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.364502, -14.803333, -15.11908)
 use_collision = true
 size = Vector3(7.119629, 4, 0.23815918)
 material = SubResource("StandardMaterial3D_xl6ql")
@@ -189,64 +175,28 @@ use_collision = true
 size = Vector3(0.18481445, 4, 6.9589233)
 material = SubResource("StandardMaterial3D_xl6ql")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="." groups=["lights"]]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -39.412918, -6.4881907, -5.7293925)
+[node name="CSGBox3D42" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.412918, -14.488191, -3.7293925)
+use_collision = true
+size = Vector3(0.45578003, 4, 1.3757324)
+material = SubResource("StandardMaterial3D_xl6ql")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CSGBox3D42" groups=["lights"]]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 8, 0)
 light_energy = 4.167
 shadow_enabled = true
 spot_range = 33.0
 
-[node name="SpotLight3D9" type="OmniLight3D" parent="." groups=["lights"]]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -34.412918, -10.488191, 3.2706075)
-light_energy = 4.167
-shadow_enabled = true
-omni_range = 9.0
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="." groups=["lights"]]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -58.412918, -6.4881907, -5.7293925)
-light_energy = 4.167
-shadow_enabled = true
-spot_range = 33.0
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="." groups=["lights"]]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -58.412918, -6.4881907, -22.729393)
-light_energy = 4.167
-shadow_enabled = true
-spot_range = 33.0
-
-[node name="SpotLight3D4" type="SpotLight3D" parent="." groups=["lights"]]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -44.412918, -6.4881907, -28.729393)
-light_energy = 4.167
-shadow_enabled = true
-spot_range = 33.0
-
-[node name="SpotLight3D5" type="SpotLight3D" parent="." groups=["lights"]]
-transform = Transform3D(0.49999997, 3.7855173e-08, -0.86602545, 0.86602545, -2.185569e-08, 0.49999997, 0, -1, -4.371139e-08, -37.412918, -6.4881907, -25.729393)
-light_energy = 4.167
-shadow_enabled = true
-spot_range = 33.0
-
-[node name="SpotLight3D6" type="SpotLight3D" parent="." groups=["lights"]]
-transform = Transform3D(-0.25, -0.8660254, 0.43301275, 0.86602545, -2.1855689e-08, 0.49999997, -0.43301266, 0.5, 0.75, -72.41292, -6.4881907, -25.729393)
-light_energy = 4.167
-shadow_enabled = true
-spot_range = 33.0
-
-[node name="SpotLight3D7" type="SpotLight3D" parent="." groups=["lights"]]
-transform = Transform3D(0.24999994, -0.8660254, -0.43301272, 0.86602545, -6.599892e-08, 0.49999994, -0.43301266, -0.49999994, 0.75, -69.41292, -6.4881907, -25.729393)
-light_energy = 4.167
-shadow_enabled = true
-spot_range = 33.0
-
-[node name="SpotLight3D8" type="SpotLight3D" parent="." groups=["lights"]]
-transform = Transform3D(-0.25000003, 0.8660254, 0.4330128, 0.86602545, -2.5288195e-08, 0.5, 0.4330127, 0.5000001, -0.74999994, -69.41292, -3.4881907, -25.729393)
-light_energy = 4.167
-shadow_enabled = true
-spot_range = 33.0
+[node name="CSGBox3D43" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.412918, -12.324661, -3.7293925)
+use_collision = true
+size = Vector3(0.45578003, 0.32043457, 1.3757324)
+material = SubResource("StandardMaterial3D_1nl8k")
 
 [node name="CSGBox3D24" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, -15.5, -9.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, -15.5, -12.5)
 use_collision = true
-size = Vector3(6, 4, 3)
+size = Vector3(6, 4, 5)
 material = SubResource("StandardMaterial3D_xl6ql")
 
 [node name="CSGBox3D22" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
@@ -259,13 +209,6 @@ material = SubResource("StandardMaterial3D_xl6ql")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, -9.5, 6.5)
 use_collision = true
 size = Vector3(38, 16, 1)
-material = SubResource("StandardMaterial3D_xl6ql")
-
-[node name="CSGBox3D61" type="CSGBox3D" parent="CSGBox3D8" groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -4, 0)
-operation = 2
-use_collision = true
-size = Vector3(6, 8, 1)
 material = SubResource("StandardMaterial3D_xl6ql")
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
@@ -287,8 +230,8 @@ size = Vector3(30, 1, 19)
 
 [node name="FPSC_TriggerChangelevel" type="Area3D" parent="CSGBox3D56"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
-script = ExtResource("2_63bkp")
-other_level = ExtResource("3_r60v4")
+script = ExtResource("2_3ivli")
+other_level = ExtResource("3_mbiq4")
 metadata/_custom_type_script = "uid://cn3f2saw8lsmn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D56/FPSC_TriggerChangelevel"]
@@ -341,12 +284,6 @@ use_collision = true
 size = Vector3(4, 4, 4)
 material = SubResource("StandardMaterial3D_xl6ql")
 
-[node name="door_softlock" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.088867, -13.867645, -37)
-use_collision = true
-size = Vector3(15.822266, 0.38787842, 4)
-material = SubResource("StandardMaterial3D_xl6ql")
-
 [node name="CSGBox3D36" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.5, -15.5, -6)
 use_collision = true
@@ -360,9 +297,9 @@ size = Vector3(3, 4, 2)
 material = SubResource("StandardMaterial3D_xl6ql")
 
 [node name="CSGBox3D38" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.5, -15.5, -28)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -15.5, -28)
 use_collision = true
-size = Vector3(3, 4, 2)
+size = Vector3(6, 4, 2)
 material = SubResource("StandardMaterial3D_xl6ql")
 
 [node name="CSGBox3D28" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
@@ -390,13 +327,6 @@ use_collision = true
 size = Vector3(15, 4, 21)
 material = SubResource("StandardMaterial3D_s15dw")
 
-[node name="CSGBox3D55" type="CSGBox3D" parent="CSGBox3D35"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -3, 0, -21)
-operation = 2
-use_collision = true
-size = Vector3(4, 4, 5)
-material = SubResource("StandardMaterial3D_hj7uh")
-
 [node name="CSGBox3D29" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76, -11.5, -29)
 use_collision = true
@@ -419,7 +349,7 @@ size = Vector3(2, 0.12866211, 2)
 material = SubResource("StandardMaterial3D_x25pd")
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="CSGBox3D50" node_paths=PackedStringArray("activated")]
-script = ExtResource("6_nhj0d")
+script = ExtResource("4_3xn4n")
 activated = [NodePath("FPSC_InstanceActivatable")]
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
@@ -428,7 +358,7 @@ transform = Transform3D(0.9999965, 0, 0, 0, 1, 0, 0, 0, 0.9999965, 0, 0, 0)
 shape = SubResource("BoxShape3D_s07qk")
 
 [node name="FPSC_InstanceActivatable" type="Node" parent="CSGBox3D50/FPSC_TriggerRelay" node_paths=PackedStringArray("instance", "instantiation_position")]
-script = ExtResource("3_qoyqb")
+script = ExtResource("5_kopnv")
 instance = NodePath("../../../box")
 instantiation_position = NodePath("../../../FPSC_TriggerCatapult6/Marker3D2")
 preserve_original = false
@@ -450,7 +380,7 @@ size = Vector3(2, 0.12866211, 2)
 material = SubResource("StandardMaterial3D_x25pd")
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="CSGBox3D54" node_paths=PackedStringArray("activated")]
-script = ExtResource("6_nhj0d")
+script = ExtResource("4_3xn4n")
 activated = [NodePath("FPSC_DoorActivatable")]
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
@@ -459,25 +389,9 @@ transform = Transform3D(0.9999965, 0, 0, 0, 1, 0, 0, 0, 0.9999965, 0, 0, 0)
 shape = SubResource("BoxShape3D_s07qk")
 
 [node name="FPSC_DoorActivatable" type="Node" parent="CSGBox3D54/FPSC_TriggerRelay" node_paths=PackedStringArray("object_as_door")]
-script = ExtResource("6_r60v4")
+script = ExtResource("6_hl4n7")
 object_as_door = NodePath("../../../door")
-metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
-
-[node name="FPSC_TriggerRelay2" type="Area3D" parent="CSGBox3D54" node_paths=PackedStringArray("activated")]
-script = ExtResource("6_nhj0d")
-activated = [NodePath("FPSC_DoorActivatable")]
-interact_with = 1
-metadata/_custom_type_script = "uid://co0pdj3pf8nga"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D54/FPSC_TriggerRelay2"]
-transform = Transform3D(0.9999965, 0, 0, 0, 1, 0, 0, 0, 0.9999965, 0, 0, 0)
-shape = SubResource("BoxShape3D_s07qk")
-
-[node name="FPSC_DoorActivatable" type="Node" parent="CSGBox3D54/FPSC_TriggerRelay2" node_paths=PackedStringArray("object_as_door")]
-script = ExtResource("6_r60v4")
-object_as_door = NodePath("../../../door_softlock")
-move_direction = 5
-stay_open = true
+time = 1.0
 metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
 
 [node name="CSGBox3D20" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
@@ -486,47 +400,22 @@ use_collision = true
 size = Vector3(35, 16, 5)
 material = SubResource("StandardMaterial3D_xl6ql")
 
-[node name="CSGBox3D43" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, -4.5, -34.9995)
-use_collision = true
-size = Vector3(4, 6, 0.001)
-material = SubResource("StandardMaterial3D_mcebn")
-
-[node name="CSGBox3D62" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, 2.9802322e-08, -60, -12.5, -36.9995)
-use_collision = true
-size = Vector3(4, 10, 0.001)
-material = SubResource("StandardMaterial3D_mcebn")
-
 [node name="CSGBox3D12" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.5, -9.5, -14.5)
 use_collision = true
 size = Vector3(21, 16, 1)
 material = SubResource("StandardMaterial3D_r7vt6")
 
-[node name="CSGBox3D43" type="CSGBox3D" parent="CSGBox3D12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 2.5, 0)
-operation = 2
+[node name="CSGBox3D31" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, -7, -15.5)
 use_collision = true
 size = Vector3(6, 5, 1)
-material = SubResource("StandardMaterial3D_8n2k8")
-
-[node name="CSGBox3D31" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.5, -7, -13.5)
-use_collision = true
-size = Vector3(3, 5, 1)
 material = SubResource("StandardMaterial3D_tg331")
 
-[node name="CSGBox3D61" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.5, -7, -13.5)
-use_collision = true
-size = Vector3(3, 5, 1)
-material = SubResource("StandardMaterial3D_0n1i5")
-
 [node name="CSGBox3D55" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -58, -2, -37)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -58.5, -3, -36.5)
 use_collision = true
-size = Vector3(4, 4, 1)
+size = Vector3(5, 5, 1)
 material = SubResource("StandardMaterial3D_tg331")
 
 [node name="CSGBox3D40" type="CSGBox3D" parent="."]
@@ -542,7 +431,7 @@ size = Vector3(4, 5, 1)
 material = SubResource("StandardMaterial3D_tg331")
 
 [node name="FPSC_TriggerCatapult" type="Area3D" parent="CSGBox3D41" node_paths=PackedStringArray("destination")]
-script = ExtResource("5_8n2k8")
+script = ExtResource("7_dwn1l")
 destination = NodePath("Marker3D")
 minimal_threshold = 10.0
 metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
@@ -560,11 +449,20 @@ use_collision = true
 size = Vector3(1, 5, 24)
 material = SubResource("StandardMaterial3D_tg331")
 
-[node name="prefab_chamber_entryway" parent="." instance=ExtResource("8_r60v4")]
-transform = Transform3D(1, 0, -4.4703484e-08, 0, 1, 0, 4.4703484e-08, 0, 1, -33.5, -13.5, 16.531311)
+[node name="CSGBox3D33" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.500149, -7.5, -4)
+use_collision = true
+size = Vector3(1, 12, 20)
+material = SubResource("StandardMaterial3D_tg331")
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -42, -7.5, 5.760892)
+use_collision = true
+size = Vector3(2, 12, 22)
+material = SubResource("StandardMaterial3D_tg331")
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5, -9.5, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5, -9.5, -4)
 use_collision = true
 size = Vector3(1, 16, 20)
 material = SubResource("StandardMaterial3D_xl6ql")
@@ -741,15 +639,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="ViewTexture" type="SubViewport" parent="Skybox"]
 size = Vector2i(1358, 606)
-script = ExtResource("2_r60v4")
+script = ExtResource("8_4kisq")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(-0.5572764, 0.507817, -0.6569353, 0, 0.79117656, 0.61158687, 0.8303266, 0.34082302, -0.44090423, -2.280262, 37.64309, -0.15629211)
+transform = Transform3D(-0.8101192, 0.009764991, -0.5861832, 0, 0.99986076, 0.016656283, 0.58626455, 0.013493579, -0.8100068, -1.8297827, 37.292492, -1.9999838)
 fov = 70.01
-script = ExtResource("3_x25pd")
+script = ExtResource("9_qyi0l")
 CameraOrigin = NodePath("../../SkyCameraPivot")
 
-[node name="octangula" parent="Skybox" instance=ExtResource("4_s07qk")]
+[node name="octangula" parent="Skybox" instance=ExtResource("10_uep4l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -19.159977, -0.7589184)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -763,6 +661,14 @@ shadow_enabled = true
 transform = Transform3D(-0.70710677, -1.4594538e-07, 0.70710677, 0.6123725, 0.49999997, 0.6123726, -0.35355347, 0.86602545, -0.35355327, 0, 0, 0)
 shadow_enabled = true
 
+[node name="RigidBox" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 14, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="RigidBox"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBox"]
+shape = SubResource("BoxShape3D_51cni")
+
 [node name="box" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 14, -6)
 
@@ -773,7 +679,7 @@ shape = SubResource("BoxShape3D_51cni")
 
 [node name="FPSC_TriggerCatapult" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
-script = ExtResource("5_8n2k8")
+script = ExtResource("7_dwn1l")
 destination = NodePath("../transition_to_outer_level")
 metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
 
@@ -797,7 +703,7 @@ DO NOT USE"
 
 [node name="FPSC_TriggerCatapult6" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 0)
-script = ExtResource("5_8n2k8")
+script = ExtResource("7_dwn1l")
 destination = NodePath("Marker3D")
 metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
 
@@ -817,7 +723,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 6, -6)
 
 [node name="FPSC_TriggerCatapult2" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, -13, -6)
-script = ExtResource("5_8n2k8")
+script = ExtResource("7_dwn1l")
 destination = NodePath("../tf1")
 metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
 
@@ -832,7 +738,7 @@ material = SubResource("StandardMaterial3D_qoyqb")
 
 [node name="FPSC_TriggerCatapult3" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59, -13, -6)
-script = ExtResource("5_8n2k8")
+script = ExtResource("7_dwn1l")
 destination = NodePath("../tf2")
 metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
 
@@ -847,7 +753,7 @@ material = SubResource("StandardMaterial3D_qoyqb")
 
 [node name="FPSC_TriggerCatapult4" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59, -13, -23)
-script = ExtResource("5_8n2k8")
+script = ExtResource("7_dwn1l")
 destination = NodePath("../tf3")
 metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
 
@@ -862,7 +768,7 @@ material = SubResource("StandardMaterial3D_qoyqb")
 
 [node name="FPSC_TriggerCatapult7" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47, -13, -28)
-script = ExtResource("5_8n2k8")
+script = ExtResource("7_dwn1l")
 destination = NodePath("../tf4")
 metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
 
@@ -883,8 +789,7 @@ material = SubResource("StandardMaterial3D_qoyqb")
 
 [node name="FPSC_TriggerCatapult8" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44, -13, -28)
-visible = false
-script = ExtResource("5_8n2k8")
+script = ExtResource("7_dwn1l")
 destination = NodePath("../tf4")
 metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
 
@@ -905,7 +810,7 @@ material = SubResource("StandardMaterial3D_qoyqb")
 
 [node name="FPSC_TriggerCatapult5" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59, -54, -23)
-script = ExtResource("5_8n2k8")
+script = ExtResource("7_dwn1l")
 destination = NodePath("../tf1")
 metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
 
@@ -913,44 +818,26 @@ metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -24)
 shape = SubResource("BoxShape3D_xl6ql")
 
-[node name="transition_to_outer_level" parent="." instance=ExtResource("6_s15dw")]
+[node name="transition_to_outer_level" parent="." instance=ExtResource("11_yv31q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 11, 0)
 
-[node name="tf1" parent="." instance=ExtResource("6_s15dw")]
+[node name="tf1" parent="." instance=ExtResource("11_yv31q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47, -9, -6)
 
-[node name="tf2" parent="." instance=ExtResource("6_s15dw")]
+[node name="tf2" parent="." instance=ExtResource("11_yv31q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59, -10, -12)
 
-[node name="tf3" parent="." instance=ExtResource("6_s15dw")]
+[node name="tf3" parent="." instance=ExtResource("11_yv31q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, -7, -23)
 
-[node name="tf4" parent="." instance=ExtResource("6_s15dw")]
+[node name="tf4" parent="." instance=ExtResource("11_yv31q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, -6, -28)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.4824922, 0)
 pixel_size = 0.04
 axis = 1
-texture = ExtResource("12_qlk6d")
+texture = ExtResource("12_pbdm2")
 
-[node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, -18, -13)
-script = ExtResource("6_nhj0d")
-activated = [NodePath("FPSC_DamageActivatable")]
-interact_with = 1
-metadata/_custom_type_script = "uid://co0pdj3pf8nga"
-
-[node name="FPSC_DamageActivatable" type="Node" parent="FPSC_TriggerRelay"]
-script = ExtResource("14_x25pd")
-damage_delt = 100.0
-metadata/_custom_type_script = "uid://bilm264c25p6e"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-shape = SubResource("BoxShape3D_8n2k8")
-
-[node name="CSGBox3D42" type="CSGBox3D" parent="." groups=["Decoration", "Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, -18, -22)
-size = Vector3(93, 1, 57)
-material = SubResource("StandardMaterial3D_nhj0d")
+[node name="WeaponPortalgun" parent="." instance=ExtResource("13_4q08s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.363136, -12.358191, -3.5906816)

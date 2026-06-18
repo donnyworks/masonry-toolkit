@@ -28,6 +28,7 @@ FPSC_MultiplayerFramework="*res://src/base/multiplayer/FPSC_MultiplayerFramework
 lights="Contains all lights that are reflected in viewmodels"
 Portals="Every portal. Don't add non-portals, please."
 Non-Portalable="Determines whether the Portalgun is allowed to place a portal on this object"
+Decoration="Regions of purely decorative and unneccesary information."
 
 [input]
 

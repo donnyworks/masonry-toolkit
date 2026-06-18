@@ -17,6 +17,9 @@ enum FadeTypes{
 @export var lookMin = -90
 @export var lookMax = 90
 
+static var base_speed = 5.0
+static var base_jv = 4.5
+
 var isListenServer = false
 
 static var sessionPlayer : FPSC_Player = null
@@ -43,7 +46,11 @@ func FPSC_SetupViewmodel(actual_viewmodel:Node):
 
 var LegacyViewMode = false
 
-var health = 100
+var health = 100:
+	set(v):
+		if v <= 0:
+			FPSC_ExecuteFade(Color(1,0,0,0.5),FadeTypes.FADE_IN,2)
+		health = v
 
 var paused = false
 

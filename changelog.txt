@@ -104,3 +104,17 @@ FPSC (Masonry Toolkit) version 4 - June 17, 2026:
     Fixed portals (they were broken before, just check the commit history)
     Added non-portalable surfaces
     Added devtest_catapults
+
+FPSC (Masonry Toolkit) Version 5 - June 18, 2026:
+    Added teleporter instances using the recently-added FPSC_DoorActivatable and the newly added FPSC_PlayerPropertiesActivatable
+    Added devtest_catapult_intro (unfinished)
+    Added the ability for doors to only open
+    Consolidated all the logic for the opening part of catapult intro into prefab_chamber_entryway
+    Added FPSC_DevNote
+    Updated devtest_trust_flings
+    As part of the update, added:
+        - Acid pool
+        - Softlock prevention
+        - Chamberlocks
+        - More lighting
+        - Cheating prevention
