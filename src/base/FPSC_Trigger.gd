@@ -5,6 +5,10 @@ class_name FPSC_Trigger
 
 @export var delay : float = 0.0 ## Delay, in seconds
 
+@export var trigger_once : bool = false
+
+var canBeTriggered : bool = true
+
 @export_flags("Player:1","World:2","Physics Props:4","NPCs:8","Everything:16") var interact_with : int = 5
 
 func _ready():
@@ -42,10 +46,12 @@ func _on_enter(body:Node3D):
 	if logicalCondition != null:
 		shouldRun = logicalCondition.evaluate(body)
 	# Flag evaluation
-	if shouldRun:
+	if shouldRun and canBeTriggered:
 		if _flagsEval(body):
 			await get_tree().create_timer(delay).timeout
 			on_enter(body)
+			if canBeTriggered and trigger_once:
+				canBeTriggered = false
 
 func _on_exit(body:Node3D):
 	var shouldRun = true
@@ -54,3 +60,4 @@ func _on_exit(body:Node3D):
 	# Flag evaluation
 	if shouldRun:
 		if _flagsEval(body): on_exit(body)
+		if not canBeTriggered: queue_free() # No point in keeping around

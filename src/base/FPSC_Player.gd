@@ -12,6 +12,7 @@ enum FadeTypes{
 @export_group("Player Speed Controls")
 @export var SPEED = 5.0
 @export var JUMP_VELOCITY = 4.5
+@export var DRAG = 1.0 ## Drag resistance is used whenever the player is slowing down
 @export_group("Player Look Controls")
 @export var lookMin = -90
 @export var lookMax = 90
@@ -175,6 +176,8 @@ func _process(delta):
 		if Input.is_action_just_pressed("ui_accept"):
 			get_tree().reload_current_scene()
 		return
+	if $Camera3D/RayCast3D.is_colliding():
+		$Camera3D/RayCast3D/Sprite3D.global_position = $Camera3D/RayCast3D.get_collision_point()
 	if Input.is_action_just_pressed("p_use"):
 		if $Camera3D/GrabCast.is_colliding():
 			if $Camera3D/GrabCast.get_collider() is RigidBody3D:
@@ -273,7 +276,7 @@ func _process(delta):
 var stored_jump = false
 var stored_movedir = Vector2.ZERO
 
-func modify_velocity(is_jumping:bool,move_vector:Vector2):
+func modify_velocity(is_jumping:bool,move_vector:Vector2,delta:float):
 	
 	if is_jumping and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -283,13 +286,19 @@ func modify_velocity(is_jumping:bool,move_vector:Vector2):
 	var input_dir := move_vector
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		if not abs(velocity.x) > SPEED: velocity.x = direction.x * SPEED
+		if not abs(velocity.z) > SPEED: velocity.z = direction.z * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		if is_on_floor():
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
+		else:
+			velocity.x = move_toward(velocity.x, SPEED, DRAG*delta)
+			velocity.z = move_toward(velocity.z, SPEED, DRAG*delta)
 
 var isSimulated = Monolyth.isMultiplayer and not Monolyth.isClient and not isListenServer
+
+var isBeingFlung = false
 
 func FPSC_GetMPState():
 	if Monolyth.isClient:
@@ -327,17 +336,17 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	if not Monolyth.isMultiplayer:
-		modify_velocity(Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd"))
+		modify_velocity(Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd"),delta)
 	
 	# Handle jump.
 	if Monolyth.isMultiplayer and not Monolyth.isClient:
 		if isSimulated: # All this boils down to: if we're the server and not the listen server, don't simulate
-			modify_velocity(stored_jump,stored_movedir)
+			modify_velocity(stored_jump,stored_movedir,delta)
 		else:
-			modify_velocity(Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd"))
+			modify_velocity(Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd"),delta)
 	elif Monolyth.isMultiplayer and Monolyth.isClient and not isSimulated:
 		Monolyth.SendMessage("FPSC_UpdatePlayState",[Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd"),rotation],1)
-		modify_velocity(Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd"))
+		modify_velocity(Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd"),delta)
 		# We simulate movement on the client side as well as sending it to the server
 	move_and_slide()
 

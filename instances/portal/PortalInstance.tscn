@@ -30,7 +30,7 @@ shader_parameter/TEXTURE = SubResource("ViewportTexture_5dvjp")
 size = Vector3(0.13480957, 2.0166626, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ovfy8"]
-size = Vector3(0.35158446, 2.0166626, 1)
+size = Vector3(1.0902154, 2.0166626, 1)
 
 [node name="MTK_Portal" type="CSGBox3D" groups=["Portals"]]
 layers = 2
@@ -39,12 +39,11 @@ material = SubResource("ShaderMaterial_sepu0")
 script = ExtResource("1_ovfy8")
 
 [node name="Portal1Texture" type="SubViewport" parent="."]
-size = Vector2i(1358, 622)
+size = Vector2i(1358, 606)
 script = ExtResource("1_8et20")
 metadata/_custom_type_script = "uid://rak8vmaeqnag"
 
 [node name="FPSC_FollowCamera" type="Camera3D" parent="Portal1Texture" node_paths=PackedStringArray("SelfOrigin")]
-transform = Transform3D(0.36483714, -0.09806092, -0.92589307, 0, 0.99443835, -0.10532052, 0.93107134, 0.03842483, 0.36280805, -5.9697485, 0.468377, 6.0568123)
 cull_mask = 1048573
 fov = 70.01
 script = ExtResource("2_ovfy8")
@@ -58,9 +57,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2804027, -0.0023498535, 0)
 shape = SubResource("BoxShape3D_53dg3")
 
 [node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20289099, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03329224, -0.0023498535, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008692324, -0.0023498535, 0)
 shape = SubResource("BoxShape3D_ovfy8")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]

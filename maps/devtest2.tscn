@@ -1,9 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://nv7aibsvfwy5"]
+[gd_scene load_steps=21 format=3 uid="uid://nv7aibsvfwy5"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_6r5op"]
 [ext_resource type="Script" uid="uid://rak8vmaeqnag" path="res://src/base/skybox/FPSC_ViewTexture.gd" id="2_7vurj"]
 [ext_resource type="Script" uid="uid://ckyi0gdrrolk1" path="res://src/base/skybox/FPSC_SkyboxCamera.gd" id="3_v0o45"]
 [ext_resource type="PackedScene" uid="uid://cm04rqdktssx2" path="res://instances/stellaoctangula.tscn" id="4_alux3"]
+[ext_resource type="Script" uid="uid://l3j5m0d3m6rj" path="res://src/base/triggers/FPSC_TriggerCatapult.gd" id="5_nnlrr"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="6_0yfu1"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/FPSC_ActivatableSoundOnActivation.gd" id="7_7jw64"]
+[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="8_dvlei"]
+[ext_resource type="Texture2D" uid="uid://dvt56pplj6tyx" path="res://textures/hud/nofired_surface.png" id="9_emsu3"]
+[ext_resource type="Texture2D" uid="uid://c5blavtcsjokf" path="res://textures/hud/nofired_nosurface_onecolor.png" id="10_gs43a"]
+[ext_resource type="AudioStream" uid="uid://bdv5tp7sgyuv1" path="res://sound/elevbell1.wav" id="11_mci4b"]
 
 [sub_resource type="Shader" id="Shader_wta8l"]
 code = "shader_type spatial;
@@ -40,6 +47,11 @@ background_mode = 2
 sky = SubResource("Sky_di4mo")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_51cni"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uosoa"]
+size = Vector3(2, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4njpr"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -159,11 +171,11 @@ size = Vector3(0.5576782, 2, 0.34375)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="ViewTexture" type="SubViewport" parent="Skybox"]
-size = Vector2i(1358, 622)
+size = Vector2i(1358, 606)
 script = ExtResource("2_7vurj")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(0.6394466, -0.33346543, 0.6927542, 0, 0.9010435, 0.43372804, -0.7688353, -0.27734596, 0.5761694, 0.42728448, 38.337887, -0.0037445277)
+transform = Transform3D(0.9883649, -0.051907487, 0.14296867, 0, 0.9399642, 0.34127194, -0.15210007, -0.33730122, 0.9290279, 0.2579665, 38.358486, 0.8023629)
 fov = 70.01
 script = ExtResource("3_v0o45")
 CameraOrigin = NodePath("../../SkyCameraPivot")
@@ -198,3 +210,46 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBox"]
 shape = SubResource("BoxShape3D_51cni")
+
+[node name="FPSC_TriggerCatapult" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+script = ExtResource("5_nnlrr")
+destination = NodePath("")
+metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerCatapult"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_uosoa")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="FPSC_TriggerCatapult"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+size = Vector3(2, 1, 1)
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="Marker3D" node_paths=PackedStringArray("activated")]
+script = ExtResource("6_0yfu1")
+activated = [NodePath("FPSC_SoundPlayerActivatable"), NodePath("FPSC_TextureChangeActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="Marker3D/FPSC_TriggerRelay" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("7_7jw64")
+stream_player = NodePath("../../AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="Marker3D/FPSC_TriggerRelay" node_paths=PackedStringArray("sprite")]
+script = ExtResource("8_dvlei")
+sprite = NodePath("../../Sprite3D")
+texture_b = ExtResource("9_emsu3")
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Marker3D/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_4njpr")
+
+[node name="Sprite3D" type="Sprite3D" parent="Marker3D"]
+billboard = 1
+texture = ExtResource("10_gs43a")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Marker3D"]
+stream = ExtResource("11_mci4b")

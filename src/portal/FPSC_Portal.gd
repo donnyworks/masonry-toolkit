@@ -49,7 +49,7 @@ var marked_collider : CSGShape3D = null
 var marked_other_collider : CSGShape3D = null
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if not linked: return
-	if body is FPSC_Player or body is RigidBody3D:
+	if body is CharacterBody3D or body is RigidBody3D:
 		if $RayCast3D.is_colliding():
 			if $RayCast3D.get_collider() is CSGShape3D:
 				$RayCast3D.get_collider().use_collision = false
@@ -62,7 +62,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if not linked: return
-	if body is FPSC_Player or body is RigidBody3D:
+	if body is CharacterBody3D or body is RigidBody3D:
 		if $RayCast3D.is_colliding():
 			if $RayCast3D.get_collider() is CSGShape3D:
 				$RayCast3D.get_collider().use_collision = true
@@ -80,9 +80,18 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 				marked_other_collider.use_collision = true
 	pass # Replace with function body.
 
+# Add this variable at the top of your FPSC_Portal script
+var bodies_to_ignore: Array[Node3D] = []
 
 func _on_passthrough_area_body_entered(body: Node3D) -> void:
-	if body is FPSC_Player or body is RigidBody3D:
+	if not linked: return
+	
+	# If this body was just sent here from the other portal, ignore it!
+	if body in bodies_to_ignore:
+		return
+
+	if body is CharacterBody3D or body is RigidBody3D:
+		# --- COLLISION MANIPULATION ---
 		if $RayCast3D.is_colliding():
 			if $RayCast3D.get_collider() is CSGShape3D:
 				$RayCast3D.get_collider().use_collision = false
@@ -97,54 +106,63 @@ func _on_passthrough_area_body_entered(body: Node3D) -> void:
 				marked_collider.use_collision = false
 			if marked_other_collider != null: 
 				marked_other_collider.use_collision = false
-		var pc_t = body.global_transform
 
-		# 2. Convert player camera to Source Portal's LOCAL space
-		# This tells us where the camera is relative to the entrance
-		var local_to_source = self.global_transform.affine_inverse() * pc_t
+		# --- TRANSLATION MATH ---
+		var exit_facing_flip := Basis(Vector3.UP, PI)
+		var portal_delta_basis := other_portal.global_transform.basis * exit_facing_flip * global_transform.affine_inverse().basis
+		portal_delta_basis = portal_delta_basis.orthonormalized()
 
-		# 3. Portals are "mirrors" where you go in the front and out the front.
-		# We rotate the local position/basis by 180 degrees around the Up axis
-		# to point the camera OUT of the destination portal.
-		var flip_180 = Basis.IDENTITY.rotated(Vector3.UP, PI)
-		var flipped_local = Transform3D(flip_180, Vector3.ZERO) * local_to_source
+		var entity_pos := body.global_transform.origin
+		var relative_pos := entity_pos - global_transform.origin
+		
+		# Keep a modest safety push out of the wall/floor surface
+		var exit_forward := -other_portal.global_transform.basis.z.normalized()
+		var safety_push := exit_forward * 0.05 # Increased this because we weren't clipping 
+		print(exit_forward)
+		if exit_forward.z > 0.25:
+			safety_push = Vector3(safety_push.x,-safety_push.z,safety_push.y)*10.0
+		print(safety_push)
+		
+		var final_position := other_portal.global_transform.origin + (portal_delta_basis * relative_pos) + safety_push
 
-		# 4. Map that flipped local transform to the Destination Portal's GLOBAL space
-		var final_transform = other_portal.global_transform * flipped_local
+		# Tell the destination portal to ignore this body when it arrives
+		other_portal.bodies_to_ignore.append(body)
+		# Apply complete transform
+		body.global_transform.origin = final_position
+		body.global_transform.basis = portal_delta_basis * body.global_transform.basis
 
-		body.global_transform = final_transform
-		if body is FPSC_Player: 
-			body.get_node("Camera3D").rotation.x += body.global_rotation.z
+		# Rotate velocity using your clean inline dynamic statement
+		var body_velocity : Vector3 = body.velocity if "velocity" in body else body.linear_velocity
+		var rotated_velocity = portal_delta_basis * body_velocity
+		
+		if "velocity" in body:
+			body.velocity = rotated_velocity
+		else:
+			body.linear_velocity = rotated_velocity
+		
+		if body is CharacterBody3D:
+			body.move_and_slide()
 		if body is FPSC_Player: body.global_rotation.x = 0
 		if body is FPSC_Player: body.global_rotation.z = 0
-		var exit_flip = Basis(Vector3.UP, PI)
-		var portal_delta_basis = other_portal.global_transform.basis * exit_flip * global_transform.basis.inverse()
-
-		# 2. Grab the player's current velocity
-		var old_velocity = body.velocity
-
-		# 3. Rotate the velocity vector
-		# This maps the velocity from the entrance's orientation to the exit's orientation
-		var new_velocity = portal_delta_basis * old_velocity
-
-		# 4. Apply it back to the player
-		body.velocity = new_velocity
-	pass # Replace with function body.
 
 
+# Clean up the array when they leave the destination portal
 func _on_passthrough_area_body_exited(body: Node3D) -> void:
-	if body is FPSC_Player or body is RigidBody3D:
+	if body in bodies_to_ignore:
+		bodies_to_ignore.erase(body)
+		return # Skip the rest of your collision resetting logic for this frame if needed
+
+	# --- YOUR EXISTING COLLISION RESETTING LOGIC ---
+	if body is CharacterBody3D or body is RigidBody3D:
 		if $RayCast3D.is_colliding():
 			if $RayCast3D.get_collider() is CSGShape3D:
 				$RayCast3D.get_collider().use_collision = true
 				var mok_temp = other_portal.get_node("RayCast3D").get_collider() if other_portal.get_node("RayCast3D").is_colliding() else marked_other_collider
 				marked_other_collider = mok_temp if mok_temp is CSGShape3D else marked_other_collider
-				#if marked_other_collider != null: marked_other_collider.use_collision = true
 			elif marked_collider != null:
 				marked_collider.use_collision = true
-				#if marked_other_collider != null: marked_other_collider.use_collision = true
 		else:
 			if marked_collider != null:
 				marked_collider.use_collision = true
-				#wif marked_other_collider != null: marked_other_collider.use_collision = true
-	pass # Replace with function body.
+			if marked_other_collider != null: 
+				marked_other_collider.use_collision = true

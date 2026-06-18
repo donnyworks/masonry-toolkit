@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cc4iwacm6rskv"]
+[gd_scene load_steps=15 format=3 uid="uid://cc4iwacm6rskv"]
 
 [ext_resource type="Script" uid="uid://dfge137rweqns" path="res://src/base/FPSC_Player.gd" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://dvt56pplj6tyx" path="res://textures/hud/nofired_surface.png" id="2_5a4mc"]
 [ext_resource type="PackedScene" uid="uid://cwrc1444pjpel" path="res://vgui/vgui_baseboard_recreation.tscn" id="2_i3pqv"]
 [ext_resource type="FontFile" uid="uid://wu4hku12n2ab" path="res://vgui/vgui_boardfont_verdana.ttf" id="3_hqtel"]
 [ext_resource type="Script" uid="uid://glaujpf0b0t0" path="res://src/base/player/FPSC_DebugMenuButton.gd" id="4_hqtel"]
@@ -47,6 +48,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -1000)
+
+[node name="Sprite3D" type="Sprite3D" parent="Camera3D/RayCast3D"]
+texture = ExtResource("2_5a4mc")
+
+[node name="Sprite3D2" type="Sprite3D" parent="Camera3D/RayCast3D/Sprite3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+texture = ExtResource("2_5a4mc")
 
 [node name="GrabCast" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -10)
