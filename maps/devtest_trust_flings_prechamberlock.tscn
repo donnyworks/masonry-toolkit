@@ -391,7 +391,6 @@ shape = SubResource("BoxShape3D_s07qk")
 [node name="FPSC_DoorActivatable" type="Node" parent="CSGBox3D54/FPSC_TriggerRelay" node_paths=PackedStringArray("object_as_door")]
 script = ExtResource("6_hl4n7")
 object_as_door = NodePath("../../../door")
-time = 1.0
 metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
 
 [node name="CSGBox3D20" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
@@ -638,11 +637,11 @@ size = Vector3(0.5576782, 2, 0.34375)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="ViewTexture" type="SubViewport" parent="Skybox"]
-size = Vector2i(1358, 606)
+size = Vector2i(1358, 594)
 script = ExtResource("8_4kisq")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(-0.8101192, 0.009764991, -0.5861832, 0, 0.99986076, 0.016656283, 0.58626455, 0.013493579, -0.8100068, -1.8297827, 37.292492, -1.9999838)
+transform = Transform3D(0.9922279, -0.060605943, 0.108673565, 0, 0.873365, 0.4870653, -0.12443081, -0.48327988, 0.86657757, 0.023097439, 38.348526, 0.64881885)
 fov = 70.01
 script = ExtResource("9_qyi0l")
 CameraOrigin = NodePath("../../SkyCameraPivot")

@@ -1,10 +1,15 @@
-[gd_scene load_steps=21 format=3 uid="uid://ceh1kr5c3yqsc"]
+[gd_scene load_steps=29 format=3 uid="uid://ceh1kr5c3yqsc"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_jyvpv"]
 [ext_resource type="Script" uid="uid://rak8vmaeqnag" path="res://src/base/skybox/FPSC_ViewTexture.gd" id="2_qxhk7"]
 [ext_resource type="Script" uid="uid://ckyi0gdrrolk1" path="res://src/base/skybox/FPSC_SkyboxCamera.gd" id="3_fnrsi"]
 [ext_resource type="PackedScene" uid="uid://cm04rqdktssx2" path="res://instances/stellaoctangula.tscn" id="4_gt12e"]
 [ext_resource type="Script" uid="uid://cxfqu1xoc2dos" path="res://src/base/triggers/FPSC_TriggerTeleport.gd" id="5_qxhk7"]
+[ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/prefab_chamber_exithall.tscn" id="6_ronvf"]
+[ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="7_508mg"]
+[ext_resource type="PackedScene" uid="uid://4asnfqqrff54" path="res://maps/devtest_trust_flings_collapse.tscn" id="8_6ql6k"]
+[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="9_6ql6k"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="10_dfegm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyvpv"]
 transparency = 1
@@ -91,6 +96,15 @@ shader_parameter/TEXTURE = SubResource("ViewportTexture_jyvpv")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fnrsi"]
 size = Vector3(5, 3, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dfegm"]
+height = 2.845581
+radius = 0.7866211
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kyegj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ql6k"]
+size = Vector3(5, 4, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -1991,7 +2005,7 @@ size = Vector2i(1358, 606)
 script = ExtResource("2_qxhk7")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(0.17795701, -0.21641028, 0.9599465, 0, 0.97551733, 0.21992064, -0.984038, -0.039136425, 0.17360023, 0.0759666, 38.089264, -1.1883119)
+transform = Transform3D(0.987683, 0.032409295, -0.15307325, 0, 0.9783123, 0.20713237, 0.15646657, -0.20458114, 0.9662628, -0.03522995, 36.410637, -1.7154932)
 fov = 70.01
 script = ExtResource("3_fnrsi")
 CameraOrigin = NodePath("../../SkyCameraPivot")
@@ -2047,3 +2061,48 @@ shape = SubResource("BoxShape3D_fnrsi")
 
 [node name="endpoint" type="Marker3D" parent="FPSC_TriggerTeleport3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27)
+
+[node name="prefab_chamber_exithall" parent="." instance=ExtResource("6_ronvf")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.2285192, -60.38291, -103.50052)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_exithall"]
+script = ExtResource("7_508mg")
+other_level = ExtResource("8_6ql6k")
+delay = 2.0
+metadata/_custom_type_script = "uid://cn3f2saw8lsmn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_exithall/FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3953769, 0)
+shape = SubResource("CylinderShape3D_dfegm")
+
+[node name="FPSC_PlayerPropertiesActivatable" type="Node" parent="."]
+script = ExtResource("9_6ql6k")
+chapter_title = "ATC_Chapter2_Title"
+chapter_subtext = "ATC_Chapter2_Subtitle"
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
+script = ExtResource("10_dfegm")
+activated = [NodePath("../FPSC_PlayerPropertiesActivatable")]
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_kyegj")
+
+[node name="FPSC_PlayerPropertiesActivatable2" type="Node" parent="."]
+script = ExtResource("9_6ql6k")
+chapter_title = "ATC_Chapter2.5_Title"
+chapter_subtext = "ATC_Chapter2.5_Subtitle"
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -26.104965, -14.236047)
+script = ExtResource("10_dfegm")
+activated = [NodePath("../FPSC_PlayerPropertiesActivatable2")]
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_6ql6k")

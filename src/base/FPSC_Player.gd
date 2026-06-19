@@ -11,7 +11,9 @@ enum FadeTypes{
 @export var fade_duration : float = 1.0
 @export_group("Player Speed Controls")
 @export var SPEED = 5.0
+@export var SPEED_SPRINT = 6.0
 @export var JUMP_VELOCITY = 4.5
+@export var accel = 14 ## This variable was taken from SMORCE 3. The movement was smoother there, so that's why I took it.
 @export var DRAG = 1.0 ## Drag resistance is used whenever the player is slowing down
 @export_group("Player Look Controls")
 @export var lookMin = -90
@@ -87,9 +89,44 @@ func FPSC_ExecuteFade(fade_color : Color,fade_type : FadeTypes,fade_duration : f
 	else:
 		get_tree().paused = false
 
+func FPSC_ShowChapterTitle(title:String,color:Color,duration:float,subtext=""):
+	title = FPSC_LocalizationSystem.FPSC_GetLocalString(title)
+	subtext = FPSC_LocalizationSystem.FPSC_GetLocalString(subtext)
+	$ChapterTitle.self_modulate = color
+	$ChapterTitle.text = ""
+	for character in title:
+		$ChapterTitle.text += " "
+	$ChapterTitle.text += "\n"
+	for character in subtext:
+		$ChapterTitle.text += " "
+	var idx = 0
+	var inBrackets = false
+	@warning_ignore("shadowed_global_identifier")
+	for char in range(0,len(title)):
+		$ChapterTitle.text[char] = title[char]
+		if title[char] == "[": inBrackets = true
+		if title[char] == "]": inBrackets = false
+		if not inBrackets: await get_tree().create_timer(0.01).timeout
+		idx += 1
+	idx += 1
+	inBrackets = false
+	for char in range(0,len(subtext)):
+		$ChapterTitle.text[idx + char] = subtext[char]
+		if subtext[char] == "[": inBrackets = true
+		if subtext[char] == "]": inBrackets = false
+		if not inBrackets: await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(duration).timeout
+	var f = create_tween()
+	var new_color = color
+	new_color.a = 0
+	f.tween_property($ChapterTitle,"self_modulate",new_color,0.5)
+
 func _ready():
+	base_speed = SPEED
+	base_jv = JUMP_VELOCITY
 	isSimulated = Monolyth.isMultiplayer and ((not Monolyth.isClient and not isListenServer) or (Monolyth.isClient and name != str(Monolyth.get_unique_id())))
 	if isSimulated:
+		@warning_ignore("confusable_local_declaration")
 		var wpn = FPSC_TestWeapon.new()
 		currentWeapon = wpn
 		get_parent().add_child.call_deferred(wpn)
@@ -127,9 +164,13 @@ var mapSelectorMap = 0
 var mapNames = FPSC_GlobalState.maps_listed.keys()
 var mapPaths = FPSC_GlobalState.maps_listed.values()
 
+var camera_fov_extents = [75.0, 85.0]
+
 var pocket_object = null
 
 var host_object : RigidBody3D = null
+
+var sprinting = false
 
 func _process(delta):
 	isSimulated = Monolyth.isMultiplayer and ((not Monolyth.isClient and not isListenServer) or (Monolyth.isClient and name != str(Monolyth.get_unique_id())))
@@ -253,6 +294,17 @@ func _process(delta):
 				#get_parent().add_child(pocket_object)
 				pocket_object = null
 				host_object = null
+	# SMORCE 3 / FPS CONTROLLER TEMPLATE
+	if abs(velocity.x) > base_speed or abs(velocity.z) > base_speed:
+		$Camera3D.fov = lerp($Camera3D.fov, camera_fov_extents[1], 10*delta)
+	else:
+		$Camera3D.fov = lerp($Camera3D.fov, camera_fov_extents[0], 10*delta)
+	if Input.is_action_pressed("p_run"):
+		sprinting = true
+		SPEED = SPEED_SPRINT
+	else:
+		sprinting = false
+		SPEED = base_speed
 	if currentWeapon == null: return
 	if $Camera3D/RayCast3D.is_colliding():
 		if $Camera3D/RayCast3D.get_collider() is FPSC_Weapon: # Gotta love how we have dedicated functions coded for sourcebox
@@ -292,13 +344,15 @@ func modify_velocity(is_jumping:bool,move_vector:Vector2,delta:float):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := move_vector
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		if not abs(velocity.x) > SPEED: velocity.x = direction.x * SPEED
-		if not abs(velocity.z) > SPEED: velocity.z = direction.z * SPEED
-	else:
-		if is_on_floor():
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			velocity.z = move_toward(velocity.z, 0, SPEED)
+	if (not abs(velocity.x) > SPEED_SPRINT) or is_on_floor(): velocity.x = lerp(velocity.x, direction.x * SPEED, accel * delta)
+	if (not abs(velocity.z) > SPEED_SPRINT) or is_on_floor(): velocity.z = lerp(velocity.z, direction.z * SPEED, accel * delta)
+	#if direction:
+		#if not abs(velocity.x) > SPEED: velocity.x = direction.x * SPEED
+		#if not abs(velocity.z) > SPEED: velocity.z = direction.z * SPEED
+	#else:
+	#	if is_on_floor():
+	#		velocity.x = move_toward(velocity.x, 0, SPEED)
+	#		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 
 var isSimulated = Monolyth.isMultiplayer and not Monolyth.isClient and not isListenServer

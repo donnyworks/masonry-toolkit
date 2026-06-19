@@ -13,6 +13,12 @@ class_name FPSC_PlayerPropertiesActivatable
 @export var fade_color : Color
 @export var fade_duration : float
 
+@export_group("Chapter Title Controls")
+@export var chapter_title : String ## Leave blank for "don't use"
+@export var chapter_subtext : String
+@export var color_of_title : Color
+@export var title_duration : float = 2.0
+
 func on_enter(_body:Node3D):
 	if _body is FPSC_Player or IgnoreEntryClass:
 		if modify_jump_velocity:
@@ -21,3 +27,5 @@ func on_enter(_body:Node3D):
 		FPSC_Player.sessionPlayer.SPEED = new_speed
 		if activate_fade:
 			FPSC_Player.sessionPlayer.FPSC_ExecuteFade(fade_color,fade_type,fade_duration)
+		if chapter_title != "":
+			FPSC_Player.sessionPlayer.FPSC_ShowChapterTitle(chapter_title,color_of_title,title_duration,chapter_subtext)

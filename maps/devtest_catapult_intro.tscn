@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://w6dok2vixpwk"]
+[gd_scene load_steps=27 format=3 uid="uid://w6dok2vixpwk"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_b4g7d"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="2_eo43v"]
 [ext_resource type="PackedScene" uid="uid://cihvtue137xn7" path="res://instances/prefab_chamber_entryway.tscn" id="2_f7soh"]
 [ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/prefab_chamber_exithall.tscn" id="3_4he6g"]
+[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="3_eo43v"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_j5oid"]
 [ext_resource type="PackedScene" uid="uid://f0qlfetn1pdk" path="res://instances/prefab_catapult.tscn" id="4_rj70k"]
 [ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/FPSC_ActivatableCreateFromInstance.gd" id="5_xr3on"]
@@ -25,12 +26,14 @@ sky = SubResource("Sky_di4mo")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_51cni"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_v8r46"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qo7qv"]
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_eo43v"]
 height = 2.845581
-radius = 0.9560547
+radius = 0.7866211
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7i5gt"]
 size = Vector3(71, 1, 69)
@@ -65,6 +68,21 @@ shape = SubResource("BoxShape3D_51cni")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1694927, 0)
 
 [node name="prefab_chamber_entryway" parent="." instance=ExtResource("2_f7soh")]
+
+[node name="FPSC_PlayerPropertiesActivatable" type="Node" parent="prefab_chamber_entryway"]
+script = ExtResource("3_eo43v")
+chapter_title = "ATC_Chapter1_Title"
+chapter_subtext = "ATC_Chapter1_Subtitle"
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="prefab_chamber_entryway" node_paths=PackedStringArray("activated")]
+script = ExtResource("4_j5oid")
+activated = [NodePath("../FPSC_PlayerPropertiesActivatable")]
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_entryway/FPSC_TriggerRelay2"]
+shape = SubResource("BoxShape3D_v8r46")
 
 [node name="prefab_chamber_exithall" parent="." instance=ExtResource("3_4he6g")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -64)

@@ -118,3 +118,6 @@ FPSC (Masonry Toolkit) Version 5 - June 18, 2026:
         - Chamberlocks
         - More lighting
         - Cheating prevention
+    ---------- Beta 2
+    Stole movement code from a template
+    Added devtest_trust_flings_collapse

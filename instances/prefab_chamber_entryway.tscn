@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cihvtue137xn7"]
+[gd_scene load_steps=13 format=3 uid="uid://cihvtue137xn7"]
 
 [ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/teleporter_entrance.tscn" id="1_bqahe"]
 [ext_resource type="Script" uid="uid://sl4hinpkxef0" path="res://src/base/FPSC_DevNote.gd" id="2_cpl75"]
@@ -16,11 +16,14 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gun10"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_rj70k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dqxli"]
+size = Vector3(0.020629883, 1, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ld5r"]
 transparency = 1
 albedo_color = Color(1, 1, 1, 0.35686275)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rj70k"]
 
 [node name="prefab_chamber_entryway" type="Node3D"]
 
@@ -96,6 +99,33 @@ use_collision = true
 size = Vector3(0.45578003, 1, 1.3757324)
 material = SubResource("StandardMaterial3D_gun10")
 
+[node name="FPSC_TriggerRelay" type="Area3D" parent="door_portalgun_pedestal" node_paths=PackedStringArray("activated")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.6997497, -0.011809349, -0.35008755)
+script = ExtResource("4_w7fuw")
+activated = [NodePath("../../pedestal_door"), NodePath("../../left_door_open"), NodePath("../../right_door_open"), NodePath("../../left_door_close"), NodePath("../../right_door_close"), NodePath("../../entry_door")]
+UseActivationDelay = true
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door_portalgun_pedestal/FPSC_TriggerRelay"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.48879838, 0.64180946, -3.649968)
+shape = SubResource("BoxShape3D_rj70k")
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="door_portalgun_pedestal" node_paths=PackedStringArray("activated")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.6997497, -0.011809349, -0.35008755)
+script = ExtResource("4_w7fuw")
+activated = [NodePath("../../pedestal_door"), NodePath("../../left_door_open"), NodePath("../../right_door_open"), NodePath("../../left_door_close"), NodePath("../../right_door_close"), NodePath("../../entry_door")]
+UseActivationDelay = true
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door_portalgun_pedestal/FPSC_TriggerRelay2"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.1996781, 0.64180946, 1.4986277)
+shape = SubResource("BoxShape3D_dqxli")
+
+[node name="WeaponPortalgun" parent="door_portalgun_pedestal" instance=ExtResource("5_mqfnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0497818, 0.6300001, 0.13871098)
+
 [node name="CSGBox3D43" type="CSGBox3D" parent="door_portalgun_pedestal" groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6688374, 0)
 use_collision = true
@@ -154,20 +184,6 @@ target_door = NodePath("../right_door_open")
 target_state = 1
 delay = 2.0
 metadata/_custom_type_script = "uid://b4c6tlpkvw6tk"
-
-[node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
-script = ExtResource("4_w7fuw")
-activated = [NodePath("../pedestal_door"), NodePath("../left_door_open"), NodePath("../right_door_open"), NodePath("../left_door_close"), NodePath("../right_door_close"), NodePath("../entry_door")]
-UseActivationDelay = true
-trigger_once = true
-metadata/_custom_type_script = "uid://co0pdj3pf8nga"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.48879838, 0.64180946, -3.649968)
-shape = SubResource("BoxShape3D_rj70k")
-
-[node name="WeaponPortalgun" parent="." instance=ExtResource("5_mqfnl")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.48879838, 0.64180946, -3.649968)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -8)

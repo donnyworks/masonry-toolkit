@@ -132,9 +132,16 @@ script = ExtResource("5_ge70o")
 stream_player = NodePath("../door_teleporter_exit/AudioStreamPlayer3D")
 metadata/_custom_type_script = "uid://dlktdrvwevbt1"
 
+[node name="FPSC_PlayerPropertiesActivatable" type="Node" parent="."]
+script = ExtResource("3_pc1o8")
+chapter_title = "End of Playtest"
+delay = 3.0
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
 [node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
 script = ExtResource("2_f71x0")
-activated = [NodePath("../FPSC_DoorActivatable"), NodePath("../FPSC_PlayerSpeedActivatable"), NodePath("../FPSC_DoorActivatable2"), NodePath("../FPSC_SoundPlayerActivatable")]
+activated = [NodePath("../FPSC_DoorActivatable"), NodePath("../FPSC_PlayerSpeedActivatable"), NodePath("../FPSC_DoorActivatable2"), NodePath("../FPSC_SoundPlayerActivatable"), NodePath("../FPSC_PlayerPropertiesActivatable")]
+UseActivationDelay = true
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay"]

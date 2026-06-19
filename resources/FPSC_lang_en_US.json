@@ -13,5 +13,15 @@
 	"Player.InteractionFailed":"[i][Can't Use][/i]",
 	"Player.Death":"[i][Death][/i]",
 	"Generic.ButtonPress":"[i][Button Pressed][/i]",
-	"Generic.ButtonDisabled":"[i][Button Access Denied][/i]"
+	"Generic.ButtonDisabled":"[i][Button Access Denied][/i]",
+	"Devtest2.title":"DEV TEST 2",
+	"Devtest2.subtext":"[font_size=24]The Part Where Developers Test You[/font_size]",
+	"ATC_Chapter1_Title":"Chapter 1",
+	"ATC_Chapter1_Subtitle":"[font_size=24]Aerial Testing Initiative[/font_size]",
+	"ATC_Chapter2_Title":"Chapter 1.5",
+	"ATC_Chapter2_Subtitle":"[font_size=24]Back Offices[/font_size]",
+	"ATC_Chapter2.5_Title":"Chapter 1.75",
+	"ATC_Chapter2.5_Subtitle":"[font_size=24]Scratch That.[/font_size]",
+	"ATC_Chapter3_Title":"Chapter 2",
+	"ATC_Chapter3_Subtitle":"[font_size=24]Self-Destruct Sequence[/font_size]"
 }
