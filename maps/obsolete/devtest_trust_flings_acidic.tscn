@@ -964,7 +964,7 @@ size = Vector2i(1348, 594)
 script = ExtResource("9_nxe74")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(-0.54247236, 0.093611315, -0.83484113, 0, 0.9937714, 0.11143231, 0.8400732, 0.060448952, -0.5390938, -3.7855856, 37.42044, -1.2387108)
+transform = Transform3D(-0.1063038, 0.71403104, -0.6919957, 0, 0.69593894, 0.71810013, 0.9943333, 0.076336786, -0.073980995, 0.13696487, 38.16466, -0.031787015)
 fov = 70.01
 script = ExtResource("10_r3t5g")
 CameraOrigin = NodePath("../../SkyCameraPivot")
@@ -1011,9 +1011,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
 [node name="Label3D" type="Label3D" parent="FPSC_TriggerCatapult"]
 transform = Transform3D(0.20885406, 0.59061974, -0.7794539, -0.15286365, 0.80695003, 0.57049483, 0.9659258, 0, 0.25881907, 1.2768798, -0.16571414, 0)
-text = "WARNING:
-CATAPULT DECOMMISIONED
-DO NOT USE"
+text = "Trust Flings Acidic is now obsolete"
 
 [node name="FPSC_TriggerCatapult6" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 0)
