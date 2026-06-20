@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg72kw8hpryj8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlbc5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k1204"]
+albedo_color = Color(1, 0.0431373, 0.00392157, 1)
+
+[node name="IamStealingthis" type="Node3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.3711374e-08, -0.9999995, 0, 0.99999964, -4.3711367e-08, 0, 0, 0, 1, 0, 0, 0)
+use_collision = true
+radius = 0.7063
+height = 2.34099
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCylinder3D"]
+operation = 2
+use_collision = true
+radius = 0.65986
+height = 2.21559
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0845948, 0, 0)
+operation = 2
+use_collision = true
+radius = 0.65986
+height = 2.21559
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCylinder3D"]
+transform = Transform3D(0.461845, 0, 0, 0, 1, 0, 0, 0, 1, 2.6077e-08, 0.56494, 0)
+material = SubResource("StandardMaterial3D_qlbc5")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, -1.77636e-15, 0, -1.77636e-15, 1, 0, 0, 0, 1, -0.272948, -0.00280762, 1.90735e-06)
+size = Vector3(0.454102, 2.08521, 1)
+material = SubResource("StandardMaterial3D_k1204")

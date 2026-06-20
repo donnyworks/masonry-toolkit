@@ -17,18 +17,12 @@ variation_transform = Transform2D(1, 0.37, 0, 1, 0, 0)
 base_font = ExtResource("3_lbka7")
 variation_transform = Transform2D(1, 0.37, 0, 1, 0, 0)
 
-[node name="CaptionSystem" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CaptionSystem" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_1ttv7")
 
 [node name="1line" parent="." instance=ExtResource("2_lbka7")]
 visible = false
-layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -58,7 +52,6 @@ vertical_alignment = 2
 
 [node name="2line" parent="." instance=ExtResource("2_lbka7")]
 visible = false
-layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0

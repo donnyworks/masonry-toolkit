@@ -1,0 +1,493 @@
+[gd_scene load_steps=23 format=3 uid="uid://brnikxs5f1s77"]
+
+[ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_0qwkh"]
+[ext_resource type="Script" uid="uid://rak8vmaeqnag" path="res://src/base/skybox/FPSC_ViewTexture.gd" id="2_jlqwc"]
+[ext_resource type="Script" uid="uid://ckyi0gdrrolk1" path="res://src/base/skybox/FPSC_SkyboxCamera.gd" id="3_wak3n"]
+[ext_resource type="PackedScene" uid="uid://cm04rqdktssx2" path="res://instances/stellaoctangula.tscn" id="4_co2i0"]
+[ext_resource type="Script" uid="uid://l3j5m0d3m6rj" path="res://src/base/triggers/FPSC_TriggerCatapult.gd" id="5_db5ap"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="6_jle5d"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/FPSC_ActivatableSoundOnActivation.gd" id="7_ibef5"]
+[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="8_3tyqa"]
+[ext_resource type="Texture2D" uid="uid://dvt56pplj6tyx" path="res://textures/hud/nofired_surface.png" id="9_400f2"]
+[ext_resource type="Texture2D" uid="uid://c5blavtcsjokf" path="res://textures/hud/nofired_nosurface_onecolor.png" id="10_m2krt"]
+[ext_resource type="AudioStream" uid="uid://bdv5tp7sgyuv1" path="res://sound/elevbell1.wav" id="11_s72hg"]
+[ext_resource type="Texture2D" uid="uid://wmpactx1jwkd" path="res://textures/target_endpoint.png" id="12_jlqwc"]
+
+[sub_resource type="Shader" id="Shader_wta8l"]
+code = "shader_type spatial;
+render_mode unshaded, depth_draw_opaque, cull_back;
+
+uniform sampler2D TEXTURE;
+
+void fragment() {
+	vec4 vtex = texture(TEXTURE, SCREEN_UV);
+	ALBEDO = vtex.rgb;
+}
+void light() {
+    // By leaving this empty or forcing transmission, 
+    // you can control how it blocks light.
+    // However, for a Skybox, the better approach is usually:
+}"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_g12ox"]
+viewport_path = NodePath("Skybox/ViewTexture")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_51cni"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_wta8l")
+shader_parameter/TEXTURE = SubResource("ViewportTexture_g12ox")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ah5jf"]
+
+[sub_resource type="Sky" id="Sky_di4mo"]
+sky_material = SubResource("ProceduralSkyMaterial_ah5jf")
+
+[sub_resource type="Environment" id="Environment_di4mo"]
+background_mode = 2
+sky = SubResource("Sky_di4mo")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_51cni"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uosoa"]
+size = Vector3(2, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qwkh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4njpr"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_0qwkh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(30, 1, 30)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+use_collision = true
+size = Vector3(1, 3, 30)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0.5)
+use_collision = true
+size = Vector3(2, 3, 31)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.5, 0, 15)
+use_collision = true
+size = Vector3(1, 3, 31)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.9604645e-08, 0, -16)
+use_collision = true
+size = Vector3(3, 3, 32)
+
+[node name="Skysurf" type="Node3D" parent="."]
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Skysurf"]
+transform = Transform3D(2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, 2.9802322e-08, 0, 4.5, 16)
+cast_shadow = 0
+use_collision = true
+size = Vector3(1, 6, 32)
+material = SubResource("ShaderMaterial_51cni")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Skysurf"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0.5)
+cast_shadow = 0
+size = Vector3(32, 1, 33)
+material = SubResource("ShaderMaterial_51cni")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Skysurf"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4.5, 0)
+cast_shadow = 0
+use_collision = true
+size = Vector3(1, 6, 32)
+material = SubResource("ShaderMaterial_51cni")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Skysurf"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4.5, 0)
+cast_shadow = 0
+use_collision = true
+size = Vector3(1, 6, 32)
+material = SubResource("ShaderMaterial_51cni")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Skysurf"]
+transform = Transform3D(2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, 2.9802322e-08, 0, 4.5, -16)
+cast_shadow = 0
+use_collision = true
+size = Vector3(1, 6, 32)
+material = SubResource("ShaderMaterial_51cni")
+
+[node name="Skybox" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 58, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Skybox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -21, 0)
+use_collision = true
+size = Vector3(30, 1, 30)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Skybox"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -3.377389, -18.5, -2.8297176)
+use_collision = true
+size = Vector3(2, 4, 3.6899414)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Skybox"]
+transform = Transform3D(-0.49999994, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.49999994, 2.622611, -18.5, -3.8297176)
+use_collision = true
+size = Vector3(2, 4, 3.6899414)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Skybox"]
+transform = Transform3D(-0.947088, -0.056569424, -0.31594935, -0.10090793, 0.98691285, 0.12577866, 0.3046994, 0.15100533, -0.9404018, 4.3798647, -19.5, -1.2617877)
+use_collision = true
+size = Vector3(2, 4, 3.6899414)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Skybox"]
+transform = Transform3D(-0.7374214, -0.15905917, 0.6564373, -0.10090793, 0.9869128, 0.12577866, -0.6678526, 0.02651209, -0.743821, 3.3798647, -19.5, 1.7382123)
+use_collision = true
+size = Vector3(2, 4, 3.6899414)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Skybox"]
+transform = Transform3D(0.20966664, -0.102489725, 0.9723866, -0.10090794, 0.9869129, 0.12577869, -0.97255206, -0.12449327, 0.19658095, 0.3798647, -19.5, 2.7382123)
+use_collision = true
+size = Vector3(2, 4, 3.6899414)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Skybox"]
+transform = Transform3D(0.8359549, 0.015558846, 0.5485774, -0.10090795, 0.986913, 0.1257787, -0.53944147, -0.16050123, 0.82658494, -2.6201353, -19.5, 0.73821235)
+use_collision = true
+size = Vector3(2, 4, 3.6899414)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Skybox"]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -0.72235966, -19.5, -3.8297176)
+use_collision = true
+size = Vector3(2, 2, 3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Skybox"]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 0.3645543, -18.26026, -3.6807003)
+use_collision = true
+size = Vector3(0.5576782, 2, 0.34375)
+
+[node name="SkyCameraPivot" type="Node3D" parent="Skybox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+
+[node name="ViewTexture" type="SubViewport" parent="Skybox"]
+size = Vector2i(1358, 606)
+script = ExtResource("2_jlqwc")
+
+[node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
+transform = Transform3D(0.87375075, 0.2373143, -0.42454782, 0, 0.87288433, 0.48792616, 0.48637328, -0.42632592, 0.7626837, -0.60901946, 38.495075, 0.78121126)
+fov = 70.01
+script = ExtResource("3_wak3n")
+CameraOrigin = NodePath("../../SkyCameraPivot")
+
+[node name="octangula" parent="Skybox" instance=ExtResource("4_co2i0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -19.159977, -0.7589184)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_di4mo")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." groups=["lights"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09610009, 3.7592738, 0.3487954)
+shadow_enabled = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." groups=["lights"]]
+transform = Transform3D(-0.70710677, -1.4594538e-07, 0.70710677, 0.6123725, 0.49999997, 0.6123726, -0.35355347, 0.86602545, -0.35355327, 0, 0, 0)
+shadow_enabled = true
+
+[node name="RigidBox" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="RigidBox"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBox"]
+shape = SubResource("BoxShape3D_51cni")
+
+[node name="FPSC_TriggerCatapult" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+script = ExtResource("5_db5ap")
+destination = NodePath("../Marker3D")
+metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerCatapult"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_uosoa")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="FPSC_TriggerCatapult"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.44458008, 0)
+size = Vector3(2, 0.110839844, 1)
+material = SubResource("StandardMaterial3D_0qwkh")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="FPSC_TriggerCatapult"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="FPSC_TriggerCatapult2" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
+script = ExtResource("5_db5ap")
+destination = NodePath("../Marker3D2")
+metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerCatapult2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_uosoa")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="FPSC_TriggerCatapult2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.43847656, 0)
+size = Vector3(2, 0.123046875, 1)
+material = SubResource("StandardMaterial3D_0qwkh")
+
+[node name="FPSC_TriggerCatapult4" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, -14, 0, 1)
+script = ExtResource("5_db5ap")
+destination = NodePath("../Marker3D3")
+metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerCatapult4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_uosoa")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="FPSC_TriggerCatapult4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.43847656, 0)
+size = Vector3(2, 0.123046875, 1)
+material = SubResource("StandardMaterial3D_0qwkh")
+
+[node name="FPSC_TriggerCatapult3" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 8, 0, -12)
+script = ExtResource("5_db5ap")
+destination = NodePath("../Marker3D2")
+metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerCatapult3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_uosoa")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="FPSC_TriggerCatapult3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.4350586, 0)
+size = Vector3(2, 0.12988281, 1)
+material = SubResource("StandardMaterial3D_0qwkh")
+
+[node name="FPSC_TriggerCatapult5" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
+transform = Transform3D(0.8660254, 0, -0.49999994, 0, 1, 0, 0.49999994, 0, 0.8660254, 8, 0, 12)
+script = ExtResource("5_db5ap")
+destination = NodePath("../Marker3D2")
+metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerCatapult5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_uosoa")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="FPSC_TriggerCatapult5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.4350586, 0)
+size = Vector3(2, 0.12988281, 1)
+material = SubResource("StandardMaterial3D_0qwkh")
+
+[node name="FPSC_TriggerCatapult6" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
+transform = Transform3D(0.8660254, 0, -0.49999994, 0, 1, 0, 0.49999994, 0, 0.8660254, -9, 0, -14)
+script = ExtResource("5_db5ap")
+destination = NodePath("../Marker3D2")
+metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerCatapult6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_uosoa")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="FPSC_TriggerCatapult6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.4350586, 0)
+size = Vector3(2, 0.12988281, 1)
+material = SubResource("StandardMaterial3D_0qwkh")
+
+[node name="FPSC_TriggerCatapult8" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
+transform = Transform3D(0.5, 0, -0.8660253, 0, 1, 0, 0.8660253, 0, 0.5, -1, 0, -14)
+script = ExtResource("5_db5ap")
+destination = NodePath("../Marker3D2")
+metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerCatapult8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_uosoa")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="FPSC_TriggerCatapult8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.4350586, 0)
+size = Vector3(2, 0.12988281, 1)
+material = SubResource("StandardMaterial3D_0qwkh")
+
+[node name="FPSC_TriggerCatapult7" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 4, 0, 5)
+script = ExtResource("5_db5ap")
+destination = NodePath("../Marker3D")
+metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerCatapult7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_uosoa")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="FPSC_TriggerCatapult7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.4350586, 0)
+size = Vector3(2, 0.12988281, 1)
+material = SubResource("StandardMaterial3D_0qwkh")
+
+[node name="FPSC_TriggerCatapult9" type="Area3D" parent="." node_paths=PackedStringArray("destination")]
+transform = Transform3D(0.9999999, 0, 4.3711378e-08, 0, 1, 0, -4.3711378e-08, 0, 0.9999999, -8, 0, 8)
+script = ExtResource("5_db5ap")
+destination = NodePath("../Marker3D3")
+metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerCatapult9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_uosoa")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="FPSC_TriggerCatapult9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.4350586, 0)
+size = Vector3(2, 0.12988281, 1)
+material = SubResource("StandardMaterial3D_0qwkh")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5, 0)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="Marker3D" node_paths=PackedStringArray("activated")]
+script = ExtResource("6_jle5d")
+activated = [NodePath("FPSC_SoundPlayerActivatable"), NodePath("FPSC_TextureChangeActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="Marker3D/FPSC_TriggerRelay" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("7_ibef5")
+stream_player = NodePath("../../AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="Marker3D/FPSC_TriggerRelay" node_paths=PackedStringArray("sprite")]
+script = ExtResource("8_3tyqa")
+sprite = NodePath("../../Sprite3D")
+texture_b = ExtResource("9_400f2")
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Marker3D/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_4njpr")
+
+[node name="Sprite3D" type="Sprite3D" parent="Marker3D"]
+billboard = 1
+texture = ExtResource("10_m2krt")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Marker3D"]
+stream = ExtResource("11_s72hg")
+
+[node name="Marker3D2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, -5)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="Marker3D2" node_paths=PackedStringArray("activated")]
+script = ExtResource("6_jle5d")
+activated = [NodePath("FPSC_SoundPlayerActivatable"), NodePath("FPSC_TextureChangeActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="Marker3D2/FPSC_TriggerRelay" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("7_ibef5")
+stream_player = NodePath("../../AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="Marker3D2/FPSC_TriggerRelay" node_paths=PackedStringArray("sprite")]
+script = ExtResource("8_3tyqa")
+sprite = NodePath("../../Sprite3D")
+texture_b = ExtResource("9_400f2")
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Marker3D2/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_4njpr")
+
+[node name="Sprite3D" type="Sprite3D" parent="Marker3D2"]
+billboard = 1
+texture = ExtResource("10_m2krt")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Marker3D2"]
+stream = ExtResource("11_s72hg")
+
+[node name="Marker3D3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, 7)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="Marker3D3" node_paths=PackedStringArray("activated")]
+script = ExtResource("6_jle5d")
+activated = [NodePath("FPSC_SoundPlayerActivatable"), NodePath("FPSC_TextureChangeActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="Marker3D3/FPSC_TriggerRelay" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("7_ibef5")
+stream_player = NodePath("../../AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="Marker3D3/FPSC_TriggerRelay" node_paths=PackedStringArray("sprite")]
+script = ExtResource("8_3tyqa")
+sprite = NodePath("../../Sprite3D")
+texture_b = ExtResource("9_400f2")
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Marker3D3/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_4njpr")
+
+[node name="Sprite3D" type="Sprite3D" parent="Marker3D3"]
+billboard = 1
+texture = ExtResource("10_m2krt")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Marker3D3"]
+stream = ExtResource("11_s72hg")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.4824922, 4)
+pixel_size = 0.04
+axis = 1
+texture = ExtResource("12_jlqwc")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.776906, -0.4824922, 0.053152442)
+modulate = Color(0, 0, 0, 1)
+pixel_size = 0.04
+axis = 1
+texture = ExtResource("12_jlqwc")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.776906, -0.4824922, -12.946848)
+modulate = Color(0, 0, 0, 1)
+pixel_size = 0.04
+axis = 1
+texture = ExtResource("12_jlqwc")
+
+[node name="Sprite3D4" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44130468, -0.4824922, -12.946848)
+modulate = Color(0, 0, 0, 1)
+pixel_size = 0.04
+axis = 1
+texture = ExtResource("12_jlqwc")
+
+[node name="Sprite3D5" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.959397, -0.4824922, -11.927243)
+modulate = Color(0, 0, 0, 1)
+pixel_size = 0.04
+axis = 1
+texture = ExtResource("12_jlqwc")
+
+[node name="Sprite3D6" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9593968, -0.4824922, 6.072757)
+modulate = Color(0, 0, 0, 1)
+pixel_size = 0.04
+axis = 1
+texture = ExtResource("12_jlqwc")
+
+[node name="Sprite3D7" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.959397, -0.4824922, 12.072757)
+modulate = Color(0, 0, 0, 1)
+pixel_size = 0.04
+axis = 1
+texture = ExtResource("12_jlqwc")
+
+[node name="Sprite3D8" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.040604, -0.4824922, 8.072757)
+modulate = Color(0, 0, 0, 1)
+pixel_size = 0.04
+axis = 1
+texture = ExtResource("12_jlqwc")
+
+[node name="Sprite3D9" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.040604, -0.4824922, 1.7553668)
+modulate = Color(0, 0, 0, 1)
+pixel_size = 0.04
+axis = 1
+texture = ExtResource("12_jlqwc")

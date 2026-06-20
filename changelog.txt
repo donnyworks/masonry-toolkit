@@ -121,3 +121,21 @@ FPSC (Masonry Toolkit) Version 5 - June 18, 2026:
     ---------- Beta 2
     Stole movement code from a template
     Added devtest_trust_flings_collapse
+
+FPSC (Masonry Toolkit) Version 6 - June 20, 2026:
+    Added new narration for the intro map
+    Added new narration for destroyed trust flings.
+    Reorganized every Aerial Fling Course (Test Track B) asset into the instances/afc folder
+    Deleted os_01
+    After 3 versions of no changes, deleted innovation.tscn
+    Deleted dev_introPrototype.tscn
+    Marked the following as obsolete:
+        devtest_flingcourse_intro
+        devtest_catapult_intro
+        devtest_trust_flings
+        devtest_trust_flings_acidic
+        devtest_trust_flings_collapse
+        devtest_trust_flings_prechamberlock
+        devtest_hallway
+    Added:
+        afc_ch1_intro

@@ -7,7 +7,8 @@ class_name FPSC_BuildFeatures
 
 static var BuildFeatures = {
 	"FEATURE_SRCBOX":true,
-	"FEATURE_TESTWPN":true,
+	"FEATURE_TESTWPN":false,
 	"FEATURE_DYNAMO":true,
-	"FEATURE_SCRIPTEDSEQUENCE":true
+	"FEATURE_SCRIPTEDSEQUENCE":true,
+	"FEATURE_MAPSELECTOR":false
 }

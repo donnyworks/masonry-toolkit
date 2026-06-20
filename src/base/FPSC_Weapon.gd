@@ -8,7 +8,7 @@ var PrimaryAmmoCount = 1
 var SecondaryAmmoCount = 1
 var OwnerPlayer : FPSC_Player = null
 
-static var CanBeEquipped = true
+var CanBeEquipped = true
 
 func _ready():
 	if FPSC_Player.sessionPlayer != null: OwnerPlayer = FPSC_Player.sessionPlayer

@@ -13,7 +13,7 @@ func ExecScriptedSequence(actor:FPSC_BaseMotionAI):
 		return
 	if character_voiceline != null:
 		actor.PlayVoiceline(character_voiceline)
-		FPSC_CaptionSystem.FPSC_AddCaptionLine(FPSC_LocalizationSystem.FPSC_GetLocalString(localized_caption))
+		FPSC_CaptionSystem.FPSC_AddCaptionLine(FPSC_LocalizationSystem.FPSC_GetLocalString(localized_caption),character_voiceline.get_length())
 	for gesture in gesture_animations:
 		actor.PlayAnimation(gesture)
 		await actor.OnAnimationFinished

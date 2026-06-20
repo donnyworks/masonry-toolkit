@@ -124,6 +124,7 @@ func FPSC_ShowChapterTitle(title:String,color:Color,duration:float,subtext=""):
 func _ready():
 	base_speed = SPEED
 	base_jv = JUMP_VELOCITY
+	$MapSelectionLabel.visible = FPSC_BuildFeatures.BuildFeatures.FEATURE_MAPSELECTOR
 	isSimulated = Monolyth.isMultiplayer and ((not Monolyth.isClient and not isListenServer) or (Monolyth.isClient and name != str(Monolyth.get_unique_id())))
 	if isSimulated:
 		@warning_ignore("confusable_local_declaration")
@@ -185,12 +186,12 @@ func _process(delta):
 		dynamo_cam_track()
 	$MapSelectionLabel.text = """Map Selector
 < %s >""".replace("%s",mapNames[mapSelectorMap])
-	if Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("ui_right") and FPSC_BuildFeatures.BuildFeatures.FEATURE_MAPSELECTOR:
 		if mapSelectorMap + 1 < len(mapNames):
 			mapSelectorMap += 1
 		else:
 			mapSelectorMap = 0
-	if Input.is_action_just_pressed("ui_left"):
+	if Input.is_action_just_pressed("ui_left") and FPSC_BuildFeatures.BuildFeatures.FEATURE_MAPSELECTOR:
 		if mapSelectorMap - 1 > -1:
 			mapSelectorMap -= 1
 		else:
@@ -214,7 +215,7 @@ func _process(delta):
 			if currentWeapon.FPSC_CanSecondaryFire() and not hasPauseFireEnded:
 				hasPauseFireEnded = true
 				currentWeapon.FPSC_EndSecondaryFire()
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("ui_accept") and FPSC_BuildFeatures.BuildFeatures.FEATURE_MAPSELECTOR:
 			FPSC_LevelManager.ChangeLevel(mapPaths[mapSelectorMap])
 		return
 	else:
@@ -305,6 +306,8 @@ func _process(delta):
 	else:
 		sprinting = false
 		SPEED = base_speed
+	if Input.is_action_just_pressed("ui_accept") and FPSC_BuildFeatures.BuildFeatures.FEATURE_MAPSELECTOR:
+		FPSC_LevelManager.ChangeLevel(mapPaths[mapSelectorMap])
 	if currentWeapon == null: return
 	if $Camera3D/RayCast3D.is_colliding():
 		if $Camera3D/RayCast3D.get_collider() is FPSC_Weapon: # Gotta love how we have dedicated functions coded for sourcebox
@@ -329,8 +332,6 @@ func _process(delta):
 			currentWeapon.FPSC_EndSecondaryFire()
 	if Input.is_action_just_pressed("p_reload"):
 		currentWeapon.FPSC_Reload()
-	if Input.is_action_just_pressed("ui_accept"):
-		FPSC_LevelManager.ChangeLevel(mapPaths[mapSelectorMap])
 
 var stored_jump = false
 var stored_movedir = Vector2.ZERO

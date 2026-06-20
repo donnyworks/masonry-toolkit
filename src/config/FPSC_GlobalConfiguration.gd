@@ -2,12 +2,12 @@ extends Node
 class_name FPSC_GlobalState
 
 static var maps_listed = {
-	"DYNAMO lighting system test":"res://maps/FPSC_Test.tscn",
-	"Physics testing area":"res://maps/devtest2.tscn",
-	"Aerial Testing Course":"res://maps/devtest_flingcourse_intro.tscn",
-	"Portal testing area":"res://maps/devtest_portals.tscn",
-	"Spotter testing area":"res://maps/devtest_os95_spotter_diff.tscn",
-	"NPC testing area":"res://maps/devtest_pathfinder.tscn"}
+	"DYNAMO lighting system test":"res://maps/devtest/FPSC_Test.tscn",
+	"Physics testing area":"res://maps/devtest/devtest2.tscn",
+	"Aerial Testing Course":"res://maps/afc_ch1_intro.tscn",
+	"Portal testing area":"res://maps/devtest/devtest_portals.tscn",
+	"Spotter testing area":"res://maps/devtest/devtest_os95_spotter_diff.tscn",
+	"NPC testing area":"res://maps/devtest/devtest_pathfinder.tscn"}
 
 var target_scene_path: String
 var is_loading: bool = false
