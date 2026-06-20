@@ -960,11 +960,11 @@ size = Vector3(0.5576782, 2, 0.34375)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="ViewTexture" type="SubViewport" parent="Skybox"]
-size = Vector2i(1358, 594)
+size = Vector2i(1348, 594)
 script = ExtResource("9_nxe74")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(0.99377114, -0.044799816, 0.102035396, 0, 0.9156309, 0.40201843, -0.11143721, -0.39951438, 0.909928, -2.3862758, 37.532303, -0.21290578)
+transform = Transform3D(-0.54247236, 0.093611315, -0.83484113, 0, 0.9937714, 0.11143231, 0.8400732, 0.060448952, -0.5390938, -3.7855856, 37.42044, -1.2387108)
 fov = 70.01
 script = ExtResource("10_r3t5g")
 CameraOrigin = NodePath("../../SkyCameraPivot")
