@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cqoods8v7gr34"]
+[gd_scene load_steps=57 format=3 uid="uid://cqoods8v7gr34"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_hhrmo"]
 [ext_resource type="PackedScene" path="res://instances/afc/prefab_bed.tscn" id="2_clhun"]
@@ -276,6 +276,15 @@ resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_30d18")
 shader_parameter/TEXTURE = SubResource("ViewportTexture_o1coc")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yaj6l"]
+viewport_path = NodePath("Portal1Texture")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_srcfi"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_30d18")
+shader_parameter/TEXTURE = SubResource("ViewportTexture_yaj6l")
 
 [node name="AFC Ch1 Intro" type="Node3D"]
 
@@ -638,6 +647,7 @@ script = ExtResource("21_7qlsx")
 instance = NodePath("box")
 instantiation_position = NodePath("instance_create_box")
 preserve_original = false
+destroy_preexisting = true
 metadata/_custom_type_script = "uid://cmfhvuspob06n"
 
 [node name="instance_create_box" type="Marker3D" parent="FPSC_InstanceActivatable"]
@@ -658,7 +668,7 @@ portal_pair_linkage_id = 1
 
 [node name="MTK_Portal2" parent="." instance=ExtResource("22_7qlsx")]
 transform = Transform3D(0.99999994, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, 0.99999994, -1.1207303, 0.010337591, -1.6970857)
-material = SubResource("ShaderMaterial_dvg1l")
+material = SubResource("ShaderMaterial_srcfi")
 portal_pair_linkage_id = 1
 
 [editable path="Player"]

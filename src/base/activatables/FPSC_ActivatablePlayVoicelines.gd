@@ -5,6 +5,7 @@ class_name FPSC_MultiVoicelineActivatable
 @export var character_voicelines : Array[AudioStream] ## Could be an MP3, a WAV, or any other stream.
 @export var delay_between_voicelines : float = 0.5
 @export var localized_caption_prefix : String ## The caption category to go along with these voiceline.
+@export var after_all_voicelines_activatable : FPSC_Activatable
 
 func on_enter(_body:Node3D):
 	if voiceline_player.playing:
@@ -17,3 +18,4 @@ func on_enter(_body:Node3D):
 		voiceline_player.play()
 		FPSC_CaptionSystem.FPSC_AddCaptionLine(FPSC_LocalizationSystem.FPSC_GetLocalString(localized_caption),character_voiceline.get_length() + delay_between_voicelines*2)
 		await get_tree().create_timer(character_voiceline.get_length() + delay_between_voicelines).timeout
+	if after_all_voicelines_activatable != null: after_all_voicelines_activatable.on_enter(_body)

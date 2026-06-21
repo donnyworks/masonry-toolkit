@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cxfqu1xoc2dos" path="res://src/base/triggers/FPSC_TriggerTeleport.gd" id="5_qxhk7"]
 [ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="6_ronvf"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="7_508mg"]
-[ext_resource type="PackedScene" uid="uid://4asnfqqrff54" path="res://maps/obsolete/devtest_trust_flings_collapse.tscn" id="8_6ql6k"]
+[ext_resource type="PackedScene" uid="uid://crmaqj1knssnj" path="res://maps/obsolete/devtest_trust_flings_collapse.tscn" id="8_6ql6k"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="9_6ql6k"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="10_dfegm"]
 
@@ -2001,11 +2001,11 @@ size = Vector3(0.5576782, 2, 0.34375)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="ViewTexture" type="SubViewport" parent="Skybox"]
-size = Vector2i(1358, 606)
+size = Vector2i(1348, 606)
 script = ExtResource("2_qxhk7")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(0.987683, 0.032409295, -0.15307325, 0, 0.9783123, 0.20713237, 0.15646657, -0.20458114, 0.9662628, -0.03522995, 36.410637, -1.7154932)
+transform = Transform3D(0.14957216, -0.830623, 0.53636974, 0, 0.542472, 0.8400732, -0.9887505, -0.12565158, 0.08113875, 1.1347017, 35.643906, -6.3138227)
 fov = 70.01
 script = ExtResource("3_fnrsi")
 CameraOrigin = NodePath("../../SkyCameraPivot")

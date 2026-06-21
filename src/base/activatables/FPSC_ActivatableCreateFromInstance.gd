@@ -18,7 +18,7 @@ func _ready():
 	if not preserve_original: instance.queue_free() # We fucking kill the original for existing
 
 func on_enter(_body:Node3D):
-	if new_inst != null: new_inst.queue_free()
+	if new_inst != null and destroy_preexisting: new_inst.queue_free()
 	new_inst = inst.duplicate()
 	get_tree().current_scene.add_child(new_inst)
 	new_inst.global_position = instantiation_position.global_position

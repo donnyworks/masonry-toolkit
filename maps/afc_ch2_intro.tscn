@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://cwhsylkx5udbf"]
+[gd_scene load_steps=74 format=3 uid="uid://cwhsylkx5udbf"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_0rpkl"]
 [ext_resource type="PackedScene" uid="uid://plpnja5gt1i4" path="res://instances/portal/weapon_portalgun.tscn" id="2_be8hl"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://sl4hinpkxef0" path="res://src/base/FPSC_DevNote.gd" id="20_liylv"]
 [ext_resource type="PackedScene" uid="uid://ddyq77yf5jul4" path="res://instances/afc/teleporter_exit.tscn" id="21_8ijcp"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="22_oyudv"]
+[ext_resource type="PackedScene" uid="uid://chugofns3we3s" path="res://maps/afc_ch2_surprise.tscn" id="23_be8hl"]
 [ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="23_ykspl"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="24_qtmsx"]
 [ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="25_civ8l"]
@@ -99,7 +100,7 @@ albedo_color = Color(0, 0.8392157, 0.81960785, 0.40784314)
 [sub_resource type="BoxShape3D" id="BoxShape3D_w611l"]
 size = Vector3(7, 4, 1)
 
-[sub_resource type="Shader" id="Shader_wta8l"]
+[sub_resource type="Shader" id="Shader_4rllo"]
 code = "shader_type spatial;
 render_mode unshaded, depth_draw_opaque, cull_back;
 
@@ -115,23 +116,23 @@ void light() {
     // However, for a Skybox, the better approach is usually:
 }"
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_g12ox"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_53yev"]
 viewport_path = NodePath("Skybox/ViewTexture")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_51cni"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_wta8l")
-shader_parameter/TEXTURE = SubResource("ViewportTexture_g12ox")
+shader = SubResource("Shader_4rllo")
+shader_parameter/TEXTURE = SubResource("ViewportTexture_53yev")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ah5jf"]
 
-[sub_resource type="Sky" id="Sky_di4mo"]
+[sub_resource type="Sky" id="Sky_bji57"]
 sky_material = SubResource("ProceduralSkyMaterial_ah5jf")
 
 [sub_resource type="Environment" id="Environment_di4mo"]
 background_mode = 2
-sky = SubResource("Sky_di4mo")
+sky = SubResource("Sky_bji57")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_51cni"]
 
@@ -968,11 +969,11 @@ size = Vector3(0.5576782, 2, 0.34375)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="ViewTexture" type="SubViewport" parent="Skybox"]
-size = Vector2i(1358, 606)
+size = Vector2i(1348, 606)
 script = ExtResource("9_wq642")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(0.9836675, 0.02879102, -0.1776756, 0, 0.98712337, 0.15995616, 0.1799932, -0.15734367, 0.9710018, -0.58684367, 38.061245, -0.39145854)
+transform = Transform3D(-0.9843559, 0.03857823, -0.17191389, 0, 0.9757333, 0.21895896, 0.17618932, 0.21553357, -0.9604695, -4.9536705, 37.15684, -3.0810778)
 fov = 70.01
 script = ExtResource("10_2er3p")
 CameraOrigin = NodePath("../../SkyCameraPivot")
@@ -1264,7 +1265,9 @@ material = SubResource("StandardMaterial3D_s07qk")
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_exithall"]
 script = ExtResource("22_oyudv")
+other_level = ExtResource("23_be8hl")
 delay = 2.0
+interact_with = 1
 metadata/_custom_type_script = "uid://cn3f2saw8lsmn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_exithall/FPSC_TriggerRelay"]

@@ -6,6 +6,7 @@ class_name FPSC_PlayerPropertiesActivatable
 @export_group("Speed Controls")
 @export var new_speed : float = 5.0
 @export var modify_jump_velocity : bool = false
+@export var modify_extraneous_speed : bool = true
 
 @export_group("Fade Controls")
 @export var activate_fade : bool = false
@@ -21,9 +22,12 @@ class_name FPSC_PlayerPropertiesActivatable
 
 func on_enter(_body:Node3D):
 	if _body is FPSC_Player or IgnoreEntryClass:
+		var speed_fraction = new_speed/FPSC_Player.base_speed
 		if modify_jump_velocity:
-			var speed_fraction = new_speed/FPSC_Player.base_speed
 			FPSC_Player.sessionPlayer.JUMP_VELOCITY = speed_fraction*FPSC_Player.base_jv
+		if modify_extraneous_speed:
+			FPSC_Player.sessionPlayer.SPEED_CROUCH = FPSC_Player.base_speed_crouch*speed_fraction
+			FPSC_Player.sessionPlayer.SPEED_SPRINT = FPSC_Player.base_speed_sprint*speed_fraction
 		FPSC_Player.sessionPlayer.SPEED = new_speed
 		if activate_fade:
 			FPSC_Player.sessionPlayer.FPSC_ExecuteFade(fade_color,fade_type,fade_duration)

@@ -9,9 +9,12 @@ enum FadeTypes{
 @export_enum("No Fade","Fade In","Fade Out") var fade_type = 0
 @export var fade_color : Color
 @export var fade_duration : float = 1.0
+@export_group("Player Move Control")
+@export var can_crouch := true
 @export_group("Player Speed Controls")
 @export var SPEED = 5.0
 @export var SPEED_SPRINT = 6.0
+@export var SPEED_CROUCH = 4.0
 @export var JUMP_VELOCITY = 4.5
 @export var accel = 14 ## This variable was taken from SMORCE 3. The movement was smoother there, so that's why I took it.
 @export var DRAG = 1.0 ## Drag resistance is used whenever the player is slowing down
@@ -21,6 +24,8 @@ enum FadeTypes{
 
 static var base_speed = 5.0
 static var base_jv = 4.5
+static var base_speed_sprint = 6.0
+static var base_speed_crouch = 4.0
 
 var isListenServer = false
 
@@ -124,6 +129,8 @@ func FPSC_ShowChapterTitle(title:String,color:Color,duration:float,subtext=""):
 func _ready():
 	base_speed = SPEED
 	base_jv = JUMP_VELOCITY
+	base_speed_sprint = SPEED_SPRINT
+	base_speed_crouch = SPEED_CROUCH
 	$MapSelectionLabel.visible = FPSC_BuildFeatures.BuildFeatures.FEATURE_MAPSELECTOR
 	isSimulated = Monolyth.isMultiplayer and ((not Monolyth.isClient and not isListenServer) or (Monolyth.isClient and name != str(Monolyth.get_unique_id())))
 	if isSimulated:
@@ -249,14 +256,15 @@ func _process(delta):
 					pocket_object = null
 					host_object = null
 				host_object = $Camera3D/GrabCast.get_collider()
-				host_object.set_physics_process(false)
-				host_object.set_physics_process_internal(false)
-				host_object.set_process(false)
-				host_object.set_process_internal(false)
-				pocket_object = host_object.duplicate()
-				host_object.visible = false
-				host_object.collision_layer = 0
-				host_object.collision_mask = 0
+				if not host_object.freeze and not host_object.is_in_group("Non-Pickup"):
+					host_object.set_physics_process(false)
+					host_object.set_physics_process_internal(false)
+					host_object.set_process(false)
+					host_object.set_process_internal(false)
+					pocket_object = host_object.duplicate()
+					host_object.visible = false
+					host_object.collision_layer = 0
+					host_object.collision_mask = 0
 			else:
 				if pocket_object != null:
 					host_object.set_physics_process(false)
@@ -296,6 +304,10 @@ func _process(delta):
 				pocket_object = null
 				host_object = null
 	# SMORCE 3 / FPS CONTROLLER TEMPLATE
+	if Input.is_action_pressed("p_zoom"):
+		camera_fov_extents[0] = 30.0
+	else:
+		camera_fov_extents[0] = 75.0
 	if abs(velocity.x) > base_speed or abs(velocity.z) > base_speed:
 		$Camera3D.fov = lerp($Camera3D.fov, camera_fov_extents[1], 10*delta)
 	else:
@@ -306,6 +318,13 @@ func _process(delta):
 	else:
 		sprinting = false
 		SPEED = base_speed
+		if Input.is_action_pressed("p_crouch"):
+			if can_crouch:
+				SPEED = SPEED_CROUCH
+				scale.y = 0.7
+		else:
+			SPEED = base_speed
+			scale.y = 1
 	if Input.is_action_just_pressed("ui_accept") and FPSC_BuildFeatures.BuildFeatures.FEATURE_MAPSELECTOR:
 		FPSC_LevelManager.ChangeLevel(mapPaths[mapSelectorMap])
 	if currentWeapon == null: return

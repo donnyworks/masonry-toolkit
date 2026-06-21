@@ -139,3 +139,10 @@ FPSC (Masonry Toolkit) Version 6 - June 20, 2026:
         devtest_hallway
     Added:
         afc_ch1_intro
+    ------------ BETA 2
+    Added:
+        afc_ch2_surprise
+        afc_ch2_escape_collapse
+        afc_ch2_trustless_fling
+        afc_ch2_backstage_test
+        afc_ch2_backstage_sect_a (unfinished)
