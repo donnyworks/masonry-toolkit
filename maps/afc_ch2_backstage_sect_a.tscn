@@ -43,6 +43,21 @@ shader = SubResource("Shader_3584k")
 [sub_resource type="BoxShape3D" id="BoxShape3D_m5osx"]
 size = Vector3(1, 0.5, 0.028)
 
+[sub_resource type="Animation" id="Animation_jbb0e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label3D3:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Current date: __/__/____ __:__ __"]
+}
+
 [sub_resource type="Animation" id="Animation_hkifn"]
 resource_name = "glitchloop"
 loop_mode = 1
@@ -57,21 +72,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": ["Current date: __/__/____ __:__ __", "Current date: 07/31/2042 09:45 PM", "Current date: 09/11/2031 10:12 PM", "Current date: 05/13/2029 12:11 PM", "Current date: 00/00/0000 00:00 -M", "Current date: 12/12/2012 12:12 AM", "Current date: 01/15/2026 07:01 PM", "Current date: 07/11/2034 10:15 AM", "Current date: 08/77/6032 44:72 ME", "Current date: HE/LP/MEPL EA:SE AM", "Current date: MM/DD/YYYY HH:MM -M", "Current date: 06/20/2026 10:43 PM", "Current date: Invalid date format for string %s", "Current date: 06/01/2013 12:00 AM", "Current date: 02/20/2023 12:05 PM", "Current date: 10/10/2010 10:10 AM", "Current date: 11/11/2011 11:11 AM", "Current date: 02/22/2022 09:22 PM", "Current date: 07/04/2007 01:04 PM"]
-}
-
-[sub_resource type="Animation" id="Animation_jbb0e"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label3D3:text")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["Current date: __/__/____ __:__ __"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3584k"]
