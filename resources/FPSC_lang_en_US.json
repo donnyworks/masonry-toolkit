@@ -23,4 +23,5 @@
 	"Announcer.Chamber1.02":"[b][Announcer][/b] Please go and place the cube onto the button.",
 	"Announcer.Chamber1.Complete":"[b][Announcer][/b] Good. You have proven that you are smarter than a mouse. Proceed to the teleporter.",
 	"Announcer.Chamber1.BoxTrap":"[b][Announcer][/b] You have managed to permanently trap yourself within this room. Good job. A new box has been deployed.",
+	"Radio.Music":"[i][Peppy Music][/i]"
 }

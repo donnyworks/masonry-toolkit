@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://cqoods8v7gr34"]
+[gd_scene load_steps=66 format=3 uid="uid://cqoods8v7gr34"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_hhrmo"]
 [ext_resource type="PackedScene" path="res://instances/afc/prefab_bed.tscn" id="2_clhun"]
@@ -6,7 +6,10 @@
 [ext_resource type="Script" uid="uid://b4c6tlpkvw6tk" path="res://src/base/activatables/FPSC_ActivatableDoorForceStateChange.gd" id="2_x8ytm"]
 [ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="2_xbpkp"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="3_22oxg"]
+[ext_resource type="Texture2D" uid="uid://bn1xcnqcyqtjt" path="res://textures/clipboard/texture_clipboard_3.png" id="3_fs00n"]
+[ext_resource type="AudioStream" uid="uid://ce5mu1a2228xg" path="res://sound/radio-greener.wav" id="3_p0akr"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="4_b014p"]
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="4_suu5f"]
 [ext_resource type="Script" uid="uid://c10lkodrlqtba" path="res://src/base/activatables/FPSC_ActivatablePlayVoicelines.gd" id="5_keklg"]
 [ext_resource type="AudioStream" uid="uid://bp58ui5pkhyak" path="res://sound/vo/announcer/Intro01.wav" id="6_k6xhx"]
 [ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/FPSC_ActivatablePlayAnimation.gd" id="6_o1coc"]
@@ -224,6 +227,15 @@ _data = {
 &"intro": SubResource("Animation_hhrmo")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_suu5f"]
+size = Vector3(1, 0.5, 0.028)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0mqdf"]
+albedo_texture = ExtResource("4_suu5f")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m62wu"]
+size = Vector3(0.157, 0.38, 0.535)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_x8ytm"]
 size = Vector3(2, 3, 1)
 
@@ -313,6 +325,61 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1.1279907, 0)
 use_collision = true
 size = Vector3(5, 0.25598145, 5)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.681671, -0.5077697, -1.7059221)
+use_collision = true
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08547187, 0)
+operation = 2
+use_collision = true
+size = Vector3(1, 1, 0.8)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="CSGBox3D17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08547187, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.8, 1, 1)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(-0.23361522, 0, -0.97232914, 0, 1, 0, 0.97232914, 0, -0.23361522, 2.681671, 0.011888862, -1.530699)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="RigidBody3D"]
+transform = Transform3D(1.9106855e-15, -1, 4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1, 0, -4.371139e-08, 0, 0, 0)
+use_collision = true
+size = Vector3(1, 0.5, 0.02784375)
+
+[node name="Sprite3D" type="Sprite3D" parent="RigidBody3D/CSGBox3D10"]
+transform = Transform3D(-2.9802322e-08, -1, 8.7422784e-08, 1, -2.9802322e-08, -4.440892e-15, -3.5527137e-15, 8.7422784e-08, 1, 0, 0, -0.019269109)
+flip_h = true
+pixel_size = 0.0019
+shaded = true
+texture = ExtResource("3_fs00n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+shape = SubResource("BoxShape3D_suu5f")
+
+[node name="CSGBox3D26" type="RigidBody3D" parent="."]
+transform = Transform3D(0.6882533, 0, 0.7254704, 0, 1, 0, -0.7254704, 0, 0.6882533, 2.7102437, 0.1890097, -2.021309)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D26"]
+use_collision = true
+size = Vector3(0.157, 0.38, 0.535)
+material = SubResource("StandardMaterial3D_0mqdf")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CSGBox3D26"]
+transform = Transform3D(-0.258819, 0, 0.9659259, 0, 1, 0, -0.9659259, 0, -0.258819, 0, 0, 0)
+stream = ExtResource("3_p0akr")
+autoplay = true
+max_distance = 15.0
+emission_angle_enabled = true
+emission_angle_degrees = 66.0
+doppler_tracking = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D26"]
+shape = SubResource("BoxShape3D_m62wu")
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2538996, 0.15859985, -1.6894531)
