@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_gr46l"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="2_7nrty"]
-[ext_resource type="PackedScene" uid="uid://dxcbdype4k25t" path="res://maps/afc_ch1_escape_attempt.tscn" id="3_gr46l"]
+[ext_resource type="PackedScene" uid="uid://dxcbdype4k25t" path="res://maps/discard/afc_ch1_escape_attempt.tscn" id="3_gr46l"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_crvt5"]
 [ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/FPSC_ActivatableCreateFromInstance.gd" id="5_q7mku"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="6_5fpwn"]
