@@ -6,7 +6,6 @@ static var maps_listed = {
 	"Physics testing area":"res://maps/devtest/devtest2.tscn",
 	"Aerial Testing Course":"res://maps/afc_ch1_intro.tscn",
 	"Portal testing area":"res://maps/devtest/devtest_portals.tscn",
-	"Spotter testing area":"res://maps/devtest/devtest_os95_spotter_diff.tscn",
 	"NPC testing area":"res://maps/devtest/devtest_pathfinder.tscn",
 	"ATC zoo area":"res://maps/zoo_afc_elements.tscn"}
 

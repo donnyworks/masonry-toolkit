@@ -782,7 +782,7 @@ size = Vector2i(1348, 606)
 script = ExtResource("9_hegod")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(0.9923282, 0.020839373, -0.12185899, 0, 0.9856899, 0.16856502, 0.12362806, -0.16727188, 0.97812843, -5.0313125, 37.509323, -2.936007)
+transform = Transform3D(-0.054105572, 0.09057625, -0.9944182, 0, 0.9958768, 0.09070913, 0.9985348, 0.0049078707, -0.053882517, -4.984186, 37.708225, -1.4998882)
 fov = 70.01
 script = ExtResource("10_mfmn7")
 CameraOrigin = NodePath("../../SkyCameraPivot")
@@ -801,7 +801,7 @@ shadow_enabled = true
 transform = Transform3D(-0.70710677, -1.4594538e-07, 0.70710677, 0.6123725, 0.49999997, 0.6123726, -0.35355347, 0.86602545, -0.35355327, 0, 0, 0)
 shadow_enabled = true
 
-[node name="box" type="RigidBody3D" parent="."]
+[node name="box" type="RigidBody3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 14, -6)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="box"]

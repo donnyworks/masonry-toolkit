@@ -61,7 +61,7 @@ albedo_color = Color(0.30980393, 0.4862745, 0.12156863, 0.5058824)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_di4mo")
 
-[node name="RigidBox" type="RigidBody3D" parent="."]
+[node name="RigidBox" type="RigidBody3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, -32)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="RigidBox"]
