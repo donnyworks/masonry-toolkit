@@ -20,3 +20,6 @@ func on_exit(_body:Node3D):
 	if len(bodies_inside) == 0:
 		if switch_back_on_exit:
 			sprite.texture = texture_a
+
+func _process(delta: float) -> void:
+	bodies_inside = bodies_inside.filter(func(obj): return is_instance_valid(obj))

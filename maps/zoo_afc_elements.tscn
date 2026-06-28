@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://fabh0jfxxi51"]
+[gd_scene load_steps=36 format=3 uid="uid://fabh0jfxxi51"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_wtdix"]
+[ext_resource type="PackedScene" uid="uid://fsyjqmmliyan" path="res://instances/afc/prefab_new_portalgun_pedestal.tscn" id="2_8pegt"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="2_ed8bu"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="3_cmfjx"]
 [ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="4_mxkik"]
@@ -13,6 +14,14 @@
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="9_le08f"]
 [ext_resource type="PackedScene" uid="uid://f0qlfetn1pdk" path="res://instances/afc/prefab_catapult.tscn" id="10_t2u4x"]
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="11_le08f"]
+[ext_resource type="PackedScene" path="res://instances/afc/prefab_bed.tscn" id="14_6xojh"]
+[ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="15_48spo"]
+[ext_resource type="PackedScene" uid="uid://ddyq77yf5jul4" path="res://instances/afc/teleporter_exit.tscn" id="16_g0gtr"]
+[ext_resource type="Texture2D" uid="uid://bn1xcnqcyqtjt" path="res://textures/clipboard/texture_clipboard_3.png" id="16_g1f0s"]
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="17_kn4uj"]
+[ext_resource type="AudioStream" uid="uid://ce5mu1a2228xg" path="res://sound/radio-greener.wav" id="18_8pegt"]
+[ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="19_w55ah"]
+[ext_resource type="PackedScene" uid="uid://b6lemoo8ic8o2" path="res://instances/portal/PortalInstance.tscn" id="21_kn4uj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ah5jf"]
 
@@ -29,6 +38,45 @@ size = Vector3(2, 1, 2)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ed8bu"]
 albedo_color = Color(0, 0, 0, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_kishi"]
+size = Vector3(1, 0.5, 0.028)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b528i"]
+albedo_texture = ExtResource("17_kn4uj")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y6q04"]
+size = Vector3(0.157, 0.38, 0.535)
+
+[sub_resource type="Shader" id="Shader_30d18"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform sampler2D TEXTURE;
+
+void fragment() {
+	vec4 vtex = texture(TEXTURE, SCREEN_UV);
+	ALBEDO = vtex.rgb;
+}
+"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_o1coc"]
+viewport_path = NodePath("Portal1Texture")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8pegt"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_30d18")
+shader_parameter/TEXTURE = SubResource("ViewportTexture_o1coc")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yaj6l"]
+viewport_path = NodePath("Portal1Texture")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w55ah"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_30d18")
+shader_parameter/TEXTURE = SubResource("ViewportTexture_yaj6l")
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_wtdix")]
@@ -37,10 +85,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_di4mo")
 
+[node name="PrefabNewPortalgunPedestal" parent="." instance=ExtResource("2_8pegt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -0.46105883, -8)
+
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 10)
 use_collision = true
 size = Vector3(30, 1, 50)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -18)
+operation = 2
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 10)
@@ -332,5 +387,126 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 9, 4.7683716e-07)
 [node name="FPSC_TriggerCatapult3" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("10_t2u4x")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 2.710163, 0, 11.488745)
 destination = NodePath("../FPSC_TriggerCatapult2/Marker3D")
+
+[node name="teleporter_entrance" parent="." instance=ExtResource("15_48spo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.483535, -0.3502245, -11.781929)
+
+[node name="teleporter_exit" parent="." instance=ExtResource("16_g0gtr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.113396, -0.28610182, -11.93055)
+
+[node name="intro_area" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.079636, 1.4300556, -0.6067877)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="intro_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1.1279907, 0)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="intro_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.681671, -0.5077697, -1.7059221)
+use_collision = true
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="intro_area/CSGBox3D17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08547187, 0)
+operation = 2
+use_collision = true
+size = Vector3(1, 1, 0.8)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="intro_area/CSGBox3D17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08547187, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.8, 1, 1)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="intro_area"]
+transform = Transform3D(-0.23361522, 0, -0.97232914, 0, 1, 0, 0.97232914, 0, -0.23361522, 2.681671, 0.011888862, -1.530699)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="intro_area/RigidBody3D"]
+transform = Transform3D(1.9106855e-15, -1, 4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1, 0, -4.371139e-08, 0, 0, 0)
+use_collision = true
+size = Vector3(1, 0.5, 0.02784375)
+
+[node name="Sprite3D" type="Sprite3D" parent="intro_area/RigidBody3D/CSGBox3D10"]
+transform = Transform3D(-2.9802322e-08, -1, 8.7422784e-08, 1, -2.9802322e-08, -4.440892e-15, -3.5527137e-15, 8.7422784e-08, 1, 0, 0, -0.019269109)
+flip_h = true
+pixel_size = 0.0019
+shaded = true
+texture = ExtResource("16_g1f0s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="intro_area/RigidBody3D"]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+shape = SubResource("BoxShape3D_kishi")
+
+[node name="CSGBox3D26" type="RigidBody3D" parent="intro_area"]
+transform = Transform3D(0.6882533, 0, 0.7254704, 0, 1, 0, -0.7254704, 0, 0.6882533, 2.7102437, 0.1890097, -2.021309)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="intro_area/CSGBox3D26"]
+size = Vector3(0.157, 0.38, 0.535)
+material = SubResource("StandardMaterial3D_b528i")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="intro_area/CSGBox3D26"]
+transform = Transform3D(-0.258819, 0, 0.9659259, 0, 1, 0, -0.9659259, 0, -0.258819, 0, 0, 0)
+stream = ExtResource("18_8pegt")
+autoplay = true
+max_distance = 15.0
+emission_angle_enabled = true
+emission_angle_degrees = 66.0
+doppler_tracking = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="intro_area/CSGBox3D26"]
+shape = SubResource("BoxShape3D_y6q04")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="intro_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2538996, 0.15859985, -1.6894531)
+use_collision = true
+size = Vector3(0.24230957, 2.8291626, 1.6210938)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="intro_area"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1, 0.8720093, 2.3791013)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("19_w55ah")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="intro_area"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1, 0.8720093, -2.6208987)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("19_w55ah")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="intro_area"]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, -1.5, 0.8720093, -0.120898835)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("19_w55ah")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="intro_area/CSGBox3D5"]
+transform = Transform3D(-4.371139e-08, 0, 1, -1, -4.371139e-08, -4.371139e-08, 4.371139e-08, -1, 1.9106855e-15, -1.5685543, -0.05509484, 0.7134094)
+operation = 2
+use_collision = true
+size = Vector3(0.24230957, 2.8291626, 1.6210938)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="intro_area"]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 3.5, 0.8720093, -0.12089861)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("19_w55ah")
+
+[node name="IamStealingthis" parent="intro_area" instance=ExtResource("14_6xojh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18432593, -0.5328316, 1.4738483)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="intro_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83147085, 2, -0.3004375)
+shadow_enabled = true
+omni_range = 7.0
+
+[node name="MTK_Portal" parent="intro_area" instance=ExtResource("21_kn4uj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.063781, -0.98966235, -4.9834137)
+material = SubResource("ShaderMaterial_8pegt")
+portal_pair_linkage_id = 1
+
+[node name="MTK_Portal2" parent="intro_area" instance=ExtResource("21_kn4uj")]
+transform = Transform3D(0.99999994, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, 0.99999994, -1.1207303, 0.010337591, -1.6970857)
+material = SubResource("ShaderMaterial_w55ah")
+portal_pair_linkage_id = 1
 
 [editable path="PrefabBoxDropper"]

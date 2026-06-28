@@ -48,6 +48,7 @@ theme_override_fonts/bold_font = SubResource("FontVariation_hn7qg")
 theme_override_fonts/bold_italics_font = SubResource("FontVariation_kipj8")
 theme_override_fonts/italics_font = SubResource("FontVariation_u5521")
 bbcode_enabled = true
+scroll_active = false
 vertical_alignment = 2
 
 [node name="2line" parent="." instance=ExtResource("2_lbka7")]
@@ -77,6 +78,7 @@ theme_override_fonts/bold_italics_font = SubResource("FontVariation_kipj8")
 theme_override_fonts/italics_font = SubResource("FontVariation_u5521")
 bbcode_enabled = true
 fit_content = true
+scroll_active = false
 vertical_alignment = 2
 
 [node name="CaptionFadeTimer" type="Timer" parent="."]

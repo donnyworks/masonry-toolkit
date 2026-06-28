@@ -70,9 +70,14 @@ func on_exit(_body:Node3D):
 	print("Bodiing")
 	if _body in bodies_entered:
 		bodies_entered.erase(_body)
+	bodies_entered = bodies_entered.filter(func(obj): return is_instance_valid(obj))
+	print(bodies_entered)
 	if len(bodies_entered) > 0:
 		return
 	if not stay_open:
 		animate_door_close()
 	
 	pass
+
+func _process(delta: float) -> void:
+	bodies_entered = bodies_entered.filter(func(obj): return is_instance_valid(obj))

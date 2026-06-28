@@ -142,6 +142,8 @@ metadata/_custom_type_script = "uid://d25myaapjjml7"
 script = ExtResource("2_f71x0")
 activated = [NodePath("../FPSC_DoorActivatable"), NodePath("../FPSC_PlayerSpeedActivatable"), NodePath("../FPSC_DoorActivatable2"), NodePath("../FPSC_SoundPlayerActivatable"), NodePath("../FPSC_PlayerPropertiesActivatable")]
 UseActivationDelay = true
+trigger_once = true
+interact_with = 1
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay"]

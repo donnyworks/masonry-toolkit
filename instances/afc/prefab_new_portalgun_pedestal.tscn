@@ -1,0 +1,262 @@
+[gd_scene load_steps=9 format=3 uid="uid://fsyjqmmliyan"]
+
+[ext_resource type="PackedScene" uid="uid://plpnja5gt1i4" path="res://instances/portal/weapon_portalgun.tscn" id="1_ga8du"]
+[ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="2_17nuf"]
+[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/FPSC_ActivatablePlayAnimation.gd" id="3_qpk4i"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_ogmsl"]
+
+[sub_resource type="Animation" id="Animation_ga8du"]
+resource_name = "pedestal_lower"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CSGCylinder3D5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -1.9225067, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CSGCylinder3D5:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -1.5707964, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CSGCylinder3D5/CSGCylinder3D9:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-3.1415927, 0, 1.5707964), Vector3(-1.5707964, 0, 1.5707964), Vector3(0, 0, 1.5707964)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../CSGCylinder3D3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.2333333, 2.2333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.007, 0), Vector3(0.5, 0.007, 0), Vector3(0, 0.007, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../CSGCylinder3D2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.2333333, 2.2333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.5, 0.007, 0), Vector3(-0.5, 0.007, 0), Vector3(0, 0.007, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_17nuf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CSGCylinder3D5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CSGCylinder3D5:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CSGCylinder3D5/CSGCylinder3D9:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5707964)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../CSGCylinder3D3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, 0.007, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../CSGCylinder3D2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.5, 0.007, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qpk4i"]
+_data = {
+&"RESET": SubResource("Animation_17nuf"),
+&"pedestal_lower": SubResource("Animation_ga8du")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fvsl6"]
+
+[node name="PrefabNewPortalgunPedestal" type="Node3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.030517578, 0)
+operation = 2
+radius = 0.44482422
+height = 1.9389648
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.017028809, 0)
+use_collision = true
+radius = 0.6254883
+height = 0.034057617
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCylinder3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.030517578, 0)
+operation = 2
+height = 1.9389648
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="."]
+use_collision = true
+radius = 0.42626953
+height = 0.034057617
+
+[node name="WeaponPortalgun" parent="CSGCylinder3D5" instance=ExtResource("1_ga8du")]
+transform = Transform3D(-3.649901e-08, 0, -0.835, 0, 0.835, 0, 0.835, 0, -3.649901e-08, 0, 1.5008832, 0)
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="CSGCylinder3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7285811, 0)
+radius = 0.11621094
+height = 1.4240417
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="CSGCylinder3D5"]
+transform = Transform3D(2.9802322e-08, 1, 0, -1, 2.9802322e-08, 0, 0, 0, 1, 0, 1.4963689, 0)
+radius = 0.1508789
+height = 0.482
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="CSGCylinder3D5/CSGCylinder3D7"]
+operation = 2
+radius = 0.13232422
+height = 0.482
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D5/CSGCylinder3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2434082, 0.018371582, 0)
+operation = 2
+size = Vector3(0.5131836, 0.58288574, 1)
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="CSGCylinder3D5"]
+transform = Transform3D(-4.3711385e-08, 0.9999999, 0, -0.9999999, -4.3711385e-08, 0, 0, 0, 1, 0, 1.4963689, 0)
+radius = 0.1508789
+height = 0.482
+material = ExtResource("2_17nuf")
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="CSGCylinder3D5/CSGCylinder3D9"]
+operation = 2
+radius = 0.13232422
+height = 0.482
+material = ExtResource("2_17nuf")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D5/CSGCylinder3D9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2434082, 0.0041503897, 0)
+operation = 2
+size = Vector3(0.5131836, 0.41357422, 1)
+material = ExtResource("2_17nuf")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCylinder3D5/CSGCylinder3D9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2711122, 0.012664779, 0)
+operation = 2
+size = Vector3(0.5131836, 0.7503052, 1)
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="CSGCylinder3D5"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 1.5005347, 0)
+operation = 2
+radius = 0.13232422
+height = 0.482
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.007, 0)
+use_collision = true
+height = 0.015625
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+operation = 2
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.007, 0)
+use_collision = true
+height = 0.015625
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+operation = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../FPSC_TriggerRelay")
+libraries = {
+&"": SubResource("AnimationLibrary_qpk4i")
+}
+
+[node name="FPSC_AnimationActivatable" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("3_qpk4i")
+player = NodePath("../AnimationPlayer")
+animation = "pedestal_lower"
+metadata/_custom_type_script = "uid://cd37fw45rkj5r"
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
+transform = Transform3D(0.825, 0, 0, 0, 0.825, 0, 0, 0, 0.825, 0, 1.4902012, 0)
+script = ExtResource("4_ogmsl")
+activated = [NodePath("../FPSC_AnimationActivatable")]
+trigger_once = true
+interact_with = 1
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_fvsl6")

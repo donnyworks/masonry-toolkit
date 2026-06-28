@@ -1,7 +1,6 @@
-[gd_scene load_steps=49 format=3 uid="uid://d25l3ikatvol5"]
+[gd_scene load_steps=51 format=3 uid="uid://d25l3ikatvol5"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_gr46l"]
-[ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="2_7nrty"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_crvt5"]
 [ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/FPSC_ActivatableCreateFromInstance.gd" id="5_q7mku"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="6_5fpwn"]
@@ -18,15 +17,15 @@
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="12_7cofo"]
 [ext_resource type="Texture2D" uid="uid://wmpactx1jwkd" path="res://textures/target_endpoint.png" id="13_nda2j"]
 [ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="14_axdin"]
+[ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="18_q7mku"]
+[ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/FPSC_ActivatablePlayVoiceline.gd" id="19_sswey"]
+[ext_resource type="AudioStream" uid="uid://blr8v01vud548" path="res://sound/vo/announcer/Ch1DemoFinish.wav" id="20_x35tk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s15dw"]
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xl6ql"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_x25pd"]
-size = Vector3(4, 3, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s07qk"]
 albedo_color = Color(0, 0, 0, 1)
@@ -121,6 +120,10 @@ size = Vector3(71, 1, 69)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nhj0d"]
 transparency = 1
 albedo_color = Color(0.30980393, 0.4862745, 0.12156863, 0.5058824)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hegod"]
+height = 2.845581
+radius = 0.75634766
 
 [node name="Node3D" type="Node3D"]
 
@@ -283,41 +286,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, -9.5, -19.5)
 use_collision = true
 size = Vector3(6, 16, 1)
 material = SubResource("StandardMaterial3D_xl6ql")
-
-[node name="CSGBox3D56" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, -9.986248, -49)
-use_collision = true
-size = Vector3(30, 1, 19)
-
-[node name="FPSC_TriggerChangelevel" type="Area3D" parent="CSGBox3D56"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
-script = ExtResource("2_7nrty")
-interact_with = 0
-metadata/_custom_type_script = "uid://cn3f2saw8lsmn"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D56/FPSC_TriggerChangelevel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2, 0)
-shape = SubResource("BoxShape3D_x25pd")
-
-[node name="CSGBox3D57" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.5, -5.9862475, -49)
-use_collision = true
-size = Vector3(5, 1, 19)
-
-[node name="CSGBox3D58" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78, -6.9862475, -49)
-use_collision = true
-size = Vector3(1, 5, 19)
-
-[node name="CSGBox3D59" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83, -6.9862475, -49)
-use_collision = true
-size = Vector3(2, 5, 19)
-
-[node name="CSGBox3D60" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -80, -7.4862475, -59.5)
-use_collision = true
-size = Vector3(3, 6, 32)
 
 [node name="door" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.25, -8, -39.515533)
@@ -810,11 +778,11 @@ size = Vector3(0.5576782, 2, 0.34375)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="ViewTexture" type="SubViewport" parent="Skybox"]
-size = Vector2i(1348, 594)
+size = Vector2i(1348, 606)
 script = ExtResource("9_hegod")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(0.97476614, -0.071585484, 0.2114372, 0, 0.9471853, 0.320685, -0.22322674, -0.31259295, 0.9232847, -4.984671, 37.55937, -2.5381966)
+transform = Transform3D(0.9923282, 0.020839373, -0.12185899, 0, 0.9856899, 0.16856502, 0.12362806, -0.16727188, 0.97812843, -5.0313125, 37.509323, -2.936007)
 fov = 70.01
 script = ExtResource("10_mfmn7")
 CameraOrigin = NodePath("../../SkyCameraPivot")
@@ -1024,3 +992,29 @@ shape = SubResource("BoxShape3D_8n2k8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, -18, -22)
 size = Vector3(93, 1, 57)
 material = SubResource("StandardMaterial3D_nhj0d")
+
+[node name="prefab_chamber_exithall" parent="." instance=ExtResource("18_q7mku")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -80.224846, -9.3496275, -50.39795)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_exithall" node_paths=PackedStringArray("activated")]
+script = ExtResource("4_crvt5")
+activated = [NodePath("../FPSC_VoicelineActivatable")]
+UseActivationDelay = true
+delay = 2.0
+trigger_once = true
+interact_with = 1
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_exithall/FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3953769, 0.17739749)
+shape = SubResource("CylinderShape3D_hegod")
+
+[node name="FPSC_VoicelineActivatable" type="Node" parent="prefab_chamber_exithall" node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("19_sswey")
+voiceline_player = NodePath("../AudioStreamPlayer3D")
+character_voiceline = ExtResource("20_x35tk")
+localized_caption = "Announcer.Chapter1Demo"
+execute_once = true
+metadata/_custom_type_script = "uid://whqnccb8m4hc"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="prefab_chamber_exithall"]

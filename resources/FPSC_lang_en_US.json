@@ -23,5 +23,7 @@
 	"Announcer.Chamber1.02":"[b][Announcer][/b] Please go and place the cube onto the button.",
 	"Announcer.Chamber1.Complete":"[b][Announcer][/b] Good. You have proven that you are smarter than a mouse. Proceed to the teleporter.",
 	"Announcer.Chamber1.BoxTrap":"[b][Announcer][/b] You have managed to permanently trap yourself within this room. Good job. A new box has been deployed.",
+	"Announcer.Chamber1.WallClip":"[b][Announcer][/b] An attempt to leave the game's playable area has been detected. We have prevented this attempt to make sure you have the most optimal gaming experience possible. Thank you and have fun!",
+	"Announcer.Chapter1Demo":"[b][Announcer][/b] Good job on completing the Chapter 1 playtest and [s]Chapter 2 demo[/s]. Your feedback would be greatly appreciated as this project is still a severe work in progress.",
 	"Radio.Music":"[i][Peppy Music][/i]"
 }
