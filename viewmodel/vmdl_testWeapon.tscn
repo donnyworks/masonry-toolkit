@@ -1,7 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://cki32enfwhkc0"]
 
-[ext_resource type="ArrayMesh" uid="uid://bod5nw6ms7yd3" path="res://models/w_crowbar.obj" id="1_i28xt"]
 [ext_resource type="Texture2D" uid="uid://de4g5kmt4ny16" path="res://textures/muzzleFlash.png" id="2_hmdoo"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ryy8h"]
+height = 32.567
 
 [sub_resource type="Animation" id="Animation_iy878"]
 length = 0.001
@@ -125,7 +127,7 @@ _data = {
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.011829496, 0.0003760581, -0.0053778817, 0, 0.012968334, 0.00090683415, 0.005391014, 0.00082518393, -0.01180068, 0.285, -0.22, -0.275)
-mesh = ExtResource("1_i28xt")
+mesh = SubResource("CylinderMesh_ryy8h")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 visible = false
