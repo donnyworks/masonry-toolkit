@@ -146,3 +146,7 @@ FPSC (Masonry Toolkit) Version 6 - June 20, 2026:
         afc_ch2_trustless_fling
         afc_ch2_backstage_test
         afc_ch2_backstage_sect_a (unfinished)
+
+FPSC (Masonry Toolkit) Version 7 - June 27, 2026:
+	From this point on, we're not using changelog.txt
+	Refer to commit logs for what changes, too many things are changing too fast.
