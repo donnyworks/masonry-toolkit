@@ -714,7 +714,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="prefab_chamber_entryway" parent="." instance=ExtResource("1_v4uc3")]
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_entryway"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4689817, 1.6302683, -7.5)
 use_collision = true
 size = Vector3(0.26220703, 3, 2)

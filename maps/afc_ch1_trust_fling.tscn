@@ -794,11 +794,11 @@ size = Vector3(0.5576782, 2, 0.34375)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="ViewTexture" type="SubViewport" parent="Skybox"]
-size = Vector2i(1348, 606)
+size = Vector2i(1356, 606)
 script = ExtResource("9_hegod")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(-0.002590815, -0.49930865, 0.8664198, 0, 0.8664225, 0.49931043, -0.99999624, 0.0012936213, -0.0022447421, -4.999832, 37.551468, -2.7078831)
+transform = Transform3D(0.22242582, -0.44571373, 0.8671015, 0, 0.8893807, 0.45716602, -0.9749492, -0.10168555, 0.19782135, -4.999832, 37.551468, -2.7078831)
 fov = 70.01
 script = ExtResource("10_mfmn7")
 CameraOrigin = NodePath("../../SkyCameraPivot")
@@ -1034,7 +1034,7 @@ metadata/_custom_type_script = "uid://whqnccb8m4hc"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="prefab_chamber_exithall"]
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_exithall"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4689817, 1.6302683, -7.5)
 use_collision = true
 size = Vector3(0.26220703, 3, 2)
