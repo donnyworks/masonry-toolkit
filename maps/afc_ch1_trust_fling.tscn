@@ -1,8 +1,7 @@
-[gd_scene load_steps=50 format=3 uid="uid://d25l3ikatvol5"]
+[gd_scene load_steps=49 format=3 uid="uid://d25l3ikatvol5"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_gr46l"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="2_7nrty"]
-[ext_resource type="PackedScene" uid="uid://dxcbdype4k25t" path="res://maps/discard/afc_ch1_escape_attempt.tscn" id="3_gr46l"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_crvt5"]
 [ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/FPSC_ActivatableCreateFromInstance.gd" id="5_q7mku"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="6_5fpwn"]
@@ -293,7 +292,7 @@ size = Vector3(30, 1, 19)
 [node name="FPSC_TriggerChangelevel" type="Area3D" parent="CSGBox3D56"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 script = ExtResource("2_7nrty")
-other_level = ExtResource("3_gr46l")
+interact_with = 0
 metadata/_custom_type_script = "uid://cn3f2saw8lsmn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D56/FPSC_TriggerChangelevel"]
@@ -811,11 +810,11 @@ size = Vector3(0.5576782, 2, 0.34375)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="ViewTexture" type="SubViewport" parent="Skybox"]
-size = Vector2i(1348, 606)
+size = Vector2i(1348, 594)
 script = ExtResource("9_hegod")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(0.2351663, -0.34363073, 0.909183, 0, 0.9354165, 0.35354593, -0.9719547, -0.08314212, 0.21997857, -2.0110419, 37.659863, -0.005242273)
+transform = Transform3D(0.97476614, -0.071585484, 0.2114372, 0, 0.9471853, 0.320685, -0.22322674, -0.31259295, 0.9232847, -4.984671, 37.55937, -2.5381966)
 fov = 70.01
 script = ExtResource("10_mfmn7")
 CameraOrigin = NodePath("../../SkyCameraPivot")
