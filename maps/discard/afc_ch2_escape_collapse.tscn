@@ -41,7 +41,7 @@
 [ext_resource type="Script" uid="uid://b5fvug40sktho" path="res://src/portal/triggers/FPSC_TriggerDestroyPortals.gd" id="29_helej"]
 [ext_resource type="Script" uid="uid://cxfqu1xoc2dos" path="res://src/base/triggers/FPSC_TriggerTeleport.gd" id="33_helej"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="35_lf5vv"]
-[ext_resource type="PackedScene" uid="uid://3o4yq8qlde4k" path="res://maps/afc_ch2_trustless_fling.tscn" id="35_ph5at"]
+[ext_resource type="PackedScene" uid="uid://3o4yq8qlde4k" path="res://maps/discard/afc_ch2_trustless_fling.tscn" id="35_ph5at"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ah5jf"]
 

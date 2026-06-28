@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="3_u6cgt"]
 [ext_resource type="Script" uid="uid://b4c6tlpkvw6tk" path="res://src/base/activatables/FPSC_ActivatableDoorForceStateChange.gd" id="4_0kqc4"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="4_u6cgt"]
-[ext_resource type="PackedScene" uid="uid://bagdegjnv0rn1" path="res://maps/afc_ch2_escape_collapse.tscn" id="5_0kqc4"]
+[ext_resource type="PackedScene" uid="uid://bagdegjnv0rn1" path="res://maps/discard/afc_ch2_escape_collapse.tscn" id="5_0kqc4"]
 [ext_resource type="Script" uid="uid://c2mdj6ggghyd7" path="res://src/base/conditionals/FPSC_BodyNameCaseCondition.gd" id="5_nqgok"]
 [ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="6_e7t16"]
 [ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/FPSC_ActivatablePlayAnimation.gd" id="7_ymh1l"]

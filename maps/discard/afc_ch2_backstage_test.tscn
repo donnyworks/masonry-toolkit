@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="3_ugkbr"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="5_kk32r"]
 [ext_resource type="Script" uid="uid://b4c6tlpkvw6tk" path="res://src/base/activatables/FPSC_ActivatableDoorForceStateChange.gd" id="8_h1c04"]
-[ext_resource type="PackedScene" uid="uid://bvw7glfg3b86" path="res://maps/afc_ch2_backstage_sect_a.tscn" id="8_nat7i"]
+[ext_resource type="PackedScene" uid="uid://bvw7glfg3b86" path="res://maps/discard/afc_ch2_backstage_sect_a.tscn" id="8_nat7i"]
 [ext_resource type="PackedScene" uid="uid://ddyq77yf5jul4" path="res://instances/afc/teleporter_exit.tscn" id="21_xgahw"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="22_kxvnd"]
 [ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="26_ckd1s"]

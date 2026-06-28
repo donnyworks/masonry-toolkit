@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://wmpactx1jwkd" path="res://textures/target_endpoint.png" id="13_nutnf"]
 [ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="14_a7aha"]
 [ext_resource type="PackedScene" uid="uid://ddyq77yf5jul4" path="res://instances/afc/teleporter_exit.tscn" id="15_f5ym8"]
-[ext_resource type="PackedScene" uid="uid://cj6b5ia3v083h" path="res://maps/afc_ch2_backstage_test.tscn" id="16_srowa"]
+[ext_resource type="PackedScene" uid="uid://cj6b5ia3v083h" path="res://maps/discard/afc_ch2_backstage_test.tscn" id="16_srowa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s15dw"]
 shading_mode = 0

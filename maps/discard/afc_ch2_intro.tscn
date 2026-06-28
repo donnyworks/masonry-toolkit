@@ -26,7 +26,7 @@
 [ext_resource type="Script" uid="uid://sl4hinpkxef0" path="res://src/base/FPSC_DevNote.gd" id="20_liylv"]
 [ext_resource type="PackedScene" uid="uid://ddyq77yf5jul4" path="res://instances/afc/teleporter_exit.tscn" id="21_8ijcp"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="22_oyudv"]
-[ext_resource type="PackedScene" uid="uid://chugofns3we3s" path="res://maps/afc_ch2_surprise.tscn" id="23_be8hl"]
+[ext_resource type="PackedScene" uid="uid://chugofns3we3s" path="res://maps/discard/afc_ch2_surprise.tscn" id="23_be8hl"]
 [ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="23_ykspl"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="24_qtmsx"]
 [ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="25_civ8l"]
@@ -1091,7 +1091,7 @@ size = Vector2i(1348, 606)
 script = ExtResource("9_wq642")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(0.99932706, 0.0020136985, -0.036614913, 0, 0.99849033, 0.054913677, 0.03667025, -0.05487673, 0.99781907, -4.193976, 37.718662, -1.308383)
+transform = Transform3D(0.976853, 0.04956556, -0.2080882, 0, 0.97278357, 0.23171228, 0.21390994, -0.22634885, 0.9502672, -4.6857653, 37.672447, -1.5494022)
 fov = 70.01
 script = ExtResource("10_2er3p")
 CameraOrigin = NodePath("../../SkyCameraPivot")
