@@ -9,8 +9,8 @@ THIRD PARTY LICENSING DETAILS:
 	These assets, under no circumstances, cannot be used in third-party projects without explicit permission from the asset holders. (Who?)
 
 - Asset holders are:
-	Valve Software [Crowbar viewmodel and textures, elevbell1.wav, VGUI corner assets (I don't know if they care about 8x8 corner textures though)]
-    
+	Valve Software [Crowbar viewmodel and textures, elevbell1.wav]
+	
 - Deprecated asset holders are:
 	xen-42 [Original portal shader. You may be wondering what relation this has to Masonry Toolkit. For about 3 years, all of Masonry Toolkit's father-projects have used their portal shader as a base for the screenspace UV shader used in SkyboxShader.tres]
 	Madattak [Innovation. Inc map (May be removed)]

@@ -16,4 +16,3 @@ HELP NOT WANTED.
 Reasons:
   - This is my project
   - I don't do well working with other people.
-

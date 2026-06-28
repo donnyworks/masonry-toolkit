@@ -1,11 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwrc1444pjpel"]
+[gd_scene load_steps=15 format=3 uid="uid://cwrc1444pjpel"]
 
 [ext_resource type="Texture2D" uid="uid://c1lk2pvuf55x6" path="res://vgui/textures/iconset_marlett.png" id="1_0a05j"]
-[ext_resource type="Texture2D" uid="uid://dcc5chijofec5" path="res://vgui/textures/800corner1.png" id="1_t27i6"]
-[ext_resource type="Texture2D" uid="uid://snm5p4fdd66i" path="res://vgui/textures/800corner2.png" id="2_cpudp"]
 [ext_resource type="FontFile" uid="uid://wu4hku12n2ab" path="res://vgui/vgui_boardfont_verdana.ttf" id="2_opgtf"]
-[ext_resource type="Texture2D" uid="uid://dn26djbv5w5p2" path="res://vgui/textures/800corner3.png" id="3_0b0jt"]
-[ext_resource type="Texture2D" uid="uid://dwjx172r42h7o" path="res://vgui/textures/800corner4.png" id="4_cs0vr"]
 
 [sub_resource type="GDScript" id="GDScript_nxppy"]
 resource_name = "baseboard_element_script"
@@ -67,6 +63,53 @@ func _on_btn_close_pressed() -> void:
 	pass # Replace with function body.
 "
 
+[sub_resource type="Gradient" id="Gradient_8fbo0"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5kuu5"]
+gradient = SubResource("Gradient_8fbo0")
+width = 8
+height = 8
+fill_to = Vector2(0.58215964, 0.62910795)
+
+[sub_resource type="Gradient" id="Gradient_huaag"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0n6yk"]
+gradient = SubResource("Gradient_huaag")
+width = 8
+height = 8
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0.3802817, 0.62441313)
+
+[sub_resource type="Gradient" id="Gradient_t27i6"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cpudp"]
+gradient = SubResource("Gradient_t27i6")
+width = 8
+height = 8
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0.44131455, 0.32394367)
+
+[sub_resource type="Gradient" id="Gradient_0b0jt"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cs0vr"]
+gradient = SubResource("Gradient_0b0jt")
+width = 8
+height = 8
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0.6197183, 0.3568075)
+
+[sub_resource type="Curve" id="Curve_euv6s"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.23428571, 0.8539326), 0.0, 0.0, 0, 0, Vector2(0.71428573, 0.20224726), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_emeqv"]
+width = 32
+curve = SubResource("Curve_euv6s")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_nxppy"]
 atlas = ExtResource("1_0a05j")
 region = Rect2(400, 0, 30, 30)
@@ -92,7 +135,7 @@ texture_filter = 1
 layout_mode = 1
 offset_left = -8.0
 offset_top = -8.0
-texture = ExtResource("1_t27i6")
+texture = SubResource("GradientTexture2D_5kuu5")
 
 [node name="800corner2" type="TextureRect" parent="PanelMode"]
 texture_filter = 1
@@ -103,7 +146,7 @@ anchor_right = 1.0
 offset_top = -8.0
 offset_right = 8.0
 grow_horizontal = 0
-texture = ExtResource("2_cpudp")
+texture = SubResource("GradientTexture2D_0n6yk")
 
 [node name="800corner3" type="TextureRect" parent="PanelMode"]
 texture_filter = 1
@@ -117,7 +160,7 @@ offset_right = 8.0
 offset_bottom = 8.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("3_0b0jt")
+texture = SubResource("GradientTexture2D_cpudp")
 
 [node name="800corner4" type="TextureRect" parent="PanelMode"]
 texture_filter = 1
@@ -128,7 +171,7 @@ anchor_bottom = 1.0
 offset_left = -8.0
 offset_bottom = 8.0
 grow_vertical = 0
-texture = ExtResource("4_cs0vr")
+texture = SubResource("GradientTexture2D_cs0vr")
 
 [node name="ColorRect2" type="ColorRect" parent="PanelMode"]
 layout_mode = 1
@@ -186,7 +229,7 @@ offset_left = -16.0
 offset_top = -16.0
 offset_right = -8.0
 offset_bottom = -8.0
-texture = ExtResource("1_t27i6")
+texture = SubResource("CurveTexture_emeqv")
 
 [node name="800corner2" type="TextureRect" parent="WindowMode"]
 texture_filter = 1
@@ -199,7 +242,7 @@ offset_top = -16.0
 offset_right = 16.0
 offset_bottom = -8.0
 grow_horizontal = 0
-texture = ExtResource("2_cpudp")
+texture = SubResource("GradientTexture2D_0n6yk")
 
 [node name="800corner3" type="TextureRect" parent="WindowMode"]
 texture_filter = 1
@@ -215,7 +258,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("3_0b0jt")
+texture = SubResource("GradientTexture2D_cpudp")
 
 [node name="800corner4" type="TextureRect" parent="WindowMode"]
 texture_filter = 1
@@ -228,7 +271,7 @@ offset_top = 8.0
 offset_right = -8.0
 offset_bottom = 16.0
 grow_vertical = 0
-texture = ExtResource("4_cs0vr")
+texture = SubResource("GradientTexture2D_cs0vr")
 
 [node name="ColorRect2" type="ColorRect" parent="WindowMode"]
 layout_mode = 1
