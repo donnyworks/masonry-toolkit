@@ -183,6 +183,7 @@ var sprinting = false
 func _process(delta):
 	isSimulated = Monolyth.isMultiplayer and ((not Monolyth.isClient and not isListenServer) or (Monolyth.isClient and name != str(Monolyth.get_unique_id())))
 	if isSimulated:
+		#print("Simulating character " + name)
 		$Camera3D.current = false
 		$TextureRect.visible = false
 		$MapSelectionLabel.visible = false
@@ -315,16 +316,17 @@ func _process(delta):
 	if Input.is_action_pressed("p_run"):
 		sprinting = true
 		SPEED = SPEED_SPRINT
+		$CollisionShape3D.shape.height = 2.0
 	else:
 		sprinting = false
 		SPEED = base_speed
 		if Input.is_action_pressed("p_crouch"):
 			if can_crouch:
 				SPEED = SPEED_CROUCH
-				scale.y = 0.7
+				$CollisionShape3D.shape.height = 0.7*2.0
 		else:
 			SPEED = base_speed
-			scale.y = 1
+			$CollisionShape3D.shape.height = 2.0
 	if Input.is_action_just_pressed("ui_accept") and FPSC_BuildFeatures.BuildFeatures.FEATURE_MAPSELECTOR:
 		FPSC_LevelManager.ChangeLevel(mapPaths[mapSelectorMap])
 	if currentWeapon == null: return
@@ -383,19 +385,22 @@ func FPSC_GetMPState():
 	if Monolyth.isClient:
 		return null
 	else:
-		return [velocity,position,rotation,currentWeapon.FPSC_GetMPState()]
+		return [velocity,position,rotation,currentWeapon.FPSC_GetMPState() if currentWeapon != null else []]
 
 func FPSC_ApplyMPState(state):
 	if not Monolyth.isClient:
 		return
 	else:
-		if abs(position.distance_to(state[1])) > 4.0: # That's a little extreme. No amount of prediction can save this.
+		#print("posd: ",position.distance_to(state[1]))
+		#print("pos: ",position)
+		#print("d: ",state[1])
+		if abs(position.distance_to(state[1])) > 5.0: # That's a little extreme. No amount of prediction can save this.
 			position = state[1]
 		if name == str(Monolyth.get_unique_id()): return
 		velocity = state[0]
-		#position = state[1]
+		position = state[1]
 		rotation = state[2] # We ignore rotation as self to prevent weird race conditions
-		currentWeapon.FPSC_ApplyMPState(state[3])
+		if currentWeapon != null: currentWeapon.FPSC_ApplyMPState(state[3])
 
 func FPSC_GetInputs():
 	return [Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd")]

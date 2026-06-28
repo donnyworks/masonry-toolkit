@@ -9,9 +9,24 @@ class_name FPSC_DoorActivatable
 
 @export var stay_open : bool = false
 
+var current_position : Vector3:
+	set(v):
+		object_as_door.position = v
+		if current_tween != null:
+			current_tween.from(v)
+		current_position = v
+	get():
+		return object_as_door.position
+
 var starting_position : Vector3
 
 var ending_position : Vector3
+
+func FPSC_GetMPState():
+	return [current_position]
+
+func FPSC_ApplyMPState(args):
+	current_position = args[0]
 
 func _ready():
 	starting_position = object_as_door.position
@@ -35,9 +50,11 @@ func _ready():
 
 var bodies_entered = []
 
+var current_tween : PropertyTweener = null
+
 func animate_door_open():
 	var t1 = create_tween()
-	t1.tween_property(object_as_door,"position",ending_position,time)
+	current_tween = t1.tween_property(object_as_door,"position",ending_position,time)
 
 func on_enter(_body:Node3D):
 	print("Bodyiingg")
@@ -47,7 +64,7 @@ func on_enter(_body:Node3D):
 
 func animate_door_close():
 	var t1 = create_tween()
-	t1.tween_property(object_as_door,"position",starting_position,time)
+	current_tween = t1.tween_property(object_as_door,"position",starting_position,time)
 
 func on_exit(_body:Node3D):
 	print("Bodiing")

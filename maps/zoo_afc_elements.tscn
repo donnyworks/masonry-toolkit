@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://fabh0jfxxi51"]
+
+[ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_wtdix"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ah5jf"]
+
+[sub_resource type="Sky" id="Sky_di4mo"]
+sky_material = SubResource("ProceduralSkyMaterial_ah5jf")
+
+[sub_resource type="Environment" id="Environment_di4mo"]
+background_mode = 2
+sky = SubResource("Sky_di4mo")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_wtdix")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_di4mo")

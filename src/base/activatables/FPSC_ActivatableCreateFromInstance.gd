@@ -11,7 +11,18 @@ class_name FPSC_InstanceActivatable
 
 @onready var inst
 
+var just_spawned_node = false
+
 var new_inst : Node3D
+
+func FPSC_GetMPState():
+	var arr = [just_spawned_node]
+	just_spawned_node = false
+	return arr
+
+func FPSC_ApplyMPState(state):
+	if state[0]:
+		on_enter(Node3D.new())
 
 func _ready():
 	inst = instance.duplicate()
@@ -22,3 +33,4 @@ func on_enter(_body:Node3D):
 	new_inst = inst.duplicate()
 	get_tree().current_scene.add_child(new_inst)
 	new_inst.global_position = instantiation_position.global_position
+	just_spawned_node = true

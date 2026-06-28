@@ -12,20 +12,71 @@ var sv_comms_mode = Monolyth.TYPE_TCP
 const MAXPLAYERS_MIN = 1
 const MAXPLAYERS_MAX = 16
 
-func recurse_me(node:Node):
-	for object in node.get_children():
-		# Scene and whatnot
+var cached_entities = []
+
+var cached_players = []
+
+var connected_players = []
+
+func _ready():
+	FPSC_LevelManager.connect("LevelChanged",build_tree_up)
+	#get_tree().connect("scene_changed",mp_changelevel)
+
+func build_tree_up():
+	cached_entities = []
+	cached_players = []
+	build_tree(get_tree().current_scene)
+	if sv_listen:
+		for object in get_tree().current_scene.get_children():
+			if object is FPSC_Player:
+				object.name = "1" # Reason: Players need to be named their ID so they're replicated properly
+				object.isListenServer = true
+				cached_players.append(object)
+	else:
+		for object in get_tree().current_scene.get_children():
+			if object is FPSC_Player:
+				object.currentWeapon.queue_free()
+				FPSC_Player.sessionPlayer = null
+				object.queue_free()
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	for id in connected_players:
+		#var id = m_args[0]
+		var player = preload("res://instances/player.tscn").duplicate().instantiate()
+		player.name = str(id)
+		#connected_players.append(id)
+		cached_players.append(player) # add them to the scene
+		get_tree().current_scene.add_child(player)
+
+func recurse_me(_node:Node):
+	for object in cached_entities:
 		if object.has_method("FPSC_GetMPState"):
-			if not object is FPSC_Weapon:
-				var state = object.FPSC_GetMPState()
-				var pathy = str(object.get_path())
-				Monolyth.SendMessage("FPSC_UpdateMPState",[state,pathy],Monolyth.get_remote_sender_id()) # Godot format since I have no idea what the hell it wants from me
+			var state = object.FPSC_GetMPState()
+			var pathy = str(object.get_path())
+			Monolyth.SendMessage("FPSC_UpdateMPState",[state,pathy],Monolyth.get_remote_sender_id()) # Godot format since I have no idea what the hell it wants from me
 		elif object is RigidBody3D:
 			var state = [object.position,object.rotation,object.scale,object.collision_mask,object.collision_layer,object.angular_velocity,object.linear_velocity]
 			var pathy = str(object.get_path())
 			Monolyth.SendMessage("FPSC_UpdateRigidbody",[state,pathy],Monolyth.get_remote_sender_id())
+	pass
+
+func build_tree(node:Node):
+	for object in node.get_children():
+		# Scene and whatnot
+		if object.has_method("FPSC_GetMPState"):
+			if not object is FPSC_Weapon:
+				cached_entities.append(object)
+				if not object.is_connected("tree_exiting", handle_node_deletion):
+					object.connect("tree_exiting",handle_node_deletion)
+		elif object is RigidBody3D:
+			cached_entities.append(object)
+			if not object.is_connected("tree_exiting", handle_node_deletion):
+				object.connect("tree_exiting",handle_node_deletion)
 		else:
-			recurse_me(object)
+			build_tree(object)
+
+func handle_node_deletion(node:Node):
+	Monolyth.SendMessage("FPSC_DeleteNode",[node.get_path()])
+	cached_entities.erase(node)
 
 var FPSC_ReadyForNewState = false
 
@@ -34,7 +85,10 @@ func SV_MessageHandler(m_name,m_args,m_sender):
 		var id = m_args[0]
 		var player = preload("res://instances/player.tscn").duplicate().instantiate()
 		player.name = str(id)
+		connected_players.append(id)
+		cached_players.append(player) # add them to the scene
 		get_tree().current_scene.add_child(player)
+		print("Sending level ",get_tree().current_scene.scene_file_path)
 		Monolyth.SendMessage("LoadLevel",[get_tree().current_scene.scene_file_path],id,"neutral")
 	if m_name == "FPSC_PlayerList":
 		var list = []
@@ -44,6 +98,10 @@ func SV_MessageHandler(m_name,m_args,m_sender):
 		Monolyth.SendMessage("FPSC_RecvPlayerList",list,Monolyth.get_remote_sender_id())
 	if m_name == "FPSC_UpdatePlayState":
 		get_tree().current_scene.get_node(str(m_sender)).FPSC_ApplyInputs(m_args)
+		for object in cached_players:
+			var state = object.FPSC_GetMPState()
+			var pathy = str(object.get_path())
+			Monolyth.SendMessage("FPSC_UpdateMPState",[state,pathy],Monolyth.get_remote_sender_id()) # Godot format since I have no idea what the hell it wants from me
 	if m_name == "FPSC_ReadyForState":
 		recurse_me(get_tree().current_scene)
 		Monolyth.SendMessage("FPSC_StateExhausted",[],Monolyth.get_remote_sender_id())
@@ -52,6 +110,7 @@ func SV_MessageHandler(m_name,m_args,m_sender):
 func CL_MessageHandler(m_name,m_args,m_sender):
 	if m_name == "LoadLevel" and m_sender == 1:
 		var level = m_args[0]
+		print("Loading level " + level)
 		FPSC_LevelManager.ChangeLevel(level)
 		await FPSC_LevelManager.LevelChanged
 		for object in get_tree().current_scene.get_children():
@@ -67,11 +126,14 @@ func CL_MessageHandler(m_name,m_args,m_sender):
 			get_tree().current_scene.add_child(player) # Ensures that _ready() is evaluated correctly
 		Monolyth.SendMessage("FPSC_ReadyForState",[],1)
 	if m_name == "FPSC_UpdateMPState" and m_sender == 1:
-		print("Updating state for ",m_args[1])
+		#print("Updating state for ",m_args[1])
 		get_node(m_args[1]).FPSC_ApplyMPState(m_args[0])
 	if m_name == "FPSC_StateExhausted" and m_sender == 1:
 		await get_tree().process_frame # We literally wait a frame before we say we're ready.
 		FPSC_ReadyForNewState = true
+	if m_name == "FPSC_DeleteNode" and m_sender == 1:
+		if get_node_or_null(m_args[0]) != null:
+			get_node(m_args[0]).queue_free() # yay! get it out of my house RIGHT NOW
 	if m_name == "FPSC_UpdateRigidbody" and m_sender == 1:#[object.position,object.rotation,object.scale,object.collision_mask,object.collision_layer,object.angular_velocity,object.linear_velocity]
 		var object : RigidBody3D = get_node(m_args[1])
 		object.position = m_args[0][0]
@@ -82,7 +144,7 @@ func CL_MessageHandler(m_name,m_args,m_sender):
 		object.angular_velocity = m_args[0][5]
 		object.linear_velocity = m_args[0][6]
 	if m_name == "ConnectionRemoved" and m_sender == -1:
-		FPSC_LevelManager.ChangeLevel("res://maps/FPSC_Test.tscnds ")
+		FPSC_LevelManager.ChangeLevel("res://maps/devtest/FPSC_Test.tscn")
 		print("Disconnected from server: Server shutting down")
 	pass
 """
@@ -105,6 +167,7 @@ func start_server():
 			if object is FPSC_Player:
 				object.name = "1" # Reason: Players need to be named their ID so they're replicated properly
 				object.isListenServer = true
+				cached_players.append(object)
 	else:
 		for object in get_tree().current_scene.get_children():
 			if object is FPSC_Player:

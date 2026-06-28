@@ -19,8 +19,8 @@ signal LevelChanged()
 func CMDLine(command:String):
 	var cmda = command.split(" ")
 	if cmda[0] == "map":
-		print("Changing level to " + cmda[0])
-		FPSC_LevelManager.ChangeLevel(cmda[1])
+		print("Changing level to " + cmda[1])
+		FPSC_LevelManager.ChangeLevel("res://maps/" + cmda[1] + ".tscn")
 		if FPSC_MultiplayerFramework.maxplayers > 1: # We're trying to enroll as a server
 			await FPSC_LevelManager.LevelChanged
 			print("Full assurance that the game has started, the level has loaded, and we are ready to start listening.")
