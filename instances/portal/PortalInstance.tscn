@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6lemoo8ic8o2"]
+[gd_scene load_steps=11 format=3 uid="uid://b6lemoo8ic8o2"]
 
 [ext_resource type="Script" uid="uid://rak8vmaeqnag" path="res://src/base/skybox/FPSC_ViewTexture.gd" id="1_8et20"]
 [ext_resource type="Script" uid="uid://d2y3d3rralsll" path="res://src/portal/FPSC_Portal.gd" id="1_ovfy8"]
@@ -32,6 +32,9 @@ size = Vector3(0.13480957, 2.0166626, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ovfy8"]
 size = Vector3(1.0902154, 2.0166626, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sc2nh"]
+shading_mode = 0
+
 [node name="MTK_Portal" type="CSGBox3D" groups=["Portals"]]
 layers = 2
 size = Vector3(0.001, 2, 1)
@@ -39,7 +42,7 @@ material = SubResource("ShaderMaterial_sepu0")
 script = ExtResource("1_ovfy8")
 
 [node name="Portal1Texture" type="SubViewport" parent="."]
-size = Vector2i(599, 211)
+size = Vector2i(1348, 534)
 script = ExtResource("1_8et20")
 metadata/_custom_type_script = "uid://rak8vmaeqnag"
 
@@ -76,6 +79,16 @@ texture = ExtResource("4_53dg3")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.006144643, 0.49857676, 0)
 pixel_size = 0.0075
 texture = ExtResource("4_53dg3")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013505667, 0, 0)
+size = Vector3(0.005, 2, 1)
+material = SubResource("StandardMaterial3D_sc2nh")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+operation = 2
+size = Vector3(0.005, 1.9, 0.9)
+material = SubResource("StandardMaterial3D_sc2nh")
 
 [connection signal="body_entered" from="PassthroughArea" to="." method="_on_passthrough_area_body_entered"]
 [connection signal="body_exited" from="PassthroughArea" to="." method="_on_passthrough_area_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b86kc32fhyjj3"]
+[gd_scene load_steps=14 format=3 uid="uid://b86kc32fhyjj3"]
 
 [ext_resource type="Texture2D" uid="uid://sav8ot3s5160" path="res://icon.svg" id="1_2m76u"]
 [ext_resource type="AudioStream" uid="uid://62q3ofb44ecp" path="res://sound/teleporter_entry.wav" id="1_jn40s"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="3_jn40s"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="4_d6q2t"]
 [ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/FPSC_ActivatableSoundOnActivation.gd" id="4_jn40s"]
+[ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/FPSC_ActivatableRelay.gd" id="7_kjrl8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rj70k"]
 transparency = 1
@@ -147,7 +148,7 @@ metadata/_custom_type_script = "uid://dlktdrvwevbt1"
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
 script = ExtResource("2_d6q2t")
-activated = [NodePath("../FPSC_DoorActivatable"), NodePath("../FPSC_DoorActivatable2"), NodePath("../FPSC_PlayerPropertiesActivatable"), NodePath("../FPSC_PlayerPropertiesActivatable2"), NodePath("../FPSC_SoundPlayerActivatable")]
+activated = [NodePath("../anim_teleporter_enter")]
 UseActivationDelay = true
 trigger_once = true
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
@@ -155,3 +156,9 @@ metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3953769, 0)
 shape = SubResource("CylinderShape3D_k6rt8")
+
+[node name="anim_teleporter_enter" type="Node" parent="." node_paths=PackedStringArray("activatables")]
+script = ExtResource("7_kjrl8")
+activatables = [NodePath("../FPSC_DoorActivatable"), NodePath("../FPSC_DoorActivatable2"), NodePath("../FPSC_PlayerPropertiesActivatable"), NodePath("../FPSC_PlayerPropertiesActivatable2"), NodePath("../FPSC_SoundPlayerActivatable")]
+use_delay_on_enter = true
+metadata/_custom_type_script = "uid://cgae4dmf6xfos"

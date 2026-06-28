@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://d25l3ikatvol5"]
+[gd_scene load_steps=54 format=3 uid="uid://d25l3ikatvol5"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_gr46l"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_crvt5"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="9_x35tk"]
 [ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="10_hegod"]
 [ext_resource type="Script" uid="uid://ckyi0gdrrolk1" path="res://src/base/skybox/FPSC_SkyboxCamera.gd" id="10_mfmn7"]
+[ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/FPSC_ActivatableToggleLightModulationColor.gd" id="10_x35tk"]
 [ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="11_mfmn7"]
 [ext_resource type="PackedScene" uid="uid://cm04rqdktssx2" path="res://instances/stellaoctangula.tscn" id="11_tqbre"]
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="12_7cofo"]
@@ -19,7 +20,9 @@
 [ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="14_axdin"]
 [ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="18_q7mku"]
 [ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/FPSC_ActivatablePlayVoiceline.gd" id="19_sswey"]
+[ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="20_mfmn7"]
 [ext_resource type="AudioStream" uid="uid://blr8v01vud548" path="res://sound/vo/announcer/Ch1DemoFinish.wav" id="20_x35tk"]
+[ext_resource type="PackedScene" uid="uid://da8fywn53c78t" path="res://maps/afc_ch1_gain_flings.tscn" id="21_tqbre"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s15dw"]
 shading_mode = 0
@@ -423,7 +426,7 @@ material = SubResource("StandardMaterial3D_x25pd")
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="CSGBox3D54" node_paths=PackedStringArray("activated")]
 script = ExtResource("4_crvt5")
-activated = [NodePath("FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable")]
+activated = [NodePath("FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite")]
 UseActivationDelay = true
 UseActivationDelayOnExit = true
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
@@ -515,6 +518,19 @@ texture_b = ExtResource("11_mfmn7")
 switch_back_on_exit = true
 delay = 0.1
 metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="signlite" type="Node" parent="CSGBox3D54/sign" node_paths=PackedStringArray("light")]
+script = ExtResource("10_x35tk")
+light = NodePath("../OmniLight3D")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.1
+metadata/_custom_type_script = "uid://bibdote7bt40k"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CSGBox3D54/sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1275053)
+light_color = Color(1, 0.5058824, 0.007843138, 1)
+shadow_enabled = true
 
 [node name="CSGBox3D20" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5, -9.5, -37.5)
@@ -782,7 +798,7 @@ size = Vector2i(1348, 606)
 script = ExtResource("9_hegod")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(-0.054105572, 0.09057625, -0.9944182, 0, 0.9958768, 0.09070913, 0.9985348, 0.0049078707, -0.053882517, -4.984186, 37.708225, -1.4998882)
+transform = Transform3D(-0.002590815, -0.49930865, 0.8664198, 0, 0.8664225, 0.49931043, -0.99999624, 0.0012936213, -0.0022447421, -4.999832, 37.551468, -2.7078831)
 fov = 70.01
 script = ExtResource("10_mfmn7")
 CameraOrigin = NodePath("../../SkyCameraPivot")
@@ -996,14 +1012,13 @@ material = SubResource("StandardMaterial3D_nhj0d")
 [node name="prefab_chamber_exithall" parent="." instance=ExtResource("18_q7mku")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -80.224846, -9.3496275, -50.39795)
 
-[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_exithall" node_paths=PackedStringArray("activated")]
-script = ExtResource("4_crvt5")
-activated = [NodePath("../FPSC_VoicelineActivatable")]
-UseActivationDelay = true
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_exithall"]
+script = ExtResource("20_mfmn7")
+other_level = ExtResource("21_tqbre")
 delay = 2.0
 trigger_once = true
 interact_with = 1
-metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+metadata/_custom_type_script = "uid://cn3f2saw8lsmn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_exithall/FPSC_TriggerRelay"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3953769, 0.17739749)
@@ -1018,3 +1033,35 @@ execute_once = true
 metadata/_custom_type_script = "uid://whqnccb8m4hc"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="prefab_chamber_exithall"]
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_exithall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4689817, 1.6302683, -7.5)
+use_collision = true
+size = Vector3(0.26220703, 3, 2)
+
+[node name="Label3D" type="Label3D" parent="prefab_chamber_exithall/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 1.2564766, 0)
+text = "TEST CHAMBER 03"
+
+[node name="Label3D2" type="Label3D" parent="prefab_chamber_exithall/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.84315467, -0.8630085)
+text = "Potential hazards:
+"
+horizontal_alignment = 0
+
+[node name="Label3D4" type="Label3D" parent="prefab_chamber_exithall/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.74041283, -0.8630085)
+text = "[|||                                   ]
+"
+horizontal_alignment = 0
+
+[node name="Label3D3" type="Label3D" parent="prefab_chamber_exithall/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
+text = "Acidic pools
+Portals
+Aerial Faith Plates
+Boxes
+Buttons
+Portalable surfaces"
+horizontal_alignment = 0
+vertical_alignment = 0

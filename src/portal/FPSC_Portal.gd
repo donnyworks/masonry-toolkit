@@ -8,6 +8,12 @@ class_name FPSC_Portal
 @export var portal_pair_linkage_id : int = 0
 @export var portal_color : bool = true
 
+func _ready():
+	var newmat = StandardMaterial3D.new()
+	$CSGBox3D.material = newmat
+	$CSGBox3D/CSGBox3D2.material = newmat
+	newmat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+
 func ClosePortal():
 	linked = false
 	other_portal = null
@@ -19,6 +25,10 @@ func NotifyOtherPortalDestruction():
 func NotifyLinkage():
 	linked = true
 	portal_color = not other_portal.portal_color
+	if not portal_color:
+		$CSGBox3D.material.albedo_color = Color(0,0,1)
+	else:
+		$CSGBox3D.material.albedo_color = Color(1,0,0)
 	$Portal1Texture/FPSC_FollowCamera.CameraOrigin = other_portal
 
 func _process(delta):

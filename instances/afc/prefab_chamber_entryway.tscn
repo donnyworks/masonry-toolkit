@@ -58,9 +58,9 @@ shadow_enabled = true
 spot_range = 33.0
 
 [node name="door_entrance" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6635132, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6635132, -9.9626465)
 use_collision = true
-size = Vector3(5, 4, 1)
+size = Vector3(5, 4, 0.92529297)
 material = SubResource("StandardMaterial3D_k6rt8")
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]

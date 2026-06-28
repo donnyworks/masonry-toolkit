@@ -1,6 +1,7 @@
 [gd_scene load_steps=32 format=3 uid="uid://da5wvnsb3r8yx"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_masgv"]
+[ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="2_liv5b"]
 [ext_resource type="PackedScene" uid="uid://cihvtue137xn7" path="res://instances/afc/prefab_chamber_entryway.tscn" id="2_poqup"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="3_ho380"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_iglfj"]
@@ -11,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://f0qlfetn1pdk" path="res://instances/afc/prefab_catapult.tscn" id="9_6afok"]
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="10_iy3wt"]
 [ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="11_c1t1j"]
-[ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/FPSC_ActivatableCreateFromInstance.gd" id="12_binyq"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="13_mkp34"]
 [ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="14_b5air"]
 [ext_resource type="Texture2D" uid="uid://wmpactx1jwkd" path="res://textures/target_endpoint.png" id="14_liyvt"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="16_it3c0"]
 [ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="17_tikpg"]
 [ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="18_kcg2e"]
+[ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/FPSC_ActivatableToggleLightModulationColor.gd" id="19_liv5b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ah5jf"]
 
@@ -28,8 +29,6 @@ sky_material = SubResource("ProceduralSkyMaterial_ah5jf")
 [sub_resource type="Environment" id="Environment_di4mo"]
 background_mode = 2
 sky = SubResource("Sky_di4mo")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_51cni"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v8r46"]
 
@@ -61,16 +60,11 @@ albedo_color = Color(0.30980393, 0.4862745, 0.12156863, 0.5058824)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_di4mo")
 
-[node name="RigidBox" type="RigidBody3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, -32)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="RigidBox"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBox"]
-shape = SubResource("BoxShape3D_51cni")
-
 [node name="Player" parent="." instance=ExtResource("1_masgv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1694927, 0)
+
+[node name="PrefabBoxDropper" parent="." instance=ExtResource("2_liv5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, -32)
 
 [node name="prefab_chamber_entryway" parent="." instance=ExtResource("2_poqup")]
 
@@ -88,6 +82,36 @@ metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_entryway/FPSC_TriggerRelay2"]
 shape = SubResource("BoxShape3D_v8r46")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_entryway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4689817, 1.6302683, -7.5)
+use_collision = true
+size = Vector3(0.26220703, 3, 2)
+
+[node name="Label3D" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 1.2564766, 0)
+text = "TEST CHAMBER 02"
+
+[node name="Label3D2" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.84315467, -0.8630085)
+text = "Potential hazards:
+"
+horizontal_alignment = 0
+
+[node name="Label3D4" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.74041283, -0.8630085)
+text = "[||                                     ]
+"
+horizontal_alignment = 0
+
+[node name="Label3D3" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
+text = "Acidic pools
+Aerial Faith Plates
+Boxes
+Buttons"
+horizontal_alignment = 0
+vertical_alignment = 0
 
 [node name="prefab_chamber_exithall" parent="." instance=ExtResource("5_cq67v")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -64)
@@ -148,7 +172,7 @@ shape = SubResource("BoxShape3D_7i5gt")
 [node name="FPSC_TriggerRelay2" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -30)
 script = ExtResource("4_iglfj")
-activated = [NodePath("FPSC_InstanceActivatable")]
+activated = [NodePath("../PrefabBoxDropper/dropper")]
 interact_with = 4
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
@@ -156,18 +180,14 @@ metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 shape = SubResource("BoxShape3D_7i5gt")
 
-[node name="FPSC_InstanceActivatable" type="Node" parent="FPSC_TriggerRelay2" node_paths=PackedStringArray("instance", "instantiation_position")]
-script = ExtResource("12_binyq")
-instance = NodePath("../../RigidBox")
-instantiation_position = NodePath("../../cube_spawnpoint")
-metadata/_custom_type_script = "uid://cmfhvuspob06n"
-
 [node name="prefab_geomesh_button" parent="." instance=ExtResource("13_mkp34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.50503606, -50)
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_geomesh_button" node_paths=PackedStringArray("activated")]
 script = ExtResource("4_iglfj")
-activated = [NodePath("../../prefab_chamber_exithall/entry_door"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight5/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable")]
+activated = [NodePath("../../prefab_chamber_exithall/entry_door"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight5/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite")]
+UseActivationDelay = true
+UseActivationDelayOnExit = true
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_geomesh_button/FPSC_TriggerRelay"]
@@ -216,8 +236,100 @@ script = ExtResource("17_tikpg")
 sprite = NodePath("..")
 texture_b = ExtResource("18_kcg2e")
 switch_back_on_exit = true
-delay = 0.05
+delay = 0.1
 metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="signlite" type="Node" parent="prefab_geomesh_button/sign" node_paths=PackedStringArray("light")]
+script = ExtResource("19_liv5b")
+light = NodePath("../OmniLight3D")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.1
+metadata/_custom_type_script = "uid://bibdote7bt40k"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="prefab_geomesh_button/sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1275053)
+light_color = Color(1, 0.5058824, 0.007843138, 1)
+shadow_enabled = true
+
+[node name="prefab_geomesh_button2" parent="." instance=ExtResource("13_mkp34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.50503606, -50)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_geomesh_button2" node_paths=PackedStringArray("activated")]
+script = ExtResource("4_iglfj")
+activated = [NodePath("../../PrefabBoxDropper/dropper"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight5/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable")]
+UseActivationDelay = true
+UseActivationDelayOnExit = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_geomesh_button2/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_b4g7d")
+
+[node name="IndicatorLight" type="Sprite3D" parent="prefab_geomesh_button2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 0.021605015, -2.608982)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("14_b5air")
+region_enabled = true
+region_rect = Rect2(0, -576, 64, 640)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button2/IndicatorLight" node_paths=PackedStringArray("sprite")]
+script = ExtResource("15_liv5b")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight2" type="Sprite3D" parent="prefab_geomesh_button2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 17.984499, 6.145996)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("14_b5air")
+region_enabled = true
+region_rect = Rect2(0, -4672, 64, 4736)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button2/IndicatorLight2" node_paths=PackedStringArray("sprite")]
+script = ExtResource("15_liv5b")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.1
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight3" type="Sprite3D" parent="prefab_geomesh_button2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.651293, 17.984499, 18.154543)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("14_b5air")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button2/IndicatorLight3" node_paths=PackedStringArray("sprite")]
+script = ExtResource("15_liv5b")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.15
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight5" type="Sprite3D" parent="prefab_geomesh_button2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 8.294741, -3.4628754)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+texture = ExtResource("14_b5air")
+region_enabled = true
+region_rect = Rect2(0, -3840, 64, 3904)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button2/IndicatorLight5" node_paths=PackedStringArray("sprite")]
+script = ExtResource("15_liv5b")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.05
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
 
 [node name="cube_spawnpoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26, -32)
@@ -294,6 +406,10 @@ material = SubResource("StandardMaterial3D_k6rt8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, -32)
 size = Vector3(71, 1, 43)
 material = SubResource("StandardMaterial3D_2co56")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="chamber_geometry/CSGBox3D29"]
+operation = 2
+size = Vector3(2, 1, 2)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -36, 5, -16)
@@ -399,3 +515,5 @@ size = Vector3(11, 25, 1)
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, -20, 4.6907234, -13.255669)
 use_collision = true
 size = Vector3(11, 25, 1)
+
+[editable path="PrefabBoxDropper"]

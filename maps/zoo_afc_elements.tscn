@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://fabh0jfxxi51"]
+[gd_scene load_steps=37 format=3 uid="uid://fabh0jfxxi51"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_wtdix"]
 [ext_resource type="PackedScene" uid="uid://fsyjqmmliyan" path="res://instances/afc/prefab_new_portalgun_pedestal.tscn" id="2_8pegt"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://b84g1xo7620ij" path="res://src/base/activatables/FPSC_ActivatableToggleTriggerEnablement.gd" id="9_87tng"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="9_le08f"]
 [ext_resource type="PackedScene" uid="uid://f0qlfetn1pdk" path="res://instances/afc/prefab_catapult.tscn" id="10_t2u4x"]
+[ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/FPSC_ActivatableToggleLightModulationColor.gd" id="10_w55ah"]
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="11_le08f"]
 [ext_resource type="PackedScene" path="res://instances/afc/prefab_bed.tscn" id="14_6xojh"]
 [ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="15_48spo"]
@@ -147,7 +148,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.175181, -0.48780122, -0.101
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_geomesh_button" node_paths=PackedStringArray("activated")]
 script = ExtResource("3_cmfjx")
-activated = [NodePath("../../door_entrance/FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight4/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable")]
+activated = [NodePath("../../door_entrance/FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight4/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite")]
 UseActivationDelay = true
 UseActivationDelayOnExit = true
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
@@ -235,6 +236,19 @@ texture_b = ExtResource("8_t2u4x")
 switch_back_on_exit = true
 delay = 0.2
 metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="signlite" type="Node" parent="prefab_geomesh_button/sign" node_paths=PackedStringArray("light")]
+script = ExtResource("10_w55ah")
+light = NodePath("../OmniLight3D")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.15
+metadata/_custom_type_script = "uid://bibdote7bt40k"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="prefab_geomesh_button/sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.18152237)
+light_color = Color(1, 0.5058824, 0.007843138, 1)
+shadow_enabled = true
 
 [node name="button_catapult" parent="." instance=ExtResource("2_ed8bu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1751814, -0.48780122, 15.898966)

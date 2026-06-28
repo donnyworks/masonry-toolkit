@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://cqoods8v7gr34"]
+[gd_scene load_steps=70 format=3 uid="uid://cqoods8v7gr34"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_hhrmo"]
 [ext_resource type="PackedScene" path="res://instances/afc/prefab_bed.tscn" id="2_clhun"]
@@ -44,6 +44,7 @@
 [ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="36_p0akr"]
 [ext_resource type="AudioStream" uid="uid://btgptxivmvxi7" path="res://sound/vo/announcer/Chamber1.WallClip.wav" id="37_0mqdf"]
 [ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="37_fs00n"]
+[ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/FPSC_ActivatableToggleLightModulationColor.gd" id="44_41kpd"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_kywdm"]
 viewport_path = NodePath("Player/ViewmodelRenderer")
@@ -442,6 +443,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.7440095, -1.5)
 use_collision = true
 size = Vector3(2, 6, 7)
 
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGBox3D11"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.0463071, -1, -1)
+size = Vector3(0.26220703, 3, 2)
+
+[node name="Label3D" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 1.2564766, 0)
+text = "TEST CHAMBER 01"
+
+[node name="Label3D2" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.84315467, -0.8630085)
+text = "Potential hazards:
+"
+horizontal_alignment = 0
+
+[node name="Label3D4" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.74041283, -0.8630085)
+text = "[|                                       ]
+"
+horizontal_alignment = 0
+
+[node name="Label3D3" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
+text = "Portals
+Boxes
+Buttons"
+horizontal_alignment = 0
+vertical_alignment = 0
+
 [node name="CSGBox3D12" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7440095, -6)
 use_collision = true
@@ -712,7 +741,7 @@ metadata/_custom_type_script = "uid://whqnccb8m4hc"
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_geomesh_button" node_paths=PackedStringArray("activated")]
 script = ExtResource("3_22oxg")
-activated = [NodePath("../FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight5/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight4/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable")]
+activated = [NodePath("../FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight5/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight4/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite")]
 UseActivationDelay = true
 UseActivationDelayOnExit = true
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
@@ -825,6 +854,19 @@ texture_b = ExtResource("37_fs00n")
 switch_back_on_exit = true
 delay = 0.2
 metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="signlite" type="Node" parent="prefab_geomesh_button/sign" node_paths=PackedStringArray("light")]
+script = ExtResource("44_41kpd")
+light = NodePath("../OmniLight3D")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.2
+metadata/_custom_type_script = "uid://bibdote7bt40k"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="prefab_geomesh_button/sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1275053)
+light_color = Color(1, 0.5058824, 0.007843138, 1)
+shadow_enabled = true
 
 [node name="MTK_Portal" parent="." instance=ExtResource("22_7qlsx")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.063781, -0.98966235, -4.9834137)
