@@ -1,11 +1,17 @@
-[gd_scene load_steps=20 format=3 uid="uid://bvw7glfg3b86"]
+[gd_scene load_steps=26 format=3 uid="uid://bvw7glfg3b86"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_7lasg"]
 [ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="2_x5gff"]
 [ext_resource type="Texture2D" uid="uid://cki2ha2qmeejq" path="res://textures/clipboard/texture_clipboard.png" id="3_jbb0e"]
+[ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="4_4ncts"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="4_3584k"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="5_j3tpa"]
+[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="6_2folt"]
 [ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="6_m5osx"]
+[ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/FPSC_ActivatableToggleModulationColor.gd" id="7_0n7kl"]
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="8_ao23p"]
+[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="9_ddeve"]
+[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="10_1t0p5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lslf3"]
 
@@ -268,9 +274,12 @@ use_collision = true
 size = Vector3(8, 0.256, 17)
 
 [node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D25"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3.5)
 operation = 2
-size = Vector3(3, 0.256, 3)
+size = Vector3(2, 0.256, 2)
+
+[node name="PrefabBoxDropper" parent="CSGBox3D25" instance=ExtResource("4_4ncts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, -3.5034027)
 
 [node name="CSGBox3D26" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 8.742659, -60.5)
@@ -350,6 +359,103 @@ material = SubResource("StandardMaterial3D_m5osx")
 [node name="prefab_geomesh_button" parent="." instance=ExtResource("4_3584k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.543925, -3.2707887, -58.324493)
 
+[node name="IndicatorLight" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9528913, 0.024439335, 0)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("6_2folt")
+region_enabled = true
+region_rect = Rect2(0, 0, 384, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_0n7kl")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight2" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9907313, 3.005245e-09, -0.13583663, -0.047037613, 0.93813074, -0.34307116, 0.12743257, 0.34628078, 0.9294357, 3.1030245, 0.9547286, -2.6898727)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("6_2folt")
+region_enabled = true
+region_rect = Rect2(0, -1024, 64, 1088)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight2" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_0n7kl")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.05
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight3" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 0.024439335, -7.1996274)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("6_2folt")
+region_enabled = true
+region_rect = Rect2(0, -576, 64, 640)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight3" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_0n7kl")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.15
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight5" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.97958577, -0.20102663, 0, 0.20102663, 0.97958577, 0, 0, 0, 1, 0.40325737, 0.21020973, -8.652351)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+pixel_size = 0.005
+texture = ExtResource("6_2folt")
+region_enabled = true
+region_rect = Rect2(0, -576, 64, 640)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight5" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_0n7kl")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.2
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight4" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3294439, 0.024439335, -5.432688)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("6_2folt")
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight4" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_0n7kl")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.1
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="sign" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9711176, -0.23860125, 0, 0.23860125, 0.9711176, 0, 0, 0, 1, -0.055713654, 2.1654801, -8.66182)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("8_ao23p")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign" node_paths=PackedStringArray("sprite")]
+script = ExtResource("9_ddeve")
+sprite = NodePath("..")
+texture_b = ExtResource("10_1t0p5")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
 [node name="CSGBox3D27" type="CSGBox3D" parent="." groups=["Decoration", "Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, -74)
 size = Vector3(71, 6, 43)
@@ -369,3 +475,5 @@ metadata/_custom_type_script = "uid://bilm264c25p6e"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D27/FPSC_TriggerRelay"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2539673, -8)
 shape = SubResource("BoxShape3D_5yxlt")
+
+[editable path="CSGBox3D25/PrefabBoxDropper"]

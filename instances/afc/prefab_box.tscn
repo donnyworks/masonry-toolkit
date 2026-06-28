@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bujgt2o11dkxq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_donyx"]
+
+[node name="box" type="RigidBody3D"]
+can_sleep = false
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_donyx")

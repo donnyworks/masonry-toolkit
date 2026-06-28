@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m4dbkv17xmm1"
-path.s3tc="res://.godot/imported/indicator_light.png-151ae5af1e3412b74c8ee3a35df0364d.s3tc.ctex"
+uid="uid://cxd1a6wpgs77g"
+path.s3tc="res://.godot/imported/sign_base.png-5797eec728e012bcfdf3fb6d362ec1b8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/indicator_light.png"
-dest_files=["res://.godot/imported/indicator_light.png-151ae5af1e3412b74c8ee3a35df0364d.s3tc.ctex"]
+source_file="res://textures/sign_base.png"
+dest_files=["res://.godot/imported/sign_base.png-5797eec728e012bcfdf3fb6d362ec1b8.s3tc.ctex"]
 
 [params]
 

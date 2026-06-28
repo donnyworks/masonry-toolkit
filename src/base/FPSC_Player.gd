@@ -157,6 +157,17 @@ func _ready():
 		button_item.text = "Map: " + item
 		button_item.connect("ButtonPressure",MapButtonHandler)
 		$MenuGUIElement/GridContainer/MapControls.add_child(button_item)
+	var button_item = button.duplicate()
+	button_item.visible = true
+	button_item.text = "Open Doors On Use"
+	button_item.connect("ButtonPressure",PlayerButtonHandler)
+	$MenuGUIElement/GridContainer/PlayerControls.add_child(button_item)
+
+var allow_open_on_use = false
+
+func PlayerButtonHandler(btn_name:String):
+	if btn_name == "Open Doors On Use":
+		allow_open_on_use = not allow_open_on_use
 
 func MapButtonHandler(btn_name:String):
 	paused = false
@@ -179,6 +190,14 @@ var pocket_object = null
 var host_object : RigidBody3D = null
 
 var sprinting = false
+
+func scanForThisDoor(door:CSGShape3D,node:Node):
+	for object in node.get_children():
+		if object is FPSC_DoorActivatable:
+			if object.object_as_door == door:
+				object.on_enter(self)
+		else:
+			scanForThisDoor(door,object)
 
 func _process(delta):
 	isSimulated = Monolyth.isMultiplayer and ((not Monolyth.isClient and not isListenServer) or (Monolyth.isClient and name != str(Monolyth.get_unique_id())))
@@ -238,7 +257,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("p_use"):
 		if $Camera3D/GrabCast.is_colliding():
 			if $Camera3D/GrabCast.get_collider() is RigidBody3D:
-				if pocket_object != null:
+				if pocket_object != null and host_object != null:
 					host_object.set_physics_process(true)
 					host_object.set_physics_process_internal(true)
 					host_object.set_process(true)
@@ -266,8 +285,11 @@ func _process(delta):
 					host_object.visible = false
 					host_object.collision_layer = 0
 					host_object.collision_mask = 0
+			elif $Camera3D/GrabCast.get_collider() is CSGShape3D and allow_open_on_use and host_object == null and pocket_object == null:
+				# lag the game
+				scanForThisDoor($Camera3D/GrabCast.get_collider(),get_tree().current_scene)
 			else:
-				if pocket_object != null:
+				if pocket_object != null and host_object != null:
 					host_object.set_physics_process(false)
 					host_object.set_physics_process_internal(false)
 					host_object.set_process(false)
@@ -284,7 +306,7 @@ func _process(delta):
 					pocket_object = null
 					host_object = null
 		else:
-			if pocket_object != null:
+			if pocket_object != null and host_object != null:
 				host_object.set_physics_process(false)
 				host_object.set_physics_process_internal(false)
 				host_object.set_process(false)

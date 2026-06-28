@@ -9,11 +9,13 @@ class_name FPSC_InstanceActivatable
 
 @export var destroy_preexisting := false ## Destroy the one that already exists
 
+@export var maximum_amount_allowed := 1
+
 @onready var inst
 
 var just_spawned_node = false
 
-var new_inst : Node3D
+var new_insts : Array[Node3D]
 
 func FPSC_GetMPState():
 	var arr = [just_spawned_node]
@@ -29,8 +31,14 @@ func _ready():
 	if not preserve_original: instance.queue_free() # We fucking kill the original for existing
 
 func on_enter(_body:Node3D):
-	if new_inst != null and destroy_preexisting: new_inst.queue_free()
-	new_inst = inst.duplicate()
+	#if new_inst != null and destroy_preexisting: new_inst.queue_free()
+	print(len(new_insts))
+	if len(new_insts) >= maximum_amount_allowed and destroy_preexisting:
+		new_insts[0].queue_free()
+		new_insts.remove_at(0)
+	var new_inst = inst.duplicate()
 	get_tree().current_scene.add_child(new_inst)
+	new_inst.name = inst.name + str(randi_range(0,2932))
 	new_inst.global_position = instantiation_position.global_position
+	new_insts.append(new_inst)
 	just_spawned_node = true

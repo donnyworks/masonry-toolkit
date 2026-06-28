@@ -9,10 +9,10 @@ func on_enter(_body:Node3D): pass
 func on_exit(_body:Node3D): pass
 	#print("Replace this with function body.")
 
-func _delay_on_enter(body:Node3D):
+func _delay_on_enter(body):
 	await get_tree().create_timer(delay).timeout
-	on_enter(body)
+	if body != null: on_enter(body)
 
-func _delay_on_exit(body:Node3D):
+func _delay_on_exit(body):
 	await get_tree().create_timer(delay).timeout
-	on_exit(body)
+	if body != null: on_exit(body) # Setting an instantiated box on a button that spawns the box causes a crash because it deletes the original.w

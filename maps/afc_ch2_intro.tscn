@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://cwhsylkx5udbf"]
+[gd_scene load_steps=78 format=3 uid="uid://cwhsylkx5udbf"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_0rpkl"]
 [ext_resource type="PackedScene" uid="uid://plpnja5gt1i4" path="res://instances/portal/weapon_portalgun.tscn" id="2_be8hl"]
@@ -6,10 +6,14 @@
 [ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/FPSC_ActivatableCreateFromInstance.gd" id="4_0wsno"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="5_rtejp"]
 [ext_resource type="Script" uid="uid://l3j5m0d3m6rj" path="res://src/base/triggers/FPSC_TriggerCatapult.gd" id="6_0alsq"]
+[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="6_n6cnh"]
 [ext_resource type="Texture2D" uid="uid://sav8ot3s5160" path="res://icon.svg" id="7_n6cnh"]
+[ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/FPSC_ActivatableToggleModulationColor.gd" id="7_yidma"]
+[ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="8_wq642"]
 [ext_resource type="Script" uid="uid://b4c6tlpkvw6tk" path="res://src/base/activatables/FPSC_ActivatableDoorForceStateChange.gd" id="8_yidma"]
 [ext_resource type="Script" uid="uid://rak8vmaeqnag" path="res://src/base/skybox/FPSC_ViewTexture.gd" id="9_wq642"]
 [ext_resource type="Script" uid="uid://ckyi0gdrrolk1" path="res://src/base/skybox/FPSC_SkyboxCamera.gd" id="10_2er3p"]
+[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="10_pqrhw"]
 [ext_resource type="PackedScene" uid="uid://cm04rqdktssx2" path="res://instances/stellaoctangula.tscn" id="11_pqrhw"]
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="12_gls4t"]
 [ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/FPSC_ActivatableSoundOnActivation.gd" id="13_1elxo"]
@@ -490,7 +494,9 @@ material = SubResource("StandardMaterial3D_x25pd")
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="CSGBox3D54" node_paths=PackedStringArray("activated")]
 script = ExtResource("3_qjc4i")
-activated = [NodePath("FPSC_DoorActivatable")]
+activated = [NodePath("FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight6/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight4/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight5/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable")]
+UseActivationDelay = true
+UseActivationDelayOnExit = true
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D54/FPSC_TriggerRelay"]
@@ -500,6 +506,7 @@ shape = SubResource("BoxShape3D_s07qk")
 [node name="FPSC_DoorActivatable" type="Node" parent="CSGBox3D54/FPSC_TriggerRelay" node_paths=PackedStringArray("object_as_door")]
 script = ExtResource("5_rtejp")
 object_as_door = NodePath("../../../door")
+delay = 0.25
 metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
 
 [node name="FPSC_TriggerRelay2" type="Area3D" parent="CSGBox3D54" node_paths=PackedStringArray("activated")]
@@ -518,6 +525,117 @@ object_as_door = NodePath("../../../door_softlock")
 move_direction = 6
 stay_open = true
 metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="IndicatorLight" type="Sprite3D" parent="CSGBox3D54"]
+transform = Transform3D(0.667, 0, 0, 0, 1, 0, 0, 0, 0.667, 0.21661758, 3.7103148, -1.3289986)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+texture = ExtResource("6_n6cnh")
+region_enabled = true
+region_rect = Rect2(0, -1472, 64, 1536)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="CSGBox3D54/IndicatorLight" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_yidma")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight2" type="Sprite3D" parent="CSGBox3D54"]
+transform = Transform3D(0.667, 0, 0, 0, 1, 0, 0, 0, 0.667, -1.8170242, 7.393731, -1.3289986)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+texture = ExtResource("6_n6cnh")
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="CSGBox3D54/IndicatorLight2" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_yidma")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.05
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight6" type="Sprite3D" parent="CSGBox3D54"]
+transform = Transform3D(0.667, 0, 0, 0, 1, 0, 0, 0, 0.667, -11.213928, 7.393731, -1.3289986)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+texture = ExtResource("6_n6cnh")
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="CSGBox3D54/IndicatorLight6" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_yidma")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.125
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight4" type="Sprite3D" parent="CSGBox3D54"]
+transform = Transform3D(0.667, 0, 0, 0, 1, 0, 0, 0, 0.667, -6.516346, 7.393731, -1.3289986)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+pixel_size = 0.005
+render_priority = 1
+texture = ExtResource("6_n6cnh")
+region_enabled = true
+region_rect = Rect2(0, 0, 1664, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="CSGBox3D54/IndicatorLight4" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_yidma")
+sprite = NodePath("..")
+off_color = Color(0.50980395, 0.50980395, 0.50980395, 1)
+on_color = Color(0.35565236, 0.62154245, 0.6296196, 1)
+delay = 0.1
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight5" type="Sprite3D" parent="CSGBox3D54"]
+transform = Transform3D(0.667, 0, 0, 0, 1, 0, 0, 0, 0.667, -11.964748, 7.393731, -1.3289986)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+pixel_size = 0.005
+render_priority = 1
+texture = ExtResource("6_n6cnh")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="CSGBox3D54/IndicatorLight5" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_yidma")
+sprite = NodePath("..")
+off_color = Color(0.50980395, 0.50980395, 0.50980395, 1)
+on_color = Color(0.35565236, 0.62154245, 0.6296196, 1)
+delay = 0.05
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight3" type="Sprite3D" parent="CSGBox3D54"]
+transform = Transform3D(0.667, 0, 0, 0, 1, 0, 0, 0, 0.667, -13.024319, 6.429439, -1.3289986)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+texture = ExtResource("6_n6cnh")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 320)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="CSGBox3D54/IndicatorLight3" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_yidma")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.2
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="sign" type="Sprite3D" parent="CSGBox3D54"]
+transform = Transform3D(0.667, 0, 0, 0, 1, 0, 0, 0, 0.667, -13.084274, 5.384844, -1.3123417)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("8_wq642")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="CSGBox3D54/sign" node_paths=PackedStringArray("sprite")]
+script = ExtResource("14_c3jde")
+sprite = NodePath("..")
+texture_b = ExtResource("10_pqrhw")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
 
 [node name="CSGBox3D20" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5, -9.5, -37.5)
@@ -973,7 +1091,7 @@ size = Vector2i(1348, 606)
 script = ExtResource("9_wq642")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(-0.9843559, 0.03857823, -0.17191389, 0, 0.9757333, 0.21895896, 0.17618932, 0.21553357, -0.9604695, -4.9536705, 37.15684, -3.0810778)
+transform = Transform3D(0.99932706, 0.0020136985, -0.036614913, 0, 0.99849033, 0.054913677, 0.03667025, -0.05487673, 0.99781907, -4.193976, 37.718662, -1.308383)
 fov = 70.01
 script = ExtResource("10_2er3p")
 CameraOrigin = NodePath("../../SkyCameraPivot")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://bagdegjnv0rn1"]
+[gd_scene load_steps=79 format=3 uid="uid://bagdegjnv0rn1"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_d168g"]
 [ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="2_odsfa"]
@@ -15,15 +15,21 @@
 [ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/FPSC_ActivatableCreateFromInstance.gd" id="12_2s8n2"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="13_fhvly"]
 [ext_resource type="Texture2D" uid="uid://wmpactx1jwkd" path="res://textures/target_endpoint.png" id="14_q4s8b"]
+[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="15_cuyrk"]
 [ext_resource type="Script" uid="uid://c10lkodrlqtba" path="res://src/base/activatables/FPSC_ActivatablePlayVoicelines.gd" id="16_j4lxf"]
 [ext_resource type="PackedScene" uid="uid://vdd61n4ia1mp" path="res://instances/teleporter_exit_model_scaled.tscn" id="16_rhnfq"]
+[ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/FPSC_ActivatableToggleModulationColor.gd" id="16_s1nck"]
 [ext_resource type="AudioStream" uid="uid://d15j5pury1k2l" path="res://sound/vo/announcer/EscapeAttempt.01.wav" id="17_07ntk"]
+[ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="17_qj35x"]
 [ext_resource type="Material" uid="uid://chxvb0s83vspn" path="res://materials/esc_pure_black.tres" id="17_rhnfq"]
 [ext_resource type="AudioStream" uid="uid://fj6ks4l48yc4" path="res://sound/vo/announcer/EscapeAttempt.02.wav" id="18_3xltm"]
 [ext_resource type="Script" uid="uid://rak8vmaeqnag" path="res://src/base/skybox/FPSC_ViewTexture.gd" id="18_f6xom"]
+[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="18_pbrla"]
 [ext_resource type="Script" uid="uid://bxrwaxtx06m0r" path="res://src/base/activatables/FPSC_ActivatableTeleportNode3D.gd" id="19_07ntk"]
 [ext_resource type="Script" uid="uid://ckyi0gdrrolk1" path="res://src/base/skybox/FPSC_SkyboxCamera.gd" id="19_vh5ag"]
+[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="19_xqy0n"]
 [ext_resource type="AudioStream" uid="uid://coytw1qicbcyr" path="res://sound/vo/announcer/AddressEscape.01.wav" id="20_dypex"]
+[ext_resource type="Script" uid="uid://cguq0l7w5loj6" path="res://src/base/activatables/FPSC_ActivatableActivateOnSpawning.gd" id="20_s1nck"]
 [ext_resource type="AudioStream" uid="uid://dniyvle4by2nw" path="res://sound/vo/announcer/AddressEscape.02.wav" id="21_curtp"]
 [ext_resource type="AudioStream" uid="uid://bplwfpudvrges" path="res://sound/vo/announcer/AddressEscape.03.wav" id="22_sfdqf"]
 [ext_resource type="AudioStream" uid="uid://0fsn6q6hlaul" path="res://sound/vo/announcer/AddressEscape.04.wav" id="23_helej"]
@@ -479,6 +485,61 @@ metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_geomesh_button/FPSC_TriggerRelay"]
 shape = SubResource("BoxShape3D_b4g7d")
+
+[node name="IndicatorLight" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 0.021605015, -2.608982)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("15_cuyrk")
+region_enabled = true
+region_rect = Rect2(0, -576, 64, 640)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight" node_paths=PackedStringArray("sprite")]
+script = ExtResource("16_s1nck")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.2
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight5" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 0.4885546, -3.4628754)
+modulate = Color(0.50928617, 0.50928617, 0.50928617, 1)
+pixel_size = 0.005
+texture = ExtResource("15_cuyrk")
+region_enabled = true
+region_rect = Rect2(0, -576, 64, 640)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight5" node_paths=PackedStringArray("sprite")]
+script = ExtResource("16_s1nck")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.2
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="sign" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.043437004, 2.3848436, -3.4723434)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("17_qj35x")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign" node_paths=PackedStringArray("sprite")]
+script = ExtResource("18_pbrla")
+sprite = NodePath("..")
+texture_b = ExtResource("19_xqy0n")
+switch_back_on_exit = true
+delay = 0.15
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="FPSC_SpawninActivatable" type="Node" parent="prefab_geomesh_button/sign" node_paths=PackedStringArray("activatables")]
+script = ExtResource("20_s1nck")
+activatables = [NodePath("../FPSC_TextureChangeActivatable"), NodePath(".")]
+use_delay_on_enter = true
+use_delay_on_exit = true
+delay = 0.15
+metadata/_custom_type_script = "uid://cguq0l7w5loj6"
 
 [node name="cube_spawnpoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.96592593, 0.25881907, 0, -0.25881907, 0.96592593, 0, 25.159996, -37.64306)
@@ -1046,7 +1107,7 @@ size = Vector2i(1348, 606)
 script = ExtResource("18_f6xom")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(-0.55190694, 0.12260234, -0.8248433, 0, 0.9891325, 0.14702189, 0.8339053, 0.08114241, -0.5459094, -6.215128, 39.56512, 35.286022)
+transform = Transform3D(0.6723966, 0.3779474, -0.6364256, 0, 0.8598128, 0.51060814, 0.74019057, -0.34333125, 0.5781355, -0.09676963, 37.93514, 41.009247)
 fov = 70.01
 script = ExtResource("19_vh5ag")
 CameraOrigin = NodePath("../../SkyCameraPivot")

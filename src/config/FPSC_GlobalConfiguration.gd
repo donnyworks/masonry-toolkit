@@ -7,7 +7,8 @@ static var maps_listed = {
 	"Aerial Testing Course":"res://maps/afc_ch1_intro.tscn",
 	"Portal testing area":"res://maps/devtest/devtest_portals.tscn",
 	"Spotter testing area":"res://maps/devtest/devtest_os95_spotter_diff.tscn",
-	"NPC testing area":"res://maps/devtest/devtest_pathfinder.tscn"}
+	"NPC testing area":"res://maps/devtest/devtest_pathfinder.tscn",
+	"ATC zoo area":"res://maps/zoo_afc_elements.tscn"}
 
 var target_scene_path: String
 var is_loading: bool = false

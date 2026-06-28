@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m4dbkv17xmm1"
-path.s3tc="res://.godot/imported/indicator_light.png-151ae5af1e3412b74c8ee3a35df0364d.s3tc.ctex"
+uid="uid://d7l7ukkyywfk"
+path.s3tc="res://.godot/imported/sign_incomplete.png-a31703362dad3f2b6d06a74174d961db.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/indicator_light.png"
-dest_files=["res://.godot/imported/indicator_light.png-151ae5af1e3412b74c8ee3a35df0364d.s3tc.ctex"]
+source_file="res://textures/sign_incomplete.png"
+dest_files=["res://.godot/imported/sign_incomplete.png-a31703362dad3f2b6d06a74174d961db.s3tc.ctex"]
 
 [params]
 
