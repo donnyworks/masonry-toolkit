@@ -42,7 +42,7 @@ material = SubResource("ShaderMaterial_sepu0")
 script = ExtResource("1_ovfy8")
 
 [node name="Portal1Texture" type="SubViewport" parent="."]
-size = Vector2i(1348, 534)
+size = Vector2i(1356, 534)
 script = ExtResource("1_8et20")
 metadata/_custom_type_script = "uid://rak8vmaeqnag"
 

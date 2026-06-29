@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch1g1s4f2rbpa"]
+
+[ext_resource type="Script" uid="uid://b6bdw2xxaytkf" path="res://src/bsploader/entities/worldspawn.gd" id="1_7tnoi"]
+
+[node name="Worldspawn" type="StaticBody3D"]
+script = ExtResource("1_7tnoi")
