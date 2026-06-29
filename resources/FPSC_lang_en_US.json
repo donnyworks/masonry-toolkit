@@ -26,9 +26,9 @@
 	"Announcer.Chamber1.WallClip":"[b][Announcer][/b] An attempt to leave the game's playable area has been detected. We have prevented this attempt to make sure you have the most optimal gaming experience possible. Thank you and have fun!",
 	"Announcer.Chamber4.01":"[b][Announcer][/b] Hold on. You're completeting these tests faster than our level designers can finish building them,",
 	"Announcer.Chamber4.02":"[b][Announcer][/b] So just give me a few more moments while I put the last few finishing touches on this next test.",
-	"Announcer.Chamber5.01":"[b][Announcer][/b] Test subject! I'm so sorry! It seems we've experienced some issues in getting you to your next test chamber!",
-	"Announcer.Chamber5.02":"[b][Announcer][/b] Apparently, the level designer can't come up with an idea for this chamber and they're just smacking things together at random!",
-	"Announcer.Chamber5.03":"[b][Announcer][/b] Although, with the state it's in, I doubt that entry door will open any time soon. Luckily, that tube in front of you broke that wall clean open.",
+	"Announcer.OLD.Chamber5.01":"[b][Announcer][/b] Test subject! I'm so sorry! It seems we've experienced some issues in getting you to your next test chamber!",
+	"Announcer.OLD.Chamber5.02":"[b][Announcer][/b] Apparently, the level designer can't come up with an idea for this chamber and they're just smacking things together at random!",
+	"Announcer.OLD.Chamber5.03":"[b][Announcer][/b] Although, with the state it's in, I doubt that entry door will open any time soon. Luckily, that tube in front of you broke that wall clean open.",
 	"Announcer.Chapter1Demo":"[b][Announcer][/b] Good job on completing the Chapter 1 playtest and [s]Chapter 2 demo[/s]. Your feedback would be greatly appreciated as this project is still a severe work in progress.",
 	"Radio.Music":"[i][Peppy Music][/i]"
 }
