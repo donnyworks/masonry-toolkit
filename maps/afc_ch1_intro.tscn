@@ -37,10 +37,10 @@
 [ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/FPSC_ActivatablePlayVoiceline.gd" id="25_yfkle"]
 [ext_resource type="AudioStream" uid="uid://d1ngvcr7gparv" path="res://sound/vo/announcer/Chamber1.Complete.wav" id="26_gyx5s"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="29_yaj6l"]
-[ext_resource type="PackedScene" uid="uid://da5wvnsb3r8yx" path="res://maps/afc_ch1_fling_over_goo.tscn" id="30_srcfi"]
 [ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="33_srva0"]
 [ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/FPSC_ActivatableToggleModulationColor.gd" id="34_2dvpa"]
 [ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="35_xbpkp"]
+[ext_resource type="PackedScene" uid="uid://dcsa4g02jjajj" path="res://maps/afc_ch1_intro_portalgun.tscn" id="36_41kpd"]
 [ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="36_p0akr"]
 [ext_resource type="AudioStream" uid="uid://btgptxivmvxi7" path="res://sound/vo/announcer/Chamber1.WallClip.wav" id="37_0mqdf"]
 [ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="37_fs00n"]
@@ -451,7 +451,7 @@ size = Vector3(0.26220703, 3, 2)
 
 [node name="Label3D" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 1.2564766, 0)
-text = "TEST CHAMBER 01"
+text = "TEST CHAMBER 00"
 
 [node name="Label3D2" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.84315467, -0.8630085)
@@ -461,7 +461,7 @@ horizontal_alignment = 0
 
 [node name="Label3D4" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.74041283, -0.8630085)
-text = "[|                                       ]
+text = "[                                         ]
 "
 horizontal_alignment = 0
 
@@ -716,7 +716,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9.5
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_exithall"]
 script = ExtResource("29_yaj6l")
-other_level = ExtResource("30_srcfi")
+other_level = ExtResource("36_41kpd")
 delay = 2.0
 metadata/_custom_type_script = "uid://cn3f2saw8lsmn"
 

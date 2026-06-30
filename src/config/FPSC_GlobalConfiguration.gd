@@ -1,13 +1,13 @@
 extends Node
 class_name FPSC_GlobalState
 
-static var maps_listed = {
-	"DYNAMO lighting system test":"res://maps/devtest/FPSC_Test.tscn",
-	"Physics testing area":"res://maps/devtest/devtest2.tscn",
-	"Aerial Testing Course":"res://maps/afc_ch1_intro.tscn",
-	"Portal testing area":"res://maps/devtest/devtest_portals.tscn",
-	"NPC testing area":"res://maps/devtest/devtest_pathfinder.tscn",
-	"ATC zoo area":"res://maps/zoo_afc_elements.tscn"}
+static var maps_listed = {"Waiting to Pear":""}
+
+static var metadata = {}
+
+static func FPSC_LoadGameConfig():
+	metadata = JSON.parse_string(FileAccess.get_file_as_string("res://resources/FPSC_GameMetadata.json"))
+	maps_listed = metadata.DebugMapList
 
 var target_scene_path: String
 var is_loading: bool = false
@@ -109,10 +109,19 @@ func LoadBSPFile(path):
 	for entity in current_entities:
 		if not entity.is_inside_tree(): add_child(entity)
 
+var console = null
+
+func cmd_print(arg):
+	print("[CONSOLE] ",arg)
+	if console is Callable:
+		console.call(str(arg))
+
+const MTK_Version = 8
+
 func CMDLine(command:String):
 	var cmda = command.split(" ")
 	if cmda[0] == "map":
-		print("Changing level to " + cmda[1])
+		cmd_print("Changing level to " + cmda[1])
 		if FileAccess.file_exists("res://maps/" + cmda[1] + ".tscn"):
 			FPSC_LevelManager.ChangeLevel("res://maps/" + cmda[1] + ".tscn")
 			if FPSC_MultiplayerFramework.maxplayers > 1: # We're trying to enroll as a server
@@ -126,8 +135,12 @@ func CMDLine(command:String):
 	elif cmda[0] == "connect":
 		FPSC_LevelManager.drop_current_level()
 		FPSC_MultiplayerFramework.start_client(cmda[1])
+	elif cmda[0] == "version":
+		cmd_print("Godot Engine version " + Engine.get_version_info().string)
+		cmd_print("Masonry Toolkit version " + str(MTK_Version))
+		cmd_print(metadata.GameName + " version " + metadata.Version)
 	elif cmda[0] == "bsploader_mount":
-		print("MTK WILL lock up while this is loading!")
+		cmd_print("MTK WILL lock up while this is loading!")
 		gameinfo_process(cmda[1],cmda[2])
 	else: # The dedicated maxplayers clause got wiped out by doing this, it's just a variable
 		for setter in setters:
@@ -150,10 +163,13 @@ func CMDLine(command:String):
 					setter.set(cmda[0],Vector3(float(cmda[1]),float(cmda[2]),float(cmda[3])))
 func _ready():
 	FPSC_LocalizationSystem.FPSC_LoadLocalization("en_US")
+	FPSC_LoadGameConfig()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	# Parse commands
 	await get_tree().process_frame
 	await get_tree().process_frame
+	#ChangeLevel("res://instances/mainmenu.tscn")
+	#await LevelChanged
 	print("CMDLine init!")
 	var args: String = " ".join(OS.get_cmdline_user_args())
 	var argv: PackedStringArray = args.split("+")

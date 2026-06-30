@@ -1,6 +1,4 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://dxiao0t12ts4p"]
-
-[ext_resource type="FontFile" uid="uid://dyaro6dqpvtq7" path="res://devkit_game/resource/vgui_boardfont_verdana.ttf" id="1_g4lbg"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://dxiao0t12ts4p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iy8ao"]
 bg_color = Color(0.62352943, 0.62352943, 0.62352943, 1)
@@ -84,22 +82,22 @@ gradient = SubResource("Gradient_i7gd1")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7j0rv"]
 
 [resource]
-AcceptDialog/fonts/title_font = ExtResource("1_g4lbg")
+AcceptDialog/fonts/title_font = null
 AcceptDialog/styles/panel = SubResource("StyleBoxFlat_iy8ao")
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_disabled_color = Color(0, 0, 0, 1)
 Button/font_sizes/font_size = 12
-Button/fonts/font = ExtResource("1_g4lbg")
+Button/fonts/font = null
 Button/styles/disabled = SubResource("StyleBoxFlat_55rkf")
 Button/styles/focus = SubResource("StyleBoxEmpty_i7gd1")
 Button/styles/hover = SubResource("StyleBoxFlat_i7gd1")
 Button/styles/normal = SubResource("StyleBoxFlat_qicqj")
 Button/styles/pressed = SubResource("StyleBoxFlat_7j0rv")
-ItemList/fonts/font = ExtResource("1_g4lbg")
+ItemList/fonts/font = null
 ItemList/styles/panel = SubResource("StyleBoxFlat_8x3dh")
-Label/fonts/font = ExtResource("1_g4lbg")
+Label/fonts/font = null
 LineEdit/font_sizes/font_size = 12
-LineEdit/fonts/font = ExtResource("1_g4lbg")
+LineEdit/fonts/font = null
 LineEdit/styles/normal = SubResource("StyleBoxFlat_g4lbg")
 Window/colors/title_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
 Window/icons/close = SubResource("GradientTexture1D_iy8ao")

@@ -615,6 +615,38 @@ material = SubResource("StandardMaterial3D_tg331")
 [node name="prefab_chamber_entryway" parent="." instance=ExtResource("8_x35tk")]
 transform = Transform3D(1, 0, -4.4703484e-08, 0, 1, 0, 4.4703484e-08, 0, 1, -33.5, -13.5, 16.531311)
 
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4689817, 1.6302683, -7.5)
+use_collision = true
+size = Vector3(0.26220703, 3, 2)
+
+[node name="Label3D" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 1.2564766, 0)
+text = "TEST CHAMBER 03"
+
+[node name="Label3D2" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.84315467, -0.8630085)
+text = "Potential hazards:
+"
+horizontal_alignment = 0
+
+[node name="Label3D4" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.74041283, -0.8630085)
+text = "[|||                                   ]
+"
+horizontal_alignment = 0
+
+[node name="Label3D3" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
+text = "Acidic pools
+Portals
+Aerial Faith Plates
+Boxes
+Buttons
+Portalable surfaces"
+horizontal_alignment = 0
+vertical_alignment = 0
+
 [node name="CSGBox3D9" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5, -9.5, -4)
 use_collision = true
@@ -798,7 +830,7 @@ size = Vector2i(1356, 606)
 script = ExtResource("9_hegod")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(0.22242582, -0.44571373, 0.8671015, 0, 0.8893807, 0.45716602, -0.9749492, -0.10168555, 0.19782135, -4.999832, 37.551468, -2.7078831)
+transform = Transform3D(-0.9593209, 0.03173602, -0.28052703, 0, 0.9936609, 0.1124129, 0.28231648, 0.107840076, -0.9532403, -2.2743425, 37.401203, -0.24556813)
 fov = 70.01
 script = ExtResource("10_mfmn7")
 CameraOrigin = NodePath("../../SkyCameraPivot")
@@ -1033,35 +1065,3 @@ execute_once = true
 metadata/_custom_type_script = "uid://whqnccb8m4hc"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="prefab_chamber_exithall"]
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4689817, 1.6302683, -7.5)
-use_collision = true
-size = Vector3(0.26220703, 3, 2)
-
-[node name="Label3D" type="Label3D" parent="prefab_chamber_exithall/CSGBox3D6"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 1.2564766, 0)
-text = "TEST CHAMBER 03"
-
-[node name="Label3D2" type="Label3D" parent="prefab_chamber_exithall/CSGBox3D6"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.84315467, -0.8630085)
-text = "Potential hazards:
-"
-horizontal_alignment = 0
-
-[node name="Label3D4" type="Label3D" parent="prefab_chamber_exithall/CSGBox3D6"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.74041283, -0.8630085)
-text = "[|||                                   ]
-"
-horizontal_alignment = 0
-
-[node name="Label3D3" type="Label3D" parent="prefab_chamber_exithall/CSGBox3D6"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
-text = "Acidic pools
-Portals
-Aerial Faith Plates
-Boxes
-Buttons
-Portalable surfaces"
-horizontal_alignment = 0
-vertical_alignment = 0

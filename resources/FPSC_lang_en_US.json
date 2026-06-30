@@ -5,6 +5,8 @@
 	"Generic.ButtonDisabled":"[i][Button Access Denied][/i]",
 	"ATC_Chapter1_Title":"Chapter 1",
 	"ATC_Chapter1_Subtitle":"[font_size=24]Aerial Testing Initiative[/font_size]",
+	"Chapters.afc_ch1_intro":"Preliminary Testing",
+	"Chapters.afc_ch1_fling_over_goo":"Aerial Testing Course",
 	"Announcer.Intro01":"[b][Announcer][/b] Thank you for participating in Test Course B.",
 	"Announcer.Intro02":"[b][Announcer][/b] You have been assigned test subject ID #4-0-8-0",
 	"Announcer.Intro03":"[b][Announcer][/b] This testing course may be very dangerous.",
@@ -30,5 +32,8 @@
 	"Announcer.OLD.Chamber5.02":"[b][Announcer][/b] Apparently, the level designer can't come up with an idea for this chamber and they're just smacking things together at random!",
 	"Announcer.OLD.Chamber5.03":"[b][Announcer][/b] Although, with the state it's in, I doubt that entry door will open any time soon. Luckily, that tube in front of you broke that wall clean open.",
 	"Announcer.Chapter1Demo":"[b][Announcer][/b] Good job on completing the Chapter 1 playtest and [s]Chapter 2 demo[/s]. Your feedback would be greatly appreciated as this project is still a severe work in progress.",
-	"Radio.Music":"[i][Peppy Music][/i]"
+	"Radio.Music":"[i][Peppy Music][/i]",
+	"Announcer.Chamber3.01":"[b][Announcer][/b] Did you know that 98% of test subjects experience disorientation after emerging from stasis?",
+	"Announcer.Chamber3.02":"[b][Announcer][/b] It doesn't seem you're in that 98% though, as you completed one of our most mechanically complex tests in record pace.",
+	"Announcer.Chamber2.Intro":"[b][Announcer][/b] Welcome to the first [i]real[/i] test. Good luck."
 }

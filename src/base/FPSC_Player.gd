@@ -131,6 +131,7 @@ func _ready():
 	base_jv = JUMP_VELOCITY
 	base_speed_sprint = SPEED_SPRINT
 	base_speed_crouch = SPEED_CROUCH
+	FPSC_ConsoleInstance.stale_mode = Input.MOUSE_MODE_CAPTURED
 	$MapSelectionLabel.visible = FPSC_BuildFeatures.BuildFeatures.FEATURE_MAPSELECTOR
 	isSimulated = Monolyth.isMultiplayer and ((not Monolyth.isClient and not isListenServer) or (Monolyth.isClient and name != str(Monolyth.get_unique_id())))
 	if isSimulated:

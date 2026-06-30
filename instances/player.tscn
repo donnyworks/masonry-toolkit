@@ -33,7 +33,7 @@ environment = SubResource("Environment_sweqy")
 base_font = ExtResource("3_hqtel")
 variation_embolden = 0.8
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Non-Portalable"]]
 process_mode = 3
 script = ExtResource("1_4flbx")
 

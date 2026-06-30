@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cwrc1444pjpel"]
+[gd_scene load_steps=13 format=3 uid="uid://cwrc1444pjpel"]
 
 [ext_resource type="Texture2D" uid="uid://c1lk2pvuf55x6" path="res://vgui/textures/iconset_marlett.png" id="1_0a05j"]
 [ext_resource type="FontFile" uid="uid://wu4hku12n2ab" path="res://vgui/vgui_boardfont_verdana.ttf" id="2_opgtf"]
@@ -101,14 +101,6 @@ width = 8
 height = 8
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0.6197183, 0.3568075)
-
-[sub_resource type="Curve" id="Curve_euv6s"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.23428571, 0.8539326), 0.0, 0.0, 0, 0, Vector2(0.71428573, 0.20224726), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_emeqv"]
-width = 32
-curve = SubResource("Curve_euv6s")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nxppy"]
 atlas = ExtResource("1_0a05j")
@@ -229,7 +221,7 @@ offset_left = -16.0
 offset_top = -16.0
 offset_right = -8.0
 offset_bottom = -8.0
-texture = SubResource("CurveTexture_emeqv")
+texture = SubResource("GradientTexture2D_5kuu5")
 
 [node name="800corner2" type="TextureRect" parent="WindowMode"]
 texture_filter = 1
