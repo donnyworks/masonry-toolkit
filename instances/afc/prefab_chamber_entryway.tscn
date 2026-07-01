@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cihvtue137xn7"]
+[gd_scene load_steps=10 format=3 uid="uid://cihvtue137xn7"]
 
 [ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="1_bqahe"]
 [ext_resource type="Script" uid="uid://sl4hinpkxef0" path="res://src/base/FPSC_DevNote.gd" id="2_cpl75"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="2_dqxli"]
+[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="3_8k57t"]
 [ext_resource type="PackedScene" uid="uid://fsyjqmmliyan" path="res://instances/afc/prefab_new_portalgun_pedestal.tscn" id="4_6wdkn"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/FPSC_ActivatableSoundOnActivation.gd" id="4_e4dee"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_w7fuw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6rt8"]
@@ -63,9 +65,19 @@ use_collision = true
 size = Vector3(5, 4, 0.92529297)
 material = SubResource("StandardMaterial3D_k6rt8")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="door_entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3960664, 0, 0)
+stream = ExtResource("3_8k57t")
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="door_entrance" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("4_e4dee")
+stream_player = NodePath("../AudioStreamPlayer3D")
+delay = 3.0
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
 [node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
 script = ExtResource("4_w7fuw")
-activated = [NodePath("../entry_door")]
+activated = [NodePath("../entry_door"), NodePath("../door_entrance/FPSC_SoundPlayerActivatable")]
 UseActivationDelay = true
 trigger_once = true
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"

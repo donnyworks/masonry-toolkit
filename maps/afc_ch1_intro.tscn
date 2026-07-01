@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://cqoods8v7gr34"]
+[gd_scene load_steps=73 format=3 uid="uid://cqoods8v7gr34"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_hhrmo"]
 [ext_resource type="PackedScene" path="res://instances/afc/prefab_bed.tscn" id="2_clhun"]
@@ -11,38 +11,40 @@
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="4_b014p"]
 [ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="4_suu5f"]
 [ext_resource type="Script" uid="uid://c10lkodrlqtba" path="res://src/base/activatables/FPSC_ActivatablePlayVoicelines.gd" id="5_keklg"]
-[ext_resource type="AudioStream" uid="uid://bp58ui5pkhyak" path="res://sound/vo/announcer/Intro01.wav" id="6_k6xhx"]
+[ext_resource type="AudioStream" uid="uid://bp58ui5pkhyak" path="res://sound/vo/announcer/intro/Intro01.wav" id="6_k6xhx"]
 [ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/FPSC_ActivatablePlayAnimation.gd" id="6_o1coc"]
-[ext_resource type="AudioStream" uid="uid://pi1y832r11de" path="res://sound/vo/announcer/Intro02.wav" id="7_p3n6f"]
-[ext_resource type="AudioStream" uid="uid://dh8jxmfp5o4pt" path="res://sound/vo/announcer/Intro03.wav" id="8_0i7bm"]
+[ext_resource type="AudioStream" uid="uid://pi1y832r11de" path="res://sound/vo/announcer/intro/Intro02.wav" id="7_p3n6f"]
+[ext_resource type="AudioStream" uid="uid://dh8jxmfp5o4pt" path="res://sound/vo/announcer/intro/Intro03.wav" id="8_0i7bm"]
 [ext_resource type="Script" uid="uid://bxrwaxtx06m0r" path="res://src/base/activatables/FPSC_ActivatableTeleportNode3D.gd" id="8_0mqdf"]
-[ext_resource type="AudioStream" uid="uid://1o7rfdtfe2q6" path="res://sound/vo/announcer/Intro04.wav" id="9_cfuyh"]
-[ext_resource type="AudioStream" uid="uid://bg0stw2hlkub0" path="res://sound/vo/announcer/Intro05.wav" id="10_7qlsx"]
-[ext_resource type="AudioStream" uid="uid://c86na8vi3x4pt" path="res://sound/vo/announcer/Intro06.wav" id="11_o1coc"]
-[ext_resource type="AudioStream" uid="uid://b6jvcmmedjk4k" path="res://sound/vo/announcer/Intro07.wav" id="12_dvg1l"]
-[ext_resource type="AudioStream" uid="uid://se1if17upgbv" path="res://sound/vo/announcer/Intro08.wav" id="13_eym4d"]
-[ext_resource type="AudioStream" uid="uid://c1gwiq72v1bwq" path="res://sound/vo/announcer/Intro09.wav" id="14_vp0w6"]
-[ext_resource type="AudioStream" uid="uid://cnljg4jo3ph5r" path="res://sound/vo/announcer/Intro10.wav" id="15_x8jcn"]
-[ext_resource type="AudioStream" uid="uid://b836jdl5286yu" path="res://sound/vo/announcer/Intro11.wav" id="16_yfkle"]
-[ext_resource type="AudioStream" uid="uid://bc24i7ixweye5" path="res://sound/vo/announcer/Intro12.wav" id="17_gyx5s"]
+[ext_resource type="AudioStream" uid="uid://1o7rfdtfe2q6" path="res://sound/vo/announcer/intro/Intro04.wav" id="9_cfuyh"]
+[ext_resource type="AudioStream" uid="uid://bg0stw2hlkub0" path="res://sound/vo/announcer/intro/Intro05.wav" id="10_7qlsx"]
+[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="11_commd"]
+[ext_resource type="AudioStream" uid="uid://c86na8vi3x4pt" path="res://sound/vo/announcer/intro/Intro06.wav" id="11_o1coc"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/FPSC_ActivatableSoundOnActivation.gd" id="12_2bbgf"]
+[ext_resource type="AudioStream" uid="uid://b6jvcmmedjk4k" path="res://sound/vo/announcer/intro/Intro07.wav" id="12_dvg1l"]
+[ext_resource type="AudioStream" uid="uid://se1if17upgbv" path="res://sound/vo/announcer/intro/Intro08.wav" id="13_eym4d"]
+[ext_resource type="AudioStream" uid="uid://c1gwiq72v1bwq" path="res://sound/vo/announcer/intro/Intro09.wav" id="14_vp0w6"]
+[ext_resource type="AudioStream" uid="uid://cnljg4jo3ph5r" path="res://sound/vo/announcer/intro/Intro10.wav" id="15_x8jcn"]
+[ext_resource type="AudioStream" uid="uid://b836jdl5286yu" path="res://sound/vo/announcer/intro/Intro11.wav" id="16_yfkle"]
+[ext_resource type="AudioStream" uid="uid://bc24i7ixweye5" path="res://sound/vo/announcer/intro/Intro12.wav" id="17_gyx5s"]
 [ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="19_p3n6f"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="20_cfuyh"]
-[ext_resource type="AudioStream" uid="uid://b3qbj7ru6qfqq" path="res://sound/vo/announcer/Intro13.wav" id="20_eym4d"]
-[ext_resource type="AudioStream" uid="uid://bcrf0liwr4ypm" path="res://sound/vo/announcer/Intro14.wav" id="21_vp0w6"]
+[ext_resource type="AudioStream" uid="uid://b3qbj7ru6qfqq" path="res://sound/vo/announcer/intro/Intro13.wav" id="20_eym4d"]
+[ext_resource type="AudioStream" uid="uid://bcrf0liwr4ypm" path="res://sound/vo/announcer/intro/Intro14.wav" id="21_vp0w6"]
 [ext_resource type="PackedScene" uid="uid://b6lemoo8ic8o2" path="res://instances/portal/PortalInstance.tscn" id="22_7qlsx"]
-[ext_resource type="AudioStream" uid="uid://b4gqd317a66wo" path="res://sound/vo/announcer/Chamber1.01.wav" id="22_gjs5u"]
+[ext_resource type="AudioStream" uid="uid://b4gqd317a66wo" path="res://sound/vo/announcer/ch0/Chamber1.01.wav" id="22_gjs5u"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="22_vp0w6"]
-[ext_resource type="AudioStream" uid="uid://bl5ojqj2f8yle" path="res://sound/vo/announcer/Chamber1.02.wav" id="23_4swwg"]
+[ext_resource type="AudioStream" uid="uid://bl5ojqj2f8yle" path="res://sound/vo/announcer/ch0/Chamber1.02.wav" id="23_4swwg"]
 [ext_resource type="AudioStream" uid="uid://chu8sf3giqtol" path="res://sound/vo/announcer/GenericCubeSoftlockMessage.wav" id="25_4swwg"]
 [ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/FPSC_ActivatablePlayVoiceline.gd" id="25_yfkle"]
-[ext_resource type="AudioStream" uid="uid://d1ngvcr7gparv" path="res://sound/vo/announcer/Chamber1.Complete.wav" id="26_gyx5s"]
+[ext_resource type="AudioStream" uid="uid://d1ngvcr7gparv" path="res://sound/vo/announcer/ch0/Chamber1.Complete.wav" id="26_gyx5s"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="29_yaj6l"]
 [ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="33_srva0"]
 [ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/FPSC_ActivatableToggleModulationColor.gd" id="34_2dvpa"]
 [ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="35_xbpkp"]
 [ext_resource type="PackedScene" uid="uid://dcsa4g02jjajj" path="res://maps/afc_ch1_intro_portalgun.tscn" id="36_41kpd"]
 [ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="36_p0akr"]
-[ext_resource type="AudioStream" uid="uid://btgptxivmvxi7" path="res://sound/vo/announcer/Chamber1.WallClip.wav" id="37_0mqdf"]
+[ext_resource type="AudioStream" uid="uid://btgptxivmvxi7" path="res://sound/vo/announcer/ch0/Chamber1.WallClip.wav" id="37_0mqdf"]
 [ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="37_fs00n"]
 [ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/FPSC_ActivatableToggleLightModulationColor.gd" id="44_41kpd"]
 
@@ -460,10 +462,11 @@ text = "Potential hazards:
 horizontal_alignment = 0
 
 [node name="Label3D4" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.74041283, -0.8630085)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.5467202, -0.8630084)
 text = "[                                         ]
-"
+TESTING COURSE A"
 horizontal_alignment = 0
+vertical_alignment = 0
 
 [node name="Label3D3" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
@@ -591,11 +594,30 @@ use_collision = true
 size = Vector3(0.79467773, 3, 4)
 material = SubResource("StandardMaterial3D_0i7bm")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="door_opener"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.051202297, 0, 1.8722587)
+stream = ExtResource("11_commd")
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="door_opener" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("12_2bbgf")
+stream_player = NodePath("../AudioStreamPlayer3D")
+delay = 48.0
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
 [node name="door_chamber" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.5, -0.2559905, -6)
 use_collision = true
 size = Vector3(1, 4, 6)
 material = SubResource("StandardMaterial3D_0i7bm")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="door_chamber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3960664, 0, 0)
+stream = ExtResource("11_commd")
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="door_chamber" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("12_2bbgf")
+stream_player = NodePath("../AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.9423032, 0.5)
@@ -645,7 +667,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18432593, -0.5328316, 1.473
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
 script = ExtResource("3_22oxg")
-activated = [NodePath("FPSC_PlayerPropertiesActivatable"), NodePath("FPSC_AnimationActivatable"), NodePath("FPSC_PlayerPropertiesActivatable2"), NodePath("../FPSC_MultiVoicelineActivatable"), NodePath("../FPSC_DoorActivatable")]
+activated = [NodePath("FPSC_PlayerPropertiesActivatable"), NodePath("FPSC_AnimationActivatable"), NodePath("FPSC_PlayerPropertiesActivatable2"), NodePath("../FPSC_MultiVoicelineActivatable"), NodePath("../FPSC_DoorActivatable"), NodePath("../door_opener/FPSC_SoundPlayerActivatable")]
 UseActivationDelay = true
 trigger_once = true
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
@@ -743,7 +765,7 @@ metadata/_custom_type_script = "uid://whqnccb8m4hc"
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_geomesh_button" node_paths=PackedStringArray("activated")]
 script = ExtResource("3_22oxg")
-activated = [NodePath("../FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight5/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight4/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite")]
+activated = [NodePath("../FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight5/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight4/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite"), NodePath("../../door_chamber/FPSC_SoundPlayerActivatable")]
 UseActivationDelay = true
 UseActivationDelayOnExit = true
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"

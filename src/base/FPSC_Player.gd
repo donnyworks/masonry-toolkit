@@ -177,6 +177,25 @@ func MapButtonHandler(btn_name:String):
 	get_tree().change_scene_to_file(FPSC_GlobalState.maps_listed[mapName])
 	pass
 
+func get_collision_polygon_volume(poly_3d: CollisionPolygon3D) -> float:
+	var points = poly_3d.polygon
+	# A polygon needs at least 3 points to have an area
+	if points.size() < 3:
+		return 0.0
+	
+	var area = 0.0
+	var num_points = points.size()
+	
+	# Shoelace formula to calculate 2D polygon area
+	for i in range(num_points):
+		var p1 = points[i]
+		var p2 = points[(i + 1) % num_points] # Loops back to the first point at the end
+		area += (p1.x * p2.y) - (p2.x * p1.y)
+		
+	area = abs(area) * 0.5
+	
+	# Volume = 2D Area * Extrusion Depth
+	return area * poly_3d.depth
 var hasPauseFireEnded = false
 
 var mapSelectorMap = 0
@@ -302,6 +321,8 @@ func _process(delta):
 					for object in host_object.get_children():
 						if object is CollisionShape3D:
 							host_collider = object.shape.get_debug_mesh().get_aabb().get_volume()
+						if object is CollisionPolygon3D:
+							host_collider = get_collision_polygon_volume(object)
 					host_object.position = $Camera3D/RayEndpoint.global_position + Vector3(0,1,0)*host_collider
 					#get_parent().add_child(pocket_object)
 					pocket_object = null

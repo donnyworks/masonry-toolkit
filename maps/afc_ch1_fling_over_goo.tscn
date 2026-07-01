@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://da5wvnsb3r8yx"]
+[gd_scene load_steps=34 format=3 uid="uid://da5wvnsb3r8yx"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_masgv"]
 [ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="2_liv5b"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="5_cq67v"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="6_xmbio"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="7_nxr2n"]
+[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="7_tikpg"]
 [ext_resource type="PackedScene" uid="uid://d25l3ikatvol5" path="res://maps/afc_ch1_trust_fling.tscn" id="8_a6hic"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/FPSC_ActivatableSoundOnActivation.gd" id="8_kcg2e"]
 [ext_resource type="PackedScene" uid="uid://f0qlfetn1pdk" path="res://instances/afc/prefab_catapult.tscn" id="9_6afok"]
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="10_iy3wt"]
 [ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="11_c1t1j"]
@@ -101,7 +103,7 @@ horizontal_alignment = 0
 [node name="Label3D4" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.74041283, -0.8630085)
 text = "[||                                     ]
-"
+TESTING COURSE B"
 horizontal_alignment = 0
 
 [node name="Label3D3" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
@@ -121,6 +123,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6635132, -9.944824)
 use_collision = true
 size = Vector3(5, 4, 0.8330078)
 material = SubResource("StandardMaterial3D_qo7qv")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="prefab_chamber_exithall/door_entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3960664, 0, 0)
+stream = ExtResource("7_tikpg")
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="prefab_chamber_exithall/door_entrance" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("8_kcg2e")
+stream_player = NodePath("../AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
 
 [node name="entry_door" type="Node" parent="prefab_chamber_exithall" node_paths=PackedStringArray("object_as_door")]
 script = ExtResource("6_xmbio")
@@ -185,7 +196,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.50503606, -50)
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_geomesh_button" node_paths=PackedStringArray("activated")]
 script = ExtResource("4_iglfj")
-activated = [NodePath("../../prefab_chamber_exithall/entry_door"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight5/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite")]
+activated = [NodePath("../../prefab_chamber_exithall/entry_door"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight5/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite"), NodePath("../../prefab_chamber_exithall/door_entrance/FPSC_SoundPlayerActivatable")]
 UseActivationDelay = true
 UseActivationDelayOnExit = true
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"

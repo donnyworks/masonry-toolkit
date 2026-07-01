@@ -1,6 +1,8 @@
-[gd_scene load_steps=54 format=3 uid="uid://d25l3ikatvol5"]
+[gd_scene load_steps=56 format=3 uid="uid://d25l3ikatvol5"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_gr46l"]
+[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="2_7cofo"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/FPSC_ActivatableSoundOnActivation.gd" id="3_nda2j"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_crvt5"]
 [ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/FPSC_ActivatableCreateFromInstance.gd" id="5_q7mku"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="6_5fpwn"]
@@ -21,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="18_q7mku"]
 [ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/FPSC_ActivatablePlayVoiceline.gd" id="19_sswey"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="20_mfmn7"]
-[ext_resource type="AudioStream" uid="uid://blr8v01vud548" path="res://sound/vo/announcer/Ch1DemoFinish.wav" id="20_x35tk"]
+[ext_resource type="AudioStream" uid="uid://blr8v01vud548" path="res://sound/vo/announcer/oldies/Ch1DemoFinish.wav" id="20_x35tk"]
 [ext_resource type="PackedScene" uid="uid://da8fywn53c78t" path="res://maps/afc_ch1_gain_flings.tscn" id="21_tqbre"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s15dw"]
@@ -292,10 +294,18 @@ material = SubResource("StandardMaterial3D_xl6ql")
 
 [node name="door" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.25, -8, -39.515533)
-operation = 2
 use_collision = true
 size = Vector3(3.5, 3, 0.69732666)
 material = SubResource("StandardMaterial3D_s07qk")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7293854, 0, 0)
+stream = ExtResource("2_7cofo")
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="door" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("3_nda2j")
+stream_player = NodePath("../AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
 
 [node name="CSGBox3D25" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73, -9.5, -39.5)
@@ -426,7 +436,7 @@ material = SubResource("StandardMaterial3D_x25pd")
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="CSGBox3D54" node_paths=PackedStringArray("activated")]
 script = ExtResource("4_crvt5")
-activated = [NodePath("FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite")]
+activated = [NodePath("FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite"), NodePath("../../door/FPSC_SoundPlayerActivatable")]
 UseActivationDelay = true
 UseActivationDelayOnExit = true
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
@@ -631,10 +641,11 @@ text = "Potential hazards:
 horizontal_alignment = 0
 
 [node name="Label3D4" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.74041283, -0.8630085)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351341, -0.628541, -0.8630085)
 text = "[|||                                   ]
-"
+TESTING COURSE B"
 horizontal_alignment = 0
+vertical_alignment = 0
 
 [node name="Label3D3" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
@@ -826,11 +837,11 @@ size = Vector3(0.5576782, 2, 0.34375)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="ViewTexture" type="SubViewport" parent="Skybox"]
-size = Vector2i(1356, 606)
+size = Vector2i(1356, 534)
 script = ExtResource("9_hegod")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(-0.9593209, 0.03173602, -0.28052703, 0, 0.9936609, 0.1124129, 0.28231648, 0.107840076, -0.9532403, -2.2743425, 37.401203, -0.24556813)
+transform = Transform3D(0.937573, 0.19299006, -0.28932795, 0, 0.83191067, 0.5549085, 0.34778705, -0.52026737, 0.77997756, -3.7364902, 37.358727, -1.97191)
 fov = 70.01
 script = ExtResource("10_mfmn7")
 CameraOrigin = NodePath("../../SkyCameraPivot")
