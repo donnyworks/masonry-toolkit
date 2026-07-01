@@ -1,0 +1,213 @@
+[gd_scene load_steps=7 format=3 uid="uid://qqqdsd8ay4kd"]
+
+[ext_resource type="Script" uid="uid://6h7k6p8572qb" path="res://src/base/MainMenuDialogManager.gd" id="1_2jfug"]
+[ext_resource type="PackedScene" uid="uid://cwrc1444pjpel" path="res://vgui/vgui_baseboard_recreation.tscn" id="1_by1kd"]
+[ext_resource type="FontFile" uid="uid://wu4hku12n2ab" path="res://vgui/vgui_boardfont_verdana.ttf" id="2_k227a"]
+[ext_resource type="Theme" uid="uid://dxiao0t12ts4p" path="res://vgui/VGUITheme.tres" id="3_w5juf"]
+[ext_resource type="Texture2D" uid="uid://cs5vmbn31nd7w" path="res://textures/chapter0_image.png" id="4_k227a"]
+[ext_resource type="Script" uid="uid://ch8irwdnp6hvj" path="res://src/base/FPSC_MainMenuChapterIcon.gd" id="5_128te"]
+
+[node name="Mainmenu" type="Control" node_paths=PackedStringArray("ChapterSelectBoxContainer", "BonusSelectBoxContainer", "ChapterSelectButtonTemplate", "MainMenuPanel", "ChapterSelectPanel", "BonusSelectPanel", "NewGameButton", "BonusGameButton", "QuitGameButton", "ChapterSelectAbortButton", "BonusSelectAbortButton", "GameNameLabel", "GameVersionLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2jfug")
+ChapterSelectBoxContainer = NodePath("chapterSelectPanel/sliceController/HBoxContainer")
+BonusSelectBoxContainer = NodePath("bonusSelectPanel/sliceController/HBoxCobonusntainer")
+ChapterSelectButtonTemplate = NodePath("chapterSelectPanel/sliceController/HBoxContainer/VBoxContainer")
+MainMenuPanel = NodePath("mainMenuPanel")
+ChapterSelectPanel = NodePath("chapterSelectPanel")
+BonusSelectPanel = NodePath("bonusSelectPanel")
+NewGameButton = NodePath("mainMenuPanel/NewGameButton")
+BonusGameButton = NodePath("mainMenuPanel/NewGameButton2")
+QuitGameButton = NodePath("mainMenuPanel/Button2")
+ChapterSelectAbortButton = NodePath("chapterSelectPanel/Cancel")
+BonusSelectAbortButton = NodePath("bonusSelectPanel/Cancel")
+GameNameLabel = NodePath("mainMenuPanel/Label")
+GameVersionLabel = NodePath("mainMenuPanel/Label2")
+
+[node name="mainMenuPanel" parent="." instance=ExtResource("1_by1kd")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -196.0
+offset_right = 264.0
+offset_bottom = 196.0
+grow_horizontal = 2
+grow_vertical = 2
+baseboard_color = Color(0.4627451, 0.4627451, 0.4627451, 0.44705883)
+baseboard_window_text_color = Color(1, 1, 1, 1)
+baseboard_window_button_color = Color(0.4627451, 0.4627451, 0.4627451, 0)
+baseboard_is_window_panel = true
+baseboard_window_title = "Main Menu"
+
+[node name="Label" type="Label" parent="mainMenuPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 12.0
+offset_right = 561.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("2_k227a")
+theme_override_font_sizes/font_size = 45
+text = "Aerial Testing Course"
+
+[node name="Label2" type="Label" parent="mainMenuPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 64.0
+offset_right = 561.0
+offset_bottom = 189.0
+theme_override_fonts/font = ExtResource("2_k227a")
+theme_override_font_sizes/font_size = 16
+text = "Version 1.0"
+
+[node name="NewGameButton" type="Button" parent="mainMenuPanel"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 353.0
+offset_right = 113.0
+offset_bottom = 379.0
+theme = ExtResource("3_w5juf")
+text = "New Game"
+
+[node name="NewGameButton2" type="Button" parent="mainMenuPanel"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 353.0
+offset_right = 212.0
+offset_bottom = 379.0
+theme = ExtResource("3_w5juf")
+text = "Bonus Content"
+
+[node name="Button2" type="Button" parent="mainMenuPanel"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 353.0
+offset_right = 308.0
+offset_bottom = 379.0
+theme = ExtResource("3_w5juf")
+text = "Quit Game"
+
+[node name="chapterSelectPanel" parent="." instance=ExtResource("1_by1kd")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -110.0
+offset_right = 259.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+baseboard_color = Color(0.4627451, 0.4627451, 0.4627451, 0.44705883)
+baseboard_window_text_color = Color(1, 1, 1, 1)
+baseboard_window_button_color = Color(0.4627451, 0.4627451, 0.4627451, 0)
+baseboard_is_window_panel = true
+baseboard_window_title = "Chapter Select"
+
+[node name="Cancel" type="Button" parent="chapterSelectPanel"]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 202.0
+offset_right = 504.0
+offset_bottom = 228.0
+theme = ExtResource("3_w5juf")
+text = "Cancel"
+
+[node name="sliceController" type="Control" parent="chapterSelectPanel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 195.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="chapterSelectPanel/sliceController"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.9897436
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="chapterSelectPanel/sliceController/HBoxContainer" node_paths=PackedStringArray("button", "label")]
+layout_mode = 2
+size_flags_horizontal = 0
+script = ExtResource("5_128te")
+button = NodePath("TextureButton")
+label = NodePath("Label")
+
+[node name="TextureButton" type="TextureButton" parent="chapterSelectPanel/sliceController/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("4_k227a")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="chapterSelectPanel/sliceController/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+text = "Preliminary Testing"
+
+[node name="HScrollBar" type="HScrollBar" parent="chapterSelectPanel"]
+layout_mode = 0
+offset_top = 185.0
+offset_right = 512.0
+offset_bottom = 196.0
+
+[node name="bonusSelectPanel" parent="." instance=ExtResource("1_by1kd")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -110.0
+offset_right = 259.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+baseboard_color = Color(0.4627451, 0.4627451, 0.4627451, 0.44705883)
+baseboard_window_text_color = Color(1, 1, 1, 1)
+baseboard_window_button_color = Color(0.4627451, 0.4627451, 0.4627451, 0)
+baseboard_is_window_panel = true
+baseboard_window_title = "Chapter Select"
+
+[node name="Cancel" type="Button" parent="bonusSelectPanel"]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 202.0
+offset_right = 504.0
+offset_bottom = 228.0
+theme = ExtResource("3_w5juf")
+text = "Cancel"
+
+[node name="sliceController" type="Control" parent="bonusSelectPanel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 195.0
+grow_horizontal = 2
+
+[node name="HBoxCobonusntainer" type="HBoxContainer" parent="bonusSelectPanel/sliceController"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.9897436
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true

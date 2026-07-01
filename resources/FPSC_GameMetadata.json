@@ -1,0 +1,30 @@
+{
+	"GameName":"Aerial Testing Course",
+	"Version":"1.0 [Chapter 1 Playtest]",
+	"Chapters":{
+		"afc_ch1_intro":"chapter0_image.png",
+		"afc_ch1_fling_over_goo":"chapter1_image.png",
+	},
+	"BonusChapters":{
+		"nullified/afc_ch1_escape_attempt":"scrapter2_backoffices.png",
+		"nullified/afc_ch2_surprise":"chapter0_image.png",
+	},
+	"BackgroundMaps":[
+		"afc_ch1_background"
+	],
+	"BuildFeatures":{
+		"FEATURE_SRCBOX":true,
+		"FEATURE_TESTWPN":false,
+		"FEATURE_DYNAMO":true,
+		"FEATURE_SCRIPTEDSEQUENCE":true,
+		"FEATURE_MAPSELECTOR":false
+	},
+	"DebugMapList":{
+		"DYNAMO lighting system test":"res://maps/devtest/FPSC_Test.tscn",
+		"Physics testing area":"res://maps/devtest/devtest2.tscn",
+		"Aerial Testing Course":"res://maps/afc_ch1_intro.tscn",
+		"Portal testing area":"res://maps/devtest/devtest_portals.tscn",
+		"NPC testing area":"res://maps/devtest/devtest_pathfinder.tscn",
+		"ATC zoo area":"res://maps/zoo_afc_elements.tscn"
+	}
+}

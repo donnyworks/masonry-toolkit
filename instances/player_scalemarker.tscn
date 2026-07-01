@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjj403lwphbjj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjyo5"]
+albedo_color = Color(0.97982866, 0.4564759, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hqtel"]
+material = SubResource("StandardMaterial3D_xjyo5")
+
+[node name="Player" type="Node3D" groups=["Non-Portalable"]]
+process_mode = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_hqtel")

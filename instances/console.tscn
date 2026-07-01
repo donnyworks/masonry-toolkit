@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl1yhtenrsqux"]
+
+[ext_resource type="Script" uid="uid://coqwnqe3vkfhg" path="res://src/base/FPSC_ConsoleGUI.gd" id="1_n4l3i"]
+
+[node name="Console" type="CanvasLayer"]
+process_mode = 3
+layer = 128
+visible = false
+script = ExtResource("1_n4l3i")
+
+[node name="console_rend" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="console_rend"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 332.0
+grow_horizontal = 2
+color = Color(0.46229059, 0.46229059, 0.46229059, 0.5294118)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="console_rend"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 298.0
+grow_horizontal = 2
+
+[node name="LineEdit" type="LineEdit" parent="console_rend"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.512
+anchor_right = 1.0
+anchor_bottom = 0.512
+offset_top = -30.776001
+offset_bottom = 0.22399902
+grow_horizontal = 2
+grow_vertical = 0
+placeholder_text = "Run a command in the box."
+
+[connection signal="text_submitted" from="console_rend/LineEdit" to="." method="_on_line_edit_text_submitted"]

@@ -1,0 +1,479 @@
+[gd_scene load_steps=26 format=3 uid="uid://bvw7glfg3b86"]
+
+[ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_7lasg"]
+[ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="2_x5gff"]
+[ext_resource type="Texture2D" uid="uid://cki2ha2qmeejq" path="res://textures/clipboard/texture_clipboard.png" id="3_jbb0e"]
+[ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="4_4ncts"]
+[ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="4_3584k"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="5_j3tpa"]
+[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="6_2folt"]
+[ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="6_m5osx"]
+[ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/FPSC_ActivatableToggleModulationColor.gd" id="7_0n7kl"]
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="8_ao23p"]
+[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="9_ddeve"]
+[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="10_1t0p5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lslf3"]
+
+[sub_resource type="Sky" id="Sky_di4mo"]
+sky_material = SubResource("ProceduralSkyMaterial_lslf3")
+
+[sub_resource type="Environment" id="Environment_3r11r"]
+background_mode = 2
+sky = SubResource("Sky_di4mo")
+
+[sub_resource type="Shader" id="Shader_3584k"]
+code = "shader_type spatial;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+	ALBEDO.r = UV.r;
+	ALBEDO.g = UV.g;
+	ALBEDO.b = UV.r;
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h7f2d"]
+render_priority = 0
+shader = SubResource("Shader_3584k")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m5osx"]
+size = Vector3(1, 0.5, 0.028)
+
+[sub_resource type="Animation" id="Animation_jbb0e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label3D3:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Current date: __/__/____ __:__ __"]
+}
+
+[sub_resource type="Animation" id="Animation_hkifn"]
+resource_name = "glitchloop"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label3D3:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.21, 0.215, 0.25, 0.3, 0.35, 0.4, 0.45, 0.55, 0.56, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Current date: __/__/____ __:__ __", "Current date: 07/31/2042 09:45 PM", "Current date: 09/11/2031 10:12 PM", "Current date: 05/13/2029 12:11 PM", "Current date: 00/00/0000 00:00 -M", "Current date: 12/12/2012 12:12 AM", "Current date: 01/15/2026 07:01 PM", "Current date: 07/11/2034 10:15 AM", "Current date: 08/77/6032 44:72 ME", "Current date: HE/LP/MEPL EA:SE AM", "Current date: MM/DD/YYYY HH:MM -M", "Current date: 06/20/2026 10:43 PM", "Current date: Invalid date format for string %s", "Current date: 06/01/2013 12:00 AM", "Current date: 02/20/2023 12:05 PM", "Current date: 10/10/2010 10:10 AM", "Current date: 11/11/2011 11:11 AM", "Current date: 02/22/2022 09:22 PM", "Current date: 07/04/2007 01:04 PM"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3584k"]
+_data = {
+&"RESET": SubResource("Animation_jbb0e"),
+&"glitchloop": SubResource("Animation_hkifn")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7f2d"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5osx"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmgg7"]
+transparency = 1
+albedo_color = Color(0.30980393, 0.4862745, 0.12156863, 0.5058824)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5yxlt"]
+size = Vector3(71, 3.5079346, 59)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="teleporter_entrance" parent="." instance=ExtResource("2_x5gff")]
+transform = Transform3D(0.7071067, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.7071067, 0, -0.33069372, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_7lasg")]
+transform = Transform3D(0.7071067, 0, 0.70710677, 0, 1, 0, -0.7071067, 0, 0.7071067, 0, 0.6693063, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3r11r")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, -1, -9.5)
+use_collision = true
+size = Vector3(27, 1, 23)
+material = SubResource("ShaderMaterial_h7f2d")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, -1, -17)
+use_collision = true
+size = Vector3(15, 1, 8)
+material = SubResource("ShaderMaterial_h7f2d")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, -1, -33.5)
+use_collision = true
+size = Vector3(5, 1, 25)
+material = SubResource("ShaderMaterial_h7f2d")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -1, -49)
+use_collision = true
+size = Vector3(48, 1, 6)
+material = SubResource("ShaderMaterial_h7f2d")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -7.9995003)
+use_collision = true
+size = Vector3(6, 1, 0.001)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0, -8.4995)
+use_collision = true
+size = Vector3(1, 1, 0.001)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(1.9106855e-15, -1, 4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1, 0, -4.371139e-08, -11, 0.5, -8.5)
+use_collision = true
+size = Vector3(1, 6, 0.001)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CSGBox3D9"]
+transform = Transform3D(-1, -1.6940659e-21, 8.742277e-08, -7.642743e-15, 1, -8.742278e-08, -8.742277e-08, -8.742278e-08, -1, 0, 0, -4)
+light_energy = 5.167
+shadow_enabled = true
+spot_range = 24.0
+spot_angle = 64.58715
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(0.93659884, 0, 0.35040355, 0, 1, 0, -0.35040355, 0, 0.93659884, -12, 0.56458616, -8.53134)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="RigidBody3D"]
+transform = Transform3D(1.9106855e-15, -1, 4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1, 0, -4.371139e-08, 0, 0, 0)
+use_collision = true
+size = Vector3(1, 0.5, 0.02784375)
+
+[node name="Sprite3D" type="Sprite3D" parent="RigidBody3D/CSGBox3D10"]
+transform = Transform3D(-2.9802322e-08, -1, 8.7422784e-08, 1, -2.9802322e-08, -4.440892e-15, -3.5527137e-15, 8.7422784e-08, 1, 0, 0, -0.019269109)
+flip_h = true
+pixel_size = 0.0019
+shaded = true
+texture = ExtResource("3_jbb0e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+shape = SubResource("BoxShape3D_m5osx")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 5, -25.5)
+use_collision = true
+size = Vector3(49, 1, 55)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 1.5, 1.5)
+use_collision = true
+size = Vector3(27, 6, 1)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 1.5, -13.5)
+use_collision = true
+size = Vector3(15, 6, 1)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.5, -51.5)
+use_collision = true
+size = Vector3(48, 6, 1)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="CSGBox3D15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 0)
+operation = 2
+use_collision = true
+size = Vector3(4, 5, 1)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 1.5, -32.5)
+use_collision = true
+size = Vector3(1, 6, 39)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1.5, -33)
+use_collision = true
+size = Vector3(37, 6, 26)
+
+[node name="Label3D" type="Label3D" parent="CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.9907603, 13.023972)
+text = "SECTOR A4"
+font_size = 227
+
+[node name="Label3D2" type="Label3D" parent="CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.0769167, 13.023972)
+text = "(It's like Sector C, but worse!)"
+font_size = 77
+
+[node name="Label3D4" type="Label3D" parent="CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5520334, -0.16514945, 13.023972)
+text = "Current status:"
+font_size = 77
+
+[node name="Label3D5" type="Label3D" parent="CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4059553, -0.16514945, 13.023972)
+modulate = Color(1, 0, 0, 1)
+text = "ABSOLUTELY CATASTROPHIC"
+font_size = 77
+
+[node name="glitch" type="AnimationPlayer" parent="CSGBox3D6"]
+libraries = {
+&"": SubResource("AnimationLibrary_3584k")
+}
+
+[node name="Label3D3" type="Label3D" parent="CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.43358445, 13.023972)
+text = "Current date: __/__/____ __:__ __"
+font_size = 77
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 1.5, -45.5)
+use_collision = true
+size = Vector3(6, 6, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -10)
+use_collision = true
+size = Vector3(1, 6, 22)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6.5)
+operation = 2
+use_collision = true
+size = Vector3(1, 5, 5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5, 1.5, -10)
+use_collision = true
+size = Vector3(1, 6, 22)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -3.3987794, -62.5)
+use_collision = true
+size = Vector3(8, 0.256, 13)
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2.6012206, -60.5)
+use_collision = true
+size = Vector3(8, 0.256, 17)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D25"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3.5)
+operation = 2
+size = Vector3(2, 0.256, 2)
+
+[node name="PrefabBoxDropper" parent="CSGBox3D25" instance=ExtResource("4_4ncts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, -3.5034027)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 8.742659, -60.5)
+use_collision = true
+size = Vector3(8, 12, 17)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D26"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -7.8719997, -4)
+operation = 2
+size = Vector3(3, 8, 3)
+material = SubResource("StandardMaterial3D_h7f2d")
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="CSGBox3D26"]
+transform = Transform3D(0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, 0, 1, -1.0372171, -2.3336325, -4)
+operation = 2
+size = Vector3(3, 4, 3)
+material = SubResource("StandardMaterial3D_h7f2d")
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="CSGBox3D26"]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, 0.5185404, -0.3070402, -4)
+operation = 2
+size = Vector3(3, 4, 3)
+material = SubResource("StandardMaterial3D_h7f2d")
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -0.5267792, -54)
+use_collision = true
+size = Vector3(8, 6, 4)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D21"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 0)
+operation = 2
+size = Vector3(2, 3, 5)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CSGBox3D21"]
+transform = Transform3D(0.8426028, 0, 0.53853554, -0.26387766, 0.8717274, 0.41286793, -0.4694562, -0.48999116, 0.73451996, 2.5692034, 2.49827, -1.2892447)
+shadow_enabled = true
+spot_range = 15.729588
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, -0.5267792, -68)
+use_collision = true
+size = Vector3(3, 6, 2)
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 1.4732208, -68)
+use_collision = true
+size = Vector3(5, 2, 2)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 0.9732208, -62)
+use_collision = true
+size = Vector3(1, 3, 14)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, -2.0267792, -64.5)
+use_collision = true
+size = Vector3(1, 3, 9)
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, -0.5267792, -62)
+use_collision = true
+size = Vector3(1, 6, 14)
+
+[node name="door_opener" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.459595, -2.0267792, -58)
+use_collision = true
+size = Vector3(0.79467773, 3, 4)
+material = SubResource("StandardMaterial3D_m5osx")
+
+[node name="door_chamber" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.5, -1.5267792, -68)
+use_collision = true
+size = Vector3(1, 4, 6)
+material = SubResource("StandardMaterial3D_m5osx")
+
+[node name="prefab_geomesh_button" parent="." instance=ExtResource("4_3584k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.543925, -3.2707887, -58.324493)
+
+[node name="IndicatorLight" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9528913, 0.024439335, 0)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("6_2folt")
+region_enabled = true
+region_rect = Rect2(0, 0, 384, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_0n7kl")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight2" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9907313, 3.005245e-09, -0.13583663, -0.047037613, 0.93813074, -0.34307116, 0.12743257, 0.34628078, 0.9294357, 3.1030245, 0.9547286, -2.6898727)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("6_2folt")
+region_enabled = true
+region_rect = Rect2(0, -1024, 64, 1088)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight2" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_0n7kl")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.05
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight3" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 0.024439335, -7.1996274)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("6_2folt")
+region_enabled = true
+region_rect = Rect2(0, -576, 64, 640)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight3" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_0n7kl")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.15
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight5" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.97958577, -0.20102663, 0, 0.20102663, 0.97958577, 0, 0, 0, 1, 0.40325737, 0.21020973, -8.652351)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+pixel_size = 0.005
+texture = ExtResource("6_2folt")
+region_enabled = true
+region_rect = Rect2(0, -576, 64, 640)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight5" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_0n7kl")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.2
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight4" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3294439, 0.024439335, -5.432688)
+modulate = Color(0.50980395, 0.50980395, 0.50980395, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("6_2folt")
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight4" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_0n7kl")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.1
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="sign" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9711176, -0.23860125, 0, 0.23860125, 0.9711176, 0, 0, 0, 1, -0.055713654, 2.1654801, -8.66182)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("8_ao23p")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign" node_paths=PackedStringArray("sprite")]
+script = ExtResource("9_ddeve")
+sprite = NodePath("..")
+texture_b = ExtResource("10_1t0p5")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="." groups=["Decoration", "Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, -74)
+size = Vector3(71, 6, 43)
+material = SubResource("StandardMaterial3D_hmgg7")
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="CSGBox3D27" node_paths=PackedStringArray("activated")]
+script = ExtResource("5_j3tpa")
+activated = [NodePath("FPSC_DamageActivatable")]
+interact_with = 1
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="FPSC_DamageActivatable" type="Node" parent="CSGBox3D27/FPSC_TriggerRelay"]
+script = ExtResource("6_m5osx")
+damage_delt = 100.0
+metadata/_custom_type_script = "uid://bilm264c25p6e"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D27/FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2539673, -8)
+shape = SubResource("BoxShape3D_5yxlt")
+
+[editable path="CSGBox3D25/PrefabBoxDropper"]

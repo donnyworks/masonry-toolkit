@@ -1,0 +1,321 @@
+[gd_scene load_steps=37 format=3 uid="uid://c33assurkdo08"]
+
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="3_0e5sx"]
+[ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/FPSC_ActivatablePlayVoiceline.gd" id="4_8lg6k"]
+[ext_resource type="Texture2D" uid="uid://bn1xcnqcyqtjt" path="res://textures/clipboard/texture_clipboard_3.png" id="6_bxiwn"]
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="7_7g3nx"]
+[ext_resource type="AudioStream" uid="uid://ce5mu1a2228xg" path="res://sound/radio-greener.wav" id="8_ig6qq"]
+[ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="11_ifi8t"]
+[ext_resource type="PackedScene" path="res://instances/afc/prefab_bed.tscn" id="12_1kppn"]
+[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="13_w5psp"]
+[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/FPSC_ActivatablePlayAnimation.gd" id="14_y0bgd"]
+[ext_resource type="Script" uid="uid://c10lkodrlqtba" path="res://src/base/activatables/FPSC_ActivatablePlayVoicelines.gd" id="15_ml6ao"]
+[ext_resource type="AudioStream" uid="uid://bp58ui5pkhyak" path="res://sound/vo/announcer/intro/Intro01.wav" id="16_axncq"]
+[ext_resource type="AudioStream" uid="uid://pi1y832r11de" path="res://sound/vo/announcer/intro/Intro02.wav" id="17_t36h4"]
+[ext_resource type="AudioStream" uid="uid://dh8jxmfp5o4pt" path="res://sound/vo/announcer/intro/Intro03.wav" id="18_uaip8"]
+[ext_resource type="AudioStream" uid="uid://1o7rfdtfe2q6" path="res://sound/vo/announcer/intro/Intro04.wav" id="19_qh6e7"]
+[ext_resource type="AudioStream" uid="uid://bg0stw2hlkub0" path="res://sound/vo/announcer/intro/Intro05.wav" id="20_fanvp"]
+[ext_resource type="AudioStream" uid="uid://c86na8vi3x4pt" path="res://sound/vo/announcer/intro/Intro06.wav" id="21_xolmb"]
+[ext_resource type="AudioStream" uid="uid://b6jvcmmedjk4k" path="res://sound/vo/announcer/intro/Intro07.wav" id="22_xycep"]
+[ext_resource type="AudioStream" uid="uid://se1if17upgbv" path="res://sound/vo/announcer/intro/Intro08.wav" id="23_4n8iq"]
+[ext_resource type="AudioStream" uid="uid://c1gwiq72v1bwq" path="res://sound/vo/announcer/intro/Intro09.wav" id="24_b2yso"]
+[ext_resource type="AudioStream" uid="uid://cnljg4jo3ph5r" path="res://sound/vo/announcer/intro/Intro10.wav" id="25_n6d5h"]
+[ext_resource type="AudioStream" uid="uid://b836jdl5286yu" path="res://sound/vo/announcer/intro/Intro11.wav" id="26_m4a7h"]
+[ext_resource type="AudioStream" uid="uid://bc24i7ixweye5" path="res://sound/vo/announcer/intro/Intro12.wav" id="27_k1o8q"]
+[ext_resource type="AudioStream" uid="uid://b3qbj7ru6qfqq" path="res://sound/vo/announcer/intro/Intro13.wav" id="28_y1dmn"]
+[ext_resource type="AudioStream" uid="uid://bcrf0liwr4ypm" path="res://sound/vo/announcer/intro/Intro14.wav" id="29_gbm64"]
+[ext_resource type="AudioStream" uid="uid://b4gqd317a66wo" path="res://sound/vo/announcer/ch0/Chamber1.01.wav" id="30_nulcr"]
+[ext_resource type="AudioStream" uid="uid://bl5ojqj2f8yle" path="res://sound/vo/announcer/ch0/Chamber1.02.wav" id="31_rmp4i"]
+[ext_resource type="AudioStream" uid="uid://chu8sf3giqtol" path="res://sound/vo/announcer/GenericCubeSoftlockMessage.wav" id="32_3mch4"]
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="33_jt04u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_suu5f"]
+size = Vector3(1, 0.5, 0.028)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0mqdf"]
+albedo_texture = ExtResource("7_7g3nx")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m62wu"]
+size = Vector3(0.157, 0.38, 0.535)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0i7bm"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_keklg"]
+
+[sub_resource type="Sky" id="Sky_di4mo"]
+sky_material = SubResource("ProceduralSkyMaterial_keklg")
+
+[sub_resource type="Environment" id="Environment_k6xhx"]
+background_mode = 2
+sky = SubResource("Sky_di4mo")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0r3cr"]
+
+[node name="AFC Ch1 Intro" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1.1279907, 0)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.681671, -0.5077697, -1.7059221)
+use_collision = true
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08547187, 0)
+operation = 2
+use_collision = true
+size = Vector3(1, 1, 0.8)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="CSGBox3D17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08547187, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.8, 1, 1)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(-0.23361522, 0, -0.97232914, 0, 1, 0, 0.97232914, 0, -0.23361522, 2.681671, 0.011888862, -1.530699)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="RigidBody3D"]
+transform = Transform3D(1.9106855e-15, -1, 4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1, 0, -4.371139e-08, 0, 0, 0)
+use_collision = true
+size = Vector3(1, 0.5, 0.02784375)
+
+[node name="Sprite3D" type="Sprite3D" parent="RigidBody3D/CSGBox3D10"]
+transform = Transform3D(-2.9802322e-08, -1, 8.7422784e-08, 1, -2.9802322e-08, -4.440892e-15, -3.5527137e-15, 8.7422784e-08, 1, 0, 0, -0.019269109)
+flip_h = true
+pixel_size = 0.0019
+shaded = true
+texture = ExtResource("6_bxiwn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+shape = SubResource("BoxShape3D_suu5f")
+
+[node name="CSGBox3D26" type="RigidBody3D" parent="."]
+transform = Transform3D(0.6882533, 0, 0.7254704, 0, 1, 0, -0.7254704, 0, 0.6882533, 2.7102437, 0.1890097, -2.021309)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D26"]
+size = Vector3(0.157, 0.38, 0.535)
+material = SubResource("StandardMaterial3D_0mqdf")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CSGBox3D26"]
+transform = Transform3D(-0.258819, 0, 0.9659259, 0, 1, 0, -0.9659259, 0, -0.258819, 0, 0, 0)
+stream = ExtResource("8_ig6qq")
+autoplay = true
+max_distance = 15.0
+emission_angle_enabled = true
+emission_angle_degrees = 66.0
+doppler_tracking = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D26"]
+shape = SubResource("BoxShape3D_m62wu")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2538996, 0.15859985, -1.6894531)
+use_collision = true
+size = Vector3(0.24230957, 2.8291626, 1.6210938)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2.1279907, 0.5)
+use_collision = true
+size = Vector3(10, 0.256, 11)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, -2.1279907, 4)
+use_collision = true
+size = Vector3(3, 0.256, 4)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2.8720093, 4)
+use_collision = true
+size = Vector3(2, 0.256, 4)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.7440095, -1.5)
+use_collision = true
+size = Vector3(2, 6, 7)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGBox3D11"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.0463071, -1, -1)
+size = Vector3(0.26220703, 3, 2)
+
+[node name="Label3D" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 1.2564766, 0)
+text = "TEST CHAMBER 01"
+
+[node name="Label3D2" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.84315467, -0.8630085)
+text = "Potential hazards:
+"
+horizontal_alignment = 0
+
+[node name="Label3D4" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.74041283, -0.8630085)
+text = "[|                                       ]
+"
+horizontal_alignment = 0
+
+[node name="Label3D3" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
+text = "Portals
+Boxes
+Buttons"
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7440095, -6)
+use_collision = true
+size = Vector3(12, 6, 2)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7440095, 6.5)
+use_collision = true
+size = Vector3(12, 6, 1)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0.7440095, 0)
+use_collision = true
+size = Vector3(1, 6, 14)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2.2440095, 0)
+use_collision = true
+size = Vector3(1, 3, 14)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, -0.7559905, -2.5)
+use_collision = true
+size = Vector3(1, 3, 9)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, -0.7559905, 6.5)
+use_collision = true
+size = Vector3(1, 3, 1)
+
+[node name="door_opener" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4595947, -0.7559905, 4)
+use_collision = true
+size = Vector3(0.79467773, 3, 4)
+material = SubResource("StandardMaterial3D_0i7bm")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.9423032, 0.5)
+use_collision = true
+size = Vector3(10, 0.256, 11)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.8720093, 0)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1, 0.8720093, 2.3791013)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("11_ifi8t")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1, 0.8720093, -2.6208987)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("11_ifi8t")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, -1.5, 0.8720093, -0.120898835)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("11_ifi8t")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="CSGBox3D5"]
+transform = Transform3D(-4.371139e-08, 0, 1, -1, -4.371139e-08, -4.371139e-08, 4.371139e-08, -1, 1.9106855e-15, -1.5685543, -0.05509484, 0.7134094)
+operation = 2
+use_collision = true
+size = Vector3(0.24230957, 2.8291626, 1.6210938)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 3.5, 0.8720093, -0.12089861)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("11_ifi8t")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k6xhx")
+
+[node name="IamStealingthis" parent="." instance=ExtResource("12_1kppn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18432593, -0.5328316, 1.4738483)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
+script = ExtResource("3_0e5sx")
+activated = [NodePath("FPSC_PlayerPropertiesActivatable"), NodePath("FPSC_AnimationActivatable"), NodePath("FPSC_PlayerPropertiesActivatable2"), NodePath("../FPSC_MultiVoicelineActivatable"), NodePath("../FPSC_DoorActivatable")]
+UseActivationDelay = true
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay"]
+shape = SubResource("CylinderShape3D_0r3cr")
+
+[node name="FPSC_PlayerPropertiesActivatable" type="Node" parent="FPSC_TriggerRelay"]
+script = ExtResource("13_w5psp")
+new_speed = 0.0
+modify_jump_velocity = true
+activate_fade = true
+fade_type = 1
+fade_duration = 1.0
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="FPSC_AnimationActivatable" type="Node" parent="FPSC_TriggerRelay" node_paths=PackedStringArray("player")]
+script = ExtResource("14_y0bgd")
+player = NodePath("")
+animation = "intro"
+metadata/_custom_type_script = "uid://cd37fw45rkj5r"
+
+[node name="FPSC_PlayerPropertiesActivatable2" type="Node" parent="FPSC_TriggerRelay"]
+script = ExtResource("13_w5psp")
+modify_jump_velocity = true
+delay = 4.5
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="FPSC_MultiVoicelineActivatable" type="Node" parent="." node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("15_ml6ao")
+voiceline_player = NodePath("../AudioStreamPlayer")
+character_voicelines = Array[AudioStream]([ExtResource("16_axncq"), ExtResource("17_t36h4"), ExtResource("18_uaip8"), ExtResource("19_qh6e7"), ExtResource("20_fanvp"), ExtResource("21_xolmb"), ExtResource("22_xycep"), ExtResource("23_4n8iq"), ExtResource("24_b2yso"), ExtResource("25_n6d5h"), ExtResource("26_m4a7h"), ExtResource("27_k1o8q"), ExtResource("28_y1dmn"), ExtResource("29_gbm64")])
+localized_caption_prefix = "Announcer.Intro"
+delay = 4.5
+metadata/_custom_type_script = "uid://c10lkodrlqtba"
+
+[node name="ChamberEntryVo" type="Node" parent="." node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("15_ml6ao")
+voiceline_player = NodePath("../AudioStreamPlayer")
+character_voicelines = Array[AudioStream]([ExtResource("30_nulcr"), ExtResource("31_rmp4i")])
+localized_caption_prefix = "Announcer.Chamber1."
+delay = 4.5
+metadata/_custom_type_script = "uid://c10lkodrlqtba"
+
+[node name="ChamberSoftlockVo" type="Node" parent="." node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("4_8lg6k")
+voiceline_player = NodePath("../AudioStreamPlayer")
+character_voiceline = ExtResource("32_3mch4")
+localized_caption = "Announcer.Chamber1.BoxTrap"
+metadata/_custom_type_script = "uid://whqnccb8m4hc"
+
+[node name="FPSC_DoorActivatable" type="Node" parent="." node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("33_jt04u")
+object_as_door = NodePath("../door_opener")
+stay_open = true
+delay = 48.0
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83147085, 2, -0.3004375)
+shadow_enabled = true
+omni_range = 7.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.7071068, -0.35355338, 0.61237246, 0, 0.8660254, 0.50000006, -0.7071068, -0.35355338, 0.61237246, 5, 2.3450458, 5)
+current = true
