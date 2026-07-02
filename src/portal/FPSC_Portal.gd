@@ -165,8 +165,9 @@ func _on_passthrough_area_body_exited(body: Node3D) -> void:
 		if $RayCast3D.is_colliding():
 			if $RayCast3D.get_collider() is CSGShape3D:
 				$RayCast3D.get_collider().use_collision = true
-				var mok_temp = other_portal.get_node("RayCast3D").get_collider() if other_portal.get_node("RayCast3D").is_colliding() else marked_other_collider
-				marked_other_collider = mok_temp if mok_temp is CSGShape3D else marked_other_collider
+				if other_portal != null:
+					var mok_temp = other_portal.get_node("RayCast3D").get_collider() if other_portal.get_node("RayCast3D").is_colliding() else marked_other_collider
+					marked_other_collider = mok_temp if mok_temp is CSGShape3D else marked_other_collider
 			elif marked_collider != null:
 				marked_collider.use_collision = true
 		else:

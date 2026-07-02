@@ -3,6 +3,11 @@ class_name FPSC_LocalizationSystem
 
 static var FPSC_LocalizationDB = {}
 
+static var language = "" :
+	set(v):
+		language = v
+		FPSC_LoadLocalization(v)
+
 static func FPSC_LoadLocalization(language:String):
 	FPSC_LocalizationDB = JSON.parse_string(FileAccess.get_file_as_string("res://resources/FPSC_lang_" + language + ".json"))
 

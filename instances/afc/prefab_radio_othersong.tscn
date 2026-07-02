@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://iat4nek0lqcn"]
+
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="1_45cc4"]
+[ext_resource type="AudioStream" uid="uid://dxrgmwd0wbxdl" path="res://sound/radio-justthesame.wav" id="2_45cc4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7grdf"]
+albedo_texture = ExtResource("1_45cc4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qrkxw"]
+size = Vector3(0.157, 0.38, 0.535)
+
+[node name="radio" type="RigidBody3D"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="."]
+size = Vector3(0.157, 0.38, 0.535)
+material = SubResource("StandardMaterial3D_7grdf")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-0.258819, 0, 0.9659259, 0, 1, 0, -0.9659259, 0, -0.258819, 0, 0, 0)
+stream = ExtResource("2_45cc4")
+autoplay = true
+max_distance = 15.0
+emission_angle_enabled = true
+emission_angle_degrees = 66.0
+doppler_tracking = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_qrkxw")

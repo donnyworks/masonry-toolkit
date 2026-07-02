@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddyq77yf5jul4"]
+[gd_scene load_steps=12 format=3 uid="uid://ddyq77yf5jul4"]
 
-[ext_resource type="Texture2D" uid="uid://sav8ot3s5160" path="res://icon.svg" id="1_pc1o8"]
+[ext_resource type="Texture2D" uid="uid://dxtrfikjwrokp" path="res://textures/teleporter_teleportation.png" id="1_b6en7"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="2_f71x0"]
 [ext_resource type="AudioStream" uid="uid://gky1fe2sn7k8" path="res://sound/teleporter_exit.wav" id="2_qjqbi"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="3_pc1o8"]
@@ -10,7 +10,14 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rj70k"]
 transparency = 1
 albedo_color = Color(1, 1, 1, 0.8)
-albedo_texture = ExtResource("1_pc1o8")
+albedo_texture = ExtResource("1_b6en7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lsukl"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.8)
+albedo_texture = ExtResource("1_b6en7")
+uv1_scale = Vector3(1.385, 1.385, 1.385)
+uv1_offset = Vector3(-0.215, -0.185, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pc1o8"]
 transparency = 1
@@ -38,8 +45,20 @@ shadow_enabled = true
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="door_teleporter_exit"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053987145, 1.2361991, -1.0067444)
 radius = 1.0
-height = 0.17687988
+height = 0.185
 material = SubResource("StandardMaterial3D_rj70k")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="door_teleporter_exit/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8626451e-08, 0.5922203, 0)
+operation = 2
+size = Vector3(3, 1, 3)
+material = SubResource("StandardMaterial3D_lsukl")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="door_teleporter_exit/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8626451e-08, -0.58899, 0)
+operation = 2
+size = Vector3(3, 1, 3)
+material = SubResource("StandardMaterial3D_lsukl")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="door_teleporter_exit"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054, 1.138, -1.007)

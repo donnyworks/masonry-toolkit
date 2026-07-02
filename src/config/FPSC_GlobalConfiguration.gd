@@ -12,7 +12,7 @@ static func FPSC_LoadGameConfig():
 var target_scene_path: String
 var is_loading: bool = false
 
-@onready var setters = [FPSC_MultiplayerFramework]
+@onready var setters = [FPSC_MultiplayerFramework, FPSC_LocalizationSystem]
 
 signal LevelChanged()
 

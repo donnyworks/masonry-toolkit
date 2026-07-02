@@ -1,28 +1,60 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkrwbd8coiujm"]
+[gd_scene load_steps=6 format=3 uid="uid://dkrwbd8coiujm"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hd3g"]
-albedo_color = Color(1, 0, 0, 1)
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="1_kkakh"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="2_vnuue"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ayas8"]
 shading_mode = 0
 albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ihlor"]
-albedo_color = Color(0.6790145, 2.815649e-06, 5.7756904e-07, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ip3cr"]
+albedo_color = Color(0.8047426, 0.80474263, 0.8047426, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ihdyw"]
+height = 0.6582031
+radius = 0.93896484
 
 [node name="prefab_geomesh_button" type="Node3D"]
 
-[node name="CSGBox3D39" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, 0.14730108, 0)
-size = Vector3(1.5, 0.319, 1.5)
-material = SubResource("StandardMaterial3D_5hd3g")
-
-[node name="CSGBox3D51" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0.1872524, 0)
-size = Vector3(1, 0.39890283, 1)
+[node name="CSGBox3D51" type="CSGCylinder3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0.24107236, 0)
+radius = 0.94140625
+height = 0.3
+sides = 16
 material = SubResource("StandardMaterial3D_ayas8")
 
-[node name="CSGBox3D50" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
+[node name="FPSC_DoorActivatable" type="Node" parent="CSGBox3D51" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("1_kkakh")
+object_as_door = NodePath("..")
+move_direction = 2
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="CSGBox3D50" type="CSGCylinder3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0.052208304, 0)
-size = Vector3(2, 0.12866211, 2)
-material = SubResource("StandardMaterial3D_ihlor")
+radius = 1.25
+height = 0.133
+sides = 16
+material = SubResource("StandardMaterial3D_ip3cr")
+
+[node name="CSGBox3D52" type="CSGCylinder3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0.1855973, 0)
+radius = 1.25
+height = 0.133
+sides = 16
+material = SubResource("StandardMaterial3D_ip3cr")
+
+[node name="CSGBox3D53" type="CSGCylinder3D" parent="CSGBox3D52" groups=["Non-Portalable"]]
+operation = 2
+radius = 1.0371094
+height = 0.133
+sides = 16
+material = SubResource("StandardMaterial3D_ip3cr")
+
+[node name="relay_button_dwon" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
+script = ExtResource("2_vnuue")
+activated = [NodePath("../CSGBox3D51/FPSC_DoorActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="relay_button_dwon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31640625, 0)
+shape = SubResource("CylinderShape3D_ihdyw")
