@@ -17,9 +17,9 @@ radius = 0.93896484
 [node name="prefab_geomesh_button" type="Node3D"]
 
 [node name="CSGBox3D51" type="CSGCylinder3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0.24107236, 0)
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0.2809161, 0)
 radius = 0.94140625
-height = 0.3
+height = 0.2203125
 sides = 16
 material = SubResource("StandardMaterial3D_ayas8")
 

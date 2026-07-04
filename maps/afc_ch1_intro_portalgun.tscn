@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="3_36utm"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_otmw1"]
 [ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/FPSC_ActivatableSoundOnActivation.gd" id="4_psra2"]
-[ext_resource type="Material" uid="uid://cbuoxl6trvib2" path="res://resources/portallable_surface.tres" id="7_0s6a4"]
+[ext_resource type="Material" uid="uid://cbuoxl6trvib2" path="res://materials/portallable_surface.tres" id="7_0s6a4"]
 [ext_resource type="Script" uid="uid://c10lkodrlqtba" path="res://src/base/activatables/FPSC_ActivatablePlayVoicelines.gd" id="8_oyoa2"]
 [ext_resource type="AudioStream" uid="uid://7i3axukxuxtc" path="res://sound/vo/announcer/ch1/Chamber1.GetPortalGun.01.wav" id="9_uxas0"]
 [ext_resource type="AudioStream" uid="uid://b8k1dstrtgt7c" path="res://sound/vo/announcer/ch1/Chamber1.GetPortalGun.02.wav" id="10_fdmla"]
@@ -190,7 +190,7 @@ radius = 0.9370117
 size = Vector3(3, 0.5587158, 2)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_kd72h"]
-height = 47.918
+height = 49.684097
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3xtpw"]
 size = Vector3(5, 5, 1)
@@ -1650,6 +1650,11 @@ transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -
 use_collision = true
 size = Vector3(6, 1, 22)
 
+[node name="CSGBox3D126" type="CSGBox3D" parent="section2" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 1, -2.499999, -67.5)
+use_collision = true
+size = Vector3(6, 1, 9)
+
 [node name="CSGBox3D100" type="CSGBox3D" parent="section2"]
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, -8, 8, -73.5)
 use_collision = true
@@ -3091,7 +3096,7 @@ activated = [NodePath("FPSC_PushActivatable")]
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay2"]
-transform = Transform3D(1, 0, -4.371139e-08, -4.371139e-08, 1.9106857e-15, -1, 0, 1.0000001, 1.9106855e-15, 0, 0, -9)
+transform = Transform3D(1, 0, -4.371139e-08, -4.371139e-08, 1.9106857e-15, -1, 0, 1.0000001, 1.9106855e-15, 0, 0, -8.116951)
 shape = SubResource("CylinderShape3D_kd72h")
 
 [node name="Marker3D" type="Marker3D" parent="FPSC_TriggerRelay2"]

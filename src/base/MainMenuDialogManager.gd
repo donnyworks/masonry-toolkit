@@ -16,6 +16,8 @@ class_name FPSC_MainMenuDialogManager
 @export var GameVersionLabel : Label
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	FPSC_ConsoleInstance.stale_mode = Input.MOUSE_MODE_VISIBLE
 	ChapterSelectButtonTemplate.visible = false
 	for i in range(0,len(FPSC_LevelManager.metadata.Chapters.keys())):
 		var btn = ChapterSelectButtonTemplate.duplicate()
