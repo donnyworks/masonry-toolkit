@@ -6,6 +6,8 @@ enum FadeTypes{
 	FADE_IN = 1,
 	FADE_OUT = 2
 }
+@export var entrance_number := 0 ## Determines which entrance to use. See FPSC_TriggerChangelevel.
+@export_group("Fade Controls")
 @export_enum("No Fade","Fade In","Fade Out") var fade_type = 0
 @export var fade_color : Color
 @export var fade_duration : float = 1.0
@@ -127,6 +129,9 @@ func FPSC_ShowChapterTitle(title:String,color:Color,duration:float,subtext=""):
 	f.tween_property($ChapterTitle,"self_modulate",new_color,0.5)
 
 func _ready():
+	if entrance_number != FPSC_LevelManager.entrance_number:
+		queue_free()
+		return
 	base_speed = SPEED
 	base_jv = JUMP_VELOCITY
 	base_speed_sprint = SPEED_SPRINT

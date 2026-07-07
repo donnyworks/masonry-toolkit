@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://dcsa4g02jjajj"]
+[gd_scene load_steps=77 format=3 uid="uid://dcsa4g02jjajj"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_3nx2d"]
 [ext_resource type="Script" uid="uid://sl4hinpkxef0" path="res://src/base/FPSC_DevNote.gd" id="2_k6ams"]
@@ -21,6 +21,9 @@
 [ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/FPSC_ActivatablePlayVoiceline.gd" id="18_c0xf7"]
 [ext_resource type="Script" uid="uid://dd5j3m0ylh3c5" path="res://src/base/activatables/FPSC_ActivatableChangeVisibilityRegions.gd" id="18_xhx02"]
 [ext_resource type="AudioStream" uid="uid://c4qd4o82eb3im" path="res://sound/vo/announcer/ch1/Chamber1.Part2Entry.wav" id="19_3nx2d"]
+[ext_resource type="PackedScene" uid="uid://cihvtue137xn7" path="res://instances/afc/prefab_chamber_entryway.tscn" id="19_3xtpw"]
+[ext_resource type="Texture2D" uid="uid://c51obrtd7xqus" path="res://textures/door_ch1_intro_portalgun.png" id="19_kd72h"]
+[ext_resource type="PackedScene" uid="uid://bjj403lwphbjj" path="res://instances/player_scalemarker.tscn" id="20_4rbjw"]
 [ext_resource type="Script" uid="uid://b5fvug40sktho" path="res://src/portal/triggers/FPSC_TriggerDestroyPortals.gd" id="20_c0xf7"]
 [ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="21_06gab"]
 [ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="21_jitf1"]
@@ -157,6 +160,21 @@ _data = {
 &"RESET": SubResource("Animation_fdmla"),
 &"dooropen": SubResource("Animation_uxas0")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i4od0"]
+shading_mode = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_50mm5"]
+material = SubResource("StandardMaterial3D_i4od0")
+flip_faces = true
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xtpw"]
+albedo_color = Color(0.5058824, 0.5058824, 0.5058824, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tflsb"]
+albedo_texture = ExtResource("19_kd72h")
+uv1_scale = Vector3(-1, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36utm"]
 albedo_color = Color(0, 0, 0, 1)
@@ -1180,6 +1198,514 @@ transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -
 use_collision = true
 size = Vector3(1, 5, 21)
 
+[node name="CSGBox3D76" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 19.5, -5.0000005, -45.5)
+use_collision = true
+size = Vector3(1, 5, 4)
+
+[node name="CSGBox3D84" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 21, -1.0000005, -45.5)
+use_collision = true
+size = Vector3(1, 7, 1)
+
+[node name="CSGBox3D101" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 24.5, -1.0000004, -45.5)
+use_collision = true
+size = Vector3(1, 7, 6)
+
+[node name="CSGBox3D103" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 38.5, -1, -45)
+use_collision = true
+size = Vector3(1, 6, 22)
+
+[node name="CSGBox3D102" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 24.5, -1.0000007, -60.5)
+use_collision = true
+size = Vector3(1, 23, 6)
+
+[node name="CSGBox3D85" type="CSGBox3D" parent="section1"]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 21, -9.5, -45.5)
+use_collision = true
+size = Vector3(8, 7, 1)
+material = ExtResource("7_0s6a4")
+
+[node name="CSGBox3D93" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 21, -7, -69.5)
+use_collision = true
+size = Vector3(13, 7, 1)
+material = ExtResource("7_0s6a4")
+
+[node name="CSGBox3D95" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 28, -7, -69.5)
+use_collision = true
+size = Vector3(13, 7, 1)
+material = ExtResource("7_0s6a4")
+
+[node name="CSGBox3D96" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 24.5, -17, -69.5)
+use_collision = true
+size = Vector3(7, 7, 8)
+
+[node name="CSGBox3D99" type="CSGBox3D" parent="section1"]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 24.5, -10.5, -72.5)
+use_collision = true
+size = Vector3(20, 1, 8)
+material = ExtResource("7_0s6a4")
+
+[node name="CSGBox3D97" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 24.5, -17, -45)
+use_collision = true
+size = Vector3(7, 8, 8)
+
+[node name="CSGBox3D104" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 35, -20, -45)
+use_collision = true
+size = Vector3(1, 8, 13)
+
+[node name="CSGBox3D106" type="CSGBox3D" parent="section1/CSGBox3D104" groups=["Non-Portalable"]]
+transform = Transform3D(1, -2.7711906e-08, 1.5999479e-08, 1.5999483e-08, 0.8660254, 0.5, -2.771191e-08, -0.5, 0.8660254, 0.09122658, -0.86602783, 0.5)
+operation = 2
+use_collision = true
+size = Vector3(1.39, 14, 5)
+
+[node name="CSGBox3D107" type="CSGBox3D" parent="section1/CSGBox3D104" groups=["Non-Portalable"]]
+transform = Transform3D(1, -1.2802765e-08, 9.823911e-09, 9.823914e-09, 0.9659258, 0.25881904, -1.2802772e-08, -0.25881904, 0.9659258, 0.09122658, -0.86602783, -0.5)
+operation = 2
+use_collision = true
+size = Vector3(1.39, 14, 5)
+
+[node name="CSGBox3D106" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 35, -20, -45)
+use_collision = true
+size = Vector3(0.1, 8, 13)
+
+[node name="CSGBox3D106" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, -1.677358e-08, 1.1927858e-08, 1.192786e-08, 0.9445714, 0.3283062, -1.677358e-08, -0.3283062, 0.9445714, 0.09122658, -1.0997581, 0.107357025)
+operation = 2
+use_collision = true
+size = Vector3(1.39, 14, 3.8851318)
+
+[node name="CSGBox3D107" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 0, -2)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D108" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 0, -3)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D109" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 0, -4)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D110" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 1, -2)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D111" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 1, -3)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D112" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 1, -4)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D113" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 2, -2)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D114" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 2, -3)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D115" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 2, -4)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D116" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 3, -2)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D117" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 3, -3)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D118" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 3, -4)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D119" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -1, -2)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D120" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -1, -3)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D121" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -1, -4)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D122" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -2, -2)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D123" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -2, -3)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D124" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -2, -4)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D125" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -3, -2)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D128" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -3, -1)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D126" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -3, -3)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D127" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -3, -4)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D129" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -3, 3)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D130" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -3, 4)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D131" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -3, 2)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D132" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -3, 1)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D133" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -2, 3)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D134" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -2, 4)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D135" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -2, 2)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D136" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -2, 1)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D137" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -1, 3)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D138" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -1, 4)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D139" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -1, 2)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D140" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, -1, 1)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D141" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 0, 3)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D142" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 0, 4)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D143" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 0, 2)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D144" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 0, 1)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D145" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 1, 3)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D146" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 1, 4)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D147" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 1, 2)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D148" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 1, 1)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D149" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 2, 3)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D150" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 2, 4)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D151" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 2, 2)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D152" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 2, 1)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D153" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 3, 3)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D154" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 3, 4)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D155" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 3, 2)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D156" type="CSGBox3D" parent="section1/CSGBox3D106" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.351872e-23, 0, 1, 0, 3, 1)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D105" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 24.5, -20, -50.5)
+use_collision = true
+size = Vector3(1, 3, 6)
+
+[node name="CSGBox3D107" type="CSGBox3D" parent="section1/CSGBox3D105" groups=["Non-Portalable"]]
+transform = Transform3D(0.98491967, -0.17301218, 6.591808e-10, 0.17301218, 0.98491967, -7.562603e-09, 6.591808e-10, 7.562603e-09, 1, -0.28349304, 3, 0)
+use_collision = true
+size = Vector3(1, 3, 6)
+
+[node name="CSGBox3D108" type="CSGBox3D" parent="section1/CSGBox3D105/CSGBox3D107" groups=["Non-Portalable"]]
+transform = Transform3D(0.9667613, -0.2556821, 1.452924e-09, 0.2556821, 0.9667613, -1.1176215e-08, 1.4529118e-09, 1.1176217e-08, 1, -0.31080532, 3.0546074, 0)
+use_collision = true
+size = Vector3(1, 3, 6)
+
+[node name="CSGBox3D109" type="CSGBox3D" parent="section1/CSGBox3D105/CSGBox3D107/CSGBox3D108" groups=["Non-Portalable"]]
+transform = Transform3D(0.9858759, -0.16747433, 6.173648e-10, 0.16747433, 0.9858759, -7.320521e-09, 6.1737815e-10, 7.3205317e-09, 1, -0.25036812, 2.9189758, 1.5)
+use_collision = true
+size = Vector3(1, 3, 3)
+
+[node name="CSGBox3D110" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 26, -20, -59.5)
+use_collision = true
+size = Vector3(1, 3, 3)
+
+[node name="CSGBox3D111" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 24.5, -20, -62.5)
+use_collision = true
+size = Vector3(1, 3, 6)
+
+[node name="CSGBox3D112" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 24.5, -20, -65)
+use_collision = true
+size = Vector3(1, 2, 6)
+
+[node name="CSGBox3D98" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 46, -17, -45)
+use_collision = true
+size = Vector3(7, 8, 9)
+
+[node name="prefab_chamber_entryway2" parent="section1" instance=ExtResource("19_3xtpw")]
+transform = Transform3D(-4.371139e-08, -8.351872e-23, 1, 0, 1, -8.351872e-23, -1, 3.650719e-30, -4.371139e-08, 60, -13, -45)
+
+[node name="CSGBox3D100" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 50, -5, -45)
+use_collision = true
+size = Vector3(9, 8, 1)
+material = ExtResource("7_0s6a4")
+
+[node name="CSGBox3D87" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 24, -7, -41.5)
+use_collision = true
+size = Vector3(13, 1, 7)
+material = ExtResource("7_0s6a4")
+
+[node name="CSGBox3D92" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 21, -11, -57.5)
+use_collision = true
+size = Vector3(21, 17, 1)
+material = ExtResource("7_0s6a4")
+
+[node name="CSGBox3D94" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 28, -11, -57.5)
+use_collision = true
+size = Vector3(21, 17, 1)
+material = ExtResource("7_0s6a4")
+
+[node name="CSGBox3D89" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 46, -7, -41.5)
+use_collision = true
+size = Vector3(13, 1, 9)
+material = ExtResource("7_0s6a4")
+
+[node name="CSGBox3D90" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 46, -7, -48.5)
+use_collision = true
+size = Vector3(13, 1, 9)
+material = ExtResource("7_0s6a4")
+
+[node name="CSGBox3D88" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 34.5, -10.5, -41.5)
+use_collision = true
+size = Vector3(20, 1, 14)
+material = ExtResource("7_0s6a4")
+
+[node name="CSGBox3D91" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 34.5, -10.5, -48.5)
+use_collision = true
+size = Vector3(20, 1, 14)
+material = ExtResource("7_0s6a4")
+
+[node name="CSGBox3D81" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 19, -1.0000005, -45.5)
+use_collision = true
+size = Vector3(1, 5, 3)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="section1/CSGBox3D81"]
+transform = Transform3D(-4.3711385e-08, 1, 4.371139e-08, -1, -4.371139e-08, 4.371139e-08, 4.371139e-08, -4.371139e-08, 1, 0, 0, 0)
+operation = 2
+radius = 0.7763672
+sides = 16
+
+[node name="CSGBox3D82" type="MeshInstance3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 19, -0.50050044, -45.5)
+mesh = SubResource("PlaneMesh_50mm5")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="section1/CSGBox3D82"]
+transform = Transform3D(-4.3711385e-08, 4.3711392e-08, 1, 4.3711385e-08, 1, -4.371139e-08, -1, 4.371138e-08, -4.371139e-08, 0.9474883, 0, 0)
+shadow_enabled = true
+spot_range = 8.0
+
+[node name="CSGBox3D79" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 19.5, -3.5000005, -48.5)
+use_collision = true
+size = Vector3(4, 1, 4)
+
+[node name="CSGBox3D80" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 19.5, -3.5000005, -42.5)
+use_collision = true
+size = Vector3(4, 1, 4)
+
 [node name="CSGBox3D73" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 6.9999995, 3, -45)
 use_collision = true
@@ -1205,6 +1731,46 @@ size = Vector3(4, 12, 1)
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 17, -1, -45)
 use_collision = true
 size = Vector3(8, 7, 1)
+
+[node name="CSGBox3D76" type="CSGBox3D" parent="section1/CSGBox3D75" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -2.5, 0)
+operation = 2
+use_collision = true
+size = Vector3(1.25, 2, 1)
+
+[node name="CSGBox3D83" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 21, -3, -45.5)
+use_collision = true
+size = Vector3(5, 3, 1)
+
+[node name="CSGBox3D86" type="CSGBox3D" parent="section1/CSGBox3D83" groups=["Non-Portalable"]]
+operation = 2
+use_collision = true
+size = Vector3(4.75, 2.75, 1)
+
+[node name="CSGBox3D86" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 21, -3, -45.5)
+use_collision = true
+size = Vector3(5, 3, 0.1)
+material = ExtResource("21_06gab")
+
+[node name="secret_exit" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
+transform = Transform3D(-4.3713833e-08, 2.5868196e-14, -1, 0.010576498, 0.9999441, -4.6231338e-10, 0.9999441, -0.010576498, -4.371139e-08, 16.635164, -3.5, -47.5)
+use_collision = true
+size = Vector3(1.25, 2, 0.198)
+material = SubResource("StandardMaterial3D_3xtpw")
+
+[node name="secret_exit2" type="CSGBox3D" parent="section1/secret_exit" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.051412582)
+use_collision = true
+size = Vector3(1, 2, 0.10272266)
+material = SubResource("StandardMaterial3D_tflsb")
+
+[node name="secret_exit3" type="CSGBox3D" parent="section1/secret_exit" groups=["Non-Portalable"]]
+transform = Transform3D(-0.99977624, 0.021151815, -8.7427665e-08, 0.021151813, 0.99977636, 5.1736393e-14, 8.740811e-08, -1.849202e-09, -1, 0, 0, -0.04975319)
+use_collision = true
+size = Vector3(1, 2, 0.10272266)
+material = SubResource("StandardMaterial3D_tflsb")
 
 [node name="CSGBox3D70" type="CSGBox3D" parent="section1" groups=["Non-Portalable"]]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3, -3, -38.5)
@@ -1302,6 +1868,9 @@ script = ExtResource("14_fdmla")
 player = NodePath("../CSGBox3D65/AnimationTree")
 animation = "dooropen"
 metadata/_custom_type_script = "uid://cd37fw45rkj5r"
+
+[node name="Player" parent="section1" instance=ExtResource("20_4rbjw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.867646, -3.5, -48.285473)
 
 [node name="intermittent_area" type="Node3D" parent="."]
 
@@ -2460,6 +3029,16 @@ size = Vector3(0.9, 0.9, 0.9)
 transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.3518705e-23, 0, 1, 1.9073486e-06, -2, -4)
 operation = 2
 size = Vector3(0.9, 0.9, 0.9)
+
+[node name="CSGBox3D80" type="CSGBox3D" parent="section2/CSGBox3D111"]
+transform = Transform3D(1, -4.9567603e-08, 1.0143264e-08, 3.7855173e-08, 0.8660254, 0.5, -3.3568128e-08, -0.5, 0.8660254, 1.9073486e-06, -0.36567688, -5.0013146)
+operation = 2
+size = Vector3(0.9, 3, 2)
+
+[node name="CSGBox3D89" type="CSGBox3D" parent="section2/CSGBox3D111"]
+transform = Transform3D(1, 3.7855173e-08, -3.3568124e-08, -4.9567603e-08, 0.8660254, -0.5, 1.01432605e-08, 0.5, 0.8660254, 1.9073486e-06, 0.8541031, -3.5363266)
+operation = 2
+size = Vector3(0.9, 3, 2)
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="section2/CSGBox3D111"]
 transform = Transform3D(1, 0, -8.351872e-23, 0, 1, 0, -8.3518705e-23, 0, 1, 2.861023e-06, -3, -4)

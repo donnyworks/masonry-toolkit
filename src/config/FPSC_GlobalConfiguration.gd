@@ -20,6 +20,8 @@ var VPKH = VPKHandler.CFileAccess
 
 var source_mount_path = ""
 
+var entrance_number := 0 ## The number of the player's entry point. Used for multi-entrance levels.
+
 func gameinfo_process(set_source_mount_path,source_game_path):
 	source_mount_path = set_source_mount_path
 	var d_gameinfo = FileAccess.get_file_as_string(source_mount_path + "/" + source_game_path + "/gameinfo.txt").replace("\r","").replace("\t","$TAB$").replace("|all_source_engine_paths|","").replace("|gameinfo_path|",source_game_path + "/")

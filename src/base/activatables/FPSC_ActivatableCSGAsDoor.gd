@@ -9,6 +9,8 @@ class_name FPSC_DoorActivatable
 
 @export var stay_open : bool = false
 
+@export var can_be_used : bool = false
+
 var current_position : Vector3:
 	set(v):
 		object_as_door.position = v
@@ -47,6 +49,8 @@ func _ready():
 	ending_position = object_as_door.position + object_as_door.get_aabb().size * ep_vector
 	await get_tree().process_frame # Wait a frame, recalcuate to be safe
 	ending_position = object_as_door.position + object_as_door.get_aabb().size * ep_vector
+	if can_be_used:
+		object_as_door.add_child(FPSC_InteractivityMarker.new())
 
 var bodies_entered = []
 
