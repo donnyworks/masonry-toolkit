@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://plpnja5gt1i4" path="res://instances/portal/weapon_portalgun.tscn" id="1_ga8du"]
 [ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="2_17nuf"]
-[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/FPSC_ActivatablePlayAnimation.gd" id="3_qpk4i"]
+[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/world/doers/FPSC_ActivatablePlayAnimation.gd" id="3_qpk4i"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_ogmsl"]
 
 [sub_resource type="Animation" id="Animation_17nuf"]

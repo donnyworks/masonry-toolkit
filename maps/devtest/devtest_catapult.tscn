@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cm04rqdktssx2" path="res://instances/stellaoctangula.tscn" id="4_co2i0"]
 [ext_resource type="Script" uid="uid://l3j5m0d3m6rj" path="res://src/base/triggers/FPSC_TriggerCatapult.gd" id="5_db5ap"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="6_jle5d"]
-[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/FPSC_ActivatableSoundOnActivation.gd" id="7_ibef5"]
-[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="8_3tyqa"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="7_ibef5"]
+[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="8_3tyqa"]
 [ext_resource type="Texture2D" uid="uid://dvt56pplj6tyx" path="res://textures/hud/nofired_surface.png" id="9_400f2"]
 [ext_resource type="Texture2D" uid="uid://c5blavtcsjokf" path="res://textures/hud/nofired_nosurface_onecolor.png" id="10_m2krt"]
 [ext_resource type="AudioStream" uid="uid://bdv5tp7sgyuv1" path="res://sound/elevbell1.wav" id="11_s72hg"]
@@ -174,11 +174,11 @@ size = Vector3(0.5576782, 2, 0.34375)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="ViewTexture" type="SubViewport" parent="Skybox"]
-size = Vector2i(1358, 606)
+size = Vector2i(1356, 606)
 script = ExtResource("2_jlqwc")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(0.87375075, 0.2373143, -0.42454782, 0, 0.87288433, 0.48792616, 0.48637328, -0.42632592, 0.7626837, -0.60901946, 38.495075, 0.78121126)
+transform = Transform3D(0.99999803, 0.0008475888, -0.0015677209, 0, 0.8796656, 0.4755916, 0.0017821775, -0.47559077, 0.8796643, -0.24948645, 38.336136, 0.5986044)
 fov = 70.01
 script = ExtResource("3_wak3n")
 CameraOrigin = NodePath("../../SkyCameraPivot")

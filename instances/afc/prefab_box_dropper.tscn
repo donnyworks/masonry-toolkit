@@ -1,14 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://dnt5wa40ueymc"]
+[gd_scene load_steps=15 format=3 uid="uid://dnt5wa40ueymc"]
 
 [ext_resource type="Script" uid="uid://sl4hinpkxef0" path="res://src/base/FPSC_DevNote.gd" id="1_coasr"]
-[ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/FPSC_ActivatableCreateFromInstance.gd" id="2_5egdy"]
-[ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/FPSC_ActivatableRelay.gd" id="2_kbcr4"]
+[ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/world/doers/FPSC_ActivatableCreateFromInstance.gd" id="2_5egdy"]
+[ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/logic/FPSC_ActivatableRelay.gd" id="2_kbcr4"]
 [ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="2_vg8cg"]
-[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/FPSC_ActivatablePlayAnimation.gd" id="3_ixbg1"]
+[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/world/doers/FPSC_ActivatablePlayAnimation.gd" id="3_ixbg1"]
 [ext_resource type="PackedScene" uid="uid://bujgt2o11dkxq" path="res://instances/afc/prefab_box.tscn" id="4_ixbg1"]
-[ext_resource type="Script" uid="uid://cguq0l7w5loj6" path="res://src/base/activatables/FPSC_ActivatableActivateOnSpawning.gd" id="5_p7mkj"]
+[ext_resource type="Script" uid="uid://cguq0l7w5loj6" path="res://src/base/activatables/logic/FPSC_ActivatableActivateOnSpawning.gd" id="5_p7mkj"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="6_p7mkj"]
 [ext_resource type="Script" uid="uid://tqson2e0626t" path="res://src/base/conditionals/FPSC_BodyNameBeginsWithCaseCondition.gd" id="7_ym2ws"]
+[ext_resource type="AudioStream" uid="uid://dsmstooi1jlkg" path="res://sound/60hz-ambientelectrical.wav" id="10_ym6sx"]
 
 [sub_resource type="Animation" id="Animation_ym6sx"]
 length = 0.001
@@ -200,3 +201,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
 
 [node name="dropper_spawnpoint" type="Marker3D" parent="dropper_geometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7216296, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.145796, 0)
+stream = ExtResource("10_ym6sx")
+autoplay = true

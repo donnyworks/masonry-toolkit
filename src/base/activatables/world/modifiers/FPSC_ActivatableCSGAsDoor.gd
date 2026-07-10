@@ -50,7 +50,10 @@ func _ready():
 	await get_tree().process_frame # Wait a frame, recalcuate to be safe
 	ending_position = object_as_door.position + object_as_door.get_aabb().size * ep_vector
 	if can_be_used:
-		object_as_door.add_child(FPSC_InteractivityMarker.new())
+		var ia = FPSC_InteractivityMarker.new()
+		ia.name = "IntMarker"
+		ia.activatable = self
+		object_as_door.add_child(ia)
 
 var bodies_entered = []
 

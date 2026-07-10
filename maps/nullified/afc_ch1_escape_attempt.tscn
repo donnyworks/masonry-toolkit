@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="6_4vdpm"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="7_r77tv"]
 [ext_resource type="PackedScene" uid="uid://cwhsylkx5udbf" path="res://maps/nullified/afc_ch2_intro.tscn" id="8_nqqcq"]
-[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="9_30t5n"]
+[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="9_30t5n"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="10_3ulgn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyvpv"]

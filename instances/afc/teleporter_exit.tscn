@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dxtrfikjwrokp" path="res://textures/teleporter_teleportation.png" id="1_b6en7"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="2_f71x0"]
 [ext_resource type="AudioStream" uid="uid://gky1fe2sn7k8" path="res://sound/teleporter_exit.wav" id="2_qjqbi"]
-[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="3_pc1o8"]
-[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="3_qjqbi"]
-[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/FPSC_ActivatableSoundOnActivation.gd" id="5_ge70o"]
+[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="3_pc1o8"]
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="3_qjqbi"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="5_ge70o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rj70k"]
 transparency = 1

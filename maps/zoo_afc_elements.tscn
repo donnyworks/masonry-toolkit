@@ -1,21 +1,22 @@
-[gd_scene load_steps=37 format=3 uid="uid://fabh0jfxxi51"]
+[gd_scene load_steps=38 format=3 uid="uid://fabh0jfxxi51"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_wtdix"]
 [ext_resource type="PackedScene" uid="uid://fsyjqmmliyan" path="res://instances/afc/prefab_new_portalgun_pedestal.tscn" id="2_8pegt"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="2_ed8bu"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="3_cmfjx"]
 [ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="4_mxkik"]
-[ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/FPSC_ActivatableToggleModulationColor.gd" id="5_g5xqv"]
+[ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleModulationColor.gd" id="5_g5xqv"]
 [ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="5_mxkik"]
-[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="7_gmxsc"]
+[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="7_gmxsc"]
 [ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="8_t2u4x"]
 [ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="9_4sprw"]
-[ext_resource type="Script" uid="uid://b84g1xo7620ij" path="res://src/base/activatables/FPSC_ActivatableToggleTriggerEnablement.gd" id="9_87tng"]
-[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="9_le08f"]
+[ext_resource type="Script" uid="uid://b84g1xo7620ij" path="res://src/base/activatables/logic/FPSC_ActivatableToggleTriggerEnablement.gd" id="9_87tng"]
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="9_le08f"]
 [ext_resource type="PackedScene" uid="uid://f0qlfetn1pdk" path="res://instances/afc/prefab_catapult.tscn" id="10_t2u4x"]
-[ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/FPSC_ActivatableToggleLightModulationColor.gd" id="10_w55ah"]
+[ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleLightModulationColor.gd" id="10_w55ah"]
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="11_le08f"]
 [ext_resource type="PackedScene" path="res://instances/afc/prefab_bed.tscn" id="14_6xojh"]
+[ext_resource type="AudioStream" uid="uid://dsmstooi1jlkg" path="res://sound/60hz-ambientelectrical.wav" id="14_kishi"]
 [ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="15_48spo"]
 [ext_resource type="PackedScene" uid="uid://ddyq77yf5jul4" path="res://instances/afc/teleporter_exit.tscn" id="16_g0gtr"]
 [ext_resource type="Texture2D" uid="uid://bn1xcnqcyqtjt" path="res://textures/clipboard/texture_clipboard_3.png" id="16_g1f0s"]
@@ -424,6 +425,10 @@ script = ExtResource("9_le08f")
 object_as_door = NodePath("..")
 delay = 0.2
 metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="door_entrance"]
+stream = ExtResource("14_kishi")
+autoplay = true
 
 [node name="FPSC_TriggerCatapult2" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("10_t2u4x")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.710163, 0, -6.5112557)

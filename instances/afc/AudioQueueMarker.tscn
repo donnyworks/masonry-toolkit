@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://dllfki6pae3cx"]
 
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="1_nqxa6"]
-[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/FPSC_ActivatableSoundOnActivation.gd" id="2_2pys6"]
-[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="3_kgefr"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="2_2pys6"]
+[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="3_kgefr"]
 [ext_resource type="Texture2D" uid="uid://dvt56pplj6tyx" path="res://textures/hud/nofired_surface.png" id="4_8uh83"]
 [ext_resource type="Texture2D" uid="uid://byn1b0h8y0ffy" path="res://textures/hud/nofired_nosurface.png" id="5_2pys6"]
 [ext_resource type="Texture2D" uid="uid://c5blavtcsjokf" path="res://textures/hud/nofired_nosurface_onecolor.png" id="5_tk1m5"]

@@ -1,30 +1,31 @@
-[gd_scene load_steps=65 format=3 uid="uid://da8fywn53c78t"]
+[gd_scene load_steps=66 format=3 uid="uid://da8fywn53c78t"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_i4tkx"]
 [ext_resource type="PackedScene" uid="uid://cihvtue137xn7" path="res://instances/afc/prefab_chamber_entryway.tscn" id="1_v4uc3"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="3_04veb"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_n1mh4"]
 [ext_resource type="PackedScene" uid="uid://btjkhkjtog1vo" path="res://instances/afc/prefab_radio.tscn" id="5_bhnlf"]
-[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/FPSC_ActivatablePlayAnimation.gd" id="5_l6bet"]
+[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/world/doers/FPSC_ActivatablePlayAnimation.gd" id="5_l6bet"]
 [ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="5_nchtp"]
 [ext_resource type="Texture2D" uid="uid://wmpactx1jwkd" path="res://textures/target_endpoint.png" id="5_vffpw"]
-[ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/FPSC_ActivatableToggleModulationColor.gd" id="6_l15d5"]
-[ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/FPSC_ActivatableRelay.gd" id="6_rw1k0"]
+[ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleModulationColor.gd" id="6_l15d5"]
+[ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/logic/FPSC_ActivatableRelay.gd" id="6_rw1k0"]
 [ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="7_7b1nh"]
 [ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="7_n273v"]
-[ext_resource type="Script" uid="uid://c10lkodrlqtba" path="res://src/base/activatables/FPSC_ActivatablePlayVoicelines.gd" id="8_apnpf"]
-[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/FPSC_ActivatableSoundOnActivation.gd" id="8_buwyv"]
-[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="8_tc4iw"]
+[ext_resource type="Script" uid="uid://c10lkodrlqtba" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoicelines.gd" id="8_apnpf"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="8_buwyv"]
+[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="8_tc4iw"]
+[ext_resource type="AudioStream" uid="uid://dsmstooi1jlkg" path="res://sound/60hz-ambientelectrical.wav" id="9_buwyv"]
 [ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="9_mq8bb"]
 [ext_resource type="AudioStream" uid="uid://c4is3teurfxti" path="res://sound/vo/announcer/ch4/Chamber4.01.wav" id="9_y0riy"]
-[ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/FPSC_ActivatableToggleLightModulationColor.gd" id="10_oxf4t"]
+[ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleLightModulationColor.gd" id="10_oxf4t"]
 [ext_resource type="AudioStream" uid="uid://ddh7xbgw0uyj6" path="res://sound/vo/announcer/ch4/Chamber4.02.wav" id="10_vffpw"]
-[ext_resource type="Script" uid="uid://b84g1xo7620ij" path="res://src/base/activatables/FPSC_ActivatableToggleTriggerEnablement.gd" id="11_n273v"]
+[ext_resource type="Script" uid="uid://b84g1xo7620ij" path="res://src/base/activatables/logic/FPSC_ActivatableToggleTriggerEnablement.gd" id="11_n273v"]
 [ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="12_buwyv"]
-[ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/FPSC_ActivatablePlayVoiceline.gd" id="12_v0i48"]
+[ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoiceline.gd" id="12_v0i48"]
 [ext_resource type="AudioStream" uid="uid://chu8sf3giqtol" path="res://sound/vo/announcer/GenericCubeSoftlockMessage.wav" id="13_eyxgt"]
-[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="13_rmt7r"]
-[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="14_eyxgt"]
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="13_rmt7r"]
+[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="14_eyxgt"]
 [ext_resource type="PackedScene" uid="uid://f0qlfetn1pdk" path="res://instances/afc/prefab_catapult.tscn" id="14_mamfh"]
 [ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="15_hcj4l"]
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="15_y315y"]
@@ -32,7 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://b6lemoo8ic8o2" path="res://instances/portal/PortalInstance.tscn" id="23_fekfh"]
 [ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="27_nchtp"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="29_oxf4t"]
-[ext_resource type="Script" uid="uid://bxrwaxtx06m0r" path="res://src/base/activatables/FPSC_ActivatableTeleportNode3D.gd" id="29_tc4iw"]
+[ext_resource type="Script" uid="uid://bxrwaxtx06m0r" path="res://src/base/activatables/world/doers/FPSC_ActivatableTeleportNode3D.gd" id="29_tc4iw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ah5jf"]
 
@@ -923,6 +924,10 @@ stream = ExtResource("7_n273v")
 script = ExtResource("8_buwyv")
 stream_player = NodePath("../AudioStreamPlayer3D")
 metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="door"]
+stream = ExtResource("9_buwyv")
+autoplay = true
 
 [node name="CSGBox3D40" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 24.827026, -72.5)
@@ -5165,6 +5170,10 @@ script = ExtResource("8_buwyv")
 stream_player = NodePath("../AudioStreamPlayer3D")
 metadata/_custom_type_script = "uid://dlktdrvwevbt1"
 
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="door_to_part2"]
+stream = ExtResource("9_buwyv")
+autoplay = true
+
 [node name="CSGBox3D36" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 9.5, -39.5)
 use_collision = true
@@ -7281,6 +7290,10 @@ stream_player = NodePath("../AudioStreamPlayer3D")
 delay = 1.0
 metadata/_custom_type_script = "uid://dlktdrvwevbt1"
 
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="door_chamber_entry"]
+stream = ExtResource("9_buwyv")
+autoplay = true
+
 [node name="animpanel8" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 4.5, -8)
 use_collision = true
@@ -7771,6 +7784,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, -0.7559905, 4)
 use_collision = true
 size = Vector3(1, 3, 4)
 material = SubResource("StandardMaterial3D_rmt7r")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="afc_ch1_intro_chamber/CSGBox3D19"]
+stream = ExtResource("9_buwyv")
+autoplay = true
 
 [node name="CSGBox3D24" type="CSGBox3D" parent="afc_ch1_intro_chamber"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 0.7440095, 0)

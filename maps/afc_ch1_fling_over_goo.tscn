@@ -1,27 +1,28 @@
-[gd_scene load_steps=34 format=3 uid="uid://da5wvnsb3r8yx"]
+[gd_scene load_steps=35 format=3 uid="uid://da5wvnsb3r8yx"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_masgv"]
 [ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="2_liv5b"]
 [ext_resource type="PackedScene" uid="uid://cihvtue137xn7" path="res://instances/afc/prefab_chamber_entryway.tscn" id="2_poqup"]
-[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/FPSC_ActivatableModifyPlayerSpeed.gd" id="3_ho380"]
+[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="3_ho380"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_iglfj"]
 [ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="5_cq67v"]
-[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="6_xmbio"]
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="6_xmbio"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="7_nxr2n"]
 [ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="7_tikpg"]
 [ext_resource type="PackedScene" uid="uid://d25l3ikatvol5" path="res://maps/afc_ch1_trust_fling.tscn" id="8_a6hic"]
-[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/FPSC_ActivatableSoundOnActivation.gd" id="8_kcg2e"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="8_kcg2e"]
 [ext_resource type="PackedScene" uid="uid://f0qlfetn1pdk" path="res://instances/afc/prefab_catapult.tscn" id="9_6afok"]
+[ext_resource type="AudioStream" uid="uid://dsmstooi1jlkg" path="res://sound/60hz-ambientelectrical.wav" id="9_kcg2e"]
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="10_iy3wt"]
 [ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="11_c1t1j"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="13_mkp34"]
 [ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="14_b5air"]
 [ext_resource type="Texture2D" uid="uid://wmpactx1jwkd" path="res://textures/target_endpoint.png" id="14_liyvt"]
-[ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/FPSC_ActivatableToggleModulationColor.gd" id="15_liv5b"]
+[ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleModulationColor.gd" id="15_liv5b"]
 [ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="16_it3c0"]
-[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/FPSC_ActivatableSpriteTextureModifier.gd" id="17_tikpg"]
+[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="17_tikpg"]
 [ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="18_kcg2e"]
-[ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/FPSC_ActivatableToggleLightModulationColor.gd" id="19_liv5b"]
+[ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleLightModulationColor.gd" id="19_liv5b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ah5jf"]
 
@@ -132,6 +133,10 @@ stream = ExtResource("7_tikpg")
 script = ExtResource("8_kcg2e")
 stream_player = NodePath("../AudioStreamPlayer3D")
 metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="prefab_chamber_exithall/door_entrance"]
+stream = ExtResource("9_kcg2e")
+autoplay = true
 
 [node name="entry_door" type="Node" parent="prefab_chamber_exithall" node_paths=PackedStringArray("object_as_door")]
 script = ExtResource("6_xmbio")

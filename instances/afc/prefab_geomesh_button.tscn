@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dkrwbd8coiujm"]
 
-[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/FPSC_ActivatableCSGAsDoor.gd" id="1_kkakh"]
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="1_kkakh"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="2_vnuue"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ayas8"]
