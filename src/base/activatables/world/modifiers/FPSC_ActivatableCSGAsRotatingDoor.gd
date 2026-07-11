@@ -1,11 +1,11 @@
 extends FPSC_Activatable
-class_name FPSC_DoorActivatable
+class_name FPSC_RotatingDoorActivatable
 
 @export var object_as_door : CSGShape3D
 
 @export var time : float = 1.0 ## Time it takes to happen
 
-@export_enum("Up:1","Down:2","Left:3","Right:4","Forward:5","Backward:6") var move_direction := 1
+@export_enum("Left:1","Right:2") var move_direction := 1
 
 @export var stay_open : bool = false
 
@@ -13,12 +13,12 @@ class_name FPSC_DoorActivatable
 
 var current_position : Vector3:
 	set(v):
-		object_as_door.position = v
+		object_as_door.rotation = v
 		if current_tween != null:
 			current_tween.from(v)
 		current_position = v
 	get():
-		return object_as_door.position
+		return object_as_door.rotation
 
 var starting_position : Vector3
 
@@ -30,17 +30,14 @@ func FPSC_GetMPState():
 func FPSC_ApplyMPState(args):
 	current_position = args[0]
 
-
 func _ready():
-	if object_as_door == null:
-		queue_free()
-	starting_position = object_as_door.position
+	starting_position = object_as_door.rotation
 	var ep_vector : Vector3 = Vector3.ZERO
 	match move_direction:
 		1:
-			ep_vector = Vector3.UP
+			ep_vector = Vector3(0,deg_to_rad(90),0)
 		2:
-			ep_vector = -Vector3.UP
+			ep_vector = Vector3(0,deg_to_rad(-90),0)
 		3:
 			ep_vector = -Vector3.RIGHT
 		4:
@@ -49,9 +46,9 @@ func _ready():
 			ep_vector = Vector3.FORWARD
 		6:
 			ep_vector = -Vector3.FORWARD
-	ending_position = object_as_door.position + object_as_door.get_aabb().size * ep_vector
+	ending_position = object_as_door.rotation + ep_vector
 	await get_tree().process_frame # Wait a frame, recalcuate to be safe
-	ending_position = object_as_door.position + object_as_door.get_aabb().size * ep_vector
+	ending_position = object_as_door.rotation + ep_vector
 	if can_be_used:
 		var ia = FPSC_InteractivityMarker.new()
 		ia.name = "IntMarker"
@@ -64,7 +61,7 @@ var current_tween : PropertyTweener = null
 
 func animate_door_open():
 	var t1 = create_tween()
-	current_tween = t1.tween_property(object_as_door,"position",ending_position,time)
+	current_tween = t1.tween_property(object_as_door,"rotation",ending_position,time)
 
 func on_enter(_body:Node3D):
 	print("Bodyiingg")
@@ -74,7 +71,7 @@ func on_enter(_body:Node3D):
 
 func animate_door_close():
 	var t1 = create_tween()
-	current_tween = t1.tween_property(object_as_door,"position",starting_position,time)
+	current_tween = t1.tween_property(object_as_door,"rotation",starting_position,time)
 
 func on_exit(_body:Node3D):
 	print("Bodiing")

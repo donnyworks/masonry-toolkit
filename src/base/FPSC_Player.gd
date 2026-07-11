@@ -313,6 +313,10 @@ func _process(delta):
 			elif $Camera3D/GrabCast.get_collider() is CSGShape3D and allow_open_on_use and host_object == null and pocket_object == null:
 				# lag the game
 				scanForThisDoor($Camera3D/GrabCast.get_collider(),get_tree().current_scene)
+			elif $Camera3D/GrabCast.get_collider() is CSGShape3D:
+				for object in $Camera3D/GrabCast.get_collider().get_children():
+					if object is FPSC_InteractivityMarker:
+						object.activatable.on_enter(self)
 			else:
 				if pocket_object != null and host_object != null:
 					host_object.set_physics_process(false)
@@ -502,5 +506,5 @@ func _input(event):
 	if not is_inside_tree(): return
 	if isSimulated: return
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		rotation_degrees.y -= event.relative.x
-		$Camera3D.rotation_degrees.x = clamp($Camera3D.rotation_degrees.x - event.relative.y,lookMin,lookMax)
+		rotation_degrees.y -= event.relative.x*FPSC_LevelManager.sensitivity
+		$Camera3D.rotation_degrees.x = clamp($Camera3D.rotation_degrees.x - event.relative.y*FPSC_LevelManager.sensitivity,lookMin,lookMax)

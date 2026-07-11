@@ -56,6 +56,9 @@
 	"Radio.Music":"[i][Peppy Music][/i]",
 	"Announcer.Chamber3.01":"[b][Announcer][/b] Did you know that 98% of test subjects experience disorientation after emerging from stasis?",
 	"Announcer.Chamber3.02":"[b][Announcer][/b] It doesn't seem you're in that 98% though, as you completed one of our most mechanically complex tests in record pace.",
+	"Announcer.Chamber3.AUTO.01":"[b][Announcer][/b] It appears you have succeeded in your progress across the first [b][THREE][/b] test chambers. Good job.",
+	"Announcer.Chamber3.AUTO.02":"[b][Announcer][/b] Please note that any compliments related to your performace are speculative on our part. Disregard any undeserved compliments.",
+	"Announcer.Chamber3.AUTO.Outro.01":"[b][Announcer][/b] The test chamber door appears to be broken. Please do not take this opportunity to complete the chamber without solving it.",
 	"Announcer.Chamber2.Intro":"[b][Announcer][/b] Welcome to the first [i]real[/i] test. Good luck.",
 	"Announcer.Chamber1.GetPortalGun.01":"[b][Announcer][/b] Ve- ve- very good! You are now in possession of the Masonry Toolkit Generic Quantum Manipulator.",
 	"Announcer.Chamber1.GetPortalGun.02":"[b][Announcer][/b] With it, you can create two linked bridges in space! In layman's terms, it lets you make portals.",
@@ -65,5 +68,6 @@
 	"Announcer.Chamber1.ButtonFailure.02":"[b][Announcer][/b] I'll try to get the manual override on the box dropper in that room,",
 	"Announcer.Chamber1.ButtonFailure.03":"[b][Announcer][/b] Until then, just- just try to find your own way to solve the puzzle!",
 	"Announcer.Chamber1.CompleteDialogInterrupt":"[b][Announcer][/b] Test subject, that's incredibly rude! I was in the middle of my ending line!",
-	"Announcer.Chamber1.Part2CompleteDialog":"[b][Announcer][/b] Good job on finding your way around, test subject! I knew you could do it."
+	"Announcer.Chamber1.Part2CompleteDialog":"[b][Announcer][/b] Good job on finding your way around, test subject! I knew you could do it.",
+	"Announcer.Chamber1.BackstagePeek":"[b][Announcer][/b] Test subject, please stay in the assigned testing course and don't go wandering off backstage."
 }

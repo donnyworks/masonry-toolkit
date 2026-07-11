@@ -16,6 +16,8 @@ var is_loading: bool = false
 
 signal LevelChanged()
 
+var sensitivity := 1.0
+
 var VPKH = VPKHandler.CFileAccess
 
 var source_mount_path = ""

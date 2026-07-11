@@ -9,6 +9,7 @@ class_name FPSC_MainMenuDialogManager
 @export var BonusSelectPanel : Control
 @export var NewGameButton : BaseButton
 @export var BonusGameButton : BaseButton
+@export var SettingsButton : BaseButton
 @export var QuitGameButton : BaseButton
 @export var ChapterSelectAbortButton : BaseButton
 @export var BonusSelectAbortButton : BaseButton

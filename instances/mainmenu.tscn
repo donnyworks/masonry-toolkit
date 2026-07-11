@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cs5vmbn31nd7w" path="res://textures/chapter0_image.png" id="4_k227a"]
 [ext_resource type="Script" uid="uid://ch8irwdnp6hvj" path="res://src/base/FPSC_MainMenuChapterIcon.gd" id="5_128te"]
 
-[node name="Mainmenu" type="Control" node_paths=PackedStringArray("ChapterSelectBoxContainer", "BonusSelectBoxContainer", "ChapterSelectButtonTemplate", "MainMenuPanel", "ChapterSelectPanel", "BonusSelectPanel", "NewGameButton", "BonusGameButton", "QuitGameButton", "ChapterSelectAbortButton", "BonusSelectAbortButton", "GameNameLabel", "GameVersionLabel")]
+[node name="Mainmenu" type="Control" node_paths=PackedStringArray("ChapterSelectBoxContainer", "BonusSelectBoxContainer", "ChapterSelectButtonTemplate", "MainMenuPanel", "ChapterSelectPanel", "BonusSelectPanel", "NewGameButton", "BonusGameButton", "SettingsButton", "QuitGameButton", "ChapterSelectAbortButton", "BonusSelectAbortButton", "GameNameLabel", "GameVersionLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,9 +21,10 @@ ChapterSelectButtonTemplate = NodePath("chapterSelectPanel/sliceController/HBoxC
 MainMenuPanel = NodePath("mainMenuPanel")
 ChapterSelectPanel = NodePath("chapterSelectPanel")
 BonusSelectPanel = NodePath("bonusSelectPanel")
-NewGameButton = NodePath("mainMenuPanel/NewGameButton")
-BonusGameButton = NodePath("mainMenuPanel/NewGameButton2")
-QuitGameButton = NodePath("mainMenuPanel/Button2")
+NewGameButton = NodePath("mainMenuPanel/HBoxContainer/NewGameButton")
+BonusGameButton = NodePath("mainMenuPanel/HBoxContainer/NewGameButton2")
+SettingsButton = NodePath("mainMenuPanel/HBoxContainer/Settings")
+QuitGameButton = NodePath("mainMenuPanel/HBoxContainer/Button2")
 ChapterSelectAbortButton = NodePath("chapterSelectPanel/Cancel")
 BonusSelectAbortButton = NodePath("bonusSelectPanel/Cancel")
 GameNameLabel = NodePath("mainMenuPanel/Label")
@@ -68,30 +69,34 @@ theme_override_fonts/font = ExtResource("2_k227a")
 theme_override_font_sizes/font_size = 16
 text = "Version 1.0"
 
-[node name="NewGameButton" type="Button" parent="mainMenuPanel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="mainMenuPanel"]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 353.0
-offset_right = 113.0
-offset_bottom = 379.0
+offset_left = 10.0
+offset_top = 368.0
+offset_right = 342.0
+offset_bottom = 392.0
+
+[node name="NewGameButton" type="Button" parent="mainMenuPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("3_w5juf")
 text = "New Game"
 
-[node name="NewGameButton2" type="Button" parent="mainMenuPanel"]
-layout_mode = 0
-offset_left = 116.0
-offset_top = 353.0
-offset_right = 212.0
-offset_bottom = 379.0
+[node name="NewGameButton2" type="Button" parent="mainMenuPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("3_w5juf")
 text = "Bonus Content"
 
-[node name="Button2" type="Button" parent="mainMenuPanel"]
-layout_mode = 0
-offset_left = 214.0
-offset_top = 353.0
-offset_right = 308.0
-offset_bottom = 379.0
+[node name="Settings" type="Button" parent="mainMenuPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_w5juf")
+text = "Settings"
+
+[node name="Button2" type="Button" parent="mainMenuPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("3_w5juf")
 text = "Quit Game"
 

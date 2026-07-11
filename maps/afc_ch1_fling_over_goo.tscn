@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://da5wvnsb3r8yx"]
+[gd_scene load_steps=37 format=3 uid="uid://da5wvnsb3r8yx"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_masgv"]
 [ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="2_liv5b"]
@@ -6,13 +6,14 @@
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="3_ho380"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="4_iglfj"]
 [ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="5_cq67v"]
+[ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoiceline.gd" id="6_jabmy"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="6_xmbio"]
+[ext_resource type="AudioStream" uid="uid://2utujleujubv" path="res://sound/vo/announcer/ch2/Chamber2.Intro.wav" id="7_mcowj"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="7_nxr2n"]
 [ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="7_tikpg"]
 [ext_resource type="PackedScene" uid="uid://d25l3ikatvol5" path="res://maps/afc_ch1_trust_fling.tscn" id="8_a6hic"]
 [ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="8_kcg2e"]
 [ext_resource type="PackedScene" uid="uid://f0qlfetn1pdk" path="res://instances/afc/prefab_catapult.tscn" id="9_6afok"]
-[ext_resource type="AudioStream" uid="uid://dsmstooi1jlkg" path="res://sound/60hz-ambientelectrical.wav" id="9_kcg2e"]
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="10_iy3wt"]
 [ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="11_c1t1j"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="13_mkp34"]
@@ -34,6 +35,9 @@ background_mode = 2
 sky = SubResource("Sky_di4mo")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v8r46"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tikpg"]
+size = Vector3(7, 5, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qo7qv"]
 albedo_color = Color(0, 0, 0, 1)
@@ -69,22 +73,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1694927, 0)
 [node name="PrefabBoxDropper" parent="." instance=ExtResource("2_liv5b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, -32)
 
+[node name="AudioStreamPlayer3D" parent="PrefabBoxDropper" index="4"]
+stream = null
+
 [node name="prefab_chamber_entryway" parent="." instance=ExtResource("2_poqup")]
-
-[node name="FPSC_PlayerPropertiesActivatable" type="Node" parent="prefab_chamber_entryway"]
-script = ExtResource("3_ho380")
-chapter_title = "ATC_Chapter1_Title"
-chapter_subtext = "ATC_Chapter1_Subtitle"
-metadata/_custom_type_script = "uid://d25myaapjjml7"
-
-[node name="FPSC_TriggerRelay2" type="Area3D" parent="prefab_chamber_entryway" node_paths=PackedStringArray("activated")]
-script = ExtResource("4_iglfj")
-activated = [NodePath("../FPSC_PlayerPropertiesActivatable")]
-trigger_once = true
-metadata/_custom_type_script = "uid://co0pdj3pf8nga"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_entryway/FPSC_TriggerRelay2"]
-shape = SubResource("BoxShape3D_v8r46")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4689817, 1.6302683, -7.5)
@@ -116,6 +108,41 @@ Buttons"
 horizontal_alignment = 0
 vertical_alignment = 0
 
+[node name="FPSC_PlayerPropertiesActivatable" type="Node" parent="prefab_chamber_entryway"]
+script = ExtResource("3_ho380")
+chapter_title = "ATC_Chapter1_Title"
+chapter_subtext = "ATC_Chapter1_Subtitle"
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="prefab_chamber_entryway" node_paths=PackedStringArray("activated")]
+script = ExtResource("4_iglfj")
+activated = [NodePath("../FPSC_PlayerPropertiesActivatable")]
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_entryway/FPSC_TriggerRelay2"]
+shape = SubResource("BoxShape3D_v8r46")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="prefab_chamber_entryway"]
+
+[node name="FPSC_VoicelineActivatable" type="Node" parent="prefab_chamber_entryway/AudioStreamPlayer" node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("6_jabmy")
+voiceline_player = NodePath("..")
+character_voiceline = ExtResource("7_mcowj")
+localized_caption = "Announcer.Chamber2.Intro"
+metadata/_custom_type_script = "uid://whqnccb8m4hc"
+
+[node name="FPSC_TriggerRelay3" type="Area3D" parent="prefab_chamber_entryway" node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
+script = ExtResource("4_iglfj")
+activated = [NodePath("../AudioStreamPlayer/FPSC_VoicelineActivatable")]
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_entryway/FPSC_TriggerRelay3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_tikpg")
+
 [node name="prefab_chamber_exithall" parent="." instance=ExtResource("5_cq67v")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -64)
 
@@ -135,7 +162,6 @@ stream_player = NodePath("../AudioStreamPlayer3D")
 metadata/_custom_type_script = "uid://dlktdrvwevbt1"
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="prefab_chamber_exithall/door_entrance"]
-stream = ExtResource("9_kcg2e")
 autoplay = true
 
 [node name="entry_door" type="Node" parent="prefab_chamber_exithall" node_paths=PackedStringArray("object_as_door")]
