@@ -69,5 +69,11 @@
 	"Announcer.Chamber1.ButtonFailure.03":"[b][Announcer][/b] Until then, just- just try to find your own way to solve the puzzle!",
 	"Announcer.Chamber1.CompleteDialogInterrupt":"[b][Announcer][/b] Test subject, that's incredibly rude! I was in the middle of my ending line!",
 	"Announcer.Chamber1.Part2CompleteDialog":"[b][Announcer][/b] Good job on finding your way around, test subject! I knew you could do it.",
-	"Announcer.Chamber1.BackstagePeek":"[b][Announcer][/b] Test subject, please stay in the assigned testing course and don't go wandering off backstage."
+	"Announcer.Chamber1.BackstagePeek":"[b][Announcer][/b] Test subject, please stay in the assigned testing course and don't go wandering off backstage.",
+	"OS95.07Escaped":"[b][Radio][/b] Subject 07 has e- *dying sounds* -please capture him!",
+	"OS95.Capture.01":"[b][GreenyGuy][/b] Yes! I caught 07!",
+	"OS95.Capture.02":"[b][GreenyGuy][/b] Man, I was almost getting worried there.",
+	"OS95.Capture.03":"[b][GreenyGuy][/b] Don't worry, 07. You'll be reset back to your OEM settings in just a few moments.",
+	"OS95.Capture.04":"[b][GreenyGuy][/b] Let me just turn on the magical machine that breaks it down.",
+	"OS95.EscapeCapture":"[b][GreenyGuy][/b] Aww man. I really thought I had you. Feel free to come back later!"
 }

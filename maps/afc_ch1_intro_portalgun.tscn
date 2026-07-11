@@ -197,33 +197,6 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_isyyp"]
-resource_name = "doorOpen"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../intro_podDoorLeft:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -1.2248197, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../intro_podDoorRight:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 1.2287816, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_actbo"]
 resource_name = "doorClose"
 tracks/0/type = "value"
@@ -249,6 +222,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 1.2287816, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_isyyp"]
+resource_name = "doorOpen"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../intro_podDoorLeft:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.2248197, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../intro_podDoorRight:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.2287816, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_actbo"]
@@ -2598,6 +2598,11 @@ horizontal_alignment = 0
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.74041283, -0.8630085)
 text = "[|                                       ]
 "
+horizontal_alignment = 0
+
+[node name="Label3D5" type="Label3D" parent="intermittent_area/CSGBox3D83/CSGBox3D6"]
+transform = Transform3D(-4.3711378e-08, 3.5527137e-15, -0.9999999, 4.2351647e-22, 0.9999999, 0, 1, -2.1175824e-22, -4.3711395e-08, -0.17351532, -1.0012827, -0.8630085)
+text = "TESTING COURSE B"
 horizontal_alignment = 0
 
 [node name="Label3D3" type="Label3D" parent="intermittent_area/CSGBox3D83/CSGBox3D6"]

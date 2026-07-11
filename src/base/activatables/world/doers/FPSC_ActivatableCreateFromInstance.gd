@@ -38,7 +38,7 @@ func on_enter(_body:Node3D):
 		new_insts.remove_at(0)
 	var new_inst = inst.duplicate()
 	get_tree().current_scene.add_child(new_inst)
-	new_inst.name = inst.name + str(randi_range(0,2932))
+	new_inst.name = inst.name + str(len(new_insts))
 	new_inst.global_position = instantiation_position.global_position
 	new_insts.append(new_inst)
 	just_spawned_node = true

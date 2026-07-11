@@ -58,7 +58,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 texture = ExtResource("2_5a4mc")
 
 [node name="GrabCast" type="RayCast3D" parent="Camera3D"]
-target_position = Vector3(0, 0, -10)
+target_position = Vector3(0, 0, -3)
 
 [node name="RayEndpoint" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)

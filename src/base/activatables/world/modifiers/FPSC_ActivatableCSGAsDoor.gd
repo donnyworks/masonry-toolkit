@@ -14,7 +14,7 @@ class_name FPSC_DoorActivatable
 var current_position : Vector3:
 	set(v):
 		object_as_door.position = v
-		if current_tween != null:
+		if is_instance_valid(current_tween):
 			current_tween.from(v)
 		current_position = v
 	get():
@@ -64,6 +64,7 @@ var current_tween : PropertyTweener = null
 
 func animate_door_open():
 	var t1 = create_tween()
+	t1.set_pause_mode(Tween.TWEEN_PAUSE_BOUND)
 	current_tween = t1.tween_property(object_as_door,"position",ending_position,time)
 
 func on_enter(_body:Node3D):
@@ -74,6 +75,7 @@ func on_enter(_body:Node3D):
 
 func animate_door_close():
 	var t1 = create_tween()
+	t1.set_pause_mode(Tween.TWEEN_PAUSE_BOUND)
 	current_tween = t1.tween_property(object_as_door,"position",starting_position,time)
 
 func on_exit(_body:Node3D):

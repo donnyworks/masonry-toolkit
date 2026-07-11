@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cayj1mokktfqk"]
+[gd_scene load_steps=5 format=3 uid="uid://b4lncvmq0g2kf"]
 
-[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="1_62t4u"]
-[ext_resource type="AudioStream" uid="uid://y2hpei4h4w0o" path="res://sound/radio-goodday.wav" id="2_62t4u"]
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="1_xniwg"]
+[ext_resource type="AudioStream" uid="uid://c8ab1ix6hprbb" path="res://sound/radio-os95-r.wav" id="2_xniwg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7grdf"]
-albedo_texture = ExtResource("1_62t4u")
+albedo_texture = ExtResource("1_xniwg")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qrkxw"]
 size = Vector3(0.157, 0.38, 0.535)
@@ -18,7 +18,7 @@ material = SubResource("StandardMaterial3D_7grdf")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-stream = ExtResource("2_62t4u")
+stream = ExtResource("2_xniwg")
 autoplay = true
 max_distance = 15.0
 emission_angle_enabled = true

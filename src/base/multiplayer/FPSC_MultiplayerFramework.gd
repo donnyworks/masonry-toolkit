@@ -23,9 +23,13 @@ func _ready():
 	#get_tree().connect("scene_changed",mp_changelevel)
 
 func build_tree_up():
+	if maxplayers == 1:
+		print("Maxplayers is 1, cancelling build_tree_up!")
+		return
 	cached_entities = []
 	cached_players = []
 	build_tree(get_tree().current_scene)
+	print("build_tree_up -- maxplayers ",maxplayers)
 	if sv_listen:
 		for object in get_tree().current_scene.get_children():
 			if object is FPSC_Player:
@@ -48,15 +52,21 @@ func build_tree_up():
 		get_tree().current_scene.add_child(player)
 
 func recurse_me(_node:Node):
+	var messages = []
 	for object in cached_entities:
-		if object.has_method("FPSC_GetMPState"):
+		if not object is RigidBody3D:
 			var state = object.FPSC_GetMPState()
 			var pathy = str(object.get_path())
-			Monolyth.SendMessage("FPSC_UpdateMPState",[state,pathy],Monolyth.get_remote_sender_id()) # Godot format since I have no idea what the hell it wants from me
-		elif object is RigidBody3D:
+			messages.append([state,pathy,"MPState"])
+			#Monolyth.SendMessage("FPSC_UpdateMPState",[state,pathy],Monolyth.get_remote_sender_id()) # Godot format since I have no idea what the hell it wants from me
+		else:
 			var state = [object.position,object.rotation,object.scale,object.collision_mask,object.collision_layer,object.angular_velocity,object.linear_velocity]
 			var pathy = str(object.get_path())
-			Monolyth.SendMessage("FPSC_UpdateRigidbody",[state,pathy],Monolyth.get_remote_sender_id())
+			#Monolyth.SendMessage("FPSC_UpdateRigidbody",[state,pathy],Monolyth.get_remote_sender_id())
+			messages.append([state,pathy,"RigidBody"])
+	for player in cached_players:
+		if player.name != "1":
+			Monolyth.SendMessage("FPSC_StateUpdate",messages,int(player.name))
 	pass
 
 func build_tree(node:Node):
@@ -98,13 +108,13 @@ func SV_MessageHandler(m_name,m_args,m_sender):
 		Monolyth.SendMessage("FPSC_RecvPlayerList",list,Monolyth.get_remote_sender_id())
 	if m_name == "FPSC_UpdatePlayState":
 		get_tree().current_scene.get_node(str(m_sender)).FPSC_ApplyInputs(m_args)
-		for object in cached_players:
-			var state = object.FPSC_GetMPState()
-			var pathy = str(object.get_path())
-			Monolyth.SendMessage("FPSC_UpdateMPState",[state,pathy],Monolyth.get_remote_sender_id()) # Godot format since I have no idea what the hell it wants from me
+		#for object in cached_players:
+		#	var state = object.FPSC_GetMPState()
+		#	var pathy = str(object.get_path())
+		#	Monolyth.SendMessage("FPSC_UpdateMPState",[state,pathy],Monolyth.get_remote_sender_id()) # Godot format since I have no idea what the hell it wants from me
 	if m_name == "FPSC_ReadyForState":
 		recurse_me(get_tree().current_scene)
-		Monolyth.SendMessage("FPSC_StateExhausted",[],Monolyth.get_remote_sender_id())
+		#Monolyth.SendMessage("FPSC_StateExhausted",[],Monolyth.get_remote_sender_id())
 	pass
 
 func CL_MessageHandler(m_name,m_args,m_sender):
@@ -125,6 +135,15 @@ func CL_MessageHandler(m_name,m_args,m_sender):
 			player.isSimulated = id != str(Monolyth.get_unique_id())
 			get_tree().current_scene.add_child(player) # Ensures that _ready() is evaluated correctly
 		Monolyth.SendMessage("FPSC_ReadyForState",[],1)
+	if m_name == "FPSC_StateUpdate" and m_sender == 1:
+		print("Getting next state...")
+		#Monolyth.SendMessage("FPSC_ReadyForState",[],1)
+		#CL_MessageHandler("FPSC_StateExhausted",[],1)
+		for message in m_args:
+			if message[2] == "MPState":
+				CL_MessageHandler("FPSC_UpdateMPState",message,1)
+			if message[2] == "RigidBody":
+				CL_MessageHandler("FPSC_UpdateRigidbody",message,1)
 	if m_name == "FPSC_UpdateMPState" and m_sender == 1:
 		#print("Updating state for ",m_args[1])
 		get_node(m_args[1]).FPSC_ApplyMPState(m_args[0])
@@ -187,3 +206,5 @@ func _process(_delta):
 		print("ding! Requesting new state.")
 		FPSC_ReadyForNewState = false
 		Monolyth.SendMessage("FPSC_ReadyForState",[],1)
+	if not Monolyth.isClient: # dangerous!
+		recurse_me(get_tree().current_scene)

@@ -86,6 +86,7 @@ func FPSC_ExecuteFade(fade_color : Color,fade_type : FadeTypes,fade_duration : f
 	$TransFade.color = fade_color
 	if fade_type != FadeTypes.FADE_NONE and fade_type != 0:
 		var t = create_tween()
+		t.set_pause_mode(Tween.TWEEN_PAUSE_BOUND)
 		if fade_type == FadeTypes.FADE_IN or fade_type == 1:
 			$TransFade.self_modulate = Color(1,1,1,1)
 			t.tween_property($TransFade,"self_modulate",Color(1,1,1,0),fade_duration)
@@ -113,7 +114,7 @@ func FPSC_ShowChapterTitle(title:String,color:Color,duration:float,subtext=""):
 		$ChapterTitle.text[char] = title[char]
 		if title[char] == "[": inBrackets = true
 		if title[char] == "]": inBrackets = false
-		if not inBrackets: await get_tree().create_timer(0.01).timeout
+		if not inBrackets: await get_tree().create_timer(0.01, true, false).timeout
 		idx += 1
 	idx += 1
 	inBrackets = false
@@ -121,9 +122,10 @@ func FPSC_ShowChapterTitle(title:String,color:Color,duration:float,subtext=""):
 		$ChapterTitle.text[idx + char] = subtext[char]
 		if subtext[char] == "[": inBrackets = true
 		if subtext[char] == "]": inBrackets = false
-		if not inBrackets: await get_tree().create_timer(0.01).timeout
+		if not inBrackets: await get_tree().create_timer(0.01, true, false).timeout
 	await get_tree().create_timer(duration).timeout
 	var f = create_tween()
+	f.set_pause_mode(Tween.TWEEN_PAUSE_BOUND)
 	var new_color = color
 	new_color.a = 0
 	f.tween_property($ChapterTitle,"self_modulate",new_color,0.5)
@@ -313,10 +315,6 @@ func _process(delta):
 			elif $Camera3D/GrabCast.get_collider() is CSGShape3D and allow_open_on_use and host_object == null and pocket_object == null:
 				# lag the game
 				scanForThisDoor($Camera3D/GrabCast.get_collider(),get_tree().current_scene)
-			elif $Camera3D/GrabCast.get_collider() is CSGShape3D:
-				for object in $Camera3D/GrabCast.get_collider().get_children():
-					if object is FPSC_InteractivityMarker:
-						object.activatable.on_enter(self)
 			else:
 				if pocket_object != null and host_object != null:
 					host_object.set_physics_process(false)
@@ -330,12 +328,16 @@ func _process(delta):
 					for object in host_object.get_children():
 						if object is CollisionShape3D:
 							host_collider = object.shape.get_debug_mesh().get_aabb().get_volume()
-						if object is CollisionPolygon3D:
-							host_collider = get_collision_polygon_volume(object)
+						#if object is CollisionPolygon3D:
+						#	host_collider = get_collision_polygon_volume(object)
 					host_object.position = $Camera3D/RayEndpoint.global_position + Vector3(0,1,0)*host_collider
 					#get_parent().add_child(pocket_object)
 					pocket_object = null
 					host_object = null
+			if $Camera3D/GrabCast.get_collider() is CSGShape3D:
+				for object in $Camera3D/GrabCast.get_collider().get_children():
+					if object is FPSC_InteractivityMarker:
+						object.activatable.on_enter(self)
 		else:
 			if pocket_object != null and host_object != null:
 				host_object.set_physics_process(false)
@@ -435,25 +437,40 @@ var isSimulated = Monolyth.isMultiplayer and not Monolyth.isClient and not isLis
 var isBeingFlung = false
 
 func FPSC_GetMPState():
-	if Monolyth.isClient:
+	if Monolyth.isClient and FPSC_LevelManager.demoname == "":
 		return null
 	else:
-		return [velocity,position,rotation,currentWeapon.FPSC_GetMPState() if currentWeapon != null else []]
+		return [velocity,position,rotation,$Camera3D.rotation,currentWeapon.FPSC_GetMPState() if currentWeapon != null else [],Input.is_action_pressed("p_crouch")]
 
 func FPSC_ApplyMPState(state):
-	if not Monolyth.isClient:
+	if not Monolyth.isClient and FPSC_LevelManager.demo_data == {}:
 		return
 	else:
 		#print("posd: ",position.distance_to(state[1]))
 		#print("pos: ",position)
 		#print("d: ",state[1])
+		if FPSC_LevelManager.demo_freeroam and FPSC_LevelManager.demo_data != {}:
+			return # no.
 		if abs(position.distance_to(state[1])) > 5.0: # That's a little extreme. No amount of prediction can save this.
 			position = state[1]
-		if name == str(Monolyth.get_unique_id()): return
+		if FPSC_LevelManager.demo_data == {}:
+			if name == str(Monolyth.get_unique_id()): return
 		velocity = state[0]
 		position = state[1]
+		if FPSC_LevelManager.demo_freelook and FPSC_LevelManager.demo_data != {}:
+			if currentWeapon != null: currentWeapon.FPSC_ApplyMPState(state[4])
+			if state[5]:
+				if can_crouch:
+					SPEED = SPEED_CROUCH
+					$CollisionShape3D.shape.height = 0.7*2.0
+			return
 		rotation = state[2] # We ignore rotation as self to prevent weird race conditions
-		if currentWeapon != null: currentWeapon.FPSC_ApplyMPState(state[3])
+		$Camera3D.rotation = state[3]
+		if currentWeapon != null: currentWeapon.FPSC_ApplyMPState(state[4])
+		if state[5]:
+			if can_crouch:
+				SPEED = SPEED_CROUCH
+				$CollisionShape3D.shape.height = 0.7*2.0
 
 func FPSC_GetInputs():
 	return [Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd")]

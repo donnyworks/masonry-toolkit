@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://fabh0jfxxi51"]
+[gd_scene load_steps=37 format=3 uid="uid://fabh0jfxxi51"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_wtdix"]
 [ext_resource type="PackedScene" uid="uid://fsyjqmmliyan" path="res://instances/afc/prefab_new_portalgun_pedestal.tscn" id="2_8pegt"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleLightModulationColor.gd" id="10_w55ah"]
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="11_le08f"]
 [ext_resource type="PackedScene" path="res://instances/afc/prefab_bed.tscn" id="14_6xojh"]
-[ext_resource type="AudioStream" uid="uid://dsmstooi1jlkg" path="res://sound/60hz-ambientelectrical.wav" id="14_kishi"]
 [ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="15_48spo"]
 [ext_resource type="PackedScene" uid="uid://ddyq77yf5jul4" path="res://instances/afc/teleporter_exit.tscn" id="16_g0gtr"]
 [ext_resource type="Texture2D" uid="uid://bn1xcnqcyqtjt" path="res://textures/clipboard/texture_clipboard_3.png" id="16_g1f0s"]
@@ -339,6 +338,9 @@ metadata/_custom_type_script = "uid://b84g1xo7620ij"
 [node name="PrefabBoxDropper" parent="." instance=ExtResource("9_4sprw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.450577, 3, -9)
 
+[node name="AudioStreamPlayer3D" parent="PrefabBoxDropper" index="4"]
+stream = null
+
 [node name="prefab_geomesh_button2" parent="." instance=ExtResource("2_ed8bu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.175181, -0.48780122, -6.1010337)
 
@@ -427,7 +429,6 @@ delay = 0.2
 metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="door_entrance"]
-stream = ExtResource("14_kishi")
 autoplay = true
 
 [node name="FPSC_TriggerCatapult2" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("10_t2u4x")]

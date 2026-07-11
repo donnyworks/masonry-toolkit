@@ -122,6 +122,14 @@ func cmd_print(arg):
 
 const MTK_Version = 8
 
+var demoname = ""
+
+var demo_starttime = 0.0
+
+var demo_data = {}
+
+var current_frame = 0
+
 func CMDLine(command:String):
 	var cmda = command.split(" ")
 	if cmda[0] == "map":
@@ -139,12 +147,47 @@ func CMDLine(command:String):
 	elif cmda[0] == "connect":
 		FPSC_LevelManager.drop_current_level()
 		FPSC_MultiplayerFramework.start_client(cmda[1])
+	elif cmda[0] == "record":
+		demoname = cmda[1]
+		cmd_print("Forcing full state update!")
+		FPSC_MultiplayerFramework.cached_entities = []
+		FPSC_MultiplayerFramework.build_tree(get_tree().current_scene)
+		demo_starttime = Time.get_unix_time_from_system()
+	elif cmda[0] == "stop":
+		if demoname != "":
+			savedemo()
+			cmd_print("Demo length: " + str(Time.get_unix_time_from_system() - demo_starttime))
+			cmd_print("Demo length (in demo frames): " + str(round((Time.get_unix_time_from_system() - demo_starttime)/demo_frame_interval)))
+		demoname = ""
+		demo_timeline = []
+	elif cmda[0] == "playdemo":
+		if demoname != "":
+			CMDLine("stop")
+		cmd_print("Playing demo " + cmda[1])
+		#{"version","map","demo_frame_interval","demo_timeline","demo_record_time","demo_length"}
+		var f = FileAccess.open("user://" + cmda[1] + ".mdemo",FileAccess.READ)
+		var _demo_data = f.get_var()
+		f.close()
+		print("DEBUG stats:")
+		print("Demo was made in Masonry Toolkit version ",_demo_data.version)
+		print("Demo was shot in ",_demo_data.map)
+		print("Demo finished recording at ",Time.get_datetime_string_from_datetime_dict(_demo_data.demo_record_time,true))
+		print("Demo is ",_demo_data.demo_length," seconds long.")
+		demo_frame_interval = _demo_data.demo_frame_interval
+		#print("Demo data (this will be a big one!!): ",demo_data.demo_timeline)
+		ChangeLevel(_demo_data.map)
+		await LevelChanged
+		demo_data = _demo_data
+	elif cmda[0] == "set_freeroam":
+		demo_freeroam = cmda[1] == "1" or cmda[1] == "true"
+	elif cmda[0] == "set_freelook":
+		demo_freelook = cmda[1] == "1" or cmda[1] == "true"
 	elif cmda[0] == "version":
 		cmd_print("Godot Engine version " + Engine.get_version_info().string)
 		cmd_print("Masonry Toolkit version " + str(MTK_Version))
 		cmd_print(metadata.GameName + " version " + metadata.Version)
 	elif cmda[0] == "bsploader_mount":
-		cmd_print("MTK WILL lock up while this is loading!")
+		cmd_print("MTK >WILL< lock up while this is loading!")
 		gameinfo_process(cmda[1],cmda[2])
 	else: # The dedicated maxplayers clause got wiped out by doing this, it's just a variable
 		for setter in setters:
@@ -184,7 +227,8 @@ func _ready():
 func ChangeLevel(target_path: String):
 	target_scene_path = target_path
 	is_loading = true
-	
+	if get_tree().current_scene != null:
+		lastmapname = get_tree().current_scene.scene_file_path
 	# 1. Instantiate and display the animated loading screen
 	FPSC_LoadingScreen.visible = true
 	FPSC_LoadingScreen.oldLevelImage = ImageTexture.create_from_image(get_viewport().get_texture().get_image())
@@ -192,10 +236,78 @@ func ChangeLevel(target_path: String):
 	# 2. Request Godot to start loading the new scene on a background thread
 	ResourceLoader.load_threaded_request(target_path)
 
+var demo_timeline = []
+
+var demo_frame_interval = 0.2
+
+var demo_freeroam = false
+var demo_freelook = false
+
+var elapsed = 0.0
+
+func savedemo():
+	var f = FileAccess.open("user://" + demoname + ".mdemo",FileAccess.WRITE)
+	var path = ""
+	if get_tree().current_scene != null:
+		path = get_tree().current_scene.scene_file_path
+	else:
+		path = lastmapname
+	f.store_var({"version":MTK_Version,"map":path,"demo_frame_interval":demo_frame_interval,"demo_timeline":demo_timeline,"demo_record_time":Time.get_datetime_dict_from_system(true),"demo_length":Time.get_unix_time_from_system() - demo_starttime})
+	f.close()
+var lastmapname = ""
 func _process(_delta):
+	if demoname != "":
+		if elapsed < demo_frame_interval:
+			elapsed += demo_frame_interval
+		else:
+			elapsed = 0.0
+			var frame = []
+			for object in FPSC_MultiplayerFramework.cached_entities:
+				if object == null or not is_instance_valid(object):
+					FPSC_MultiplayerFramework.cached_entities.erase(object)
+					continue
+				if object.has_method("FPSC_GetMPState"):
+					var state = object.FPSC_GetMPState()
+					var pathy = str(object.get_path())
+					frame.append({"FPSC_UpdateMPState":[state,pathy]}) # Godot format since I have no idea what the hell it wants from me
+				elif object is RigidBody3D:
+					var state = [object.position,object.rotation,object.scale,object.collision_mask,object.collision_layer,object.angular_velocity,object.linear_velocity]
+					var pathy = str(object.get_path())
+					frame.append({"FPSC_UpdateRigidbody":[state,pathy]})
+			demo_timeline.append(frame)
+	if demo_data != {}:
+		if current_frame < len(demo_data.demo_timeline):
+			if elapsed < demo_frame_interval:
+				elapsed += demo_frame_interval
+			else:
+				elapsed = 0.0
+				for frame in demo_data.demo_timeline[current_frame]:
+					var m_name = frame.keys()[0]
+					var m_args = frame[frame.keys()[0]]
+					var m_sender = 1 # ported MP code. it just needs to do this.
+					if get_node_or_null(m_args[1]) == null: continue # Probably just hasn't spawned in yet.
+					if m_name == "FPSC_UpdateMPState" and m_sender == 1:
+						#print("Updating state for ",m_args[1])
+						get_node(m_args[1]).FPSC_ApplyMPState(m_args[0])
+					if m_name == "FPSC_UpdateRigidbody" and m_sender == 1:#[object.position,object.rotation,object.scale,object.collision_mask,object.collision_layer,object.angular_velocity,object.linear_velocity]
+						var object : RigidBody3D = get_node(m_args[1])
+						object.position = m_args[0][0]
+						object.rotation = m_args[0][1]
+						object.scale = m_args[0][2]
+						object.collision_mask = m_args[0][3]
+						object.collision_layer = m_args[0][4]
+						object.angular_velocity = m_args[0][5]
+						object.linear_velocity = m_args[0][6]
+				current_frame += 1
+		else:
+			demo_data = {}
+			ChangeLevel("res://instances/mainmenu.tscn")
 	if not is_loading:
 		return
-		
+	if demoname != "":
+		savedemo()
+	demoname = ""
+	demo_timeline = []
 	# Array to hold the loading progress array data (0.0 to 1.0)
 	var progress = []
 	var status = ResourceLoader.load_threaded_get_status(target_scene_path, progress)

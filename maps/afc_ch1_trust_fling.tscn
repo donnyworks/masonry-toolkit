@@ -869,11 +869,11 @@ size = Vector3(0.5576782, 2, 0.34375)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="ViewTexture" type="SubViewport" parent="Skybox"]
-size = Vector2i(1357, 606)
+size = Vector2i(1357, 556)
 script = ExtResource("9_hegod")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(-0.8275809, 0.24126275, -0.5068537, 0, 0.9029262, 0.4297937, 0.5613452, 0.35568923, -0.7472451, -2.2584715, 37.350666, 0.0087566525)
+transform = Transform3D(-0.07236694, -0.13802347, 0.98778075, 0, 0.99037737, 0.13838632, -0.9973774, 0.0100146, -0.07167063, -3.0999863, 37.501007, -0.8198841)
 fov = 70.01
 script = ExtResource("10_mfmn7")
 CameraOrigin = NodePath("../../SkyCameraPivot")
@@ -1049,7 +1049,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 11, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47, -9, -6)
 
 [node name="tf2" parent="." instance=ExtResource("12_7cofo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59, -10, -12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59, -10, -13)
 
 [node name="tf3" parent="." instance=ExtResource("12_7cofo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, -7, -23)

@@ -178,6 +178,7 @@ func _SendMessage_TCP(m_name,m_args,id,mode):
 	
 
 func SendMessage(m_name,m_args=[],id=-1,mode="godot"):
+	#print("Monolyth is sending an outgoing message: ",m_name)
 	if TCPModeClient != null or TCPModeServer != null:
 		_SendMessage_TCP(m_name,m_args,id,mode)
 		return

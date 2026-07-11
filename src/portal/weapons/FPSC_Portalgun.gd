@@ -68,7 +68,23 @@ func ModifyHelper(portal : FPSC_Portal, point, normal):
 func get_cam_raycast():
 	return OwnerPlayer.get_node("Camera3D/RayCast3D")
 
+var justFiredLeft = false
+var justFiredRight = false
+
+func FPSC_GetMPState():
+	var data = [justFiredLeft,justFiredRight]
+	justFiredLeft = false
+	justFiredRight = false
+	return data
+
+func FPSC_ApplyMPState(state):
+	if state[0]:
+		FPSC_StartPrimaryFire()
+	if state[1]:
+		FPSC_StartSecondaryFire()
+
 func FPSC_StartPrimaryFire():
+	if FPSC_LevelManager.demo_data == {}: justFiredLeft = true
 	var point = get_cam_raycast().get_collision_point()
 	var normal = get_cam_raycast().get_collision_normal()
 	if current_portal1 == null:
@@ -77,6 +93,7 @@ func FPSC_StartPrimaryFire():
 	ModifyHelper(current_portal1,point,normal)
 
 func FPSC_StartSecondaryFire():
+	if FPSC_LevelManager.demo_data == {}: justFiredRight = true
 	var point = get_cam_raycast().get_collision_point()
 	var normal = get_cam_raycast().get_collision_normal()
 	if current_portal2 == null:

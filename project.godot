@@ -12,6 +12,7 @@ config_version=5
 
 config/name="Masonry Toolkit"
 run/main_scene="uid://qqqdsd8ay4kd"
+config/use_custom_user_dir=true
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
