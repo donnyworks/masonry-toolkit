@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://cqoods8v7gr34"]
+[gd_scene load_steps=73 format=3 uid="uid://cqoods8v7gr34"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_hhrmo"]
 [ext_resource type="PackedScene" path="res://instances/afc/prefab_bed.tscn" id="2_clhun"]
@@ -22,7 +22,6 @@
 [ext_resource type="AudioStream" uid="uid://c86na8vi3x4pt" path="res://sound/vo/announcer/intro/Intro06.wav" id="11_o1coc"]
 [ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="12_2bbgf"]
 [ext_resource type="AudioStream" uid="uid://b6jvcmmedjk4k" path="res://sound/vo/announcer/intro/Intro07.wav" id="12_dvg1l"]
-[ext_resource type="AudioStream" uid="uid://dsmstooi1jlkg" path="res://sound/60hz-ambientelectrical.wav" id="13_2bbgf"]
 [ext_resource type="AudioStream" uid="uid://se1if17upgbv" path="res://sound/vo/announcer/intro/Intro08.wav" id="13_eym4d"]
 [ext_resource type="AudioStream" uid="uid://c1gwiq72v1bwq" path="res://sound/vo/announcer/intro/Intro09.wav" id="14_vp0w6"]
 [ext_resource type="AudioStream" uid="uid://cnljg4jo3ph5r" path="res://sound/vo/announcer/intro/Intro10.wav" id="15_x8jcn"]
@@ -326,6 +325,9 @@ current = true
 [node name="PrefabBoxDropper" parent="." instance=ExtResource("2_xbpkp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, -2)
 
+[node name="AudioStreamPlayer3D" parent="PrefabBoxDropper" index="4"]
+stream = null
+
 [node name="FPSC_Trigger" type="Area3D" parent="PrefabBoxDropper" node_paths=PackedStringArray("activated")]
 script = ExtResource("3_22oxg")
 activated = [NodePath("../dropper_logic/FPSC_AnimationActivatable"), NodePath("FPSC_VoicelineActivatable")]
@@ -606,7 +608,6 @@ delay = 48.0
 metadata/_custom_type_script = "uid://dlktdrvwevbt1"
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="door_opener"]
-stream = ExtResource("13_2bbgf")
 autoplay = true
 
 [node name="door_chamber" type="CSGBox3D" parent="."]
@@ -625,7 +626,6 @@ stream_player = NodePath("../AudioStreamPlayer3D")
 metadata/_custom_type_script = "uid://dlktdrvwevbt1"
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="door_chamber"]
-stream = ExtResource("13_2bbgf")
 autoplay = true
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="."]

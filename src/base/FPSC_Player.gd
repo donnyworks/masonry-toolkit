@@ -413,16 +413,22 @@ var stored_jump = false
 var stored_movedir = Vector2.ZERO
 
 func modify_velocity(is_jumping:bool,move_vector:Vector2,delta:float):
-	
-	if is_jumping and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if not noclip:
+		if is_jumping and is_on_floor():
+			velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := move_vector
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if (not abs(velocity.x) > SPEED_SPRINT) or is_on_floor(): velocity.x = lerp(velocity.x, direction.x * SPEED, accel * delta)
-	if (not abs(velocity.z) > SPEED_SPRINT) or is_on_floor(): velocity.z = lerp(velocity.z, direction.z * SPEED, accel * delta)
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var input_dir := move_vector
+		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if (not abs(velocity.x) > SPEED_SPRINT) or is_on_floor(): velocity.x = lerp(velocity.x, direction.x * SPEED, accel * delta)
+		if (not abs(velocity.z) > SPEED_SPRINT) or is_on_floor(): velocity.z = lerp(velocity.z, direction.z * SPEED, accel * delta)
+	else:
+		var input_dir := move_vector
+		var direction := (transform.basis * Vector3(input_dir.x, 1, input_dir.y)).normalized()
+		if (not abs(velocity.x) > SPEED_SPRINT) or is_on_floor(): velocity.x = lerp(velocity.x, direction.x * SPEED, accel * delta)
+		if (not abs(velocity.x) > SPEED_SPRINT) or is_on_floor(): velocity.y = lerp(velocity.y, direction.y * SPEED, accel * delta)
+		if (not abs(velocity.z) > SPEED_SPRINT) or is_on_floor(): velocity.z = lerp(velocity.z, direction.z * SPEED, accel * delta)
 	#if direction:
 		#if not abs(velocity.x) > SPEED: velocity.x = direction.x * SPEED
 		#if not abs(velocity.z) > SPEED: velocity.z = direction.z * SPEED
@@ -440,7 +446,7 @@ func FPSC_GetMPState():
 	if Monolyth.isClient and FPSC_LevelManager.demoname == "":
 		return null
 	else:
-		return [velocity,position,rotation,$Camera3D.rotation,currentWeapon.FPSC_GetMPState() if currentWeapon != null else [],Input.is_action_pressed("p_crouch")]
+		return [velocity,position,rotation,$Camera3D.rotation,currentWeapon.FPSC_GetMPState() if currentWeapon != null else [],Input.is_action_pressed("p_crouch"), noclip]
 
 func FPSC_ApplyMPState(state):
 	if not Monolyth.isClient and FPSC_LevelManager.demo_data == {}:
@@ -471,6 +477,10 @@ func FPSC_ApplyMPState(state):
 			if can_crouch:
 				SPEED = SPEED_CROUCH
 				$CollisionShape3D.shape.height = 0.7*2.0
+		if len(state) > 6:
+			noclip = state[6]
+
+var noclip = false
 
 func FPSC_GetInputs():
 	return [Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd")]
@@ -493,15 +503,18 @@ func _physics_process(delta: float) -> void:
 		modify_velocity(Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd"),delta)
 	
 	# Handle jump.
-	if Monolyth.isMultiplayer and not Monolyth.isClient:
-		if isSimulated: # All this boils down to: if we're the server and not the listen server, don't simulate
-			modify_velocity(stored_jump,stored_movedir,delta)
-		else:
+	if FPSC_LevelManager.interloper_active and FPSC_LevelManager.type != 4:
+		modify_velocity(stored_jump,stored_movedir,delta)
+	else:
+		if Monolyth.isMultiplayer and not Monolyth.isClient:
+			if isSimulated: # All this boils down to: if we're the server and not the listen server, don't simulate
+				modify_velocity(stored_jump,stored_movedir,delta)
+			else:
+				modify_velocity(Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd"),delta)
+		elif Monolyth.isMultiplayer and Monolyth.isClient and not isSimulated:
+			Monolyth.SendMessage("FPSC_UpdatePlayState",[Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd"),rotation],1)
 			modify_velocity(Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd"),delta)
-	elif Monolyth.isMultiplayer and Monolyth.isClient and not isSimulated:
-		Monolyth.SendMessage("FPSC_UpdatePlayState",[Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd"),rotation],1)
-		modify_velocity(Input.is_action_just_pressed("p_jmp"),Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd"),delta)
-		# We simulate movement on the client side as well as sending it to the server
+			# We simulate movement on the client side as well as sending it to the server
 	move_and_slide()
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)

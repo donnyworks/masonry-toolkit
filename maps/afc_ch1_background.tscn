@@ -267,9 +267,8 @@ fade_type = 1
 fade_duration = 1.0
 metadata/_custom_type_script = "uid://d25myaapjjml7"
 
-[node name="FPSC_AnimationActivatable" type="Node" parent="FPSC_TriggerRelay" node_paths=PackedStringArray("player")]
+[node name="FPSC_AnimationActivatable" type="Node" parent="FPSC_TriggerRelay"]
 script = ExtResource("14_y0bgd")
-player = NodePath("")
 animation = "intro"
 metadata/_custom_type_script = "uid://cd37fw45rkj5r"
 

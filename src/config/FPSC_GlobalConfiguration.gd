@@ -58,6 +58,9 @@ var current_entities = []
 var current_player = null
 
 func LoadBSPFile(path):
+	var dummy_scene = Node3D.new()
+	get_node("/root").add_child(dummy_scene)
+	get_tree().current_scene = dummy_scene
 	var bsp_file = BSPHandler.LoadBSP(path)
 	bsp_file.source_game_path = source_mount_path
 	var lump_entities : BSPHandler.BSPLumpEntities = bsp_file.lumps[BSPHandler.BSPLumps.LUMP_ENTITIES]
@@ -111,7 +114,7 @@ func LoadBSPFile(path):
 						mesh.init_hooks(self)
 					current_entities.append(mesh)
 	for entity in current_entities:
-		if not entity.is_inside_tree(): add_child(entity)
+		if not entity.is_inside_tree(): dummy_scene.add_child(entity)
 
 var console = null
 
@@ -130,44 +133,60 @@ var demo_data = {}
 
 var current_frame = 0
 
-func CMDLine(command:String):
-	var cmda = command.split(" ")
-	if cmda[0] == "map":
-		cmd_print("Changing level to " + cmda[1])
-		if FileAccess.file_exists("res://maps/" + cmda[1] + ".tscn"):
-			FPSC_LevelManager.ChangeLevel("res://maps/" + cmda[1] + ".tscn")
-			if FPSC_MultiplayerFramework.maxplayers > 1: # We're trying to enroll as a server
-				await FPSC_LevelManager.LevelChanged
-				print("Full assurance that the game has started, the level has loaded, and we are ready to start listening.")
-				FPSC_MultiplayerFramework.start_server()
-		else:
-			if VPKH.file_exists("maps/" + cmda[1] + ".bsp"):
-				get_tree().unload_current_scene()
-				LoadBSPFile("maps/" + cmda[1] + ".bsp")
-	elif cmda[0] == "connect":
-		FPSC_LevelManager.drop_current_level()
-		FPSC_MultiplayerFramework.start_client(cmda[1])
-	elif cmda[0] == "record":
-		demoname = cmda[1]
-		cmd_print("Forcing full state update!")
-		FPSC_MultiplayerFramework.cached_entities = []
-		FPSC_MultiplayerFramework.build_tree(get_tree().current_scene)
-		demo_starttime = Time.get_unix_time_from_system()
-	elif cmda[0] == "stop":
-		if demoname != "":
-			savedemo()
-			cmd_print("Demo length: " + str(Time.get_unix_time_from_system() - demo_starttime))
-			cmd_print("Demo length (in demo frames): " + str(round((Time.get_unix_time_from_system() - demo_starttime)/demo_frame_interval)))
-		demoname = ""
-		demo_timeline = []
-	elif cmda[0] == "playdemo":
-		if demoname != "":
-			CMDLine("stop")
+var interloping = false
+
+var interloper_active = false
+
+var randomPos = Vector3.ZERO
+
+var randomInitialRotation = Vector3.ZERO
+
+var type = 0
+
+var registered_commands = {}
+
+func cmd_map(cmda):
+	cmd_print("Changing level to " + cmda[1])
+	if FileAccess.file_exists("res://maps/" + cmda[1] + ".tscn"):
+		FPSC_LevelManager.ChangeLevel("res://maps/" + cmda[1] + ".tscn")
+		if FPSC_MultiplayerFramework.maxplayers > 1: # We're trying to enroll as a server
+			await FPSC_LevelManager.LevelChanged
+			print("Full assurance that the game has started, the level has loaded, and we are ready to start listening.")
+			FPSC_MultiplayerFramework.start_server()
+	else:
+		if VPKH.file_exists("maps/" + cmda[1] + ".bsp"):
+			get_tree().unload_current_scene()
+			LoadBSPFile("maps/" + cmda[1] + ".bsp")
+
+func cmd_connect(cmda):
+	FPSC_LevelManager.drop_current_level()
+	FPSC_MultiplayerFramework.start_client(cmda[1])
+
+func cmd_record(cmda):
+	demoname = cmda[1]
+	cmd_print("Forcing full state update!")
+	FPSC_MultiplayerFramework.cached_entities = []
+	FPSC_MultiplayerFramework.build_tree(get_tree().current_scene)
+	demo_starttime = Time.get_unix_time_from_system()
+
+func cmd_stop(cmda):
+	if demoname != "":
+		savedemo()
+		cmd_print("Demo length: " + str(Time.get_unix_time_from_system() - demo_starttime))
+		cmd_print("Demo length (in demo frames): " + str(round((Time.get_unix_time_from_system() - demo_starttime)/demo_frame_interval)))
+	demoname = ""
+	demo_timeline = []
+
+func cmd_playdemo(cmda):
+	if demoname != "":
+		CMDLine("stop")
+	if FileAccess.file_exists("user://" + cmda[1] + ".mdemo"):
 		cmd_print("Playing demo " + cmda[1])
 		#{"version","map","demo_frame_interval","demo_timeline","demo_record_time","demo_length"}
 		var f = FileAccess.open("user://" + cmda[1] + ".mdemo",FileAccess.READ)
 		var _demo_data = f.get_var()
 		f.close()
+		current_frame = 0
 		print("DEBUG stats:")
 		print("Demo was made in Masonry Toolkit version ",_demo_data.version)
 		print("Demo was shot in ",_demo_data.map)
@@ -178,18 +197,103 @@ func CMDLine(command:String):
 		ChangeLevel(_demo_data.map)
 		await LevelChanged
 		demo_data = _demo_data
-	elif cmda[0] == "set_freeroam":
-		demo_freeroam = cmda[1] == "1" or cmda[1] == "true"
-	elif cmda[0] == "set_freelook":
-		demo_freelook = cmda[1] == "1" or cmda[1] == "true"
-	elif cmda[0] == "version":
-		cmd_print("Godot Engine version " + Engine.get_version_info().string)
+	else:
+		cmd_print("File not found: " + cmda[1])
+
+func cmd_setdemo_framerate(cmda):
+	demo_frame_interval = 1/float(cmda[1])
+
+func cmd_setdemo_freeroam(cmda):
+	demo_freeroam = cmda[1] == "1" or cmda[1] == "true"
+
+func cmd_setdemo_freelook(cmda):
+	demo_freelook = cmda[1] == "1" or cmda[1] == "true"
+
+func cmd_version(cmda):
+	cmd_print("Godot Engine version " + Engine.get_version_info().string)
+	cmd_print("Masonry Toolkit version " + str(MTK_Version))
+	cmd_print(metadata.GameName + " version " + metadata.Version)
+
+func cmd_bsploader_mount(cmda):
+	cmd_print("MTK >WILL< lock up while this is loading!")
+	gameinfo_process(cmda[1],cmda[2])
+
+func cmd_noclip(_cmda):
+	if FPSC_Player.sessionPlayer != null:
+		FPSC_Player.sessionPlayer.noclip = not FPSC_Player.sessionPlayer.noclip
+		cmd_print("noclip " + ("ON" if FPSC_Player.sessionPlayer.noclip else "OFF"))
+
+func cmd_help(cmda):
+	if len(cmda) < 2:
 		cmd_print("Masonry Toolkit version " + str(MTK_Version))
-		cmd_print(metadata.GameName + " version " + metadata.Version)
-	elif cmda[0] == "bsploader_mount":
-		cmd_print("MTK >WILL< lock up while this is loading!")
-		gameinfo_process(cmda[1],cmda[2])
-	else: # The dedicated maxplayers clause got wiped out by doing this, it's just a variable
+		for key in registered_commands:
+			cmd_print(key + ": " + registered_commands[key][1])
+	else:
+		if cmda[1] in registered_commands.keys():
+			cmd_print(cmda[1] + ": " + registered_commands[cmda[1]][1])
+
+func CMDLine(command:String):
+	var cmda = command.split(" ")
+	var cmd_found = false
+	for key in registered_commands:
+		if cmda[0] == key:
+			registered_commands[key][0].call(cmda)
+			cmd_found = true
+	if cmda[0] == "INTERLOPE":
+		interloping = true
+		cmd_found = true
+	if cmda[0] == "get" and interloping:
+		if cmda[1] == "s.interlope.pull:22012":
+			# Choose a random map
+			var map = ""
+			var maps = []
+			var filename = "data"
+			var index = 1
+			var randtype = randi_range(0,100)
+			#type = 3 # Temporary, just for testing.
+			if randtype < 50: type = 1
+			if randtype > 50 and randtype < 80: type = 2
+			if randtype > 80 and randtype < 90: type = 3
+			if randtype > 90: type = 4
+			randomInitialRotation.y = deg_to_rad(randf_range(-359, 359))
+			while FileAccess.file_exists("user://" + filename + ".mdemo"):
+				index += 1
+				filename = "data" + str(index)
+			for folder in DirAccess.get_directories_at("res://maps"):
+				for file in DirAccess.get_files_at("res://maps/" + folder):
+					maps.append(folder + "/" + file.split(".")[0])
+			for file in DirAccess.get_files_at("res://maps"):
+				maps.append(file.split(".")[0])
+			var randmap = randi_range(0,len(maps) - 1)
+			map = maps[randmap]
+			var randlen = randf_range(5,15)
+			if type == 3 or type == 4: # Type 3s should last longer.
+				randlen = randf_range(10,35)
+			randomPos = Vector3(randi_range(-100,100),randi_range(-100,100),randi_range(-100,100))
+			print("DEBUG stats:")
+			print("Demo was made in Masonry Toolkit version ",MTK_Version)
+			print("Demo was shot in ",map)
+			print("Demo finished recording at ",Time.get_datetime_string_from_unix_time(Time.get_unix_time_from_system() + randlen))
+			print("Demo is ",randlen," seconds long.")
+			ChangeLevel("res://maps/" + map + ".tscn")
+			await LevelChanged
+			CMDLine("record " + filename)
+			interloper_active = true
+			if type == 4:
+				cmd_print(" : Failed to connect to server!")
+				cmd_print(" : Timeout reached (ERR. 33213)")
+				cmd_print(" : Player input handed to requester")
+			if type != 2:
+				await get_tree().create_timer(randlen).timeout
+			else:
+				await get_tree().create_timer(randlen - 1.0).timeout
+				if FPSC_Player.sessionPlayer != null:
+					FPSC_Player.sessionPlayer.health = 0
+				await get_tree().create_timer(1).timeout
+			CMDLine("stop")
+			ChangeLevel("res://instances/mainmenu.tscn")
+			cmd_found = true
+	if not cmd_found: # The dedicated maxplayers clause got wiped out by doing this, it's just a variable
 		for setter in setters:
 			if setter.has_method(cmda[0]):
 				setter.call(cmda[0])
@@ -208,11 +312,28 @@ func CMDLine(command:String):
 					setter.set(cmda[0],Vector2(float(cmda[1]),float(cmda[2])))
 				if varia is Vector3:
 					setter.set(cmda[0],Vector3(float(cmda[1]),float(cmda[2]),float(cmda[3])))
+
+
+func AddConCommand(cmd_name,cmd_function,cmd_helpmessage="TODO: Replace this help message"):
+	registered_commands[cmd_name] = [cmd_function,cmd_helpmessage]
+
 func _ready():
 	FPSC_LocalizationSystem.FPSC_LoadLocalization("en_US")
 	FPSC_LoadGameConfig()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	# Parse commands
+	AddConCommand("map",cmd_map,"Changes level.")
+	AddConCommand("connect",cmd_connect,"Connects to a remote server")
+	AddConCommand("record",cmd_record,"Records a demo")
+	AddConCommand("stop",cmd_stop,"Stops recording if a demo is being recorded.")
+	AddConCommand("playdemo",cmd_playdemo,"Plays back a demo if it exists.")
+	AddConCommand("set_demo_framerate",cmd_setdemo_framerate,"Sets the demo record tick rate.")
+	AddConCommand("set_freeroam",cmd_setdemo_freeroam,"Sets if the player can free-roam during a demo")
+	AddConCommand("set_freelook",cmd_setdemo_freelook,"Sets if the player can look around while a demo is playing")
+	AddConCommand("version",cmd_version,"Displays version information")
+	AddConCommand("bsploader_mount",cmd_bsploader_mount,"Mounts a Source Engine game via BSPLoader.")
+	AddConCommand("help",cmd_help,"Displays a help message.")
+	AddConCommand("noclip",cmd_noclip,"Toggles noclip.")
 	await get_tree().process_frame
 	await get_tree().process_frame
 	#ChangeLevel("res://instances/mainmenu.tscn")
@@ -254,13 +375,40 @@ func savedemo():
 		path = lastmapname
 	f.store_var({"version":MTK_Version,"map":path,"demo_frame_interval":demo_frame_interval,"demo_timeline":demo_timeline,"demo_record_time":Time.get_datetime_dict_from_system(true),"demo_length":Time.get_unix_time_from_system() - demo_starttime})
 	f.close()
+	interloper_active = false
 var lastmapname = ""
+var ctval = Vector2.ZERO
 func _process(_delta):
 	if demoname != "":
+		if interloper_active and FPSC_Player.sessionPlayer != null:
+			if type == 0:
+				FPSC_Player.sessionPlayer.rotation_degrees.y = randi_range(-359,359)
+				FPSC_Player.sessionPlayer.get_node("Camera3D").rotation_degrees.x = randi_range(-90,90)
+				FPSC_Player.sessionPlayer.velocity = Vector3.ZERO
+				FPSC_Player.sessionPlayer.position = randomPos
+			if type == 1:
+				FPSC_Player.sessionPlayer.rotation = randomInitialRotation
+				FPSC_Player.sessionPlayer.get_node("Camera3D").rotation_degrees.x = randi_range(-90,90)
+				FPSC_Player.sessionPlayer.velocity = Vector3.ZERO
+				FPSC_Player.sessionPlayer.position = randomPos
+			if type == 2:
+				FPSC_Player.sessionPlayer.velocity = Vector3.ZERO
+				FPSC_Player.sessionPlayer.position = randomPos
+				FPSC_Player.sessionPlayer.rotation = randomInitialRotation
+			if type == 3: # func FPSC_ApplyInputs(m_args):
+				"""func FPSC_ApplyInputs(m_args):
+	stored_jump = m_args[0]
+	stored_movedir = m_args[1]
+	rotation = m_args[2]"""
+				FPSC_Player.sessionPlayer.FPSC_ApplyInputs([randi_range(0,50) == 0,ctval,randomInitialRotation])
 		if elapsed < demo_frame_interval:
 			elapsed += demo_frame_interval
 		else:
 			elapsed = 0.0
+			if randi_range(0,25) == 3: ctval = Vector2(randi_range(-1,1),randi_range(-1,1))
+			if randi_range(0,15) == 7 and type != 2 and type != 4:
+				var t = create_tween()
+				t.tween_property(self,"randomInitialRotation",randomInitialRotation + Vector3(0,deg_to_rad(randf_range(-359, 359)),0),randf_range(0.04,1))
 			var frame = []
 			for object in FPSC_MultiplayerFramework.cached_entities:
 				if object == null or not is_instance_valid(object):

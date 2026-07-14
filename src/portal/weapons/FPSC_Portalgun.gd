@@ -7,7 +7,7 @@ func FPSC_LoadViewmodel():
 var current_portal1 = null
 var current_portal2 = null
 var portal_template = preload("res://instances/portal/PortalInstance.tscn")
-
+var edict = {} # edict because source hates me
 func FPSC_Reload():
 	if current_portal1 != null:
 		current_portal1.queue_free()

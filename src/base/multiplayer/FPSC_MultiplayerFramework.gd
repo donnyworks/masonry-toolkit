@@ -54,19 +54,21 @@ func build_tree_up():
 func recurse_me(_node:Node):
 	var messages = []
 	for object in cached_entities:
-		if not object is RigidBody3D:
-			var state = object.FPSC_GetMPState()
-			var pathy = str(object.get_path())
-			messages.append([state,pathy,"MPState"])
-			#Monolyth.SendMessage("FPSC_UpdateMPState",[state,pathy],Monolyth.get_remote_sender_id()) # Godot format since I have no idea what the hell it wants from me
-		else:
-			var state = [object.position,object.rotation,object.scale,object.collision_mask,object.collision_layer,object.angular_velocity,object.linear_velocity]
-			var pathy = str(object.get_path())
-			#Monolyth.SendMessage("FPSC_UpdateRigidbody",[state,pathy],Monolyth.get_remote_sender_id())
-			messages.append([state,pathy,"RigidBody"])
+		if is_instance_valid(object):
+			if not object is RigidBody3D:
+				var state = object.FPSC_GetMPState()
+				var pathy = str(object.get_path())
+				messages.append([state,pathy,"MPState"])
+				#Monolyth.SendMessage("FPSC_UpdateMPState",[state,pathy],Monolyth.get_remote_sender_id()) # Godot format since I have no idea what the hell it wants from me
+			else:
+				var state = [object.position,object.rotation,object.scale,object.collision_mask,object.collision_layer,object.angular_velocity,object.linear_velocity]
+				var pathy = str(object.get_path())
+				#Monolyth.SendMessage("FPSC_UpdateRigidbody",[state,pathy],Monolyth.get_remote_sender_id())
+				messages.append([state,pathy,"RigidBody"])
 	for player in cached_players:
-		if player.name != "1":
-			Monolyth.SendMessage("FPSC_StateUpdate",messages,int(player.name))
+		if is_instance_valid(player):
+			if player.name != "1":
+				Monolyth.SendMessage("FPSC_StateUpdate",messages,int(player.name))
 	pass
 
 func build_tree(node:Node):
@@ -107,6 +109,7 @@ func SV_MessageHandler(m_name,m_args,m_sender):
 				list.append(object.name) # Every player name is their ID, so this should just work
 		Monolyth.SendMessage("FPSC_RecvPlayerList",list,Monolyth.get_remote_sender_id())
 	if m_name == "FPSC_UpdatePlayState":
+		if get_tree().current_scene.get_node(str(m_sender)) == null: return
 		get_tree().current_scene.get_node(str(m_sender)).FPSC_ApplyInputs(m_args)
 		#for object in cached_players:
 		#	var state = object.FPSC_GetMPState()
@@ -146,6 +149,7 @@ func CL_MessageHandler(m_name,m_args,m_sender):
 				CL_MessageHandler("FPSC_UpdateRigidbody",message,1)
 	if m_name == "FPSC_UpdateMPState" and m_sender == 1:
 		#print("Updating state for ",m_args[1])
+		if get_node_or_null(m_args[1]) == null: return
 		get_node(m_args[1]).FPSC_ApplyMPState(m_args[0])
 	if m_name == "FPSC_StateExhausted" and m_sender == 1:
 		await get_tree().process_frame # We literally wait a frame before we say we're ready.
@@ -154,6 +158,7 @@ func CL_MessageHandler(m_name,m_args,m_sender):
 		if get_node_or_null(m_args[0]) != null:
 			get_node(m_args[0]).queue_free() # yay! get it out of my house RIGHT NOW
 	if m_name == "FPSC_UpdateRigidbody" and m_sender == 1:#[object.position,object.rotation,object.scale,object.collision_mask,object.collision_layer,object.angular_velocity,object.linear_velocity]
+		if get_node_or_null(m_args[1]) == null: return
 		var object : RigidBody3D = get_node(m_args[1])
 		object.position = m_args[0][0]
 		object.rotation = m_args[0][1]

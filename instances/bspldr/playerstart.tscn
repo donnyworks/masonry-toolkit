@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://k3om2rmq3fyv"]
+
+[ext_resource type="Script" uid="uid://c8kwpd5qtvuol" path="res://src/bsploader/playerstart.gd" id="1_txxal"]
+
+[node name="Playerstart" type="Node3D"]
+script = ExtResource("1_txxal")
