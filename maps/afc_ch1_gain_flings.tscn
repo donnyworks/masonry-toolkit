@@ -31,8 +31,8 @@
 [ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="19_43q6j"]
 [ext_resource type="PackedScene" uid="uid://b6lemoo8ic8o2" path="res://instances/portal/PortalInstance.tscn" id="23_fekfh"]
 [ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="27_nchtp"]
-[ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="29_oxf4t"]
 [ext_resource type="Script" uid="uid://bxrwaxtx06m0r" path="res://src/base/activatables/world/doers/FPSC_ActivatableTeleportNode3D.gd" id="29_tc4iw"]
+[ext_resource type="AudioStream" uid="uid://tx1dpdclypng" path="res://sound/vo/announcer/Ch1DemoFinishNEW.wav" id="30_n273v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ah5jf"]
 
@@ -7686,16 +7686,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.766045, 21.147024, -79.328
 [node name="prefab_chamber_exithall" parent="." instance=ExtResource("27_nchtp")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 23.865139, 16.99669, -118.50025)
 
-[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_exithall"]
-script = ExtResource("29_oxf4t")
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_exithall" node_paths=PackedStringArray("activated")]
+script = ExtResource("4_n1mh4")
+activated = [NodePath("../FPSC_VoicelineActivatable")]
 delay = 2.0
 trigger_once = true
 interact_with = 1
-metadata/_custom_type_script = "uid://cn3f2saw8lsmn"
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_exithall/FPSC_TriggerRelay"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3953769, 0.17739749)
 shape = SubResource("CylinderShape3D_mq8bb")
+
+[node name="FPSC_VoicelineActivatable" type="Node" parent="prefab_chamber_exithall" node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("12_v0i48")
+voiceline_player = NodePath("")
+character_voiceline = ExtResource("30_n273v")
+localized_caption = "Announcer.Chapter1Demo"
+execute_once = true
+metadata/_custom_type_script = "uid://whqnccb8m4hc"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="prefab_chamber_exithall"]
 
 [node name="afc_ch1_intro_chamber" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -580, 0, -71)

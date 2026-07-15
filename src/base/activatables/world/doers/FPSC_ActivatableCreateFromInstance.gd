@@ -27,6 +27,9 @@ func FPSC_ApplyMPState(state):
 		on_enter(Node3D.new())
 
 func _ready():
+	if instance == null:
+		queue_free()
+		return
 	inst = instance.duplicate()
 	if not preserve_original: instance.queue_free() # We fucking kill the original for existing
 

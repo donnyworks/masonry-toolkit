@@ -9,6 +9,7 @@ class_name FPSC_TriggerRelay
 
 func on_enter(body:Node3D):
 	for trigger in activated:
+		if trigger == null: continue
 		if not UseActivationDelay:
 			trigger.on_enter(body)
 		else:
@@ -16,6 +17,7 @@ func on_enter(body:Node3D):
 
 func on_exit(body:Node3D):
 	for trigger in activated:
+		if trigger == null: continue
 		if not UseActivationDelayOnExit:
 			trigger.on_exit(body)
 		else:

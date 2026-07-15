@@ -147,16 +147,24 @@ var registered_commands = {}
 
 func cmd_map(cmda):
 	cmd_print("Changing level to " + cmda[1])
-	if FileAccess.file_exists("res://maps/" + cmda[1] + ".tscn"):
+	if FileAccess.file_exists("res://maps/" + cmda[1] + ".tscn") or FileAccess.file_exists("res://maps/" + cmda[1] + ".tscn.remap"):
 		FPSC_LevelManager.ChangeLevel("res://maps/" + cmda[1] + ".tscn")
 		if FPSC_MultiplayerFramework.maxplayers > 1: # We're trying to enroll as a server
 			await FPSC_LevelManager.LevelChanged
 			print("Full assurance that the game has started, the level has loaded, and we are ready to start listening.")
 			FPSC_MultiplayerFramework.start_server()
 	else:
-		if VPKH.file_exists("maps/" + cmda[1] + ".bsp"):
-			get_tree().unload_current_scene()
-			LoadBSPFile("maps/" + cmda[1] + ".bsp")
+		if FileAccess.file_exists("user://maps/" + cmda[1] + ".tscn"):
+			FPSC_LevelManager.ChangeLevel("user://maps/" + cmda[1] + ".tscn")
+			if FPSC_MultiplayerFramework.maxplayers > 1: # We're trying to enroll as a server
+				await FPSC_LevelManager.LevelChanged
+				print("Full assurance that the game has started, the level has loaded, and we are ready to start listening.")
+				FPSC_MultiplayerFramework.start_server()
+		else:
+			if VPKH != null:
+				if VPKH.file_exists("maps/" + cmda[1] + ".bsp"):
+					get_tree().unload_current_scene()
+					LoadBSPFile("maps/" + cmda[1] + ".bsp")
 
 func cmd_connect(cmda):
 	FPSC_LevelManager.drop_current_level()
@@ -230,8 +238,81 @@ func cmd_help(cmda):
 			cmd_print(key + ": " + registered_commands[key][1])
 	else:
 		if cmda[1] in registered_commands.keys():
-			cmd_print(cmda[1] + ": " + registered_commands[cmda[1]][1])
+			cmd_print(cmda[1] + " " + registered_commands[cmda[1]][2] + ": " + registered_commands[cmda[1]][1])
 
+func cmd_genmap_srcbox(cmda):
+	var maps = []
+	var map = ""
+	for folder in DirAccess.get_directories_at("res://maps"):
+		for file in DirAccess.get_files_at("res://maps/" + folder):
+			maps.append(folder + "/" + file.split(".")[0])
+	for file in DirAccess.get_files_at("res://maps"):
+		maps.append(file.split(".")[0])
+	var randmap = randi_range(0,len(maps) - 1)
+	map = maps[randmap]
+	#if randi_range(0,1000000) == 4021:
+	# Generate data!
+	var mapname = "data"
+	if not DirAccess.dir_exists_absolute("user://maps"):
+		DirAccess.make_dir_absolute("user://maps")
+	var m_index = 1
+	while FileAccess.file_exists("user://maps/" + mapname + ".tscn"):
+		m_index += 1
+		mapname = "data" + str(m_index)
+	var scene = Node3D.new()
+	var player = preload("res://instances/player.tscn").instantiate()
+	scene.add_child(player)
+	player.owner = scene
+	var world = WorldEnvironment.new()
+	var env = Environment.new()
+	var skym = ProceduralSkyMaterial.new()
+	var sky = Sky.new()
+	sky.sky_material = skym
+	env.sky = sky
+	env.background_mode = Environment.BG_SKY
+	world.environment = env
+	scene.add_child(world) # Our template should be the originally chosen target map.
+	world.owner = scene
+	var targetmap_geometry = []
+	var mapMixQuantity = randi_range(3,7)
+	if len(cmda) > 1:
+		mapMixQuantity = int(cmda[1])
+	for i in range(mapMixQuantity):
+		randmap = randi_range(0,len(maps) - 1)
+		map = maps[randmap]
+		var targetmap = load("res://maps/" + map + ".tscn").instantiate()
+		for node in targetmap.get_children():
+			if node is Node3D and randi_range(0,10) == 6 and not node is FPSC_Player: # ANYTHING BUT THE PLAYER, ANYTHING BUT AN ACTIVATABLE OH GOD
+				targetmap.remove_child(node)
+				targetmap_geometry.append(node)
+	if len(targetmap_geometry) < 25: # Let me contribute some of my... artistic vision.
+		var shape = CSGBox3D.new()
+		shape.size = Vector3(randf_range(1,10),randf_range(1,10),randf_range(1,10))
+		shape.position = Vector3(randf_range(-40,40),randf_range(-40,40),randf_range(-40,40))
+		shape.rotation = Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+		shape.use_collision = not randi_range(0,10) == 5
+		targetmap_geometry.append(shape)
+	for i in targetmap_geometry:
+		scene.add_child(i)
+		i.owner = scene
+		set_owner_recursive(i,scene)
+	var base_emergency_platform = CSGBox3D.new()
+	base_emergency_platform.position.y = -1
+	base_emergency_platform.use_collision = true
+	scene.add_child(base_emergency_platform)
+	base_emergency_platform.owner = scene
+	await get_tree().process_frame # i dunno, we need a frame of time to think on this new addition?
+	var ps = PackedScene.new()
+	ps.pack(scene)
+	ResourceSaver.save(ps,"user://maps/" + mapname + ".tscn")
+	map = "user://maps/" + mapname + ".tscn"
+	ChangeLevel(map)
+
+func set_owner_recursive(node: Node, new_owner: Node) -> void:
+	for child in node.get_children():
+		child.owner = new_owner
+		set_owner_recursive(child, new_owner) # Keep digging down
+		
 func CMDLine(command:String):
 	var cmda = command.split(" ")
 	var cmd_found = false
@@ -241,6 +322,7 @@ func CMDLine(command:String):
 			cmd_found = true
 	if cmda[0] == "INTERLOPE":
 		interloping = true
+		AddConCommand("genmap_srcbox",cmd_genmap_srcbox,"Generates a map using sourceBox","[Amount of maps to smack together:int]")
 		cmd_found = true
 	if cmda[0] == "get" and interloping:
 		if cmda[1] == "s.interlope.pull:22012":
@@ -266,6 +348,62 @@ func CMDLine(command:String):
 				maps.append(file.split(".")[0])
 			var randmap = randi_range(0,len(maps) - 1)
 			map = maps[randmap]
+			#if true:
+			if randi_range(0,100000) == 4021:
+				# Generate data!
+				var mapname = "data"
+				if not DirAccess.dir_exists_absolute("user://maps"):
+					DirAccess.make_dir_absolute("user://maps")
+				var m_index = 1
+				while FileAccess.file_exists("user://maps/" + mapname + ".tscn"):
+					m_index += 1
+					mapname = "data" + str(m_index)
+				var scene = Node3D.new()
+				var player = preload("res://instances/player.tscn").instantiate()
+				scene.add_child(player)
+				player.owner = scene
+				var world = WorldEnvironment.new()
+				var env = Environment.new()
+				var skym = ProceduralSkyMaterial.new()
+				var sky = Sky.new()
+				sky.sky_material = skym
+				env.sky = sky
+				env.background_mode = Environment.BG_SKY
+				world.environment = env
+				scene.add_child(world) # Our template should be the originally chosen target map.
+				world.owner = scene
+				var targetmap_geometry = []
+				for i in range(randi_range(3,7)):
+					randmap = randi_range(0,len(maps) - 1)
+					map = maps[randmap]
+					var targetmap = load("res://maps/" + map + ".tscn").instantiate()
+					for node in targetmap.get_children():
+						if node is Node3D and randi_range(0,10) == 6 and not node is FPSC_Player: # ANYTHING BUT THE PLAYER, ANYTHING BUT AN ACTIVATABLE OH GOD
+							targetmap.remove_child(node)
+							targetmap_geometry.append(node)
+				if len(targetmap_geometry) < 25: # Let me contribute some of my... artistic vision.
+					var shape = CSGBox3D.new()
+					shape.size = Vector3(randf_range(1,10),randf_range(1,10),randf_range(1,10))
+					shape.position = Vector3(randf_range(-40,40),randf_range(-40,40),randf_range(-40,40))
+					shape.rotation = Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+					shape.use_collision = not randi_range(0,10) == 5
+					targetmap_geometry.append(shape)
+				for i in targetmap_geometry:
+					scene.add_child(i)
+					i.owner = scene
+					set_owner_recursive(i,scene)
+				var base_emergency_platform = CSGBox3D.new()
+				base_emergency_platform.position.y = -1
+				base_emergency_platform.use_collision = true
+				scene.add_child(base_emergency_platform)
+				base_emergency_platform.owner = scene
+				await get_tree().process_frame # i dunno, we need a frame of time to think on this new addition?
+				var ps = PackedScene.new()
+				ps.pack(scene)
+				ResourceSaver.save(ps,"user://maps/" + mapname + ".tscn")
+				map = "user://maps/" + mapname + ".tscn"
+			else:
+				map = "res://maps/" + map + ".tscn"
 			var randlen = randf_range(5,15)
 			if type == 3 or type == 4: # Type 3s should last longer.
 				randlen = randf_range(10,35)
@@ -275,7 +413,7 @@ func CMDLine(command:String):
 			print("Demo was shot in ",map)
 			print("Demo finished recording at ",Time.get_datetime_string_from_unix_time(Time.get_unix_time_from_system() + randlen))
 			print("Demo is ",randlen," seconds long.")
-			ChangeLevel("res://maps/" + map + ".tscn")
+			ChangeLevel(map)
 			await LevelChanged
 			CMDLine("record " + filename)
 			interloper_active = true
@@ -314,25 +452,25 @@ func CMDLine(command:String):
 					setter.set(cmda[0],Vector3(float(cmda[1]),float(cmda[2]),float(cmda[3])))
 
 
-func AddConCommand(cmd_name,cmd_function,cmd_helpmessage="TODO: Replace this help message"):
-	registered_commands[cmd_name] = [cmd_function,cmd_helpmessage]
+func AddConCommand(cmd_name,cmd_function,cmd_helpmessage="TODO: Replace this help message",cmd_args=""):
+	registered_commands[cmd_name] = [cmd_function,cmd_helpmessage,cmd_args]
 
 func _ready():
 	FPSC_LocalizationSystem.FPSC_LoadLocalization("en_US")
 	FPSC_LoadGameConfig()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	# Parse commands
-	AddConCommand("map",cmd_map,"Changes level.")
-	AddConCommand("connect",cmd_connect,"Connects to a remote server")
-	AddConCommand("record",cmd_record,"Records a demo")
+	AddConCommand("map",cmd_map,"Changes level.","[Level name]")
+	AddConCommand("connect",cmd_connect,"Connects to a remote server","[IP:Port]")
+	AddConCommand("record",cmd_record,"Records a demo","[Demo name]")
 	AddConCommand("stop",cmd_stop,"Stops recording if a demo is being recorded.")
-	AddConCommand("playdemo",cmd_playdemo,"Plays back a demo if it exists.")
-	AddConCommand("set_demo_framerate",cmd_setdemo_framerate,"Sets the demo record tick rate.")
-	AddConCommand("set_freeroam",cmd_setdemo_freeroam,"Sets if the player can free-roam during a demo")
-	AddConCommand("set_freelook",cmd_setdemo_freelook,"Sets if the player can look around while a demo is playing")
+	AddConCommand("playdemo",cmd_playdemo,"Plays back a demo if it exists.","[Demo name]")
+	AddConCommand("set_demo_framerate",cmd_setdemo_framerate,"Sets the demo record tick rate.","[DemoTPS:int]")
+	AddConCommand("set_freeroam",cmd_setdemo_freeroam,"Sets if the player can free-roam during a demo","[freeroam:bool]")
+	AddConCommand("set_freelook",cmd_setdemo_freelook,"Sets if the player can look around while a demo is playing","[freelook:bool]")
 	AddConCommand("version",cmd_version,"Displays version information")
-	AddConCommand("bsploader_mount",cmd_bsploader_mount,"Mounts a Source Engine game via BSPLoader.")
-	AddConCommand("help",cmd_help,"Displays a help message.")
+	AddConCommand("bsploader_mount",cmd_bsploader_mount,"Mounts a Source Engine game via BSPLoader.","[Game Path] [Game Mod Folder Name]")
+	AddConCommand("help",cmd_help,"Displays a help message.","[Command]")
 	AddConCommand("noclip",cmd_noclip,"Toggles noclip.")
 	await get_tree().process_frame
 	await get_tree().process_frame

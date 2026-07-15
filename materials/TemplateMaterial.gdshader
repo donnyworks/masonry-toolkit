@@ -1,5 +1,5 @@
 shader_type spatial; // Use standard as a base
-//render_mode unshaded;
+render_mode unshaded;
 
 uniform sampler2D albedo_texture : source_color, filter_linear_mipmap, repeat_enable;
 uniform sampler2D lightmap_atlas : source_color, filter_linear; // Your Lump 8 Atlas
@@ -17,8 +17,8 @@ void fragment() {
 	//ALBEDO = lightmap.rgb; 
     
     // The final Source-style composite
-    //ALBEDO = albedo.rgb * lightmap.rgb;
+    ALBEDO = albedo.rgb * lightmap.rgb;
     
     // If the texture is still invisible, try:
-    ALBEDO = albedo.rgb; 
+    //ALBEDO = albedo.rgb; 
 }

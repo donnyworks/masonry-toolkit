@@ -783,6 +783,158 @@ static func LoadBSP(bsp_path) -> BSPFile:
 static func _build_mesh_with_uvs(file: BSPFile, face_indices: Array[int]):
 	var final_mesh = ArrayMesh.new()
 	
+	var imgOut = FileAccess.open("res://LUMP_LIGHTING.lmp", FileAccess.WRITE)
+	imgOut.store_buffer(file.lumps[BSPLumps.LUMP_LIGHTING].data)
+	imgOut.close()
+	
+	# Group faces by their TexData ID
+	var groups = {} # int -> Array[int]
+	for f_idx in face_indices:
+		var face = file.lumps[BSPLumps.LUMP_FACES].faces[f_idx]
+		var t_info = file.lumps[BSPLumps.LUMP_TEXINFO].textures[face.texinfo]
+		if not groups.has(t_info.texdata):
+			groups[t_info.texdata] = []
+		groups[t_info.texdata].append(f_idx)
+	
+	var tex_info_lump = file.lumps[BSPLumps.LUMP_TEXINFO]
+	var tex_data_lump = file.lumps[BSPLumps.LUMP_TEXDATA]
+	var faces_lump = file.lumps[BSPLumps.LUMP_FACES]
+	
+	# Global atlas layout variables—shared across all material surfaces
+	var start_x = 0
+	var start_y = 0
+	var current_row_max_h = 0
+	
+	# Using RGBAF to store high-dynamic-range float values (> 1.0) without clamping
+	var img_light = Image.create_empty(2048, 2048, false, Image.FORMAT_RGBAF)
+	var coordinate_pairs = []
+
+	# Map tracking which surface index belongs to which material for the final pass
+	var surface_materials = {} # int (surface_idx) -> Material
+
+	# Build a separate surface for each texture group
+	for texdata_id in groups:
+		var st = SurfaceTool.new()
+		st.begin(Mesh.PRIMITIVE_TRIANGLES)
+		
+		for f_idx in groups[texdata_id]:
+			var face : BSPFace = faces_lump.faces[f_idx]
+			var verts = faces_lump.get_verticies_for_id(file, f_idx)
+			
+			if verts.size() < 3: continue
+
+			var t_info = tex_info_lump.textures[face.texinfo]
+			var t_data = tex_data_lump.textures[t_info.texdata]
+			
+			# Vector Math Setup
+			var u_v = Vector3(t_info.textureVecs[0][0], t_info.textureVecs[0][2], t_info.textureVecs[0][1])
+			var u_o = t_info.textureVecs[0][3]
+			var v_v = Vector3(t_info.textureVecs[1][0], t_info.textureVecs[1][2], t_info.textureVecs[1][1])
+			var v_o = t_info.textureVecs[1][3]
+			var ul_v = Vector3(t_info.lightmapVecs[0][0], t_info.lightmapVecs[0][2], t_info.lightmapVecs[0][1])/53
+			var ul_o = t_info.lightmapVecs[0][3]
+			var vl_v = Vector3(t_info.lightmapVecs[1][0], t_info.lightmapVecs[1][2], t_info.lightmapVecs[1][1])/53
+			var vl_o = t_info.lightmapVecs[1][3]
+			
+			# Source lightmap coordinates rely on the padded sizes (+1)
+			var face_w = face.LightmapTextureSizeInLuxels[0] + 1
+			var face_h = face.LightmapTextureSizeInLuxels[1] + 1
+
+			# Row wrapping layout logic
+			if start_x + face_w > 2048:
+				start_x = 0
+				start_y += current_row_max_h + 2
+				current_row_max_h = 0
+
+			if face_h > current_row_max_h:
+				current_row_max_h = face_h
+
+			if start_y + face_h > 2048:
+				push_error("PARSE ERROR: Lightmap area exceeded 2048x2048 map layout!")
+				return
+
+			coordinate_pairs.append([Vector2(start_x, start_y), Vector2(face_w, face_h)])
+			var lighting_data = file.lumps[BSPLumps.LUMP_LIGHTING].data
+
+			# Loop using the full padded dimensions (+1) to prevent shifts
+			for y in range(0, face_h):
+				for x in range(0, face_w):
+					# Stride calculation uses the true padded width
+					var sample_idx = y * face_w + x
+					
+					# Style 0 base lighting is always the first slice at face.lightofs
+					var byte_offset = face.lightofs + (sample_idx * 4)
+					
+					var r_raw = lighting_data[byte_offset]
+					var g_raw = lighting_data[byte_offset + 1]
+					var b_raw = lighting_data[byte_offset + 2]
+					var e_raw = lighting_data[byte_offset + 3]
+					
+					# Interpret the exponent byte as a signed 8-bit char
+					var e_signed = e_raw
+					if e_signed > 127:
+						e_signed -= 256
+						
+					var l_scale = pow(2.0, e_signed)
+					var c = Color()
+					
+					# Decode HDR intensity with Source overbright multiplier
+					c.r = ((r_raw * l_scale) / 255.0) * 4.0
+					c.g = ((g_raw * l_scale) / 255.0) * 4.0
+					c.b = ((b_raw * l_scale) / 255.0) * 4.0
+					c.a = 1.0
+					
+					img_light.set_pixel(start_x + x, start_y + y, c)
+
+			# Triangulation & UV Calculation runs matching the pixel cursor setup
+			for i in range(1, verts.size() - 1):
+				var triangle = [verts[0], verts[i], verts[i+1]]
+				for v in triangle:
+					var u = (v.dot(u_v) + u_o) / (t_data.width)
+					var v_coord = (v.dot(v_v) + v_o) / (t_data.height)
+					var u_raw = v.dot(ul_v) + ul_o
+					var v_raw = v.dot(vl_v) + vl_o
+
+					var u_local = (u_raw - face.LightmapTextureMinsInLuxels[0]) + 0.5
+					var v_local = (v_raw - face.LightmapTextureMinsInLuxels[1]) + 0.5
+					
+					var global_u_pixels = start_x + u_local
+					var global_v_pixels = start_y + v_local
+
+					var final_ul = global_u_pixels / 2048.0
+					var final_vl = global_v_pixels / 2048.0
+
+					st.set_uv2(Vector2(final_ul, final_vl))
+					st.set_uv(Vector2(u, v_coord))
+					st.add_vertex(v / 53.0)
+			
+			# Advance the layout position safely for the next face loop entry
+			start_x += face_w + 2
+			
+		st.generate_normals()
+		st.generate_tangents()
+		
+		final_mesh = st.commit(final_mesh)
+		
+		var mat = _get_material_for_texdata(file, texdata_id)
+		var surface_count = final_mesh.get_surface_count() - 1
+		final_mesh.surface_set_material(surface_count, mat)
+		
+		# Log the created surface ID for post-pass allocation
+		surface_materials[surface_count] = mat
+		
+	# Post-pass assignment: upload fully compiled atlas once to all shader slots
+	var tex_light = ImageTexture.create_from_image(img_light)
+	for s_idx in surface_materials:
+		var mat = surface_materials[s_idx]
+		mat.set_shader_parameter("lightmap_atlas", tex_light)
+		
+	img_light.save_png("res://textures/bspldr_light.png")
+	return [final_mesh, img_light]
+
+"""static func _build_mesh_with_uvs(file: BSPFile, face_indices: Array[int]):
+	var final_mesh = ArrayMesh.new()
+	
 	var imgOut = FileAccess.open("res://LUMP_LIGHTING.lmp",FileAccess.WRITE)
 	imgOut.store_buffer(file.lumps[BSPLumps.LUMP_LIGHTING].data)
 	imgOut.close()
@@ -799,15 +951,19 @@ static func _build_mesh_with_uvs(file: BSPFile, face_indices: Array[int]):
 	var tex_info_lump = file.lumps[BSPLumps.LUMP_TEXINFO]
 	var tex_data_lump = file.lumps[BSPLumps.LUMP_TEXDATA]
 	var faces_lump = file.lumps[BSPLumps.LUMP_FACES]
-	var start_x = 0
-	var start_y = 0
+	#var start_x = 0
+	#var start_y = 0
 	var img_light = Image.create_empty(2048,2048,false,Image.FORMAT_RGB8)
 	var coordinate_pairs = []
 	# Build a separate surface for each texture
 	for texdata_id in groups:
 		var st = SurfaceTool.new()
 		st.begin(Mesh.PRIMITIVE_TRIANGLES)
-			
+		# --- PLACE THESE OUTSIDE / BEFORE YOUR ALL-FACES LOOP ---
+		var start_x = 0
+		var start_y = 0
+		var current_row_max_h = 0
+		# -------------------------------------------------------
 		for f_idx in groups[texdata_id]:
 			var face : BSPFace = faces_lump.faces[f_idx]
 			var verts = faces_lump.get_verticies_for_id(file, f_idx)
@@ -827,43 +983,72 @@ static func _build_mesh_with_uvs(file: BSPFile, face_indices: Array[int]):
 			var ul_o = t_info.lightmapVecs[0][3]
 			var vl_v = Vector3(t_info.lightmapVecs[1][0], t_info.lightmapVecs[1][2], t_info.lightmapVecs[1][1])/53
 			var vl_o = t_info.lightmapVecs[1][3]
-			var maxLMSX = 0
-			var maxLMSY = 0
-			# 4. Divide by the Luxel size + 1 (Source adds 1 to the size for padding)
-			#print("Start_X is now ",start_x)
-			#print("Starting image at size ",face.LightmapTextureSizeInLuxels[0]," by ",face.LightmapTextureSizeInLuxels[1])
-			#if maxLMSX < start_x + face.LightmapTextureSizeInLuxels[0]:
-			#	maxLMSX = start_x + face.LightmapTextureSizeInLuxels[0]
-			if maxLMSY - start_y < face.LightmapTextureSizeInLuxels[1]:
-				maxLMSY += face.LightmapTextureSizeInLuxels[1]
-			if start_x + face.LightmapTextureSizeInLuxels[0] > 2048:
-				#print("Shifting at 2048? Tried adding from ",start_x)
+			
+			# Inside your loop for each face:
+			var face_w = face.LightmapTextureSizeInLuxels[0] + 1 # Source padding addition
+			var face_h = face.LightmapTextureSizeInLuxels[1] + 1
+
+			# 1. Check if we need to wrap around to the next row line
+			if start_x + face_w > 2048:
 				start_x = 0
-				start_y = maxLMSY + face.LightmapTextureSizeInLuxels[1] + 10# Donovan, don't delete this again. Its purpose is to make it so that the maximum BB for a texture is where we move next.
-			if start_y + face.LightmapTextureSizeInLuxels[1] > 2048:
-				push_error("PARSE ERROR: Lightmap area exceeded luxelmap texture size!")
-			coordinate_pairs.append([Vector2(start_x,start_y),Vector2(face.LightmapTextureSizeInLuxels[0],face.LightmapTextureSizeInLuxels[1])])
-			for y in range(0,face.LightmapTextureSizeInLuxels[1]):
-				for x in range(0,face.LightmapTextureSizeInLuxels[0]):
+				start_y += current_row_max_h
+				current_row_max_h = 0 # Reset the ceiling for the brand-new row
+
+			# 2. Track the tallest face in the current horizontal row strip
+			if face_h > current_row_max_h:
+				current_row_max_h = face_h
+
+			# 3. Guard against overflowing the total atlas texture bounds
+			if start_y + face_h > 2048:
+				push_error("PARSE ERROR: Lightmap area exceeded 2048x2048 luxelmap texture size!")
+				return
+
+			# Keep your coordinate registration tracker
+			coordinate_pairs.append([Vector2(start_x, start_y), Vector2(face_w, face_h)])
+			var lighting_data = file.lumps[BSPLumps.LUMP_LIGHTING].data
+			var single_patch_samples = face.LightmapTextureSizeInLuxels[0] * face.LightmapTextureSizeInLuxels[1]
+
+			# 2. Count how many valid lightmap styles this face actually uses
+			# (In Source, a style byte of 255/0xFF means 'no style')
+			var valid_styles = 0
+			for s in face.styles:
+				if s != 255:
+					valid_styles += 1
+
+			# If no specific style is assigned, it still has 1 default base lightmap
+			if valid_styles == 0:
+				valid_styles = 1
+
+			# 3. Read the correct style slice (usually style index 0 is the base world lighting)
+			# If you want to isolate the base lighting and ignore the extra ambient layers for now:
+			for y in range(0, face.LightmapTextureSizeInLuxels[1]):
+				for x in range(0, face.LightmapTextureSizeInLuxels[0]):
+					# Base lighting is at the very beginning of face.lightofs
+					var sample_idx = y * face.LightmapTextureSizeInLuxels[0] + x
+					var byte_offset = face.lightofs + (sample_idx * 4)
+					
+					var r_raw = lighting_data[byte_offset]
+					var g_raw = lighting_data[byte_offset + 1]
+					var b_raw = lighting_data[byte_offset + 2]
+					var e_raw = lighting_data[byte_offset + 3] # The exponent multiplier!
+					
+					# --- Portal / Source Lightmap Decoding Formula ---
+					# Source uses RGBExp. You MUST multiply the RGB values by 2^Exponent 
+					# to decode the high-dynamic-range brightness correctly!
+					var l_scale = pow(2.0, e_raw - 128.0)
 					var c = Color()
-					var r_raw = file.lumps[BSPLumps.LUMP_LIGHTING].data[face.lightofs + ((y * face.LightmapTextureSizeInLuxels[0] + x) * 4)]
-					var g_raw = file.lumps[BSPLumps.LUMP_LIGHTING].data[face.lightofs + ((y * face.LightmapTextureSizeInLuxels[0] + x) * 4) + 1]
-					var b_raw = file.lumps[BSPLumps.LUMP_LIGHTING].data[face.lightofs + ((y * face.LightmapTextureSizeInLuxels[0] + x) * 4) + 2]
-					#var e_raw = file.lumps[BSPLumps.LUMP_LIGHTING].data[face.lightofs + ((y * face.LightmapTextureSizeInLuxels[0] + x) * 4) + 3]
-					c.r8 = r_raw
-					c.g8 = g_raw
-					c.b8 = b_raw
-					if x == face.LightmapTextureSizeInLuxels[0] - 1 or y == face.LightmapTextureSizeInLuxels[1] - 1:
-						c.r = 1
-						c.g = 0
-						c.b = 0
-					#c.r = (r_raw * pow(2.0,e_raw-128.0)) / 255.0
-					#c.g = (g_raw * pow(2.0,e_raw-128.0)) / 255.0
-					#c.b = (b_raw * pow(2.0,e_raw-128.0)) / 255.0
-					img_light.set_pixel(start_x + x,start_y + y,c)
+					c.r = (r_raw * l_scale) / 255.0
+					c.g = (g_raw * l_scale) / 255.0
+					c.b = (b_raw * l_scale) / 255.0
+					
+					img_light.set_pixel(start_x + x, start_y + y, c)
+
+			# 5. THE FIX: Advance start_x so the next face starts AFTER this one
+			start_x += face_w
 			# Fan triangulate and calculate UVs
 			for i in range(1, verts.size() - 1):
 				var triangle = [verts[0], verts[i], verts[i+1]]
+				print("Loading lightmap at coordinates ",face.LightmapTextureMinsInLuxels[0],", ",face.LightmapTextureMinsInLuxels[1],", ",face.LightmapTextureSizeInLuxels[0],", ",face.LightmapTextureSizeInLuxels[1])
 				for v in triangle:
 					# THE FIX: Calculate UV using BSP coords, then divide by texture size
 					var u = (v.dot(u_v) + u_o) / (t_data.width)
@@ -873,17 +1058,38 @@ static func _build_mesh_with_uvs(file: BSPFile, face_indices: Array[int]):
 
 					# 2. Subtract the minimums (this shifts the texture to the start of the face)
 					# 3. Add 0.5 for half-pixel offset (to center the sampling)
-					var u_local = (u_raw - face.LightmapTextureMinsInLuxels[0])
-					var v_local = (v_raw - face.LightmapTextureMinsInLuxels[1])
+					#var u_local = (u_raw - face.LightmapTextureMinsInLuxels[0])
+					#var v_local = (v_raw - face.LightmapTextureMinsInLuxels[1])
 					
 					#var final_ul = (u_local + start_x) / 2048.0
 					#var final_vl = (v_local + start_y) / 2048.0
-					var final_ul = (u_raw + start_x)/ (face.LightmapTextureSizeInLuxels[0] + 1.0)
-					var final_vl = (v_raw + start_y)/ (face.LightmapTextureSizeInLuxels[0] + 1.0)
+					
+					#var final_ul = u_local / (face.LightmapTextureSizeInLuxels[0] + 1.0)
+					#var final_vl = v_local / (face.LightmapTextureSizeInLuxels[1] + 1.0)
 					#var final_ul = (u_local + start_x) / (face.LightmapTextureSizeInLuxels[0] + 1.0)
 					#var final_vl = (v_local + start_y) / (face.LightmapTextureSizeInLuxels[1] + 1.0)
 					#st.set_uv2(Vector2(1,1))
+					# 1. Get the local luxel position (which you did perfectly)
+					var u_local = (u_raw - face.LightmapTextureMinsInLuxels[0])
+					var v_local = (v_raw - face.LightmapTextureMinsInLuxels[1])
+
+					# 2. Add 0.5 for the standard half-luxel centering offset 
+					# to stop bleed/filtering artifacts on the outer edges
+					u_local += 0.5
+					v_local += 0.5
+
+					# 3. Add the global atlas starting position coordinates (in luxels/pixels)
+					var global_u_pixels = start_x + u_local
+					var global_v_pixels = start_y + v_local
+
+					# 4. Divide by the TOTAL size of your global lightmap atlas image sheet (e.g., 2048.0)
+					var final_ul = global_u_pixels / 2048.0
+					var final_vl = global_v_pixels / 2048.0
+
+					# Assign the final normalized atlas coordinates to UV2
 					st.set_uv2(Vector2(final_ul, final_vl))
+					#st.set_uv2(Vector2(final_ul, final_vl))
+					#img_light.set_pixel(start_x + x,start_y + y,c)
 					
 					st.set_uv(Vector2(u, v_coord))
 					st.add_vertex(v / 53.0) # Apply the scale factor here
@@ -903,7 +1109,7 @@ static func _build_mesh_with_uvs(file: BSPFile, face_indices: Array[int]):
 		var surface_count = final_mesh.get_surface_count() - 1
 		final_mesh.surface_set_material(surface_count, mat)
 		
-	return [final_mesh, img_light]
+	return [final_mesh, img_light]"""
 
 static func _build_mesh_from_verts(vertarrays:Array):
 	var st = SurfaceTool.new()

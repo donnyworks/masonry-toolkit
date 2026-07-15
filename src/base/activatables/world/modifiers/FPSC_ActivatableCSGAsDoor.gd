@@ -34,6 +34,7 @@ func FPSC_ApplyMPState(args):
 func _ready():
 	if object_as_door == null:
 		queue_free()
+		return
 	starting_position = object_as_door.position
 	var ep_vector : Vector3 = Vector3.ZERO
 	match move_direction:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://d25l3ikatvol5"]
+[gd_scene load_steps=62 format=3 uid="uid://d25l3ikatvol5"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_gr46l"]
 [ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="2_7cofo"]
@@ -29,6 +29,33 @@
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="20_mfmn7"]
 [ext_resource type="AudioStream" uid="uid://blr8v01vud548" path="res://sound/vo/announcer/oldies/Ch1DemoFinish.wav" id="20_x35tk"]
 [ext_resource type="PackedScene" uid="uid://da8fywn53c78t" path="res://maps/afc_ch1_gain_flings.tscn" id="21_tqbre"]
+
+[sub_resource type="GDScript" id="GDScript_kqhme"]
+resource_name = "deleteme"
+script/source = "extends Node3D
+
+
+func thingloop(n:Node,outtext:String):
+	for thing in n.get_children():
+		if thing is Light3D:
+			outtext += str(thing.position.x) + \" \" + str(thing.position.y) + \" \" + str(thing.position.z) + \" \" + str(thing.light_energy) + \" \"
+			outtext += str(thing.light_color.r) + \" \" + str(thing.light_color.g) + \" \" + str(thing.light_color.b) + \"\\n\"
+		outtext = thingloop(thing,outtext)
+	return outtext
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var ot = thingloop(self,\"\")
+	var fa = FileAccess.open(\"user://tobuildmap.light.txt\",FileAccess.WRITE)
+	fa.store_string(ot)
+	fa.close()
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s15dw"]
 shading_mode = 0
@@ -139,6 +166,7 @@ height = 2.845581
 radius = 0.75634766
 
 [node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_kqhme")
 
 [node name="Player" parent="." instance=ExtResource("1_gr46l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.455708, -12.467211, 16.488125)
@@ -873,7 +901,7 @@ size = Vector2i(1357, 556)
 script = ExtResource("9_hegod")
 
 [node name="Camera3D" type="Camera3D" parent="Skybox/ViewTexture" node_paths=PackedStringArray("CameraOrigin")]
-transform = Transform3D(-0.07236694, -0.13802347, 0.98778075, 0, 0.99037737, 0.13838632, -0.9973774, 0.0100146, -0.07167063, -3.0999863, 37.501007, -0.8198841)
+transform = Transform3D(-0.88822067, -0.10689352, 0.44680688, 0, 0.972554, 0.23267269, -0.4594156, 0.2066648, -0.8638434, -2.362836, 37.621754, -1.0747674)
 fov = 70.01
 script = ExtResource("10_mfmn7")
 CameraOrigin = NodePath("../../SkyCameraPivot")

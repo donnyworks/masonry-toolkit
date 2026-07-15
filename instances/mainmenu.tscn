@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cs5vmbn31nd7w" path="res://textures/chapter0_image.png" id="4_k227a"]
 [ext_resource type="Script" uid="uid://ch8irwdnp6hvj" path="res://src/base/FPSC_MainMenuChapterIcon.gd" id="5_128te"]
 
-[node name="Mainmenu" type="Control" node_paths=PackedStringArray("ChapterSelectBoxContainer", "BonusSelectBoxContainer", "ChapterSelectButtonTemplate", "MainMenuPanel", "ChapterSelectPanel", "BonusSelectPanel", "NewGameButton", "BonusGameButton", "SettingsButton", "QuitGameButton", "ChapterSelectAbortButton", "BonusSelectAbortButton", "GameNameLabel", "GameVersionLabel")]
+[node name="Mainmenu" type="Control" node_paths=PackedStringArray("ChapterSelectBoxContainer", "BonusSelectBoxContainer", "ChapterSelectButtonTemplate", "MainMenuPanel", "ChapterSelectPanel", "BonusSelectPanel", "SettingsPanel", "NewGameButton", "BonusGameButton", "SettingsButton", "QuitGameButton", "ChapterSelectAbortButton", "BonusSelectAbortButton", "SettingsAbortButton", "GameNameLabel", "GameVersionLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,12 +21,14 @@ ChapterSelectButtonTemplate = NodePath("chapterSelectPanel/sliceController/HBoxC
 MainMenuPanel = NodePath("mainMenuPanel")
 ChapterSelectPanel = NodePath("chapterSelectPanel")
 BonusSelectPanel = NodePath("bonusSelectPanel")
+SettingsPanel = NodePath("SettingsPanel")
 NewGameButton = NodePath("mainMenuPanel/HBoxContainer/NewGameButton")
 BonusGameButton = NodePath("mainMenuPanel/HBoxContainer/NewGameButton2")
 SettingsButton = NodePath("mainMenuPanel/HBoxContainer/Settings")
 QuitGameButton = NodePath("mainMenuPanel/HBoxContainer/Button2")
 ChapterSelectAbortButton = NodePath("chapterSelectPanel/Cancel")
 BonusSelectAbortButton = NodePath("bonusSelectPanel/Cancel")
+SettingsAbortButton = NodePath("SettingsPanel/Cancel")
 GameNameLabel = NodePath("mainMenuPanel/Label")
 GameVersionLabel = NodePath("mainMenuPanel/Label2")
 
@@ -57,7 +59,7 @@ offset_right = 561.0
 offset_bottom = 137.0
 theme_override_fonts/font = ExtResource("2_k227a")
 theme_override_font_sizes/font_size = 45
-text = "Aerial Testing Course"
+text = "Game Name"
 
 [node name="Label2" type="Label" parent="mainMenuPanel"]
 layout_mode = 0
@@ -67,7 +69,7 @@ offset_right = 561.0
 offset_bottom = 189.0
 theme_override_fonts/font = ExtResource("2_k227a")
 theme_override_font_sizes/font_size = 16
-text = "Version 1.0"
+text = "Version Game Version"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="mainMenuPanel"]
 layout_mode = 0
@@ -216,3 +218,151 @@ anchor_right = 1.0
 anchor_bottom = 0.9897436
 grow_horizontal = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="SettingsPanel" parent="." instance=ExtResource("1_by1kd")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -253.5
+offset_top = -180.5
+offset_right = 253.5
+offset_bottom = 180.5
+grow_horizontal = 2
+grow_vertical = 2
+baseboard_color = Color(0.4627451, 0.4627451, 0.4627451, 0.44705883)
+baseboard_window_text_color = Color(1, 1, 1, 1)
+baseboard_window_button_color = Color(0.4627451, 0.4627451, 0.4627451, 0)
+baseboard_is_window_panel = true
+baseboard_window_title = "Settings"
+
+[node name="TabContainer" type="TabContainer" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="Controls" type="Control" parent="SettingsPanel/TabContainer"]
+layout_mode = 2
+theme = ExtResource("3_w5juf")
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/TabContainer/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fwd" type="Button" parent="SettingsPanel/TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Walk Forward - W (Click to rebind)"
+alignment = 0
+
+[node name="bwd" type="Button" parent="SettingsPanel/TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Walk Backward - S (Click to rebind)"
+alignment = 0
+
+[node name="lft" type="Button" parent="SettingsPanel/TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Strafe Left - A (Click to rebind)"
+alignment = 0
+
+[node name="rht" type="Button" parent="SettingsPanel/TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Strafe Right - D (Click to rebind)"
+alignment = 0
+
+[node name="jmp" type="Button" parent="SettingsPanel/TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Jump - [SPACE] (Click to rebind)"
+alignment = 0
+
+[node name="use" type="Button" parent="SettingsPanel/TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Use / Pick Up Prop - E (Click to rebind)"
+alignment = 0
+
+[node name="fire" type="Button" parent="SettingsPanel/TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Primary Fire - [MOUSE1] (Click to rebind)"
+alignment = 0
+
+[node name="alt" type="Button" parent="SettingsPanel/TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Alternative Fire - [MOUSE2] (Click to rebind)"
+alignment = 0
+
+[node name="run" type="Button" parent="SettingsPanel/TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Sprint / Run - Shift (Click to rebind)"
+alignment = 0
+
+[node name="crouch" type="Button" parent="SettingsPanel/TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Crouch - Control (Click to rebind)"
+alignment = 0
+
+[node name="zoom" type="Button" parent="SettingsPanel/TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Zoom - B (Click to rebind)"
+alignment = 0
+
+[node name="Mouse" type="Control" parent="SettingsPanel/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="HSlider" type="HSlider" parent="SettingsPanel/TabContainer/Mouse"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 40.0
+offset_right = 488.0
+offset_bottom = 56.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Label" type="Label" parent="SettingsPanel/TabContainer/Mouse"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 14.0
+offset_right = 64.0
+offset_bottom = 37.0
+text = "Sensitivity"
+
+[node name="Cancel" type="Button" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_w5juf")
+text = "Cancel"
+
+[connection signal="drag_ended" from="SettingsPanel/TabContainer/Mouse/HSlider" to="." method="_on_h_slider_drag_ended"]

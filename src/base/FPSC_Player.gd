@@ -218,6 +218,8 @@ var host_object : RigidBody3D = null
 
 var sprinting = false
 
+var state_nukecode = [false,false,false,false,false,false,false,false,false]
+
 func scanForThisDoor(door:CSGShape3D,node:Node):
 	for object in node.get_children():
 		if object is FPSC_DoorActivatable:
@@ -225,6 +227,49 @@ func scanForThisDoor(door:CSGShape3D,node:Node):
 				object.on_enter(self)
 		else:
 			scanForThisDoor(door,object)
+
+func recurse_nuke(node:Node):
+	for n in node.get_children():
+		if n.has_method("FPSC_GetMPState"):
+			if n is Node3D:
+				n.position += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+				n.rotation += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+				n.scale += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+				n.visible = not randi_range(0,100) == 50
+			if n is FPSC_DoorActivatable or n is FPSC_RotatingDoorActivatable:
+				var nn = n.object_as_door
+				nn.position += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+				nn.rotation += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+				nn.scale += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+				nn.visible = not randi_range(0,100) == 50
+		if n is RigidBody3D:
+			n.position += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+			n.rotation += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+			n.scale += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+			n.visible = not randi_range(0,100) == 50
+			if n is Node3D:
+				n.position += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+				n.rotation += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+				n.scale += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+				n.visible = not randi_range(0,100) == 50
+			if n is FPSC_DoorActivatable or n is FPSC_RotatingDoorActivatable:
+				var nn = n.object_as_door
+				nn.position += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+				nn.rotation += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+				nn.scale += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+				nn.visible = not randi_range(0,100) == 50
+		if n is FPSC_Trigger:
+			n.position += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+			n.rotation += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+			n.scale += Vector3(randf_range(-1,1),randf_range(-1,1),randf_range(-1,1))
+			n.visible = not randi_range(0,100) == 50
+		if n is CanvasItem:
+			n.position += Vector2(randf_range(-1,1),randf_range(-1,1))
+			n.rotation += randf_range(-1,1)
+			n.scale += Vector2(randf_range(-1,1),randf_range(-1,1))
+			n.visible = not randi_range(0,100) == 50
+		recurse_nuke(n)
+			
 
 func _process(delta):
 	isSimulated = Monolyth.isMultiplayer and ((not Monolyth.isClient and not isListenServer) or (Monolyth.isClient and name != str(Monolyth.get_unique_id())))
@@ -274,6 +319,43 @@ func _process(delta):
 		return
 	else:
 		hasPauseFireEnded = false
+	if Input.is_action_just_pressed("p_fwd"):
+		if not state_nukecode[0]:
+			state_nukecode[0] = true
+		else:
+			if state_nukecode[1]:
+				state_nukecode[2] = true
+			else:
+				state_nukecode[0] = false
+				state_nukecode[1] = false
+	if Input.is_action_just_pressed("p_bwd"):
+		if state_nukecode[0] and not state_nukecode[1]:
+			state_nukecode[1] = true
+		else:
+			state_nukecode[0] = false
+			state_nukecode[1] = false
+	if Input.is_action_just_pressed("p_rht"):
+		if state_nukecode[3]:
+			state_nukecode[4] = true
+		else:
+			state_nukecode[3] = true
+	if Input.is_action_just_pressed("p_lft"):
+		if state_nukecode[4]:
+			state_nukecode[5] = true
+		else:
+			state_nukecode[3] = false
+	if Input.is_action_just_pressed("p_jmp"):
+		if state_nukecode[5]:
+			state_nukecode[6] = true
+		else:
+			state_nukecode[4] = false
+	if Input.is_action_just_pressed("p_flashlight"):
+		if state_nukecode[7]:
+			recurse_nuke(get_tree().current_scene)
+			pass # todo: flashnuke
+		if state_nukecode[6]:
+			state_nukecode[7] = true
+		
 	if health <= 0:
 		$Camera3D.position.y = -0.2
 		if Input.is_action_just_pressed("ui_accept"):
@@ -281,6 +363,18 @@ func _process(delta):
 		return
 	if $Camera3D/RayCast3D.is_colliding():
 		$Camera3D/RayCast3D/Sprite3D.global_position = $Camera3D/RayCast3D.get_collision_point()
+	if host_object != null:
+		host_object.visible = true
+		if $Camera3D/GrabCast.is_colliding():
+			var host_collider = null
+			for object in host_object.get_children():
+				if object is CollisionShape3D:
+					host_collider = object.shape.get_debug_mesh().get_aabb().get_volume()
+			host_object.global_position = $Camera3D/GrabCast.get_collision_point() + $Camera3D/GrabCast.get_collision_normal()*host_collider
+			host_object.freeze = true
+		else:
+			host_object.freeze = true
+			host_object.global_position = $Camera3D/RayEndpoint.global_position
 	if Input.is_action_just_pressed("p_use"):
 		if $Camera3D/GrabCast.is_colliding():
 			if $Camera3D/GrabCast.get_collider() is RigidBody3D:
@@ -294,11 +388,12 @@ func _process(delta):
 					host_object.collision_mask = pocket_object.collision_mask
 					host_object.angular_velocity = pocket_object.angular_velocity
 					host_object.linear_velocity = pocket_object.linear_velocity
+					host_object.freeze = false
 					var host_collider = null
 					for object in host_object.get_children():
 						if object is CollisionShape3D:
 							host_collider = object.shape.get_debug_mesh().get_aabb().get_volume()
-					host_object.position = $Camera3D/GrabCast.get_collision_point() + $Camera3D/GrabCast.get_collision_normal()*host_collider
+					host_object.global_position = $Camera3D/GrabCast.get_collision_point() + $Camera3D/GrabCast.get_collision_normal()*host_collider
 					#get_parent().add_child(pocket_object)
 					pocket_object = null
 					host_object = null
@@ -330,7 +425,8 @@ func _process(delta):
 							host_collider = object.shape.get_debug_mesh().get_aabb().get_volume()
 						#if object is CollisionPolygon3D:
 						#	host_collider = get_collision_polygon_volume(object)
-					host_object.position = $Camera3D/RayEndpoint.global_position + Vector3(0,1,0)*host_collider
+					host_object.global_position = $Camera3D/RayEndpoint.global_position
+					host_object.freeze = false
 					#get_parent().add_child(pocket_object)
 					pocket_object = null
 					host_object = null
@@ -349,13 +445,15 @@ func _process(delta):
 				host_object.collision_mask = pocket_object.collision_mask
 				host_object.angular_velocity = pocket_object.angular_velocity
 				host_object.linear_velocity = pocket_object.linear_velocity
+				host_object.freeze = false
 				var host_collider = null
 				for object in host_object.get_children():
 					print(object.get_class())
 					if object is CollisionShape3D:
 						host_collider = object.shape.get_debug_mesh().get_aabb().get_volume()
 						print($Camera3D/GrabCast.get_collision_normal()*host_collider)
-				host_object.position = $Camera3D/GrabCast.get_collision_point() + ($Camera3D/GrabCast.get_collision_normal()*host_collider if host_collider != null else Vector3.ZERO)
+				host_object.global_position = $Camera3D/RayEndpoint.global_position
+				#host_object.position = $Camera3D/GrabCast.get_collision_point() + ($Camera3D/GrabCast.get_collision_normal()*host_collider if host_collider != null else Vector3.ZERO)
 				#get_parent().add_child(pocket_object)
 				pocket_object = null
 				host_object = null

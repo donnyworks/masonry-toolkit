@@ -11,6 +11,9 @@ class_name FPSC_TriggerStatusActivatable
 var pretrigger_state : FPSC_Trigger.ConnectFlags
 
 func _ready():
+	if trigger == null:
+		queue_free()
+		return
 	pretrigger_state = trigger.interact_with
 	if not inverted:
 		trigger.interact_with = 0
