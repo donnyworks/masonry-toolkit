@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://cc4iwacm6rskv"]
+[gd_scene load_steps=16 format=3 uid="uid://cc4iwacm6rskv"]
 
 [ext_resource type="Script" uid="uid://dfge137rweqns" path="res://src/base/FPSC_Player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://dvt56pplj6tyx" path="res://textures/hud/nofired_surface.png" id="2_5a4mc"]
 [ext_resource type="PackedScene" uid="uid://cwrc1444pjpel" path="res://vgui/vgui_baseboard_recreation.tscn" id="2_i3pqv"]
 [ext_resource type="FontFile" uid="uid://wu4hku12n2ab" path="res://vgui/vgui_boardfont_verdana.ttf" id="3_hqtel"]
 [ext_resource type="Script" uid="uid://glaujpf0b0t0" path="res://src/base/player/FPSC_DebugMenuButton.gd" id="4_hqtel"]
+[ext_resource type="AudioStream" uid="uid://cnxr3d8mlbayp" path="res://sound/player/death.wav" id="6_kipg0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
@@ -191,3 +192,11 @@ layout_mode = 2
 
 [node name="ViewControls" type="VBoxContainer" parent="MenuGUIElement/GridContainer"]
 layout_mode = 2
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_kipg0")
+
+[node name="velocity" type="AudioStreamPlayer" parent="."]

@@ -4,6 +4,7 @@ class_name FPSC_BaseCaptionSystem
 var lines = []
 
 func FPSC_AddCaptionLine(line:String,duration:float=2):
+	line = FPSC_LocalizationSystem.FPSC_GetLocalString(line)
 	if len(lines) < 2:
 		$"1line".visible = true
 		$"2line".visible = false

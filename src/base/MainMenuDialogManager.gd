@@ -12,18 +12,23 @@ class_name FPSC_MainMenuDialogManager
 @export var BonusGameButton : BaseButton
 @export var SettingsButton : BaseButton
 @export var QuitGameButton : BaseButton
+@export var ResumeButton : BaseButton
 @export var ChapterSelectAbortButton : BaseButton
 @export var BonusSelectAbortButton : BaseButton
 @export var SettingsAbortButton : BaseButton
 @export var GameNameLabel : Label
 @export var GameVersionLabel : Label
+@export var ControlsContainer : BoxContainer
+@export var MouseSensitivitySlider : Slider
+@export var FOVSlider : Slider
+@export var ToggleButtonsContainer : Control
+
+var CustomBooleanSettings = {}
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	FPSC_ConsoleInstance.stale_mode = Input.MOUSE_MODE_VISIBLE
 	ChapterSelectButtonTemplate.visible = false
-	var bgm = "res://maps/" + FPSC_LevelManager.metadata.BackgroundMaps[0] + ".tscn"
-	add_child(load(bgm).instantiate())
 	for i in range(0,len(FPSC_LevelManager.metadata.Chapters.keys())):
 		var btn = ChapterSelectButtonTemplate.duplicate()
 		btn.visible = true
@@ -47,26 +52,45 @@ func _ready():
 	ChapterSelectAbortButton.connect("pressed",cancel)
 	BonusSelectAbortButton.connect("pressed",cancel)
 	SettingsAbortButton.connect("pressed",cancel)
+	MouseSensitivitySlider.connect("drag_ended",OnSensitivitySliderModified)
+	FOVSlider.connect("drag_ended",OnFOVSliderModified)
+	if ResumeButton != null:
+		if FPSC_Player.sessionPlayer == null: ResumeButton.visible = false
+		ResumeButton.connect("pressed",resumegame)
+	if FPSC_Player.sessionPlayer == null:
+		# Only add background map if we're actually at the main menu
+		var bgm = "res://maps/" + FPSC_LevelManager.metadata.BackgroundMaps[0] + ".tscn"
+		add_child(load(bgm).instantiate())
+	else:
+		MainMenuPanel.baseboard_window_title = "Pause Menu"
 	GameNameLabel.text = FPSC_LevelManager.metadata.GameName
 	GameVersionLabel.text = FPSC_LevelManager.metadata.Version
+	for element in ToggleButtonsContainer.get_children():
+		CustomBooleanSettings[element.name] = element.button_pressed
+		FPSC_LevelManager.set(element.name,element.button_pressed)
 	if not FileAccess.file_exists("user://gameconfig.mconf"):
 		var sfa = FileAccess.open("user://gameconfig.mconf",FileAccess.WRITE)
 		var sinputmap = {}
 		for i_name in InputMap.get_actions():
 			sinputmap[i_name] = InputMap.action_get_events(i_name)
-		sfa.store_var([sinputmap,FPSC_LevelManager.sensitivity],true)
+		sfa.store_var([sinputmap,FPSC_LevelManager.sensitivity,FPSC_LevelManager.fov,CustomBooleanSettings],true)
 		sfa.close()
 	var fa = FileAccess.open("user://gameconfig.mconf",FileAccess.READ)
 	var multivar = fa.get_var(true)
 	var inputmap = multivar[0]
 	FPSC_LevelManager.sensitivity = multivar[1]
-	SettingsPanel.get_node("TabContainer/Mouse/HSlider").value = multivar[1]
+	MouseSensitivitySlider.value = multivar[1]
+	if len(multivar) > 2:
+		FPSC_LevelManager.fov = multivar[2]
+	if len(multivar) > 3:
+		for key in multivar[3]:
+			ToggleButtonsContainer.get_node(str(key)).button_pressed = multivar[3][key]
 	fa.close()
 	for key in inputmap.keys():
 		InputMap.action_erase_events(key)
 		for value in inputmap[key]:
 			InputMap.action_add_event(key,value)
-	for setting in SettingsPanel.get_node("TabContainer/Controls/VBoxContainer").get_children():
+	for setting in ControlsContainer.get_children():
 		var s_name = setting.text.split(" - ")[0]
 		var event = InputMap.action_get_events("p_" + setting.name)[0]
 		var keystring = ""
@@ -94,6 +118,14 @@ func setgame():
 	MainMenuPanel.visible = false
 	SettingsPanel.visible = true
 
+func resumegame():
+	cancel()
+	FPSC_Player.sessionPlayer.paused = false
+	get_tree().paused = false
+	FPSC_Player.sessionPlayer.pausemenu = null
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
+
 func cancel():
 	MainMenuPanel.visible = true
 	BonusSelectPanel.visible = false
@@ -101,9 +133,13 @@ func cancel():
 	SettingsPanel.visible = false
 	var sfa = FileAccess.open("user://gameconfig.mconf",FileAccess.WRITE)
 	var sinputmap = {}
+	CustomBooleanSettings = {}
+	for element in ToggleButtonsContainer.get_children():
+		CustomBooleanSettings[element.name] = element.button_pressed
+		FPSC_LevelManager.set(element.name,element.button_pressed)
 	for i_name in InputMap.get_actions():
 		sinputmap[i_name] = InputMap.action_get_events(i_name)
-	sfa.store_var([sinputmap,FPSC_LevelManager.sensitivity],true)
+	sfa.store_var([sinputmap,FPSC_LevelManager.sensitivity,FPSC_LevelManager.fov,CustomBooleanSettings],true)
 	sfa.close()
 
 var bindVal = null
@@ -140,6 +176,10 @@ func _input(event: InputEvent) -> void:
 			bindVal = null
 
 
-func _on_h_slider_drag_ended(value_changed: bool) -> void:
-	FPSC_LevelManager.sensitivity = SettingsPanel.get_node("TabContainer/Mouse/HSlider").value
+func OnSensitivitySliderModified(_value_changed: bool) -> void:
+	FPSC_LevelManager.sensitivity = MouseSensitivitySlider.value
+	pass # Replace with function body.
+
+func OnFOVSliderModified(_value_changed: bool) -> void:
+	FPSC_LevelManager.fov = FOVSlider.value
 	pass # Replace with function body.

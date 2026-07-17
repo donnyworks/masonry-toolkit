@@ -312,7 +312,13 @@ func set_owner_recursive(node: Node, new_owner: Node) -> void:
 	for child in node.get_children():
 		child.owner = new_owner
 		set_owner_recursive(child, new_owner) # Keep digging down
-		
+
+var fov = 75.0
+
+var legacy_buttons = false
+var propvis = true
+var disable_box_dropper_logic = true
+
 func CMDLine(command:String):
 	var cmda = command.split(" ")
 	var cmd_found = false

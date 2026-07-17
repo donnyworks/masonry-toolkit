@@ -7,7 +7,11 @@ class_name FPSC_RelayActivatable
 
 @export var use_delay_on_exit := false
 
+@export var AwaitFrame := false ## await get_tree().process_frame
+
 func on_enter(_body:Node3D):
+	if AwaitFrame:
+		await get_tree().process_frame
 	@warning_ignore("standalone_ternary")
 	for a in activatables:
 		if not use_delay_on_enter:

@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgu5jhd4hnjek"]
+
+[ext_resource type="Script" uid="uid://sl4hinpkxef0" path="res://src/base/FPSC_DevNote.gd" id="1_172tg"]
+[ext_resource type="Script" uid="uid://hllw2e6fs54j" path="res://src/base/FPSC_InteractivityMarker.gd" id="2_0kl63"]
+[ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/logic/FPSC_ActivatableRelay.gd" id="3_wijuq"]
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="4_gk5gn"]
+[ext_resource type="Script" uid="uid://b4c6tlpkvw6tk" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableDoorForceStateChange.gd" id="5_lxbxp"]
+[ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoiceline.gd" id="6_nesd1"]
+[ext_resource type="AudioStream" uid="uid://ctn53kajvl23y" path="res://sound/button_pressed.wav" id="7_gktag"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oscjm"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="PrefabPedestalButton" type="Node3D"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+
+[node name="FPSC_DevNote" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2779112, 0)
+text = "NOTE! The pedestal button has its own logic! Hook into it.
+There's a RelayActivatable named \"buttonPressed\".
+Enable editable children and add your output to buttonPressed.
+You may have noticed this is a similar design philosophy to the box dropper.
+This is very intentional, as the box dropper is supposed to be easy to set up."
+script = ExtResource("1_172tg")
+metadata/_custom_type_script = "uid://sl4hinpkxef0"
+
+[node name="pedestalBaseModel" type="CSGCylinder3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+use_collision = true
+radius = 0.19677734
+height = 1.1229004
+
+[node name="CSGBox3D" type="CSGBox3D" parent="pedestalBaseModel"]
+transform = Transform3D(0.997835, -0.06576885, 0, 0.06576885, 0.997835, 0, 0, 0, 1, -0.30000687, 0.95549726, 0)
+operation = 2
+
+[node name="pedestalButtonDoor" type="CSGCylinder3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 0, 0.50660133, 0)
+use_collision = true
+radius = 0.18
+height = 0.14761963
+material = SubResource("StandardMaterial3D_oscjm")
+
+[node name="cap" type="Node3D" parent="pedestalButtonDoor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03363037, 0)
+
+[node name="this is the actual cap" type="CSGCylinder3D" parent="pedestalButtonDoor/cap" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06703472, 0)
+radius = 0.18
+height = 0.057653815
+material = SubResource("StandardMaterial3D_oscjm")
+
+[node name="buttonInteractivityMarker" type="Node" parent="pedestalButtonDoor" node_paths=PackedStringArray("activatable")]
+script = ExtResource("2_0kl63")
+activatable = NodePath("../buttonPressed")
+metadata/_custom_type_script = "uid://hllw2e6fs54j"
+
+[node name="buttonPressed" type="Node" parent="pedestalButtonDoor" node_paths=PackedStringArray("activatables")]
+script = ExtResource("3_wijuq")
+activatables = [NodePath("../buttonDoor"), NodePath("../buttonDoorUnpress"), NodePath("../buttonSoundEffect")]
+use_delay_on_enter = true
+metadata/_custom_type_script = "uid://cgae4dmf6xfos"
+
+[node name="buttonDoor" type="Node" parent="pedestalButtonDoor" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("4_gk5gn")
+object_as_door = NodePath("..")
+time = 0.25
+move_direction = 2
+stay_open = true
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="buttonDoorUnpress" type="Node" parent="pedestalButtonDoor" node_paths=PackedStringArray("target_door")]
+script = ExtResource("5_lxbxp")
+target_door = NodePath("../buttonDoor")
+target_state = 1
+delay = 0.5
+metadata/_custom_type_script = "uid://b4c6tlpkvw6tk"
+
+[node name="buttonSoundEffect" type="Node" parent="pedestalButtonDoor" node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("6_nesd1")
+voiceline_player = NodePath("../buttonSoundEmitter")
+character_voiceline = ExtResource("7_gktag")
+localized_caption = "Generic.ButtonPress"
+metadata/_custom_type_script = "uid://whqnccb8m4hc"
+
+[node name="buttonSoundEmitter" type="AudioStreamPlayer3D" parent="pedestalButtonDoor"]

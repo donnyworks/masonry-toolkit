@@ -37,7 +37,8 @@ func on_enter(_body:Node3D):
 	#if new_inst != null and destroy_preexisting: new_inst.queue_free()
 	print(len(new_insts))
 	if len(new_insts) >= maximum_amount_allowed and destroy_preexisting:
-		new_insts[0].queue_free()
+		if is_instance_valid(new_insts[0]):
+			new_insts[0].queue_free()
 		new_insts.remove_at(0)
 	var new_inst = inst.duplicate()
 	get_tree().current_scene.add_child(new_inst)

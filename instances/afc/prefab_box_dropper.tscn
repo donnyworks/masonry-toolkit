@@ -1,15 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://dnt5wa40ueymc"]
+[gd_scene load_steps=17 format=3 uid="uid://dnt5wa40ueymc"]
 
 [ext_resource type="Script" uid="uid://sl4hinpkxef0" path="res://src/base/FPSC_DevNote.gd" id="1_coasr"]
 [ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/world/doers/FPSC_ActivatableCreateFromInstance.gd" id="2_5egdy"]
 [ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/logic/FPSC_ActivatableRelay.gd" id="2_kbcr4"]
 [ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="2_vg8cg"]
 [ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/world/doers/FPSC_ActivatablePlayAnimation.gd" id="3_ixbg1"]
+[ext_resource type="Script" uid="uid://bqo5fqttqr6fa" path="res://src/base/activatables/logic/FPSC_ActivatableSettingRelay.gd" id="3_oshwm"]
 [ext_resource type="PackedScene" uid="uid://bujgt2o11dkxq" path="res://instances/afc/prefab_box.tscn" id="4_ixbg1"]
 [ext_resource type="Script" uid="uid://cguq0l7w5loj6" path="res://src/base/activatables/logic/FPSC_ActivatableActivateOnSpawning.gd" id="5_p7mkj"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="6_p7mkj"]
 [ext_resource type="Script" uid="uid://tqson2e0626t" path="res://src/base/conditionals/FPSC_BodyNameBeginsWithCaseCondition.gd" id="7_ym2ws"]
-[ext_resource type="AudioStream" uid="uid://dsmstooi1jlkg" path="res://sound/60hz-ambientelectrical.wav" id="10_ym6sx"]
+[ext_resource type="Script" uid="uid://b6e7p2uycpn08" path="res://src/base/FPSC_SettingVisibilityController.gd" id="11_0a34n"]
 
 [sub_resource type="Animation" id="Animation_ym6sx"]
 length = 0.001
@@ -75,6 +76,10 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_ym2ws"]
 size = Vector3(1.5, 0.05, 1.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oshwm"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.09411765)
+
 [node name="PrefabBoxDropper" type="Node3D"]
 
 [node name="FPSC_DevNote" type="Label3D" parent="."]
@@ -87,9 +92,25 @@ metadata/_custom_type_script = "uid://sl4hinpkxef0"
 
 [node name="dropper" type="Node" parent="." node_paths=PackedStringArray("activatables")]
 script = ExtResource("2_kbcr4")
-activatables = [NodePath("../dropper_logic/FPSC_AnimationActivatable")]
+activatables = [NodePath("../_animated_dropper"), NodePath("../_static_dropper")]
 use_delay_on_enter = true
+AwaitFrame = true
 metadata/_custom_type_script = "uid://cgae4dmf6xfos"
+
+[node name="_animated_dropper" type="Node" parent="." node_paths=PackedStringArray("activatables")]
+script = ExtResource("3_oshwm")
+activatables = [NodePath("../dropper_logic/FPSC_AnimationActivatable")]
+setting = "disable_box_dropper_logic"
+use_delay_on_enter = true
+metadata/_custom_type_script = "uid://bqo5fqttqr6fa"
+
+[node name="_static_dropper" type="Node" parent="." node_paths=PackedStringArray("activatables")]
+script = ExtResource("3_oshwm")
+activatables = [NodePath("../dropper_logic/FPSC_InstanceActivatable")]
+setting = "disable_box_dropper_logic"
+invert = true
+use_delay_on_enter = true
+metadata/_custom_type_script = "uid://bqo5fqttqr6fa"
 
 [node name="dropper_logic" type="Node" parent="."]
 
@@ -116,8 +137,14 @@ libraries = {
 
 [node name="FPSC_SpawninActivatable" type="Node" parent="dropper_logic" node_paths=PackedStringArray("activatables")]
 script = ExtResource("5_p7mkj")
-activatables = [NodePath("../FPSC_InstanceActivatable")]
+activatables = [NodePath("../start_drop_spawnin_animated")]
 metadata/_custom_type_script = "uid://cguq0l7w5loj6"
+
+[node name="start_drop_spawnin_animated" type="Node" parent="dropper_logic" node_paths=PackedStringArray("activatables")]
+script = ExtResource("3_oshwm")
+activatables = [NodePath("../FPSC_InstanceActivatable")]
+setting = "disable_box_dropper_logic"
+metadata/_custom_type_script = "uid://bqo5fqttqr6fa"
 
 [node name="dropper_geometry" type="Node3D" parent="."]
 
@@ -202,7 +229,149 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
 [node name="dropper_spawnpoint" type="Marker3D" parent="dropper_geometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7216296, 0)
 
+[node name="dropper_geometry_hollow" type="Node3D" parent="."]
+visible = false
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="dropper_geometry_hollow" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0441098, 0)
+use_collision = true
+radius = 0.85
+material = ExtResource("2_vg8cg")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="dropper_geometry_hollow/CSGCylinder3D2"]
+operation = 2
+radius = 0.75
+material = ExtResource("2_vg8cg")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="dropper_geometry_hollow" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+use_collision = true
+size = Vector3(2, 1, 2)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="dropper_geometry_hollow/CSGBox3D"]
+operation = 2
+radius = 0.75
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="dropper_geometry_hollow" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
+size = Vector3(2, 3, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="dropper_geometry_hollow/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08756113, 0)
+operation = 2
+size = Vector3(1.9, 3, 1.9)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="dropper_geometry_hollow" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+visible = false
+use_collision = true
+size = Vector3(2, 3, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="dropper_geometry_hollow/CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08756113, 0)
+operation = 2
+size = Vector3(1.5, 3, 1.5)
+
+[node name="CSGBox3D4" type="CSGCylinder3D" parent="dropper_geometry_hollow/CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, -2.1315145, 0)
+operation = 2
+radius = 0.8691406
+cone = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="dropper_geometry_hollow" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+use_collision = true
+flip_faces = true
+size = Vector3(2, 2, 2)
+
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.145796, 0)
-stream = ExtResource("10_ym6sx")
 autoplay = true
+
+[node name="FPSC_SettingPropertyController" type="Node" parent="." node_paths=PackedStringArray("show_if_enabled", "hide_if_enabled")]
+script = ExtResource("11_0a34n")
+LM_property = "disable_box_dropper_logic"
+TARGET_property = "visible"
+show_if_enabled = NodePath("../dropper_geometry")
+hide_if_enabled = NodePath("../dropper_geometry_hollow")
+metadata/_custom_type_script = "uid://b6e7p2uycpn08"
+
+[node name="FPSC_SettingPropertyController2" type="Node" parent="." node_paths=PackedStringArray("show_if_enabled")]
+script = ExtResource("11_0a34n")
+LM_property = "disable_box_dropper_logic"
+TARGET_property = "use_collision"
+show_if_enabled = NodePath("../dropper_geometry/CSGCylinder3D")
+metadata/_custom_type_script = "uid://b6e7p2uycpn08"
+
+[node name="FPSC_SettingPropertyController3" type="Node" parent="." node_paths=PackedStringArray("hide_if_enabled")]
+script = ExtResource("11_0a34n")
+LM_property = "disable_box_dropper_logic"
+TARGET_property = "disabled"
+hide_if_enabled = NodePath("../dropper_geometry/FPSC_TriggerRelay/CollisionShape3D")
+metadata/_custom_type_script = "uid://b6e7p2uycpn08"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.35, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.3350048, 0)
+light_color = Color(1, 0, 0, 1)
+shadow_enabled = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.1, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.85, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.35, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.85, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.35, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")

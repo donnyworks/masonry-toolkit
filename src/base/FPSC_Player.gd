@@ -20,9 +20,16 @@ enum FadeTypes{
 @export var JUMP_VELOCITY = 4.5
 @export var accel = 14 ## This variable was taken from SMORCE 3. The movement was smoother there, so that's why I took it.
 @export var DRAG = 1.0 ## Drag resistance is used whenever the player is slowing down
+@export var velocity_music : AudioStream
+@export var velocity_music_threshold : float = 10.0
 @export_group("Player Look Controls")
 @export var lookMin = -90
 @export var lookMax = 90
+
+var footsteps = [preload("res://sound/player/footsteps1.wav"),preload("res://sound/player/footsteps2.wav"),preload("res://sound/player/footsteps3.wav")]
+
+func chooseRandomFromArray(array:Array):
+	return array[randi_range(0,len(array) - 1)]
 
 static var base_speed = 5.0
 static var base_jv = 4.5
@@ -59,6 +66,8 @@ var health = 100:
 	set(v):
 		if v <= 0:
 			FPSC_ExecuteFade(Color(1,0,0,0.5),FadeTypes.FADE_IN,2)
+			$death.play()
+			FPSC_CaptionSystem.FPSC_AddCaptionLine("Player.Death")
 		health = v
 
 var paused = false
@@ -134,6 +143,9 @@ func _ready():
 	if entrance_number != FPSC_LevelManager.entrance_number:
 		queue_free()
 		return
+	$velocity.stream = velocity_music
+	$velocity.autoplay = true
+	$velocity.playing = true
 	base_speed = SPEED
 	base_jv = JUMP_VELOCITY
 	base_speed_sprint = SPEED_SPRINT
@@ -271,6 +283,10 @@ func recurse_nuke(node:Node):
 		recurse_nuke(n)
 			
 
+var templatePauseMenu = preload("res://instances/mainmenu.tscn")
+
+var pausemenu = null
+
 func _process(delta):
 	isSimulated = Monolyth.isMultiplayer and ((not Monolyth.isClient and not isListenServer) or (Monolyth.isClient and name != str(Monolyth.get_unique_id())))
 	if isSimulated:
@@ -283,6 +299,8 @@ func _process(delta):
 	if not is_inside_tree(): return
 	if not LegacyViewMode:
 		dynamo_cam_track()
+	$velocity.volume_linear = min(max((velocity.length() - SPEED_SPRINT)/velocity_music_threshold,0.0),1.0)
+	camera_fov_extents = [FPSC_LevelManager.fov, FPSC_LevelManager.fov + 10.0]
 	$MapSelectionLabel.text = """Map Selector
 < %s >""".replace("%s",mapNames[mapSelectorMap])
 	if Input.is_action_just_pressed("ui_right") and FPSC_BuildFeatures.BuildFeatures.FEATURE_MAPSELECTOR:
@@ -306,6 +324,9 @@ func _process(delta):
 	if $ViewmodelRenderer.size != get_tree().root.size:
 		$ViewmodelRenderer.size = get_tree().root.size
 	if paused:
+		if pausemenu == null:
+			pausemenu = templatePauseMenu.duplicate().instantiate()
+			add_child(pausemenu)
 		$MenuGUIElement.visible = Input.is_action_pressed("p_devmenu")
 		if currentWeapon != null:
 			if currentWeapon.FPSC_CanPrimaryFire() and not hasPauseFireEnded:
@@ -318,8 +339,12 @@ func _process(delta):
 			FPSC_LevelManager.ChangeLevel(mapPaths[mapSelectorMap])
 		return
 	else:
+		if pausemenu != null:
+			pausemenu.cancel()
+			pausemenu.queue_free()
+			pausemenu = null
 		hasPauseFireEnded = false
-	if Input.is_action_just_pressed("p_fwd"):
+	if Input.is_action_just_pressed("p_fwd") and FPSC_LevelManager.interloping:
 		if not state_nukecode[0]:
 			state_nukecode[0] = true
 		else:
@@ -364,12 +389,14 @@ func _process(delta):
 	if $Camera3D/RayCast3D.is_colliding():
 		$Camera3D/RayCast3D/Sprite3D.global_position = $Camera3D/RayCast3D.get_collision_point()
 	if host_object != null:
-		host_object.visible = true
+		host_object.visible = FPSC_LevelManager.propvis
 		if $Camera3D/GrabCast.is_colliding():
 			var host_collider = null
 			for object in host_object.get_children():
 				if object is CollisionShape3D:
 					host_collider = object.shape.get_debug_mesh().get_aabb().get_volume()
+				if object is CollisionPolygon3D:
+					host_collider = get_collision_polygon_volume(object)
 			host_object.global_position = $Camera3D/GrabCast.get_collision_point() + $Camera3D/GrabCast.get_collision_normal()*host_collider
 			host_object.freeze = true
 		else:
@@ -393,6 +420,8 @@ func _process(delta):
 					for object in host_object.get_children():
 						if object is CollisionShape3D:
 							host_collider = object.shape.get_debug_mesh().get_aabb().get_volume()
+						if object is CollisionPolygon3D:
+							host_collider = get_collision_polygon_volume(object)
 					host_object.global_position = $Camera3D/GrabCast.get_collision_point() + $Camera3D/GrabCast.get_collision_normal()*host_collider
 					#get_parent().add_child(pocket_object)
 					pocket_object = null
@@ -423,8 +452,8 @@ func _process(delta):
 					for object in host_object.get_children():
 						if object is CollisionShape3D:
 							host_collider = object.shape.get_debug_mesh().get_aabb().get_volume()
-						#if object is CollisionPolygon3D:
-						#	host_collider = get_collision_polygon_volume(object)
+						if object is CollisionPolygon3D:
+							host_collider = get_collision_polygon_volume(object)
 					host_object.global_position = $Camera3D/RayEndpoint.global_position
 					host_object.freeze = false
 					#get_parent().add_child(pocket_object)
@@ -452,11 +481,15 @@ func _process(delta):
 					if object is CollisionShape3D:
 						host_collider = object.shape.get_debug_mesh().get_aabb().get_volume()
 						print($Camera3D/GrabCast.get_collision_normal()*host_collider)
+					if object is CollisionPolygon3D:
+						host_collider = get_collision_polygon_volume(object)
 				host_object.global_position = $Camera3D/RayEndpoint.global_position
 				#host_object.position = $Camera3D/GrabCast.get_collision_point() + ($Camera3D/GrabCast.get_collision_normal()*host_collider if host_collider != null else Vector3.ZERO)
 				#get_parent().add_child(pocket_object)
 				pocket_object = null
 				host_object = null
+			else:
+				FPSC_CaptionSystem.FPSC_AddCaptionLine("Player.InteractionFailed")
 	# SMORCE 3 / FPS CONTROLLER TEMPLATE
 	if Input.is_action_pressed("p_zoom"):
 		camera_fov_extents[0] = 30.0
@@ -519,6 +552,12 @@ func modify_velocity(is_jumping:bool,move_vector:Vector2,delta:float):
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		var input_dir := move_vector
 		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction and is_on_floor() and not $AudioStreamPlayer3D.playing:
+			$AudioStreamPlayer3D.stream = chooseRandomFromArray(footsteps)
+			$AudioStreamPlayer3D.play()
+		if not direction or not is_on_floor():
+			if $AudioStreamPlayer3D.playing:
+				$AudioStreamPlayer3D.stop()
 		if (not abs(velocity.x) > SPEED_SPRINT) or is_on_floor(): velocity.x = lerp(velocity.x, direction.x * SPEED, accel * delta)
 		if (not abs(velocity.z) > SPEED_SPRINT) or is_on_floor(): velocity.z = lerp(velocity.z, direction.z * SPEED, accel * delta)
 	else:
