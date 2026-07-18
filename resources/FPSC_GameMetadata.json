@@ -27,5 +27,10 @@
 		"Portal testing area":"res://maps/devtest/devtest_portals.tscn",
 		"NPC testing area":"res://maps/devtest/devtest_pathfinder.tscn",
 		"ATC zoo area":"res://maps/zoo_afc_elements.tscn"
+	},
+	"CheckboxValues":{
+		"legacy_buttons":"Enable Legacy Buttons",
+		"propvis":"Show Held Props",
+		"disable_box_dropper_logic":"Animated Box Droppers (Unstable)"
 	}
 }

@@ -13,13 +13,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if CameraOrigin == null: return # We literally CANNOt survive without CameraOrigin
-	if FPSC_Player.sessionPlayer == null and not Engine.is_editor_hint(): return # Added because sv_listen can be false/0 now
+	#if FPSC_Player.sessionPlayer == null and not Engine.is_editor_hint(): return # Added because sv_listen can be false/0 now
 	if canMove:
 		if not Engine.is_editor_hint():
-			rotation = FPSC_Player.sessionPlayer.get_node("Camera3D").global_rotation
-			var modpos = FPSC_Player.sessionPlayer.global_position * Vector3(1,1,1)
+			rotation = get_tree().root.get_camera_3d().global_rotation
+			var modpos = get_tree().root.get_camera_3d().global_position * Vector3(1,1,1)
 			position = CameraOrigin.global_position + modpos/MovementScale + Offset
-			fov = FPSC_Player.sessionPlayer.get_node("Camera3D").fov
+			fov = get_tree().root.get_camera_3d().fov
 		else:
 			var pc = Engine.get_singleton("EditorInterface").get_editor_viewport_3d().get_camera_3d()
 			rotation = pc.global_rotation

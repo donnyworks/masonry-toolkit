@@ -379,23 +379,6 @@ value = 75.0
 [node name="HBoxContainer" type="VBoxContainer" parent="SettingsPanel/TabContainer/Miscellaneous/VBoxContainer"]
 layout_mode = 2
 
-[node name="legacy_buttons" type="CheckBox" parent="SettingsPanel/TabContainer/Miscellaneous/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Enable Legacy Buttons"
-
-[node name="propvis" type="CheckBox" parent="SettingsPanel/TabContainer/Miscellaneous/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-button_pressed = true
-text = "Show Held Props"
-
-[node name="disable_box_dropper_logic" type="CheckBox" parent="SettingsPanel/TabContainer/Miscellaneous/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-button_pressed = true
-text = "Animated Box Droppers (Unstable)"
-
 [node name="Cancel" type="Button" parent="SettingsPanel"]
 layout_mode = 1
 anchors_preset = 3

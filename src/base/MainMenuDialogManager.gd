@@ -65,6 +65,12 @@ func _ready():
 		MainMenuPanel.baseboard_window_title = "Pause Menu"
 	GameNameLabel.text = FPSC_LevelManager.metadata.GameName
 	GameVersionLabel.text = FPSC_LevelManager.metadata.Version
+	for property in FPSC_LevelManager.metadata.CheckboxValues:
+		var cb = CheckBox.new()
+		cb.text = FPSC_LevelManager.metadata.CheckboxValues[property]
+		cb.name = property
+		cb.button_pressed = FPSC_LevelManager.get(property)
+		ToggleButtonsContainer.add_child(cb)
 	for element in ToggleButtonsContainer.get_children():
 		CustomBooleanSettings[element.name] = element.button_pressed
 		FPSC_LevelManager.set(element.name,element.button_pressed)
@@ -84,8 +90,9 @@ func _ready():
 		FPSC_LevelManager.fov = multivar[2]
 	if len(multivar) > 3:
 		for key in multivar[3]:
-			FPSC_LevelManager.set(key,multivar[3][key])
-			ToggleButtonsContainer.get_node(str(key)).button_pressed = multivar[3][key]
+			if ToggleButtonsContainer.get_node_or_null(str(key)) != null:
+				FPSC_LevelManager.set(key,multivar[3][key])
+				ToggleButtonsContainer.get_node(str(key)).button_pressed = multivar[3][key]
 	fa.close()
 	for key in inputmap.keys():
 		InputMap.action_erase_events(key)
