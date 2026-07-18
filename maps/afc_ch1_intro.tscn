@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="2_xbpkp"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="3_22oxg"]
 [ext_resource type="Texture2D" uid="uid://bn1xcnqcyqtjt" path="res://textures/clipboard/texture_clipboard_3.png" id="3_fs00n"]
-[ext_resource type="AudioStream" uid="uid://ce5mu1a2228xg" path="res://sound/radio-greener.wav" id="3_p0akr"]
+[ext_resource type="AudioStream" uid="uid://ce5mu1a2228xg" path="res://sound/music/radio-greener.wav" id="3_p0akr"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="4_b014p"]
 [ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="4_suu5f"]
 [ext_resource type="Script" uid="uid://c10lkodrlqtba" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoicelines.gd" id="5_keklg"]
@@ -464,7 +464,7 @@ horizontal_alignment = 0
 [node name="Label3D4" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.5467202, -0.8630084)
 text = "[                                         ]
-TESTING COURSE A"
+TESTING COURSE B"
 horizontal_alignment = 0
 vertical_alignment = 0
 

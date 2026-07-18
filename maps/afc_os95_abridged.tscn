@@ -25,7 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://cqurgy3543ygk" path="res://sound/vo/radio_os95/07escaped.wav" id="18_vm2mj"]
 [ext_resource type="PackedScene" uid="uid://b4lncvmq0g2kf" path="res://instances/afc/prefab_radio_os95.tscn" id="20_pgud7"]
 [ext_resource type="PackedScene" uid="uid://btjkhkjtog1vo" path="res://instances/afc/prefab_radio.tscn" id="22_pgud7"]
-[ext_resource type="AudioStream" uid="uid://ffcclyipvpmj" path="res://sound/os95_abridged-introtheme.wav" id="26_wvxdp"]
+[ext_resource type="AudioStream" uid="uid://ffcclyipvpmj" path="res://sound/music/os95_abridged-introtheme.wav" id="26_wvxdp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_11hnd"]
 

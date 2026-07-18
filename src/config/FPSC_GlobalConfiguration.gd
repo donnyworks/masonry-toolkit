@@ -464,6 +464,20 @@ func AddConCommand(cmd_name,cmd_function,cmd_helpmessage="TODO: Replace this hel
 func _ready():
 	FPSC_LocalizationSystem.FPSC_LoadLocalization("en_US")
 	FPSC_LoadGameConfig()
+	if FileAccess.file_exists("user://gameconfig.mconf"):
+		var fa = FileAccess.open("user://gameconfig.mconf",FileAccess.READ)
+		var multivar = fa.get_var(true)
+		var inputmap = multivar[0]
+		sensitivity = multivar[1]
+		if len(multivar) > 2:
+			fov = multivar[2]
+		if len(multivar) > 3:
+			for key in multivar[3]:
+				set(key,multivar[3][key])
+		for key in inputmap.keys():
+			InputMap.action_erase_events(key)
+			for value in inputmap[key]:
+				InputMap.action_add_event(key,value)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	# Parse commands
 	AddConCommand("map",cmd_map,"Changes level.","[Level name]")

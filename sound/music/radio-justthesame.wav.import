@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dxrgmwd0wbxdl"
-path="res://.godot/imported/radio-justthesame.wav-668eadca6b998ab19ceb95d0f705f65f.sample"
+path="res://.godot/imported/radio-justthesame.wav-c5b4b30c082ffa6e7c48f5efc65bcb9e.sample"
 
 [deps]
 
-source_file="res://sound/radio-justthesame.wav"
-dest_files=["res://.godot/imported/radio-justthesame.wav-668eadca6b998ab19ceb95d0f705f65f.sample"]
+source_file="res://sound/music/radio-justthesame.wav"
+dest_files=["res://.godot/imported/radio-justthesame.wav-c5b4b30c082ffa6e7c48f5efc65bcb9e.sample"]
 
 [params]
 

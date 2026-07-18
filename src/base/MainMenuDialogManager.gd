@@ -84,6 +84,7 @@ func _ready():
 		FPSC_LevelManager.fov = multivar[2]
 	if len(multivar) > 3:
 		for key in multivar[3]:
+			FPSC_LevelManager.set(key,multivar[3][key])
 			ToggleButtonsContainer.get_node(str(key)).button_pressed = multivar[3][key]
 	fa.close()
 	for key in inputmap.keys():

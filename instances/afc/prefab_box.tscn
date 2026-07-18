@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bujgt2o11dkxq"]
+[gd_scene load_steps=3 format=3 uid="uid://bujgt2o11dkxq"]
+
+[ext_resource type="PackedScene" uid="uid://bqifj43f6w8t2" path="res://models/atc_cube.glb" id="1_bpwuq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_donyx"]
 
@@ -6,6 +8,10 @@
 can_sleep = false
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_donyx")
+
+[node name="atc_cube" parent="." instance=ExtResource("1_bpwuq")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

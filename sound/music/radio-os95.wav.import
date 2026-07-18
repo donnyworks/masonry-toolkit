@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cmcxgh2xbve06"
-path="res://.godot/imported/radio-os95.wav-6edf2c8ff8f4311fbcc5394955b1377c.sample"
+path="res://.godot/imported/radio-os95.wav-3e614677a46c322bfa24e5202ee6b48b.sample"
 
 [deps]
 
-source_file="res://sound/radio-os95.wav"
-dest_files=["res://.godot/imported/radio-os95.wav-6edf2c8ff8f4311fbcc5394955b1377c.sample"]
+source_file="res://sound/music/radio-os95.wav"
+dest_files=["res://.godot/imported/radio-os95.wav-3e614677a46c322bfa24e5202ee6b48b.sample"]
 
 [params]
 

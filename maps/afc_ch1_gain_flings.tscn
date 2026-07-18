@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://da8fywn53c78t"]
+[gd_scene load_steps=68 format=3 uid="uid://da8fywn53c78t"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_i4tkx"]
 [ext_resource type="PackedScene" uid="uid://cihvtue137xn7" path="res://instances/afc/prefab_chamber_entryway.tscn" id="1_v4uc3"]
@@ -11,10 +11,13 @@
 [ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleModulationColor.gd" id="6_l15d5"]
 [ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/logic/FPSC_ActivatableRelay.gd" id="6_rw1k0"]
 [ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="7_7b1nh"]
+[ext_resource type="PackedScene" uid="uid://dq51aafo7rnkc" path="res://models/fencingtest.glb" id="7_mamfh"]
 [ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="7_n273v"]
 [ext_resource type="Script" uid="uid://c10lkodrlqtba" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoicelines.gd" id="8_apnpf"]
 [ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="8_buwyv"]
 [ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="8_tc4iw"]
+[ext_resource type="PackedScene" uid="uid://bmwgm7cropbr4" path="res://models/fencingtest-bend.glb" id="8_y315y"]
+[ext_resource type="Texture2D" uid="uid://b3pd6wfbt7svk" path="res://textures/warning_floorcaution.png" id="9_lmqjk"]
 [ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="9_mq8bb"]
 [ext_resource type="AudioStream" uid="uid://c4is3teurfxti" path="res://sound/vo/announcer/ch4/Chamber4.01.wav" id="9_y0riy"]
 [ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleLightModulationColor.gd" id="10_oxf4t"]
@@ -805,9 +808,6 @@ material = SubResource("StandardMaterial3D_1i27u")
 [node name="PrefabBoxDropper" parent="dropper_door2/Node3D/dropper_door1" instance=ExtResource("12_buwyv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 0)
 
-[node name="AudioStreamPlayer3D" parent="dropper_door2/Node3D/dropper_door1/PrefabBoxDropper" index="4"]
-stream = null
-
 [node name="radio" parent="dropper_door2/Node3D/dropper_door1" instance=ExtResource("5_bhnlf")]
 transform = Transform3D(-4.371138e-08, 0.99999994, 0, -0.99999994, -4.371139e-08, 0, 0, 0, 0.9999999, 0.014200307, -1.371254, -0.08395386)
 mass = 0.5
@@ -833,6 +833,78 @@ size = Vector3(47, 1.3270264, 14)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 5.8270264, -31.5)
 use_collision = true
 size = Vector3(15, 2, 14)
+
+[node name="fencingtest" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 5.8834534, 0.9244914, 6.1609364)
+
+[node name="fencingtest2" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 4.3638268, 0.9244914, 6.1609364)
+
+[node name="fencingtest5" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -4.7130013, 0.9244914, 6.1609364)
+
+[node name="fencingtest7" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.0514183, 0.9244914, -4.768738)
+
+[node name="fencingtest13" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.0514183, 0.9244914, -6.35186)
+
+[node name="fencingtest8" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.0514183, 0.9244914, -3.2052917)
+
+[node name="fencingtest9" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.0514183, 0.9244914, -1.7249146)
+
+[node name="fencingtest10" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.0514183, 0.9244914, -0.20528984)
+
+[node name="fencingtest14" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 7.1972313, 0.9244914, -4.8016815)
+
+[node name="fencingtest15" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 7.1972313, 0.9244914, -6.35186)
+
+[node name="fencingtest16" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 7.1972275, 0.9244914, -3.2052917)
+
+[node name="fencingtest17" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 7.1972275, 0.9244914, -1.7249146)
+
+[node name="fencingtest18" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 7.1972275, 0.9244914, -0.20528984)
+
+[node name="fencingtest19" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 7.1972275, 0.9244914, 1.093359)
+
+[node name="fencingtest22" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 7.1972275, 0.9244914, 2.616249)
+
+[node name="fencingtest23" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 7.1972275, 0.9244914, 3.819809)
+
+[node name="fencingtest11" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.0514183, 0.9244914, 1.8715382)
+
+[node name="fencingtest20" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.0514183, 0.9244914, 3.3684292)
+
+[node name="fencingtest21" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.0514183, 0.9244914, 4.890522)
+
+[node name="fencingtest12" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("7_mamfh")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.0514183, 0.9244914, 0.7694378)
+
+[node name="fencingtest-bend" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("8_y315y")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -6.2990875, 0.9244914, 6.1609364)
+
+[node name="fencingtest-bend2" parent="CSGBox3D23" groups=["Non-Portalable"] instance=ExtResource("8_y315y")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 7.203678, 0.9244914, 5.402109)
+
+[node name="Sprite3D" type="Sprite3D" parent="CSGBox3D23"]
+transform = Transform3D(-1, -8.742279e-08, -7.816206e-15, 0, -8.940697e-08, 1.0000001, -8.7422784e-08, 1.0000001, 8.940697e-08, 0, 1.0133381, 6)
+pixel_size = 0.03
+texture_filter = 0
+texture = ExtResource("9_lmqjk")
 
 [node name="CSGBox3D39" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 5.8270264, -73.5)
@@ -7700,7 +7772,7 @@ shape = SubResource("CylinderShape3D_mq8bb")
 
 [node name="FPSC_VoicelineActivatable" type="Node" parent="prefab_chamber_exithall" node_paths=PackedStringArray("voiceline_player")]
 script = ExtResource("12_v0i48")
-voiceline_player = NodePath("")
+voiceline_player = NodePath("../AudioStreamPlayer3D")
 character_voiceline = ExtResource("30_n273v")
 localized_caption = "Announcer.Chapter1Demo"
 execute_once = true
@@ -7730,9 +7802,6 @@ portal_pair_linkage_id = 1
 
 [node name="PrefabBoxDropper" parent="afc_ch1_intro_chamber" instance=ExtResource("12_buwyv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, -2)
-
-[node name="AudioStreamPlayer3D" parent="afc_ch1_intro_chamber/PrefabBoxDropper" index="4"]
-stream = null
 
 [node name="FPSC_Trigger" type="Area3D" parent="afc_ch1_intro_chamber/PrefabBoxDropper" node_paths=PackedStringArray("activated")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9305305, -1.2738483, 10.631256)

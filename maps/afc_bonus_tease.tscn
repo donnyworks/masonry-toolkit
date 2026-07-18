@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://btgptxivmvxi7" path="res://sound/vo/announcer/ch0/Chamber1.WallClip.wav" id="5_d5dlk"]
 [ext_resource type="Texture2D" uid="uid://bn1xcnqcyqtjt" path="res://textures/clipboard/texture_clipboard_3.png" id="6_f07vx"]
 [ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="7_vhuyi"]
-[ext_resource type="AudioStream" uid="uid://ce5mu1a2228xg" path="res://sound/radio-greener.wav" id="8_vxtuo"]
+[ext_resource type="AudioStream" uid="uid://ce5mu1a2228xg" path="res://sound/music/radio-greener.wav" id="8_vxtuo"]
 [ext_resource type="Script" uid="uid://b4c6tlpkvw6tk" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableDoorForceStateChange.gd" id="9_pgq15"]
 [ext_resource type="Script" uid="uid://bxrwaxtx06m0r" path="res://src/base/activatables/world/doers/FPSC_ActivatableTeleportNode3D.gd" id="10_fkgk2"]
 [ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="11_uhjsk"]

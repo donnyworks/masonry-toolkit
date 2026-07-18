@@ -9,4 +9,5 @@ func on_enter(_body:Node3D):
 	if "health" in _body:
 		_body.health -= damage_delt
 	if kill_rigidibodies and _body is RigidBody3D:
+		FPSC_MultiplayerFramework.cached_entities.erase(_body)
 		_body.queue_free()

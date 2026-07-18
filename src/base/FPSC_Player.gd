@@ -324,7 +324,7 @@ func _process(delta):
 	if $ViewmodelRenderer.size != get_tree().root.size:
 		$ViewmodelRenderer.size = get_tree().root.size
 	if paused:
-		if pausemenu == null:
+		if pausemenu == null and not FPSC_ConsoleInstance.visible:
 			pausemenu = templatePauseMenu.duplicate().instantiate()
 			add_child(pausemenu)
 		$MenuGUIElement.visible = Input.is_action_pressed("p_devmenu")

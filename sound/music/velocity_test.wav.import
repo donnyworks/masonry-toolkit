@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://iuiyuthidbno"
-path="res://.godot/imported/velocity_test.wav-57876ea66b057e5dd4a3499c21f60278.sample"
+path="res://.godot/imported/velocity_test.wav-a19c4e80d0cb23e326677f1138c7c4e5.sample"
 
 [deps]
 
-source_file="res://sound/velocity_test.wav"
-dest_files=["res://.godot/imported/velocity_test.wav-57876ea66b057e5dd4a3499c21f60278.sample"]
+source_file="res://sound/music/velocity_test.wav"
+dest_files=["res://.godot/imported/velocity_test.wav-a19c4e80d0cb23e326677f1138c7c4e5.sample"]
 
 [params]
 

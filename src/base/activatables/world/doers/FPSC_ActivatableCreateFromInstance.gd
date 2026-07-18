@@ -30,6 +30,8 @@ func _ready():
 	if instance == null:
 		queue_free()
 		return
+	if instance in FPSC_MultiplayerFramework.cached_entities:
+		FPSC_MultiplayerFramework.cached_entities.erase(instance)
 	inst = instance.duplicate()
 	if not preserve_original: instance.queue_free() # We fucking kill the original for existing
 
@@ -38,6 +40,7 @@ func on_enter(_body:Node3D):
 	print(len(new_insts))
 	if len(new_insts) >= maximum_amount_allowed and destroy_preexisting:
 		if is_instance_valid(new_insts[0]):
+			FPSC_MultiplayerFramework.cached_entities.erase(new_insts[0])
 			new_insts[0].queue_free()
 		new_insts.remove_at(0)
 	var new_inst = inst.duplicate()
@@ -45,4 +48,5 @@ func on_enter(_body:Node3D):
 	new_inst.name = inst.name + str(len(new_insts))
 	new_inst.global_position = instantiation_position.global_position
 	new_insts.append(new_inst)
+	FPSC_MultiplayerFramework.cached_entities.append(new_inst)
 	just_spawned_node = true

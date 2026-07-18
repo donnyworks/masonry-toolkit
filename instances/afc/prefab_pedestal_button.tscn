@@ -15,7 +15,7 @@ albedo_color = Color(1, 0, 0, 1)
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 
 [node name="FPSC_DevNote" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2779112, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.828, 0)
 text = "NOTE! The pedestal button has its own logic! Hook into it.
 There's a RelayActivatable named \"buttonPressed\".
 Enable editable children and add your output to buttonPressed.
@@ -25,17 +25,29 @@ script = ExtResource("1_172tg")
 metadata/_custom_type_script = "uid://sl4hinpkxef0"
 
 [node name="pedestalBaseModel" type="CSGCylinder3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.55, 0)
 use_collision = true
 radius = 0.19677734
 height = 1.1229004
 
-[node name="CSGBox3D" type="CSGBox3D" parent="pedestalBaseModel"]
-transform = Transform3D(0.997835, -0.06576885, 0, 0.06576885, 0.997835, 0, 0, 0, 1, -0.30000687, 0.95549726, 0)
+[node name="this is the actual cap2" type="CSGCylinder3D" parent="pedestalBaseModel" groups=["Non-Portalable"]]
+transform = Transform3D(0.9999999, 0, 3.9435122e-13, 0, 1, 0, -3.9435122e-13, 0, 0.9999999, 0, 0.29481488, 0)
 operation = 2
+radius = 0.18
+height = 0.6833542
+
+[node name="CSGBox3D" type="CSGBox3D" parent="pedestalBaseModel"]
+transform = Transform3D(0.997835, -0.06576885, 1.7053026e-13, 0.06576885, 0.997835, 0, 0, 0, 1, -0.39842612, 0.9490102, 1.7763568e-15)
+operation = 2
+size = Vector3(0.8027344, 1, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="pedestalBaseModel"]
+transform = Transform3D(0.9102289, -0.41410553, -2.8194584e-09, 0.41410553, 0.9102289, 1.5445229e-08, -3.8294026e-09, -1.5226282e-08, 1, 0.18774691, 1.0986733, 2.5622441e-08)
+operation = 2
+size = Vector3(0.8027344, 1, 1)
 
 [node name="pedestalButtonDoor" type="CSGCylinder3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 0, 0.50660133, 0)
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 0, 1.057, 0)
 use_collision = true
 radius = 0.18
 height = 0.14761963
@@ -59,6 +71,9 @@ metadata/_custom_type_script = "uid://hllw2e6fs54j"
 script = ExtResource("3_wijuq")
 activatables = [NodePath("../buttonDoor"), NodePath("../buttonDoorUnpress"), NodePath("../buttonSoundEffect")]
 use_delay_on_enter = true
+use_delay_on_exit = true
+FireOnExitAfterDelay = true
+DelayAmount = 0.5
 metadata/_custom_type_script = "uid://cgae4dmf6xfos"
 
 [node name="buttonDoor" type="Node" parent="pedestalButtonDoor" node_paths=PackedStringArray("object_as_door")]

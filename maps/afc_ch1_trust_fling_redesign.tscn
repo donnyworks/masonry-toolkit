@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cnfwb7ifn64uh"]
+[gd_scene load_steps=42 format=3 uid="uid://cnfwb7ifn64uh"]
 
 [ext_resource type="PackedScene" uid="uid://cihvtue137xn7" path="res://instances/afc/prefab_chamber_entryway.tscn" id="1_ke17q"]
 [ext_resource type="Script" uid="uid://c10lkodrlqtba" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoicelines.gd" id="2_udesm"]
@@ -25,8 +25,10 @@
 [ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="25_g8yom"]
 [ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="26_72p1m"]
 [ext_resource type="Script" uid="uid://l3j5m0d3m6rj" path="res://src/base/triggers/FPSC_TriggerCatapult.gd" id="27_a3bei"]
+[ext_resource type="PackedScene" uid="uid://dq51aafo7rnkc" path="res://models/fencingtest.glb" id="28_ke17q"]
 [ext_resource type="PackedScene" uid="uid://f0qlfetn1pdk" path="res://instances/afc/prefab_catapult.tscn" id="28_ntcko"]
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="29_4keqd"]
+[ext_resource type="PackedScene" uid="uid://bmwgm7cropbr4" path="res://models/fencingtest-bend.glb" id="29_udesm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i51bh"]
 size = Vector3(7, 5, 1)
@@ -116,7 +118,7 @@ metadata/_custom_type_script = "uid://c10lkodrlqtba"
 [node name="FPSC_TriggerRelay2" type="Area3D" parent="prefab_chamber_entryway" node_paths=PackedStringArray("activated")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
 script = ExtResource("5_dslth")
-activated = [null]
+activated = [NodePath("../FPSC_MultiVoicelineActivatable")]
 trigger_once = true
 interact_with = 1
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
@@ -2286,7 +2288,7 @@ light_color = Color(1, 0.5058824, 0.007843138, 1)
 shadow_enabled = true
 
 [node name="PrefabPedestalButton" parent="." instance=ExtResource("17_gppcl")]
-transform = Transform3D(-4.3711392e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, -4.3711392e-08, -52, 7.083603, -69.5)
+transform = Transform3D(-4.3711392e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, -4.3711392e-08, -52, 6.524305, -69.5)
 
 [node name="buttonPressed" parent="PrefabPedestalButton/pedestalButtonDoor" index="2" node_paths=PackedStringArray("activatables")]
 activatables = [NodePath("../buttonDoor"), NodePath("../buttonDoorUnpress"), NodePath("../buttonSoundEffect"), NodePath("../../../PrefabBoxDropper/dropper")]
@@ -2492,6 +2494,129 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 12, -69.5)
 
 [node name="Marker3D3" parent="faithPlates" instance=ExtResource("29_4keqd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 6, -44.5)
+
+[node name="fencingtest" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -11.300207)
+
+[node name="fencingtest2" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -12.300207)
+
+[node name="fencingtest3" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -13.300207)
+
+[node name="fencingtest4" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -14.300207)
+
+[node name="fencingtest5" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -15.300207)
+
+[node name="fencingtest6" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -16.300207)
+
+[node name="fencingtest7" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -17.300207)
+
+[node name="fencingtest8" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -18.300207)
+
+[node name="fencingtest9" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -19.300207)
+
+[node name="fencingtest10" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -20.300207)
+
+[node name="fencingtest11" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -21.300207)
+
+[node name="fencingtest12" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -22.300207)
+
+[node name="fencingtest13" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -23.300207)
+
+[node name="fencingtest14" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -24.300207)
+
+[node name="fencingtest15" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -25.300207)
+
+[node name="fencingtest17" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.827345, -0.5000062, -29.438581)
+
+[node name="fencingtest18" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.827345, -0.5000062, -30.438581)
+
+[node name="fencingtest19" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.827345, -0.5000062, -31.438581)
+
+[node name="fencingtest20" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.827345, -0.5000062, -32.438583)
+
+[node name="fencingtest21" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.827345, -0.5000062, -33.438583)
+
+[node name="fencingtest23" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.237175, -0.5000062, -36.86386)
+
+[node name="fencingtest-bend" parent="." groups=["Non-Portalable"] instance=ExtResource("29_udesm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -26.300207)
+
+[node name="fencingtest-bend3" parent="." groups=["Non-Portalable"] instance=ExtResource("29_udesm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.834153, -0.5000062, -34.30021)
+
+[node name="fencingtest-bend4" parent="." instance=ExtResource("29_udesm")]
+transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, -10.241098, -0.5000062, -35.820034)
+
+[node name="fencingtest-bend2" parent="." groups=["Non-Portalable"] instance=ExtResource("29_udesm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -12.823641, -0.5000062, -27.826578)
+
+[node name="fencingtest16" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.100563, -0.5000062, -27.06253)
+
+[node name="fencingtest22" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.539786, -0.5000062, -35.06253)
+
+[node name="fencingtest-bend5" parent="." groups=["Non-Portalable"] instance=ExtResource("29_udesm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.240352, -0.5000062, -38.002068)
+
+[node name="fencingtest24" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8.945985, -0.5000062, -38.76439)
+
+[node name="fencingtest25" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.945985, -0.5000062, -38.76439)
+
+[node name="fencingtest26" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.945985, -0.5000062, -38.76439)
+
+[node name="fencingtest27" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.945985, -0.5000062, -38.76439)
+
+[node name="fencingtest28" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4.945985, -0.5000062, -38.76439)
+
+[node name="fencingtest29" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.9459848, -0.5000062, -38.76439)
+
+[node name="fencingtest30" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.9459848, -0.5000062, -38.76439)
+
+[node name="fencingtest31" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.9459848, -0.5000062, -38.76439)
+
+[node name="fencingtest32" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.94598484, -0.5000062, -38.76439)
+
+[node name="fencingtest33" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.05401516, -0.5000062, -38.76439)
+
+[node name="fencingtest34" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.0540152, -0.5000062, -38.76439)
+
+[node name="fencingtest35" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.0540152, -0.5000062, -38.76439)
+
+[node name="fencingtest36" parent="." groups=["Non-Portalable"] instance=ExtResource("28_ke17q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.0540152, -0.5000062, -38.76439)
 
 [editable path="PrefabPedestalButton"]
 [editable path="PrefabBoxDropper"]

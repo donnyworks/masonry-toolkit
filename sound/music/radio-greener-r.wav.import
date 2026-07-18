@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cqbqga5huxnyw"
-path="res://.godot/imported/radio-greener-r.wav-87c48b473cf3124de24567ae9a9459d3.sample"
+path="res://.godot/imported/radio-greener-r.wav-e78aaeb8a0155846df84379b2a60277c.sample"
 
 [deps]
 
-source_file="res://sound/radio-greener-r.wav"
-dest_files=["res://.godot/imported/radio-greener-r.wav-87c48b473cf3124de24567ae9a9459d3.sample"]
+source_file="res://sound/music/radio-greener-r.wav"
+dest_files=["res://.godot/imported/radio-greener-r.wav-e78aaeb8a0155846df84379b2a60277c.sample"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://fabh0jfxxi51"]
+[gd_scene load_steps=39 format=3 uid="uid://fabh0jfxxi51"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_wtdix"]
 [ext_resource type="PackedScene" uid="uid://fsyjqmmliyan" path="res://instances/afc/prefab_new_portalgun_pedestal.tscn" id="2_8pegt"]
@@ -20,9 +20,11 @@
 [ext_resource type="PackedScene" uid="uid://ddyq77yf5jul4" path="res://instances/afc/teleporter_exit.tscn" id="16_g0gtr"]
 [ext_resource type="Texture2D" uid="uid://bn1xcnqcyqtjt" path="res://textures/clipboard/texture_clipboard_3.png" id="16_g1f0s"]
 [ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="17_kn4uj"]
-[ext_resource type="AudioStream" uid="uid://ce5mu1a2228xg" path="res://sound/radio-greener.wav" id="18_8pegt"]
+[ext_resource type="AudioStream" uid="uid://ce5mu1a2228xg" path="res://sound/music/radio-greener.wav" id="18_8pegt"]
 [ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="19_w55ah"]
 [ext_resource type="PackedScene" uid="uid://b6lemoo8ic8o2" path="res://instances/portal/PortalInstance.tscn" id="21_kn4uj"]
+[ext_resource type="PackedScene" uid="uid://dq51aafo7rnkc" path="res://models/fencingtest.glb" id="24_b528i"]
+[ext_resource type="PackedScene" uid="uid://bmwgm7cropbr4" path="res://models/fencingtest-bend.glb" id="25_y6q04"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ah5jf"]
 
@@ -338,9 +340,6 @@ metadata/_custom_type_script = "uid://b84g1xo7620ij"
 [node name="PrefabBoxDropper" parent="." instance=ExtResource("9_4sprw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.450577, 3, -9)
 
-[node name="AudioStreamPlayer3D" parent="PrefabBoxDropper" index="4"]
-stream = null
-
 [node name="prefab_geomesh_button2" parent="." instance=ExtResource("2_ed8bu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.175181, -0.48780122, -6.1010337)
 
@@ -562,5 +561,29 @@ portal_pair_linkage_id = 1
 transform = Transform3D(0.99999994, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, 0.99999994, -1.1207303, 0.010337591, -1.6970857)
 material = SubResource("ShaderMaterial_w55ah")
 portal_pair_linkage_id = 1
+
+[node name="fencingtest" parent="." groups=["Non-Portalable"] instance=ExtResource("24_b528i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.392191, -0.5000062, 26.699791)
+
+[node name="fencingtest2" parent="." groups=["Non-Portalable"] instance=ExtResource("24_b528i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8.069048, -0.5000062, 24.32591)
+
+[node name="fencingtest3" parent="." groups=["Non-Portalable"] instance=ExtResource("24_b528i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.0271044, -0.5000062, 28.0202)
+
+[node name="fencingtest-bend" parent="." groups=["Non-Portalable"] instance=ExtResource("25_y6q04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.392191, -0.5000062, 25.095995)
+
+[node name="fencingtest-bend2" parent="." groups=["Non-Portalable"] instance=ExtResource("25_y6q04")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.633365, -0.5000062, 28.020016)
+
+[node name="fencingtest5" parent="." groups=["Non-Portalable"] instance=ExtResource("24_b528i")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.717649, -0.5000062, 25.657534)
+
+[node name="fencingtest-bend3" parent="." groups=["Non-Portalable"] instance=ExtResource("25_y6q04")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.717649, -0.5000062, 27.26133)
+
+[node name="fencingtest-bend4" parent="." groups=["Non-Portalable"] instance=ExtResource("25_y6q04")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -6.4764752, -0.5000062, 24.337309)
 
 [editable path="PrefabBoxDropper"]

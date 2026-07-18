@@ -9,6 +9,9 @@ class_name FPSC_RelayActivatable
 
 @export var AwaitFrame := false ## await get_tree().process_frame
 
+@export var FireOnExitAfterDelay := false
+@export var DelayAmount := 0.0
+
 func on_enter(_body:Node3D):
 	if AwaitFrame:
 		await get_tree().process_frame
@@ -18,6 +21,15 @@ func on_enter(_body:Node3D):
 			a.on_enter(_body)
 		else:
 			a._delay_on_enter(_body)
+		if FireOnExitAfterDelay:
+			fireonexit(_body,a)
+
+func fireonexit(_body,a):
+	await get_tree().create_timer(DelayAmount).timeout
+	if use_delay_on_exit:
+		a._delay_on_exit(_body)
+	else:
+		a.on_exit(_body)
 
 func on_exit(_body:Node3D):
 	@warning_ignore("standalone_ternary")

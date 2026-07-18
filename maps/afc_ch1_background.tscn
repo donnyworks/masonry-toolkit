@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoiceline.gd" id="4_8lg6k"]
 [ext_resource type="Texture2D" uid="uid://bn1xcnqcyqtjt" path="res://textures/clipboard/texture_clipboard_3.png" id="6_bxiwn"]
 [ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="7_7g3nx"]
-[ext_resource type="AudioStream" uid="uid://ce5mu1a2228xg" path="res://sound/radio-greener.wav" id="8_ig6qq"]
+[ext_resource type="AudioStream" uid="uid://ce5mu1a2228xg" path="res://sound/music/radio-greener.wav" id="8_ig6qq"]
 [ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="11_ifi8t"]
 [ext_resource type="PackedScene" path="res://instances/afc/prefab_bed.tscn" id="12_1kppn"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="13_w5psp"]
