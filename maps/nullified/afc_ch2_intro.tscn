@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="5_rtejp"]
 [ext_resource type="Script" uid="uid://l3j5m0d3m6rj" path="res://src/base/triggers/FPSC_TriggerCatapult.gd" id="6_0alsq"]
 [ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="6_n6cnh"]
-[ext_resource type="Texture2D" uid="uid://sav8ot3s5160" path="res://icon.svg" id="7_n6cnh"]
+[ext_resource type="Texture2D" uid="uid://sav8ot3s5160" path="res://godotengine-icon.svg" id="7_n6cnh"]
 [ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleModulationColor.gd" id="7_yidma"]
 [ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="8_wq642"]
 [ext_resource type="Script" uid="uid://b4c6tlpkvw6tk" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableDoorForceStateChange.gd" id="8_yidma"]

@@ -74,14 +74,14 @@ func _ready():
 	for element in ToggleButtonsContainer.get_children():
 		CustomBooleanSettings[element.name] = element.button_pressed
 		FPSC_LevelManager.set(element.name,element.button_pressed)
-	if not FileAccess.file_exists("user://gameconfig.mconf"):
-		var sfa = FileAccess.open("user://gameconfig.mconf",FileAccess.WRITE)
+	if not FileAccess.file_exists("user://" + FPSC_LevelManager.metadata.GameInternalName + "/gameconfig.mconf"):
+		var sfa = FileAccess.open("user://" + FPSC_LevelManager.metadata.GameInternalName + "/gameconfig.mconf",FileAccess.WRITE)
 		var sinputmap = {}
 		for i_name in InputMap.get_actions():
 			sinputmap[i_name] = InputMap.action_get_events(i_name)
 		sfa.store_var([sinputmap,FPSC_LevelManager.sensitivity,FPSC_LevelManager.fov,CustomBooleanSettings],true)
 		sfa.close()
-	var fa = FileAccess.open("user://gameconfig.mconf",FileAccess.READ)
+	var fa = FileAccess.open("user://" + FPSC_LevelManager.metadata.GameInternalName + "/gameconfig.mconf",FileAccess.READ)
 	var multivar = fa.get_var(true)
 	var inputmap = multivar[0]
 	FPSC_LevelManager.sensitivity = multivar[1]
@@ -139,7 +139,7 @@ func cancel():
 	BonusSelectPanel.visible = false
 	ChapterSelectPanel.visible = false
 	SettingsPanel.visible = false
-	var sfa = FileAccess.open("user://gameconfig.mconf",FileAccess.WRITE)
+	var sfa = FileAccess.open("user://" + FPSC_LevelManager.metadata.GameInternalName + "/gameconfig.mconf",FileAccess.WRITE)
 	var sinputmap = {}
 	CustomBooleanSettings = {}
 	for element in ToggleButtonsContainer.get_children():

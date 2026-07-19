@@ -154,8 +154,8 @@ func cmd_map(cmda):
 			print("Full assurance that the game has started, the level has loaded, and we are ready to start listening.")
 			FPSC_MultiplayerFramework.start_server()
 	else:
-		if FileAccess.file_exists("user://maps/" + cmda[1] + ".tscn"):
-			FPSC_LevelManager.ChangeLevel("user://maps/" + cmda[1] + ".tscn")
+		if FileAccess.file_exists("user://" + metadata.GameInternalName + "/maps/" + cmda[1] + ".tscn"):
+			FPSC_LevelManager.ChangeLevel("user://" + metadata.GameInternalName + "/maps/" + cmda[1] + ".tscn")
 			if FPSC_MultiplayerFramework.maxplayers > 1: # We're trying to enroll as a server
 				await FPSC_LevelManager.LevelChanged
 				print("Full assurance that the game has started, the level has loaded, and we are ready to start listening.")
@@ -188,10 +188,10 @@ func cmd_stop(cmda):
 func cmd_playdemo(cmda):
 	if demoname != "":
 		CMDLine("stop")
-	if FileAccess.file_exists("user://" + cmda[1] + ".mdemo"):
+	if FileAccess.file_exists("user://" + metadata.GameInternalName + "/" + cmda[1] + ".mdemo"):
 		cmd_print("Playing demo " + cmda[1])
 		#{"version","map","demo_frame_interval","demo_timeline","demo_record_time","demo_length"}
-		var f = FileAccess.open("user://" + cmda[1] + ".mdemo",FileAccess.READ)
+		var f = FileAccess.open("user://" + metadata.GameInternalName + "/" + cmda[1] + ".mdemo",FileAccess.READ)
 		var _demo_data = f.get_var()
 		f.close()
 		current_frame = 0
@@ -253,10 +253,10 @@ func cmd_genmap_srcbox(cmda):
 	#if randi_range(0,1000000) == 4021:
 	# Generate data!
 	var mapname = "data"
-	if not DirAccess.dir_exists_absolute("user://maps"):
-		DirAccess.make_dir_absolute("user://maps")
+	if not DirAccess.dir_exists_absolute("user://" + metadata.GameInternalName + "/maps"):
+		DirAccess.make_dir_absolute("user://" + metadata.GameInternalName + "/maps")
 	var m_index = 1
-	while FileAccess.file_exists("user://maps/" + mapname + ".tscn"):
+	while FileAccess.file_exists("user://" + metadata.GameInternalName + "/maps/" + mapname + ".tscn"):
 		m_index += 1
 		mapname = "data" + str(m_index)
 	var scene = Node3D.new()
@@ -304,8 +304,8 @@ func cmd_genmap_srcbox(cmda):
 	await get_tree().process_frame # i dunno, we need a frame of time to think on this new addition?
 	var ps = PackedScene.new()
 	ps.pack(scene)
-	ResourceSaver.save(ps,"user://maps/" + mapname + ".tscn")
-	map = "user://maps/" + mapname + ".tscn"
+	ResourceSaver.save(ps,"user://" + metadata.GameInternalName + "/maps/" + mapname + ".tscn")
+	map = "user://" + metadata.GameInternalName + "/maps/" + mapname + ".tscn"
 	ChangeLevel(map)
 
 func set_owner_recursive(node: Node, new_owner: Node) -> void:
@@ -344,7 +344,7 @@ func CMDLine(command:String):
 			if randtype > 80 and randtype < 90: type = 3
 			if randtype > 90: type = 4
 			randomInitialRotation.y = deg_to_rad(randf_range(-359, 359))
-			while FileAccess.file_exists("user://" + filename + ".mdemo"):
+			while FileAccess.file_exists("user://" + metadata.GameInternalName + "/" + filename + ".mdemo"):
 				index += 1
 				filename = "data" + str(index)
 			for folder in DirAccess.get_directories_at("res://maps"):
@@ -358,10 +358,10 @@ func CMDLine(command:String):
 			if randi_range(0,100000) == 4021:
 				# Generate data!
 				var mapname = "data"
-				if not DirAccess.dir_exists_absolute("user://maps"):
-					DirAccess.make_dir_absolute("user://maps")
+				if not DirAccess.dir_exists_absolute("user://" + metadata.GameInternalName + "/maps"):
+					DirAccess.make_dir_absolute("user://" + metadata.GameInternalName + "/maps")
 				var m_index = 1
-				while FileAccess.file_exists("user://maps/" + mapname + ".tscn"):
+				while FileAccess.file_exists("user://" + metadata.GameInternalName + "/maps/" + mapname + ".tscn"):
 					m_index += 1
 					mapname = "data" + str(m_index)
 				var scene = Node3D.new()
@@ -406,8 +406,8 @@ func CMDLine(command:String):
 				await get_tree().process_frame # i dunno, we need a frame of time to think on this new addition?
 				var ps = PackedScene.new()
 				ps.pack(scene)
-				ResourceSaver.save(ps,"user://maps/" + mapname + ".tscn")
-				map = "user://maps/" + mapname + ".tscn"
+				ResourceSaver.save(ps,"user://" + metadata.GameInternalName + "/maps/" + mapname + ".tscn")
+				map = "user://" + metadata.GameInternalName + "/maps/" + mapname + ".tscn"
 			else:
 				map = "res://maps/" + map + ".tscn"
 			var randlen = randf_range(5,15)
@@ -464,8 +464,10 @@ func AddConCommand(cmd_name,cmd_function,cmd_helpmessage="TODO: Replace this hel
 func _ready():
 	FPSC_LocalizationSystem.FPSC_LoadLocalization("en_US")
 	FPSC_LoadGameConfig()
-	if FileAccess.file_exists("user://gameconfig.mconf"):
-		var fa = FileAccess.open("user://gameconfig.mconf",FileAccess.READ)
+	if not DirAccess.dir_exists_absolute("user://" + metadata.GameInternalName):
+		DirAccess.make_dir_absolute("user://" + metadata.GameInternalName)
+	if FileAccess.file_exists("user://" + metadata.GameInternalName + "/gameconfig.mconf"):
+		var fa = FileAccess.open("user://" + metadata.GameInternalName + "/gameconfig.mconf",FileAccess.READ)
 		var multivar = fa.get_var(true)
 		var inputmap = multivar[0]
 		sensitivity = multivar[1]
@@ -525,7 +527,7 @@ var demo_freelook = false
 var elapsed = 0.0
 
 func savedemo():
-	var f = FileAccess.open("user://" + demoname + ".mdemo",FileAccess.WRITE)
+	var f = FileAccess.open("user://" + metadata.GameInternalName + "/" + demoname + ".mdemo",FileAccess.WRITE)
 	var path = ""
 	if get_tree().current_scene != null:
 		path = get_tree().current_scene.scene_file_path

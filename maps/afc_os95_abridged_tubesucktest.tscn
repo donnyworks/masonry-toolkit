@@ -1,33 +1,32 @@
-[gd_scene load_steps=66 format=3 uid="uid://cadbn1s6b5a4v"]
+[gd_scene load_steps=61 format=3 uid="uid://s720s2e6xipw"]
 
-[ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_11og8"]
-[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="2_qloen"]
-[ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="3_ia28q"]
-[ext_resource type="Script" uid="uid://hllw2e6fs54j" path="res://src/base/FPSC_InteractivityMarker.gd" id="3_vm2mj"]
-[ext_resource type="Material" uid="uid://cbuoxl6trvib2" path="res://materials/portallable_surface.tres" id="4_3b1hc"]
-[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="5_0nuuy"]
-[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/world/doers/FPSC_ActivatablePlayAnimation.gd" id="6_3b1hc"]
-[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="6_isyyp"]
-[ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/logic/FPSC_ActivatableRelay.gd" id="7_0nuuy"]
-[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="7_xnsbh"]
-[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="8_actbo"]
-[ext_resource type="Texture2D" uid="uid://cessukhc7fg1e" path="res://textures/door_unlabelled.png" id="8_u4p4h"]
-[ext_resource type="Script" uid="uid://c31gr4qnx52ps" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsRotatingDoor.gd" id="9_c1oq4"]
-[ext_resource type="Texture2D" uid="uid://c51obrtd7xqus" path="res://textures/door_ch1_intro_portalgun.png" id="9_ymk7i"]
-[ext_resource type="Script" uid="uid://cguq0l7w5loj6" path="res://src/base/activatables/logic/FPSC_ActivatableActivateOnSpawning.gd" id="11_qloen"]
-[ext_resource type="PackedScene" uid="uid://bjj403lwphbjj" path="res://instances/player_scalemarker.tscn" id="13_11hnd"]
-[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="14_0nuuy"]
-[ext_resource type="Script" uid="uid://b84g1xo7620ij" path="res://src/base/activatables/logic/FPSC_ActivatableToggleTriggerEnablement.gd" id="14_actbo"]
-[ext_resource type="PackedScene" uid="uid://plpnja5gt1i4" path="res://instances/portal/weapon_portalgun.tscn" id="14_eya54"]
-[ext_resource type="Script" uid="uid://b4c6tlpkvw6tk" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableDoorForceStateChange.gd" id="16_ymk7i"]
-[ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoiceline.gd" id="17_c1oq4"]
-[ext_resource type="Script" uid="uid://bi2qiwuw6d15b" path="res://src/base/activatables/FPSC_ActivatableExecuteCommand.gd" id="17_ymk7i"]
-[ext_resource type="AudioStream" uid="uid://cqurgy3543ygk" path="res://sound/vo/radio_os95/07escaped.wav" id="18_vm2mj"]
-[ext_resource type="PackedScene" uid="uid://b4lncvmq0g2kf" path="res://instances/afc/prefab_radio_os95.tscn" id="20_pgud7"]
-[ext_resource type="Script" uid="uid://wx07wnk25blo" path="res://src/base/activatables/world/doers/FPSC_ActivatablePush.gd" id="20_th6y3"]
-[ext_resource type="PackedScene" uid="uid://btjkhkjtog1vo" path="res://instances/afc/prefab_radio.tscn" id="22_pgud7"]
-[ext_resource type="AudioStream" uid="uid://ffcclyipvpmj" path="res://sound/music/os95_abridged-introtheme.wav" id="26_wvxdp"]
-[ext_resource type="Script" uid="uid://dd5j3m0ylh3c5" path="res://src/base/activatables/world/doers/FPSC_ActivatableChangeVisibilityRegions.gd" id="27_ynrh8"]
+[ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_gn33l"]
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="2_vutxy"]
+[ext_resource type="Script" uid="uid://hllw2e6fs54j" path="res://src/base/FPSC_InteractivityMarker.gd" id="3_bxj45"]
+[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="4_b4py8"]
+[ext_resource type="Script" uid="uid://bi2qiwuw6d15b" path="res://src/base/activatables/FPSC_ActivatableExecuteCommand.gd" id="5_n3l6s"]
+[ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/logic/FPSC_ActivatableRelay.gd" id="6_xvxs2"]
+[ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="7_c86u5"]
+[ext_resource type="Material" uid="uid://cbuoxl6trvib2" path="res://materials/portallable_surface.tres" id="8_ti0le"]
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="9_q3d37"]
+[ext_resource type="Texture2D" uid="uid://cessukhc7fg1e" path="res://textures/door_unlabelled.png" id="11_ih4uv"]
+[ext_resource type="Script" uid="uid://c31gr4qnx52ps" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsRotatingDoor.gd" id="12_wfggc"]
+[ext_resource type="Script" uid="uid://cguq0l7w5loj6" path="res://src/base/activatables/logic/FPSC_ActivatableActivateOnSpawning.gd" id="13_j0skb"]
+[ext_resource type="Script" uid="uid://b84g1xo7620ij" path="res://src/base/activatables/logic/FPSC_ActivatableToggleTriggerEnablement.gd" id="14_bc0px"]
+[ext_resource type="Script" uid="uid://b4c6tlpkvw6tk" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableDoorForceStateChange.gd" id="15_8polv"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="16_siavy"]
+[ext_resource type="PackedScene" uid="uid://b4lncvmq0g2kf" path="res://instances/afc/prefab_radio_os95.tscn" id="17_r8g5n"]
+[ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoiceline.gd" id="18_4asv7"]
+[ext_resource type="AudioStream" uid="uid://cqurgy3543ygk" path="res://sound/vo/radio_os95/07escaped.wav" id="19_fsovj"]
+[ext_resource type="Script" uid="uid://wx07wnk25blo" path="res://src/base/activatables/world/doers/FPSC_ActivatablePush.gd" id="20_xyggx"]
+[ext_resource type="PackedScene" uid="uid://btjkhkjtog1vo" path="res://instances/afc/prefab_radio.tscn" id="21_nh4yq"]
+[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="22_pa8hh"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="23_7kg60"]
+[ext_resource type="Texture2D" uid="uid://c51obrtd7xqus" path="res://textures/door_ch1_intro_portalgun.png" id="24_ppnyn"]
+[ext_resource type="PackedScene" uid="uid://bjj403lwphbjj" path="res://instances/player_scalemarker.tscn" id="25_lvol8"]
+[ext_resource type="PackedScene" uid="uid://plpnja5gt1i4" path="res://instances/portal/weapon_portalgun.tscn" id="26_l4qqu"]
+[ext_resource type="AudioStream" uid="uid://ffcclyipvpmj" path="res://sound/music/os95_abridged-introtheme.wav" id="27_raast"]
+[ext_resource type="Script" uid="uid://dd5j3m0ylh3c5" path="res://src/base/activatables/world/doers/FPSC_ActivatableChangeVisibilityRegions.gd" id="28_5hvvg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_11hnd"]
 
@@ -39,7 +38,7 @@ background_mode = 2
 sky = SubResource("Sky_di4mo")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgud7"]
-albedo_texture = ExtResource("2_qloen")
+albedo_texture = ExtResource("2_vutxy")
 uv1_offset = Vector3(0, -0.5, 0)
 uv1_triplanar = true
 
@@ -50,99 +49,11 @@ albedo_color = Color(0, 0, 0, 1)
 transparency = 1
 albedo_color = Color(1, 1, 1, 0)
 
-[sub_resource type="Animation" id="Animation_xnsbh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../intro_podDoorLeft:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../intro_podDoorRight:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_actbo"]
-resource_name = "doorClose"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../intro_podDoorLeft:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -1.2248197, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../intro_podDoorRight:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 1.2287816, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_isyyp"]
-resource_name = "doorOpen"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../intro_podDoorLeft:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -1.2248197, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../intro_podDoorRight:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 1.2287816, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_actbo"]
-_data = {
-&"RESET": SubResource("Animation_xnsbh"),
-&"doorClose": SubResource("Animation_actbo"),
-&"doorOpen": SubResource("Animation_isyyp")
-}
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvxdp"]
 albedo_color = Color(0.5058824, 0.5058824, 0.5058824, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_th6y3"]
-albedo_texture = ExtResource("8_u4p4h")
+albedo_texture = ExtResource("11_ih4uv")
 uv1_scale = Vector3(-1, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4p4h"]
@@ -158,7 +69,7 @@ radius = 0.122558594
 size = Vector3(6, 5, 3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7grdf"]
-albedo_texture = ExtResource("2_qloen")
+albedo_texture = ExtResource("2_vutxy")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qrkxw"]
 size = Vector3(0.157, 0.38, 0.535)
@@ -215,7 +126,7 @@ flip_faces = true
 orientation = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ynrh8"]
-albedo_texture = ExtResource("9_ymk7i")
+albedo_texture = ExtResource("24_ppnyn")
 uv1_scale = Vector3(-1, 1, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vm2mj"]
@@ -231,7 +142,7 @@ size = Vector3(5, 1, 5)
 
 [node name="afc_os95_abridged" type="Node3D"]
 
-[node name="Player" parent="." instance=ExtResource("1_11og8")]
+[node name="Player" parent="." instance=ExtResource("1_gn33l")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -86.011955, -1)
 fade_type = 1
 
@@ -241,7 +152,7 @@ environment = SubResource("Environment_eya54")
 [node name="A" type="Node3D" parent="."]
 
 [node name="Marker3D" type="Marker3D" parent="A"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="A"]
 use_collision = true
@@ -285,12 +196,12 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 text = "computer"
 
 [node name="FPSC_InteractivityMarker" type="Node" parent="A/CSGBox3D16" node_paths=PackedStringArray("activatable")]
-script = ExtResource("3_vm2mj")
+script = ExtResource("3_bxj45")
 activatable = NodePath("../FPSC_RelayActivatable")
 metadata/_custom_type_script = "uid://hllw2e6fs54j"
 
 [node name="fade" type="Node" parent="A/CSGBox3D16"]
-script = ExtResource("14_0nuuy")
+script = ExtResource("4_b4py8")
 IgnoreEntryClass = true
 new_speed = 0.0
 modify_jump_velocity = true
@@ -300,7 +211,7 @@ fade_duration = 2.0
 metadata/_custom_type_script = "uid://d25myaapjjml7"
 
 [node name="text" type="Node" parent="A/CSGBox3D16"]
-script = ExtResource("14_0nuuy")
+script = ExtResource("4_b4py8")
 IgnoreEntryClass = true
 new_speed = 0.0
 modify_jump_velocity = true
@@ -311,13 +222,13 @@ delay = 2.0
 metadata/_custom_type_script = "uid://d25myaapjjml7"
 
 [node name="comd" type="Node" parent="A/CSGBox3D16"]
-script = ExtResource("17_ymk7i")
+script = ExtResource("5_n3l6s")
 command = "map afc_os95_abridged"
 delay = 8.0
 metadata/_custom_type_script = "uid://bi2qiwuw6d15b"
 
 [node name="FPSC_RelayActivatable" type="Node" parent="A/CSGBox3D16" node_paths=PackedStringArray("activatables")]
-script = ExtResource("7_0nuuy")
+script = ExtResource("6_xvxs2")
 activatables = [NodePath("../fade"), NodePath("../text"), NodePath("../comd")]
 use_delay_on_enter = true
 metadata/_custom_type_script = "uid://cgae4dmf6xfos"
@@ -414,186 +325,19 @@ use_collision = true
 radius = 0.65478516
 height = 85.0625
 sides = 16
-material = ExtResource("3_ia28q")
+material = ExtResource("7_c86u5")
 
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="A/CSGCylinder3D2"]
 operation = 2
 radius = 0.61816406
 height = 100.0
 sides = 16
-material = ExtResource("3_ia28q")
+material = ExtResource("7_c86u5")
 
 [node name="pod_door" type="CSGBox3D" parent="A"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -42.972, -1)
 size = Vector3(1, 87.708496, 1)
 material = SubResource("StandardMaterial3D_11og8")
-
-[node name="Node3D" type="Node3D" parent="A/pod_door"]
-
-[node name="intro_pod" type="CSGCylinder3D" parent="A/pod_door/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -43, 0)
-use_collision = true
-radius = 0.6
-height = 2.25
-sides = 16
-material = ExtResource("3_ia28q")
-
-[node name="intro_pod2" type="CSGCylinder3D" parent="A/pod_door/Node3D/intro_pod"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1830215, 0)
-radius = 0.7241211
-height = 0.125
-sides = 16
-material = ExtResource("4_3b1hc")
-
-[node name="intro_pod3" type="CSGCylinder3D" parent="A/pod_door/Node3D/intro_pod"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1821976, 0)
-radius = 0.6479492
-height = 0.125
-sides = 16
-material = ExtResource("4_3b1hc")
-
-[node name="intro_pod4" type="CSGCylinder3D" parent="A/pod_door/Node3D/intro_pod"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3071365, 0)
-radius = 0.44335938
-height = 0.125
-sides = 16
-material = ExtResource("4_3b1hc")
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="A/pod_door/Node3D/intro_pod"]
-operation = 2
-radius = 0.58
-height = 2.25
-sides = 16
-material = ExtResource("3_ia28q")
-
-[node name="intro_pod2" type="CSGCylinder3D" parent="A/pod_door/Node3D/intro_pod/CSGCylinder3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1830215, 0)
-operation = 2
-radius = 0.7241211
-height = 0.125
-sides = 16
-material = ExtResource("4_3b1hc")
-
-[node name="intro_pod3" type="CSGCylinder3D" parent="A/pod_door/Node3D/intro_pod/CSGCylinder3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1821976, 0)
-operation = 2
-radius = 0.6479492
-height = 0.125
-sides = 16
-material = ExtResource("4_3b1hc")
-
-[node name="intro_pod4" type="CSGCylinder3D" parent="A/pod_door/Node3D/intro_pod/CSGCylinder3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3071365, 0)
-operation = 2
-radius = 0.44335938
-height = 0.125
-sides = 16
-material = ExtResource("4_3b1hc")
-
-[node name="FPSC_DoorActivatable" type="Node" parent="A/pod_door/Node3D/intro_pod" node_paths=PackedStringArray("object_as_door")]
-script = ExtResource("8_actbo")
-object_as_door = NodePath("..")
-move_direction = 2
-stay_open = true
-delay = 2.0
-metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
-
-[node name="CSGBox3D" type="CSGBox3D" parent="A/pod_door/Node3D/intro_pod"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.028503418, 0.5)
-operation = 2
-size = Vector3(4, 2.1793213, 1)
-material = ExtResource("3_ia28q")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="A/pod_door/Node3D"]
-root_node = NodePath("../FPSC_AnimationActivatable")
-libraries = {
-&"": SubResource("AnimationLibrary_actbo")
-}
-
-[node name="FPSC_AnimationActivatable" type="Node" parent="A/pod_door/Node3D" node_paths=PackedStringArray("player")]
-script = ExtResource("6_3b1hc")
-player = NodePath("../AnimationPlayer")
-animation = "doorOpen"
-delay = 30.0
-metadata/_custom_type_script = "uid://cd37fw45rkj5r"
-
-[node name="podCloseDoor" type="Node" parent="A/pod_door/Node3D" node_paths=PackedStringArray("activatables")]
-script = ExtResource("7_0nuuy")
-activatables = [NodePath("../FPSC_AnimationActivatable2"), NodePath("../intro_pod/FPSC_DoorActivatable"), NodePath("../intro_podDoorLeft/FPSC_DoorActivatable"), NodePath("../intro_podDoorRight/FPSC_DoorActivatable")]
-use_delay_on_enter = true
-metadata/_custom_type_script = "uid://cgae4dmf6xfos"
-
-[node name="FPSC_AnimationActivatable2" type="Node" parent="A/pod_door/Node3D" node_paths=PackedStringArray("player")]
-script = ExtResource("6_3b1hc")
-player = NodePath("../AnimationPlayer")
-animation = "doorClose"
-metadata/_custom_type_script = "uid://cd37fw45rkj5r"
-
-[node name="intro_podDoorLeft" type="CSGCylinder3D" parent="A/pod_door/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -43, 0)
-use_collision = true
-radius = 0.6
-height = 2.25
-sides = 16
-material = ExtResource("3_ia28q")
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="A/pod_door/Node3D/intro_podDoorLeft"]
-operation = 2
-radius = 0.58
-height = 2.25
-sides = 16
-material = ExtResource("3_ia28q")
-
-[node name="FPSC_DoorActivatable" type="Node" parent="A/pod_door/Node3D/intro_podDoorLeft" node_paths=PackedStringArray("object_as_door")]
-script = ExtResource("8_actbo")
-object_as_door = NodePath("..")
-move_direction = 2
-stay_open = true
-delay = 2.0
-metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
-
-[node name="CSGBox3D" type="CSGBox3D" parent="A/pod_door/Node3D/intro_podDoorLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2549438, -0.028503418, 0.5)
-operation = 1
-size = Vector3(2.4901123, 2.1793213, 1)
-material = ExtResource("3_ia28q")
-
-[node name="intro_podDoorRight" type="CSGCylinder3D" parent="A/pod_door/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -43, 0)
-use_collision = true
-radius = 0.6
-height = 2.25
-sides = 16
-material = ExtResource("3_ia28q")
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="A/pod_door/Node3D/intro_podDoorRight"]
-operation = 2
-radius = 0.58
-height = 2.25
-sides = 16
-material = ExtResource("3_ia28q")
-
-[node name="FPSC_DoorActivatable" type="Node" parent="A/pod_door/Node3D/intro_podDoorRight" node_paths=PackedStringArray("object_as_door")]
-script = ExtResource("8_actbo")
-object_as_door = NodePath("..")
-move_direction = 2
-stay_open = true
-delay = 2.0
-metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
-
-[node name="CSGBox3D" type="CSGBox3D" parent="A/pod_door/Node3D/intro_podDoorRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2625232, -0.028503418, 0.5)
-operation = 1
-size = Vector3(2.4901123, 2.1793213, 1)
-material = ExtResource("3_ia28q")
-
-[node name="FPSC_DoorActivatable" type="Node" parent="A/pod_door" node_paths=PackedStringArray("object_as_door")]
-script = ExtResource("8_actbo")
-object_as_door = NodePath("..")
-time = 30.0
-stay_open = true
-delay = 2.0
-metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
 
 [node name="secret_exit_Driver" type="CSGCombiner3D" parent="A"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6274037, -3.4754035, -4.73284)
@@ -618,7 +362,7 @@ size = Vector3(1, 2, 0.10272266)
 material = SubResource("StandardMaterial3D_th6y3")
 
 [node name="FPSC_RotatingDoorActivatable" type="Node" parent="A/secret_exit_Driver" node_paths=PackedStringArray("object_as_door")]
-script = ExtResource("9_c1oq4")
+script = ExtResource("12_wfggc")
 object_as_door = NodePath("..")
 can_be_used = true
 metadata/_custom_type_script = "uid://c31gr4qnx52ps"
@@ -648,18 +392,18 @@ radius = 0.65478516
 sides = 16
 
 [node name="FPSC_SpawninActivatable" type="Node" parent="A"]
-script = ExtResource("11_qloen")
+script = ExtResource("13_j0skb")
 metadata/_custom_type_script = "uid://cguq0l7w5loj6"
 
 [node name="turnon-podleave" type="Node" parent="A/FPSC_SpawninActivatable" node_paths=PackedStringArray("trigger")]
-script = ExtResource("14_actbo")
+script = ExtResource("14_bc0px")
 trigger = NodePath("../../FPSC_TriggerRelay")
 one_way = true
 delay = 35.0
 metadata/_custom_type_script = "uid://b84g1xo7620ij"
 
 [node name="gametitle" type="Node" parent="A/FPSC_SpawninActivatable"]
-script = ExtResource("14_0nuuy")
+script = ExtResource("4_b4py8")
 IgnoreEntryClass = true
 chapter_title = "OS95"
 chapter_subtext = "Game by GevDev"
@@ -668,7 +412,7 @@ delay = 5.0
 metadata/_custom_type_script = "uid://d25myaapjjml7"
 
 [node name="location" type="Node" parent="A/FPSC_SpawninActivatable"]
-script = ExtResource("14_0nuuy")
+script = ExtResource("4_b4py8")
 IgnoreEntryClass = true
 chapter_title = "Location:"
 chapter_subtext = "Optimal PC QA Facility"
@@ -677,7 +421,7 @@ delay = 10.0
 metadata/_custom_type_script = "uid://d25myaapjjml7"
 
 [node name="noncanonlocation" type="Node" parent="A/FPSC_SpawninActivatable"]
-script = ExtResource("14_0nuuy")
+script = ExtResource("4_b4py8")
 IgnoreEntryClass = true
 chapter_title = "Real Location:"
 chapter_subtext = "Masonry Toolkit Aerial Testing Course"
@@ -686,7 +430,7 @@ delay = 18.0
 metadata/_custom_type_script = "uid://d25myaapjjml7"
 
 [node name="date" type="Node" parent="A/FPSC_SpawninActivatable"]
-script = ExtResource("14_0nuuy")
+script = ExtResource("4_b4py8")
 IgnoreEntryClass = true
 chapter_title = "Date:"
 chapter_subtext = "May 14, 2006"
@@ -695,7 +439,7 @@ delay = 25.0
 metadata/_custom_type_script = "uid://d25myaapjjml7"
 
 [node name="ending-podleave" type="Node" parent="A"]
-script = ExtResource("14_0nuuy")
+script = ExtResource("4_b4py8")
 chapter_title = "Ending 1/7"
 chapter_subtext = "\"Nah, I'm leaving\""
 color_of_title = Color(1, 1, 1, 1)
@@ -703,7 +447,7 @@ delay = 15.0
 metadata/_custom_type_script = "uid://d25myaapjjml7"
 
 [node name="podleave-fadeout" type="Node" parent="A"]
-script = ExtResource("14_0nuuy")
+script = ExtResource("4_b4py8")
 activate_fade = true
 fade_type = 2
 fade_duration = 1.0
@@ -711,29 +455,29 @@ delay = 20.0
 metadata/_custom_type_script = "uid://d25myaapjjml7"
 
 [node name="podsettle" type="Node" parent="A" node_paths=PackedStringArray("target_door")]
-script = ExtResource("16_ymk7i")
-target_door = NodePath("../pod_door/FPSC_DoorActivatable")
+script = ExtResource("15_8polv")
+target_door = NodePath("")
 target_state = 1
 delay = 3.0
 metadata/_custom_type_script = "uid://b4c6tlpkvw6tk"
 
 [node name="disable-podleave" type="Node" parent="A" node_paths=PackedStringArray("trigger")]
-script = ExtResource("14_actbo")
+script = ExtResource("14_bc0px")
 trigger = NodePath("../FPSC_TriggerRelay")
 inverted = true
 one_way = true
 metadata/_custom_type_script = "uid://b84g1xo7620ij"
 
 [node name="podleave-reload" type="Node" parent="A"]
-script = ExtResource("17_ymk7i")
+script = ExtResource("5_n3l6s")
 command = "map afc_os95_abridged"
 delay = 25.0
 metadata/_custom_type_script = "uid://bi2qiwuw6d15b"
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="A" node_paths=PackedStringArray("activated")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
-script = ExtResource("7_xnsbh")
-activated = [NodePath("../pod_door/Node3D/FPSC_AnimationActivatable2"), NodePath("../podsettle"), NodePath("../ending-podleave"), NodePath("../podleave-fadeout"), NodePath("../podleave-reload")]
+script = ExtResource("16_siavy")
+activated = [NodePath(""), NodePath("../podsettle"), NodePath("../ending-podleave"), NodePath("../podleave-fadeout"), NodePath("../podleave-reload")]
 UseActivationDelay = true
 trigger_once = true
 interact_with = 1
@@ -745,8 +489,8 @@ shape = SubResource("CylinderShape3D_actbo")
 
 [node name="FPSC_TriggerRelay2" type="Area3D" parent="A" node_paths=PackedStringArray("activated")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -5)
-script = ExtResource("7_xnsbh")
-activated = [NodePath("../pod_door/Node3D/podCloseDoor"), NodePath("../disable-podleave")]
+script = ExtResource("16_siavy")
+activated = [NodePath(""), NodePath("../disable-podleave")]
 UseActivationDelay = true
 trigger_once = true
 interact_with = 1
@@ -755,7 +499,7 @@ metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="A/FPSC_TriggerRelay2"]
 shape = SubResource("BoxShape3D_v0oke")
 
-[node name="radio" parent="A" instance=ExtResource("20_pgud7")]
+[node name="radio" parent="A" instance=ExtResource("17_r8g5n")]
 transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, 1.3154162, 1.6899998, 1.2808135)
 
 [node name="B" type="Node3D" parent="."]
@@ -798,7 +542,7 @@ depth = 3.0
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="B" node_paths=PackedStringArray("activated")]
 transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, -0.48710084, -3.3100007, -14.590204)
-script = ExtResource("7_xnsbh")
+script = ExtResource("16_siavy")
 activated = [NodePath("FPSC_VoicelineActivatable")]
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
@@ -807,16 +551,16 @@ transform = Transform3D(0.99999577, 0, 0, 0, 1, 0, 0, 0, 0.99999577, 0.49999976,
 shape = SubResource("BoxShape3D_wvxdp")
 
 [node name="FPSC_VoicelineActivatable" type="Node" parent="B/FPSC_TriggerRelay" node_paths=PackedStringArray("voiceline_player")]
-script = ExtResource("17_c1oq4")
+script = ExtResource("18_4asv7")
 voiceline_player = NodePath("../../radio/AudioStreamPlayer3D")
-character_voiceline = ExtResource("18_vm2mj")
+character_voiceline = ExtResource("19_fsovj")
 localized_caption = "OS95.07Escaped"
 execute_once = true
 metadata/_custom_type_script = "uid://whqnccb8m4hc"
 
 [node name="FPSC_TriggerRelay2" type="Area3D" parent="B" node_paths=PackedStringArray("activated")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5128994, -3.3100007, -7.5902042)
-script = ExtResource("7_xnsbh")
+script = ExtResource("16_siavy")
 activated = [NodePath("initialfade"), NodePath("text"), NodePath("ending"), NodePath("reset")]
 UseActivationDelay = true
 trigger_once = true
@@ -828,7 +572,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5000062, 1, 3.8146973e-06)
 shape = SubResource("BoxShape3D_wvxdp")
 
 [node name="text" type="Node" parent="B/FPSC_TriggerRelay2"]
-script = ExtResource("14_0nuuy")
+script = ExtResource("4_b4py8")
 IgnoreEntryClass = true
 new_speed = 0.0
 modify_jump_velocity = true
@@ -839,7 +583,7 @@ delay = 4.0
 metadata/_custom_type_script = "uid://d25myaapjjml7"
 
 [node name="ending" type="Node" parent="B/FPSC_TriggerRelay2"]
-script = ExtResource("14_0nuuy")
+script = ExtResource("4_b4py8")
 IgnoreEntryClass = true
 new_speed = 0.0
 modify_jump_velocity = true
@@ -850,7 +594,7 @@ delay = 8.0
 metadata/_custom_type_script = "uid://d25myaapjjml7"
 
 [node name="initialfade" type="Node" parent="B/FPSC_TriggerRelay2"]
-script = ExtResource("14_0nuuy")
+script = ExtResource("4_b4py8")
 IgnoreEntryClass = true
 new_speed = 0.0
 modify_jump_velocity = true
@@ -860,7 +604,7 @@ fade_duration = 2.0
 metadata/_custom_type_script = "uid://d25myaapjjml7"
 
 [node name="reset" type="Node" parent="B/FPSC_TriggerRelay2"]
-script = ExtResource("17_ymk7i")
+script = ExtResource("5_n3l6s")
 command = "map afc_os95_abridged"
 delay = 12.0
 metadata/_custom_type_script = "uid://bi2qiwuw6d15b"
@@ -1059,7 +803,7 @@ size = Vector3(1, 2, 0.10272266)
 material = SubResource("StandardMaterial3D_th6y3")
 
 [node name="FPSC_RotatingDoorActivatable" type="Node" parent="B/doorDriver" node_paths=PackedStringArray("object_as_door")]
-script = ExtResource("9_c1oq4")
+script = ExtResource("12_wfggc")
 object_as_door = NodePath("..")
 can_be_used = true
 metadata/_custom_type_script = "uid://c31gr4qnx52ps"
@@ -1087,7 +831,7 @@ size = Vector3(1, 2, 0.10272266)
 material = SubResource("StandardMaterial3D_th6y3")
 
 [node name="FPSC_RotatingDoorActivatable" type="Node" parent="B/doorDriver2" node_paths=PackedStringArray("object_as_door")]
-script = ExtResource("9_c1oq4")
+script = ExtResource("12_wfggc")
 object_as_door = NodePath("..")
 can_be_used = true
 metadata/_custom_type_script = "uid://c31gr4qnx52ps"
@@ -1115,7 +859,7 @@ size = Vector3(1, 2, 0.10272266)
 material = SubResource("StandardMaterial3D_th6y3")
 
 [node name="FPSC_RotatingDoorActivatable" type="Node" parent="B/doorDriver5" node_paths=PackedStringArray("object_as_door")]
-script = ExtResource("9_c1oq4")
+script = ExtResource("12_wfggc")
 object_as_door = NodePath("..")
 move_direction = 2
 can_be_used = true
@@ -1144,7 +888,7 @@ size = Vector3(1, 2, 0.10272266)
 material = SubResource("StandardMaterial3D_th6y3")
 
 [node name="FPSC_RotatingDoorActivatable" type="Node" parent="B/doorDriver4" node_paths=PackedStringArray("object_as_door")]
-script = ExtResource("9_c1oq4")
+script = ExtResource("12_wfggc")
 object_as_door = NodePath("..")
 can_be_used = true
 metadata/_custom_type_script = "uid://c31gr4qnx52ps"
@@ -1172,7 +916,7 @@ size = Vector3(1, 2, 0.10272266)
 material = SubResource("StandardMaterial3D_th6y3")
 
 [node name="FPSC_RotatingDoorActivatable" type="Node" parent="B/doorDriver3" node_paths=PackedStringArray("object_as_door")]
-script = ExtResource("9_c1oq4")
+script = ExtResource("12_wfggc")
 object_as_door = NodePath("..")
 metadata/_custom_type_script = "uid://c31gr4qnx52ps"
 
@@ -1186,9 +930,8 @@ material = SubResource("StandardMaterial3D_qloen")
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="intor" node_paths=PackedStringArray("activated")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -87, -1)
-script = ExtResource("7_xnsbh")
+script = ExtResource("16_siavy")
 activated = [NodePath("FPSC_PushActivatable")]
-interact_with = 4
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="intor/FPSC_TriggerRelay"]
@@ -1196,7 +939,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 43.0242, 0)
 shape = SubResource("CylinderShape3D_bawbr")
 
 [node name="FPSC_PushActivatable" type="Node" parent="intor/FPSC_TriggerRelay" node_paths=PackedStringArray("push_towards")]
-script = ExtResource("20_th6y3")
+script = ExtResource("20_xyggx")
 push_towards = NodePath("../../../A/Marker3D")
 metadata/_custom_type_script = "uid://wx07wnk25blo"
 
@@ -1272,7 +1015,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, -85.5, 0)
 use_collision = true
 size = Vector3(1, 6, 10)
 
-[node name="radio2" parent="intor" instance=ExtResource("22_pgud7")]
+[node name="radio2" parent="intor" instance=ExtResource("21_nh4yq")]
 transform = Transform3D(0.258819, 0, -0.9659257, 0, 1, 0, 0.9659257, 0, 0.258819, 0.7953899, -86.51642, 1.7857726)
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="intor"]
@@ -1864,7 +1607,7 @@ size = Vector3(1.4073486, 1.4711304, 10.625244)
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 21, -9.5, -45.5)
 use_collision = true
 size = Vector3(8, 7, 1)
-material = ExtResource("4_3b1hc")
+material = ExtResource("8_ti0le")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="intor/tc_ip_ch3parody/CSGBox3D85"]
 transform = Transform3D(-3.7855177e-08, -1.0331603e-07, 1, -1, 2.1855707e-08, -3.7855173e-08, -2.1855703e-08, -1, -1.0331603e-07, 6, 0, -3)
@@ -1876,13 +1619,13 @@ spot_range = 22.0
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 21, -7, -69.5)
 use_collision = true
 size = Vector3(13, 7, 1)
-material = ExtResource("4_3b1hc")
+material = ExtResource("8_ti0le")
 
 [node name="CSGBox3D95" type="CSGBox3D" parent="intor/tc_ip_ch3parody"]
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 28, -7, -69.5)
 use_collision = true
 size = Vector3(13, 7, 1)
-material = ExtResource("4_3b1hc")
+material = ExtResource("8_ti0le")
 
 [node name="CSGBox3D96" type="CSGBox3D" parent="intor/tc_ip_ch3parody" groups=["Non-Portalable"]]
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 24.5, -17, -69.5)
@@ -1893,7 +1636,7 @@ size = Vector3(7, 7, 8)
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 24.5, -10.5, -72.5)
 use_collision = true
 size = Vector3(20, 1, 8)
-material = ExtResource("4_3b1hc")
+material = ExtResource("8_ti0le")
 
 [node name="CSGBox3D97" type="CSGBox3D" parent="intor/tc_ip_ch3parody" groups=["Non-Portalable"]]
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 24.5, -17, -45)
@@ -2635,10 +2378,10 @@ material = SubResource("StandardMaterial3D_k6rt8")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="intor/tc_ip_ch3parody/prefab_chamber_entryway2/door_entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3960664, 0, 0)
-stream = ExtResource("5_0nuuy")
+stream = ExtResource("22_pa8hh")
 
 [node name="FPSC_SoundPlayerActivatable" type="Node" parent="intor/tc_ip_ch3parody/prefab_chamber_entryway2/door_entrance" node_paths=PackedStringArray("stream_player")]
-script = ExtResource("6_isyyp")
+script = ExtResource("23_7kg60")
 stream_player = NodePath("../AudioStreamPlayer3D")
 delay = 3.0
 metadata/_custom_type_script = "uid://dlktdrvwevbt1"
@@ -2647,7 +2390,7 @@ metadata/_custom_type_script = "uid://dlktdrvwevbt1"
 autoplay = true
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="intor/tc_ip_ch3parody/prefab_chamber_entryway2" node_paths=PackedStringArray("activated")]
-script = ExtResource("7_xnsbh")
+script = ExtResource("16_siavy")
 activated = [NodePath("../entry_door"), NodePath("../door_entrance/FPSC_SoundPlayerActivatable")]
 UseActivationDelay = true
 trigger_once = true
@@ -2658,7 +2401,7 @@ transform = Transform3D(-3.6717566e-08, 0, -0.84, 0, 0.84, 0, 0.84, 0, -3.671756
 shape = SubResource("BoxShape3D_rj70k")
 
 [node name="entry_door" type="Node" parent="intor/tc_ip_ch3parody/prefab_chamber_entryway2" node_paths=PackedStringArray("object_as_door")]
-script = ExtResource("8_actbo")
+script = ExtResource("9_q3d37")
 object_as_door = NodePath("../door_entrance")
 stay_open = true
 delay = 3.0
@@ -2668,25 +2411,25 @@ metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 50, -5, -45)
 use_collision = true
 size = Vector3(9, 8, 1)
-material = ExtResource("4_3b1hc")
+material = ExtResource("8_ti0le")
 
 [node name="CSGBox3D87" type="CSGBox3D" parent="intor/tc_ip_ch3parody"]
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 24, -7, -41.5)
 use_collision = true
 size = Vector3(13, 1, 7)
-material = ExtResource("4_3b1hc")
+material = ExtResource("8_ti0le")
 
 [node name="CSGBox3D92" type="CSGBox3D" parent="intor/tc_ip_ch3parody"]
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 21, -11, -57.5)
 use_collision = true
 size = Vector3(21, 17, 1)
-material = ExtResource("4_3b1hc")
+material = ExtResource("8_ti0le")
 
 [node name="CSGBox3D94" type="CSGBox3D" parent="intor/tc_ip_ch3parody"]
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 28, -11, -57.5)
 use_collision = true
 size = Vector3(21, 17, 1)
-material = ExtResource("4_3b1hc")
+material = ExtResource("8_ti0le")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="intor/tc_ip_ch3parody/CSGBox3D94"]
 transform = Transform3D(-3.7855177e-08, -1.0331603e-07, 1, -1, 2.1855707e-08, -3.7855173e-08, -2.1855703e-08, -1, -1.0331603e-07, 8.999998, -1, 3.523367)
@@ -2704,13 +2447,13 @@ spot_range = 22.0
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 46, -7, -41.5)
 use_collision = true
 size = Vector3(13, 1, 9)
-material = ExtResource("4_3b1hc")
+material = ExtResource("8_ti0le")
 
 [node name="CSGBox3D90" type="CSGBox3D" parent="intor/tc_ip_ch3parody"]
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 46, -7, -48.5)
 use_collision = true
 size = Vector3(13, 1, 9)
-material = ExtResource("4_3b1hc")
+material = ExtResource("8_ti0le")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="intor/tc_ip_ch3parody/CSGBox3D90"]
 transform = Transform3D(-3.7855177e-08, -1.0331603e-07, 1, -1, 2.1855707e-08, -3.7855173e-08, -2.1855703e-08, -1, -1.0331603e-07, 6, -4, 0)
@@ -2722,13 +2465,13 @@ spot_range = 22.0
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 34.5, -10.5, -41.5)
 use_collision = true
 size = Vector3(20, 1, 14)
-material = ExtResource("4_3b1hc")
+material = ExtResource("8_ti0le")
 
 [node name="CSGBox3D91" type="CSGBox3D" parent="intor/tc_ip_ch3parody"]
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, 34.5, -10.5, -48.5)
 use_collision = true
 size = Vector3(20, 1, 14)
-material = ExtResource("4_3b1hc")
+material = ExtResource("8_ti0le")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="intor/tc_ip_ch3parody/CSGBox3D91"]
 transform = Transform3D(-3.7855177e-08, -1.0331603e-07, 1, -1, 2.1855707e-08, -3.7855173e-08, -2.1855703e-08, -1, -1.0331603e-07, 6, -4, 0)
@@ -2792,7 +2535,7 @@ size = Vector3(4.75, 2.75, 1)
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 21, -3, -45.5)
 use_collision = true
 size = Vector3(5, 3, 0.1)
-material = ExtResource("3_ia28q")
+material = ExtResource("7_c86u5")
 
 [node name="secret_exit" type="CSGBox3D" parent="intor/tc_ip_ch3parody" groups=["Non-Portalable"]]
 transform = Transform3D(-4.3713833e-08, 2.5868196e-14, -1, 0.010576498, 0.9999441, -4.6231338e-10, 0.9999441, -0.010576498, -4.371139e-08, 16.635164, -3.5, -47.5)
@@ -2812,22 +2555,22 @@ use_collision = true
 size = Vector3(1, 2, 0.10272266)
 material = SubResource("StandardMaterial3D_hwgsj")
 
-[node name="Player" parent="intor/tc_ip_ch3parody" instance=ExtResource("13_11hnd")]
+[node name="Player" parent="intor/tc_ip_ch3parody" instance=ExtResource("25_lvol8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.904613, -3.5, -45.257042)
 
-[node name="WeaponPortalgun" parent="intor/tc_ip_ch3parody" instance=ExtResource("14_eya54")]
+[node name="WeaponPortalgun" parent="intor/tc_ip_ch3parody" instance=ExtResource("26_l4qqu")]
 transform = Transform3D(0.103330664, 0, -0.994647, 0, 1, 0, 0.994647, 0, 0.103330664, 19.269121, -3.3056984, -44.807648)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="intor"]
-stream = ExtResource("26_wvxdp")
+stream = ExtResource("27_raast")
 autoplay = true
 
-[node name="WeaponPortalgun" parent="." instance=ExtResource("14_eya54")]
+[node name="WeaponPortalgun" parent="." instance=ExtResource("26_l4qqu")]
 transform = Transform3D(-0.50000006, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.50000006, -10.7332535, -26.369999, -25.38679)
 
 [node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -33, 0)
-script = ExtResource("7_xnsbh")
+script = ExtResource("16_siavy")
 activated = [NodePath("FPSC_VisibilityChangeActivatable"), NodePath("FPSC_VisibilityChangeActivatable2"), NodePath("FPSC_VisibilityChangeActivatable4")]
 trigger_once = true
 interact_with = 1
@@ -2838,16 +2581,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 shape = SubResource("BoxShape3D_th6y3")
 
 [node name="FPSC_VisibilityChangeActivatable" type="Node" parent="FPSC_TriggerRelay" node_paths=PackedStringArray("node_a")]
-script = ExtResource("27_ynrh8")
+script = ExtResource("28_5hvvg")
 node_a = NodePath("../../intor/Player2/MeshInstance3D")
 metadata/_custom_type_script = "uid://dd5j3m0ylh3c5"
 
 [node name="FPSC_VisibilityChangeActivatable2" type="Node" parent="FPSC_TriggerRelay" node_paths=PackedStringArray("node_a")]
-script = ExtResource("27_ynrh8")
+script = ExtResource("28_5hvvg")
 node_a = NodePath("../../intor/Player2/MeshInstance3D2")
 metadata/_custom_type_script = "uid://dd5j3m0ylh3c5"
 
 [node name="FPSC_VisibilityChangeActivatable4" type="Node" parent="FPSC_TriggerRelay" node_paths=PackedStringArray("node_a")]
-script = ExtResource("27_ynrh8")
+script = ExtResource("28_5hvvg")
 node_a = NodePath("../../intor/Player2/MeshInstance3D3")
 metadata/_custom_type_script = "uid://dd5j3m0ylh3c5"

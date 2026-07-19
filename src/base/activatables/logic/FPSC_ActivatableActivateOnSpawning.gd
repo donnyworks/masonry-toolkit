@@ -16,6 +16,7 @@ func _ready():
 func on_enter(_body:Node3D):
 	@warning_ignore("standalone_ternary")
 	for a in activatables:
+		if a == null: continue
 		if not use_delay_on_enter:
 			a.on_enter(_body)
 		else:
@@ -24,6 +25,7 @@ func on_enter(_body:Node3D):
 func on_exit(_body:Node3D):
 	@warning_ignore("standalone_ternary")
 	for a in activatables:
+		if a == null: continue
 		if not use_delay_on_exit:
 			a.on_exit(_body)
 		else:

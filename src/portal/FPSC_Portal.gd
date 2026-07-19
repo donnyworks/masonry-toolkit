@@ -26,12 +26,20 @@ func NotifyLinkage():
 	linked = true
 	portal_color = not other_portal.portal_color
 	if not portal_color:
+		$CSGBox3D.material = StandardMaterial3D.new()
+		$CSGBox3D.material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 		$CSGBox3D.material.albedo_color = Color(0,0,1)
 	else:
+		$CSGBox3D.material = StandardMaterial3D.new()
+		$CSGBox3D.material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 		$CSGBox3D.material.albedo_color = Color(1,0,0)
 	$Portal1Texture/FPSC_FollowCamera.CameraOrigin = other_portal
 
 func _process(delta):
+	if not portal_color and $CSGBox3D.material.albedo_color == Color.WHITE:
+		$CSGBox3D.material = StandardMaterial3D.new()
+		$CSGBox3D.material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		$CSGBox3D.material.albedo_color = Color(0,0,1)
 	if not linked:
 		$A1.visible = true
 		$A2.visible = true

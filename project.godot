@@ -11,10 +11,11 @@ config_version=5
 [application]
 
 config/name="Masonry Toolkit"
+config/tags=PackedStringArray("development")
 run/main_scene="uid://qqqdsd8ay4kd"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://buvlgrtpvgckp"
 
 [autoload]
 

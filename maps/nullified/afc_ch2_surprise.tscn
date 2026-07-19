@@ -26,7 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://chu8sf3giqtol" path="res://sound/vo/announcer/GenericCubeSoftlockMessage.wav" id="22_0qfe7"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="23_dexka"]
 [ext_resource type="Script" uid="uid://sl4hinpkxef0" path="res://src/base/FPSC_DevNote.gd" id="24_2rs8v"]
-[ext_resource type="Texture2D" uid="uid://sav8ot3s5160" path="res://icon.svg" id="25_m7yd6"]
+[ext_resource type="Texture2D" uid="uid://sav8ot3s5160" path="res://godotengine-icon.svg" id="25_m7yd6"]
 [ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="26_ojgj0"]
 [ext_resource type="Script" uid="uid://bks6dpsmk0aep" path="res://src/base/activatables/world/doers/FPSC_ActivatableUnfreezePhysicsBody.gd" id="27_nit4b"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="28_5b77o"]

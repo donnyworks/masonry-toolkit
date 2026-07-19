@@ -11,7 +11,7 @@ content_noncopyright = [
     "sound",
     "textures",
     "project.godot",
-    "icon.svg",
+    "masonry-toolkit-icon.png",
     "readme.txt",
     "thirdpartylicensedetails.txt",
     "changelog.txt",
@@ -46,6 +46,7 @@ meta = """
 {
 	"GameName":"Masonry Toolkit Base",
 	"Version":"1.0",
+	"GameInternalName":"replaceme",
 	"Chapters":{
         "devtest/devtest2":"chapter0_image.png"
 	},

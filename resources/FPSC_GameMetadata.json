@@ -1,6 +1,7 @@
 {
 	"GameName":"Aerial Testing Course",
 	"Version":"1.0 [Chapter 1 Playtest]",
+	"GameInternalName":"atc",
 	"Chapters":{
 		"afc_ch1_intro":"chapter0_image.png",
 		"afc_ch1_fling_over_goo":"chapter1_image.png",

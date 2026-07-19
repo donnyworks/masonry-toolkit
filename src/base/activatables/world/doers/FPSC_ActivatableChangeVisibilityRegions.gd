@@ -7,8 +7,8 @@ class_name FPSC_VisibilityChangeActivatable
 
 func _ready():
 	node_a.visible = true
-	node_b.visible = false
+	if node_b != null: node_b.visible = false
 
 func on_enter(_body:Node3D):
 	node_a.visible = false
-	node_b.visible = true
+	if node_b != null: node_b.visible = true

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://rak8vmaeqnag" path="res://src/base/skybox/FPSC_ViewTexture.gd" id="1_8et20"]
 [ext_resource type="Script" uid="uid://d2y3d3rralsll" path="res://src/portal/FPSC_Portal.gd" id="1_ovfy8"]
 [ext_resource type="Script" uid="uid://bnv2jm2c2bulh" path="res://src/portal/FPSC_FollowCamera.gd" id="2_ovfy8"]
-[ext_resource type="Texture2D" uid="uid://sav8ot3s5160" path="res://icon.svg" id="4_53dg3"]
+[ext_resource type="Texture2D" uid="uid://buvlgrtpvgckp" path="res://masonry-toolkit-icon.png" id="4_sc2nh"]
 
 [sub_resource type="Shader" id="Shader_30d18"]
 code = "shader_type spatial;
@@ -42,7 +42,7 @@ material = SubResource("ShaderMaterial_sepu0")
 script = ExtResource("1_ovfy8")
 
 [node name="Portal1Texture" type="SubViewport" parent="."]
-size = Vector2i(1356, 534)
+size = Vector2i(1357, 557)
 script = ExtResource("1_8et20")
 metadata/_custom_type_script = "uid://rak8vmaeqnag"
 
@@ -73,12 +73,14 @@ target_position = Vector3(-0.1, 0, 0)
 [node name="A1" type="Sprite3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.006144643, -0.5392544, 0)
 pixel_size = 0.0075
-texture = ExtResource("4_53dg3")
+texture_filter = 0
+texture = ExtResource("4_sc2nh")
 
 [node name="A2" type="Sprite3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.006144643, 0.49857676, 0)
 pixel_size = 0.0075
-texture = ExtResource("4_53dg3")
+texture_filter = 0
+texture = ExtResource("4_sc2nh")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013505667, 0, 0)

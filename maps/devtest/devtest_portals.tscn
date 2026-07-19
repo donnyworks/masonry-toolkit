@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://co87h3g6cdrf6"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_xkxlm"]
-[ext_resource type="Texture2D" uid="uid://sav8ot3s5160" path="res://icon.svg" id="2_5dvjp"]
+[ext_resource type="Texture2D" uid="uid://sav8ot3s5160" path="res://godotengine-icon.svg" id="2_5dvjp"]
 [ext_resource type="Script" uid="uid://rak8vmaeqnag" path="res://src/base/skybox/FPSC_ViewTexture.gd" id="2_nwn6f"]
 [ext_resource type="Script" uid="uid://ckyi0gdrrolk1" path="res://src/base/skybox/FPSC_SkyboxCamera.gd" id="3_5dvjp"]
 [ext_resource type="Script" uid="uid://rfwg0hemxvb6" path="res://src/portal/FPSC_TextureApplyFeatureMarker.gd" id="3_sepu0"]
