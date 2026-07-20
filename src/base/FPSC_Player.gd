@@ -287,6 +287,14 @@ var templatePauseMenu = preload("res://instances/mainmenu.tscn")
 
 var pausemenu = null
 
+func FPSC_DealDamageTurret():
+	if health < 1: return
+	health -= 0.5
+	FPSC_ExecuteFade(Color(1.0,0.0,0.0,0.5),FadeTypes.FADE_IN,2)
+	await get_tree().create_timer(2).timeout
+	if health < 1: return
+	health += 0.5
+
 func _process(delta):
 	isSimulated = Monolyth.isMultiplayer and ((not Monolyth.isClient and not isListenServer) or (Monolyth.isClient and name != str(Monolyth.get_unique_id())))
 	if isSimulated:
@@ -295,10 +303,12 @@ func _process(delta):
 		$TextureRect.visible = false
 		$MapSelectionLabel.visible = false
 		$TransFade.visible = false
+		$health.visible = false
 		return
 	if not is_inside_tree(): return
 	if not LegacyViewMode:
 		dynamo_cam_track()
+	$health.text = str(floor(health))
 	$velocity.volume_linear = min(max((velocity.length() - SPEED_SPRINT)/velocity_music_threshold,0.0),1.0)
 	camera_fov_extents = [FPSC_LevelManager.fov, FPSC_LevelManager.fov + 10.0]
 	$MapSelectionLabel.text = """Map Selector

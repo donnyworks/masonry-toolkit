@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cc4iwacm6rskv"]
+[gd_scene load_steps=17 format=3 uid="uid://cc4iwacm6rskv"]
 
 [ext_resource type="Script" uid="uid://dfge137rweqns" path="res://src/base/FPSC_Player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://dvt56pplj6tyx" path="res://textures/hud/nofired_surface.png" id="2_5a4mc"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://wu4hku12n2ab" path="res://vgui/vgui_boardfont_verdana.ttf" id="3_hqtel"]
 [ext_resource type="Script" uid="uid://glaujpf0b0t0" path="res://src/base/player/FPSC_DebugMenuButton.gd" id="4_hqtel"]
 [ext_resource type="AudioStream" uid="uid://cnxr3d8mlbayp" path="res://sound/player/death.wav" id="6_kipg0"]
+[ext_resource type="FontFile" uid="uid://dfp34iarqtkw3" path="res://vgui/vgui_hudfont_dejavu.ttf" id="7_cns3y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
@@ -200,3 +201,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 stream = ExtResource("6_kipg0")
 
 [node name="velocity" type="AudioStreamPlayer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1071.0
+offset_top = 578.0
+offset_right = 1134.0
+offset_bottom = 601.0
+theme_override_fonts/font = ExtResource("7_cns3y")
+text = "HEALTH"
+
+[node name="health" type="Label" parent="."]
+offset_left = 1071.0
+offset_top = 597.0
+offset_right = 1134.0
+offset_bottom = 635.0
+theme_override_fonts/font = ExtResource("7_cns3y")
+theme_override_font_sizes/font_size = 32
+text = "100"
+horizontal_alignment = 2

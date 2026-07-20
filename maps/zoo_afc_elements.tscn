@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://fabh0jfxxi51"]
+[gd_scene load_steps=49 format=3 uid="uid://fabh0jfxxi51"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_wtdix"]
 [ext_resource type="PackedScene" uid="uid://fsyjqmmliyan" path="res://instances/afc/prefab_new_portalgun_pedestal.tscn" id="2_8pegt"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://dq51aafo7rnkc" path="res://models/fencingtest.glb" id="24_b528i"]
 [ext_resource type="PackedScene" uid="uid://bmwgm7cropbr4" path="res://models/fencingtest-bend.glb" id="25_y6q04"]
 [ext_resource type="Script" uid="uid://cfnamvbbnc765" path="res://src/base/activatables/FPSC_ActivatableControlPlayerView.gd" id="26_y6q04"]
+[ext_resource type="PackedScene" uid="uid://coo5xds48xvhm" path="res://instances/afc/turret.tscn" id="27_6omfo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ah5jf"]
 
@@ -101,6 +102,13 @@ shader_parameter/TEXTURE = SubResource("ViewportTexture_o300u")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b528i"]
 size = Vector3(3, 1, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6q04"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6omfo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o300u"]
+size = Vector3(3, 3, 2)
 
 [node name="Node3D" type="Node3D"]
 
@@ -1199,6 +1207,56 @@ target_camera = NodePath("../../camcontiainer2/Camera3D")
 replicate_angles = true
 replicate_position = true
 metadata/_custom_type_script = "uid://cfnamvbbnc765"
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, -13.8405075, 42.352844)
+use_collision = true
+size = Vector3(4, 4, 0.16589355)
+material = SubResource("StandardMaterial3D_y6q04")
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="CSGBox3D27" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146484375, 0.20233154, -14.055176)
+use_collision = true
+size = Vector3(0.76953125, 0.6920166, 28)
+material = SubResource("StandardMaterial3D_6omfo")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CSGBox3D27"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+shadow_enabled = true
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="CSGBox3D27" node_paths=PackedStringArray("activated")]
+script = ExtResource("3_cmfjx")
+activated = [NodePath("../FPSC_DoorActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D27/FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+shape = SubResource("BoxShape3D_o300u")
+
+[node name="FPSC_DoorActivatable" type="Node" parent="CSGBox3D27" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("9_le08f")
+object_as_door = NodePath("../CSGBox3D28")
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -8, 29.5)
+use_collision = true
+size = Vector3(21, 17, 20)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D14" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 6.5, -1)
+operation = 2
+use_collision = true
+size = Vector3(4, 4, 4)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="CSGBox3D14" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 6.5, 0)
+operation = 2
+use_collision = true
+size = Vector3(4, 4, 4)
+
+[node name="Turret" parent="." instance=ExtResource("27_6omfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6730156, 0.4616086, -11.419884)
 
 [editable path="PrefabBoxDropper"]
 [editable path="camcontiainer2/PrefabBoxDropper2"]

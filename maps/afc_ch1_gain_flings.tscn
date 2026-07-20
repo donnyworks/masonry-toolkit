@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://da8fywn53c78t"]
+[gd_scene load_steps=71 format=3 uid="uid://da8fywn53c78t"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_i4tkx"]
 [ext_resource type="PackedScene" uid="uid://cihvtue137xn7" path="res://instances/afc/prefab_chamber_entryway.tscn" id="1_v4uc3"]
@@ -36,6 +36,8 @@
 [ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="27_nchtp"]
 [ext_resource type="Script" uid="uid://bxrwaxtx06m0r" path="res://src/base/activatables/world/doers/FPSC_ActivatableTeleportNode3D.gd" id="29_tc4iw"]
 [ext_resource type="AudioStream" uid="uid://tx1dpdclypng" path="res://sound/vo/announcer/Ch1DemoFinishNEW.wav" id="30_n273v"]
+[ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="34_lmqjk"]
+[ext_resource type="PackedScene" uid="uid://lnxs6xokbvge" path="res://maps/afc_ch1_transition_cutscene.tscn" id="35_71u3e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ah5jf"]
 
@@ -681,6 +683,10 @@ size = Vector3(7, 7, 6)
 size = Vector3(2, 1, 2)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_mq8bb"]
+height = 2.845581
+radius = 0.75634766
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0gtbb"]
 height = 2.845581
 radius = 0.75634766
 
@@ -7763,7 +7769,7 @@ script = ExtResource("4_n1mh4")
 activated = [NodePath("../FPSC_VoicelineActivatable")]
 delay = 2.0
 trigger_once = true
-interact_with = 1
+interact_with = 0
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_exithall/FPSC_TriggerRelay"]
@@ -7779,6 +7785,18 @@ execute_once = true
 metadata/_custom_type_script = "uid://whqnccb8m4hc"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="prefab_chamber_exithall"]
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="prefab_chamber_exithall"]
+script = ExtResource("34_lmqjk")
+other_level = ExtResource("35_71u3e")
+delay = 2.0
+trigger_once = true
+interact_with = 1
+metadata/_custom_type_script = "uid://cn3f2saw8lsmn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_exithall/FPSC_TriggerRelay2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3953769, 0.17739749)
+shape = SubResource("CylinderShape3D_0gtbb")
 
 [node name="afc_ch1_intro_chamber" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -580, 0, -71)

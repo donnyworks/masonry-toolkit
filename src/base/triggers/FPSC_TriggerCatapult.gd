@@ -22,6 +22,7 @@ func on_exit(_body): pass
 
 func _process(delta: float) -> void:
 	for body in bodies_inside:
+		if not is_instance_valid(body): continue
 		if body is CharacterBody3D:
 			body.velocity = body.global_position.direction_to(destination.global_position) * push_force
 			if destination.global_position.distance_to(body.global_position) < 0.25:

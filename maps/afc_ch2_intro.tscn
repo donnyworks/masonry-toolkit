@@ -1,0 +1,866 @@
+[gd_scene load_steps=46 format=3 uid="uid://cofcwahptm2ts"]
+
+[ext_resource type="PackedScene" uid="uid://cihvtue137xn7" path="res://instances/afc/prefab_chamber_entryway.tscn" id="1_8p1ic"]
+[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="2_jj7wd"]
+[ext_resource type="Script" uid="uid://c10lkodrlqtba" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoicelines.gd" id="2_scx40"]
+[ext_resource type="AudioStream" uid="uid://dst6yssa5lxk" path="res://sound/vo/announcer/ch5/Chamber5.01.wav" id="4_scx40"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="5_0rpkl"]
+[ext_resource type="AudioStream" uid="uid://dsdn5aaubjvqr" path="res://sound/vo/announcer/ch5/Chamber5.02.wav" id="5_jj7wd"]
+[ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="6_be8hl"]
+[ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="7_qjc4i"]
+[ext_resource type="PackedScene" uid="uid://f0qlfetn1pdk" path="res://instances/afc/prefab_catapult.tscn" id="8_0wsno"]
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="9_rtejp"]
+[ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="10_0alsq"]
+[ext_resource type="PackedScene" uid="uid://dgu5jhd4hnjek" path="res://instances/afc/prefab_pedestal_button.tscn" id="11_n6cnh"]
+[ext_resource type="PackedScene" uid="uid://coo5xds48xvhm" path="res://instances/afc/turret.tscn" id="12_yidma"]
+[ext_resource type="PackedScene" uid="uid://bjj403lwphbjj" path="res://instances/player_scalemarker.tscn" id="13_wq642"]
+[ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="14_2er3p"]
+[ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="15_pqrhw"]
+[ext_resource type="Script" uid="uid://b84g1xo7620ij" path="res://src/base/activatables/logic/FPSC_ActivatableToggleTriggerEnablement.gd" id="16_gls4t"]
+[ext_resource type="Script" uid="uid://dd5j3m0ylh3c5" path="res://src/base/activatables/world/doers/FPSC_ActivatableChangeVisibilityRegions.gd" id="17_1elxo"]
+[ext_resource type="Material" uid="uid://cbuoxl6trvib2" path="res://materials/portallable_surface.tres" id="18_c3jde"]
+[ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="19_r21y4"]
+[ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="20_srng3"]
+[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="21_ej0lg"]
+[ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleModulationColor.gd" id="22_6txst"]
+[ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="23_fmibw"]
+[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="24_liylv"]
+[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="25_8ijcp"]
+[ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleLightModulationColor.gd" id="26_oyudv"]
+
+[sub_resource type="GDScript" id="GDScript_8j3vc"]
+resource_name = "custommap_tc_label"
+script/source = "@tool
+extends Label3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	text = \"TEST CHAMBER \" + PackedByteArray([randi_range(0,255)]).hex_encode()
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_dp8gx"]
+resource_name = "chamberbar"
+script/source = "@tool
+extends Label3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	var bars = \"\" # |||||||||||||||||||
+	var rv = randi_range(0,20)
+	for i in range(rv):
+		bars += \"|\"
+	for i in range(20 - rv):
+		bars += \"  \"
+	text = \"\"\"[%b]
+TESTING COURSE ∞\"\"\".replace(\"%b\",bars)
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_15dhr"]
+resource_name = "hazardlsit"
+script/source = "@tool
+extends Label3D
+
+
+@export_multiline var hazards = \"\"\"\"\"\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+func rearrange(text,amount):
+	if amount == 0:
+		return text
+	var r1 = randi_range(0,len(text) - 1)
+	var r2 = randi_range(0,len(text) - 1)
+	var stext = text
+	text[r1] = stext[r2]
+	text[r2] = stext[r1]
+	return rearrange(text,amount - 1)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	text = \"\"
+	for line in hazards.split(\"\\n\"):
+		if randi_range(0,5) == 5:
+			text += rearrange(line,10) + \"\\n\"
+		else:
+			text += line + \"\\n\"
+	pass
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ykspl"]
+size = Vector3(7, 5, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l4f8u"]
+
+[sub_resource type="Sky" id="Sky_jgrlr"]
+sky_material = SubResource("ProceduralSkyMaterial_l4f8u")
+
+[sub_resource type="Environment" id="Environment_qq12g"]
+background_mode = 2
+sky = SubResource("Sky_jgrlr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3ckc"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kop1k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ealw2"]
+size = Vector3(22, 27, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhlwk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jmphl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jmphl"]
+size = Vector3(3, 3, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8j3vc"]
+transparency = 1
+albedo_color = Color(0.47805524, 0.8378284, 0.7577784, 0.6039216)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_do38i"]
+transparency = 1
+albedo_color = Color(0, 0.6392157, 0.22352941, 0.50980395)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h18w4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_am3c6"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r8bm5"]
+size = Vector3(2, 1, 2)
+
+[node name="AfcConvtestEyc" type="Node3D"]
+
+[node name="prefab_chamber_entryway" parent="." instance=ExtResource("1_8p1ic")]
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4689817, 1.6302683, -7.5)
+use_collision = true
+size = Vector3(0.26220703, 3, 2)
+
+[node name="Label3D" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 1.2564766, 0)
+text = "TEST CHAMBER ea"
+script = SubResource("GDScript_8j3vc")
+
+[node name="Label3D2" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.84315467, -0.8630085)
+text = "Potential hazards:
+"
+horizontal_alignment = 0
+
+[node name="Label3D4" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -1.0395492, -0.8630085)
+text = "[||||||||||||||            ]
+TESTING COURSE ∞"
+horizontal_alignment = 0
+vertical_alignment = 0
+script = SubResource("GDScript_dp8gx")
+
+[node name="Label3D3" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
+text = "Player Dissolvers
+Physics Dissolvers
+Preila tsith AaleaF
+Boxes
+Buttons
+Portalable Surfaces
+Adocil Psioc
+Automated Defense
+"
+horizontal_alignment = 0
+vertical_alignment = 0
+script = SubResource("GDScript_15dhr")
+hazards = "Player Dissolvers
+Physics Dissolvers
+Aerial Faith Plates
+Boxes
+Buttons
+Portalable Surfaces
+Acidic Pools
+Automated Defense"
+
+[node name="FPSC_PlayerPropertiesActivatable" type="Node" parent="prefab_chamber_entryway"]
+script = ExtResource("2_jj7wd")
+chapter_title = "ATC_Chapter2_Title"
+chapter_subtext = "ATC_Chapter2_Subtitle"
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="FPSC_MultiVoicelineActivatable" type="Node" parent="prefab_chamber_entryway" node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("2_scx40")
+voiceline_player = NodePath("AudioStreamPlayer")
+character_voicelines = Array[AudioStream]([ExtResource("4_scx40"), ExtResource("5_jj7wd")])
+localized_caption_prefix = "Announcer.Chamber5."
+metadata/_custom_type_script = "uid://c10lkodrlqtba"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="prefab_chamber_entryway/FPSC_MultiVoicelineActivatable"]
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="prefab_chamber_entryway" node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
+script = ExtResource("5_0rpkl")
+activated = [NodePath("../FPSC_MultiVoicelineActivatable"), NodePath("../FPSC_PlayerPropertiesActivatable")]
+trigger_once = true
+interact_with = 1
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_entryway/FPSC_TriggerRelay2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_ykspl")
+
+[node name="Player" parent="." instance=ExtResource("6_be8hl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2987212, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qq12g")
+
+[node name="Marker3D" parent="." instance=ExtResource("7_qjc4i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.041677713, 32, -48.8263)
+
+[node name="FPSC_TriggerCatapult2" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("8_0wsno")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.041677713, -9.536743e-07, -21.826302)
+destination = NodePath("../Marker3D")
+
+[node name="door_exit" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 15.294983, -60)
+size = Vector3(1, 3.7947998, 5)
+material = SubResource("StandardMaterial3D_b3ckc")
+
+[node name="FPSC_DoorActivatable" type="Node" parent="door_exit" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("9_rtejp")
+object_as_door = NodePath("..")
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="PrefabBoxDropper" parent="." instance=ExtResource("10_0alsq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36, -21)
+
+[node name="PrefabPedestalButton" parent="." instance=ExtResource("11_n6cnh")]
+transform = Transform3D(-4.3711395e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711395e-08, -2.4858093, -0.48854828, -13.817541)
+
+[node name="buttonPressed" parent="PrefabPedestalButton/pedestalButtonDoor" index="2" node_paths=PackedStringArray("activatables")]
+activatables = [NodePath("../buttonDoor"), NodePath("../buttonDoorUnpress"), NodePath("../buttonSoundEffect"), NodePath("../../../PrefabBoxDropper/dropper")]
+
+[node name="PrefabPedestalButton2" parent="." instance=ExtResource("11_n6cnh")]
+transform = Transform3D(-4.371139e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, -4.371139e-08, 2.5141907, -0.48854828, -18.817541)
+
+[node name="buttonPressed" parent="PrefabPedestalButton2/pedestalButtonDoor" index="2" node_paths=PackedStringArray("activatables")]
+activatables = [NodePath("../buttonDoor"), NodePath("../buttonDoorUnpress"), NodePath("../buttonSoundEffect"), NodePath("../../../FPSC_TriggerRelay2/FPSC_TriggerStatusActivatable"), NodePath("../../../acidwall/FPSC_VisibilityChangeActivatable")]
+DelayAmount = 5.0
+
+[node name="buttonDoorUnpress" parent="PrefabPedestalButton2/pedestalButtonDoor" index="4"]
+delay = 5.0
+
+[node name="Turret" parent="." instance=ExtResource("12_yidma")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.85120773, 45.5, -77.49852)
+
+[node name="Turret2" parent="." instance=ExtResource("12_yidma")]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, 8.148792, 45.5, -73.81498)
+
+[node name="Turret3" parent="." instance=ExtResource("12_yidma")]
+transform = Transform3D(-0.99999994, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, -0.99999994, 7.553521, 45.5, -62.099148)
+
+[node name="Player3" parent="." instance=ExtResource("13_wq642")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85120773, 45.5, -77.49852)
+visible = false
+
+[node name="prefab_chamber_exithall" parent="." instance=ExtResource("14_2er3p")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -20.88419, 13.674482, -60)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, -25.5)
+script = ExtResource("5_0rpkl")
+activated = [NodePath("FPSC_ImpulseDamageActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+shape = SubResource("WorldBoundaryShape3D_kop1k")
+
+[node name="FPSC_ImpulseDamageActivatable" type="Node" parent="FPSC_TriggerRelay"]
+script = ExtResource("15_pqrhw")
+damage_delt = 1000.0
+kill_rigidibodies = true
+metadata/_custom_type_script = "uid://bilm264c25p6e"
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.5, -41.5)
+script = ExtResource("5_0rpkl")
+activated = [NodePath("FPSC_ImpulseDamageActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+shape = SubResource("BoxShape3D_ealw2")
+
+[node name="FPSC_ImpulseDamageActivatable" type="Node" parent="FPSC_TriggerRelay2"]
+script = ExtResource("15_pqrhw")
+damage_delt = 1000.0
+kill_rigidibodies = true
+metadata/_custom_type_script = "uid://bilm264c25p6e"
+
+[node name="FPSC_TriggerStatusActivatable" type="Node" parent="FPSC_TriggerRelay2" node_paths=PackedStringArray("trigger")]
+script = ExtResource("16_gls4t")
+trigger = NodePath("..")
+inverted = true
+metadata/_custom_type_script = "uid://b84g1xo7620ij"
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -6.5, 16.417, -77.5)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="Node3D" groups=["Non-Portalable"]]
+use_collision = true
+size = Vector3(4, 4, 0.16589355)
+material = SubResource("StandardMaterial3D_xhlwk")
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="Node3D/CSGBox3D27" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146484375, 0.20233154, -14.055176)
+use_collision = true
+size = Vector3(0.76953125, 0.6920166, 28)
+material = SubResource("StandardMaterial3D_jmphl")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Node3D/CSGBox3D27"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+shadow_enabled = true
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="Node3D/CSGBox3D27" node_paths=PackedStringArray("activated")]
+script = ExtResource("5_0rpkl")
+activated = [NodePath("../FPSC_DoorActivatable")]
+interact_with = 1
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/CSGBox3D27/FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+shape = SubResource("BoxShape3D_jmphl")
+
+[node name="FPSC_DoorActivatable" type="Node" parent="Node3D/CSGBox3D27" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("9_rtejp")
+object_as_door = NodePath("..")
+time = 5.0
+move_direction = 6
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="acidwall" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.5, -41)
+size = Vector3(19, 18, 1)
+material = SubResource("StandardMaterial3D_8j3vc")
+
+[node name="FPSC_VisibilityChangeActivatable" type="Node" parent="acidwall" node_paths=PackedStringArray("node_a")]
+script = ExtResource("17_1elxo")
+node_a = NodePath("..")
+toggle_back = true
+metadata/_custom_type_script = "uid://dd5j3m0ylh3c5"
+
+[node name="geo" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -17)
+use_collision = true
+size = Vector3(9, 7, 13)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, -25.5)
+size = Vector3(21, 6, 30)
+material = SubResource("StandardMaterial3D_do38i")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -25.5)
+use_collision = true
+size = Vector3(21, 1, 30)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -68.5)
+use_collision = true
+size = Vector3(21, 1, 30)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="geo"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 5.5, 15.5, -76.5)
+use_collision = true
+size = Vector3(4, 4, 2)
+material = ExtResource("18_c3jde")
+
+[node name="CSGBox3D52" type="CSGBox3D" parent="geo"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -6.5, 11.535209, -77.5)
+use_collision = true
+size = Vector3(4, 4, 2)
+material = ExtResource("18_c3jde")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -76.5)
+use_collision = true
+size = Vector3(21, 17, 20)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="geo/CSGBox3D14" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 6.5, -1)
+operation = 2
+use_collision = true
+size = Vector3(4, 4, 4)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="geo/CSGBox3D14" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 6.5, 0)
+operation = 2
+use_collision = true
+size = Vector3(4, 4, 4)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.5, -67.5)
+use_collision = true
+size = Vector3(21, 4, 2)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.5, -44.5)
+use_collision = true
+size = Vector3(21, 8, 10)
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="geo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 33.5, -80.5)
+use_collision = true
+size = Vector3(4, 4, 2)
+material = ExtResource("18_c3jde")
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="geo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 15.5, -66.5)
+use_collision = true
+size = Vector3(4, 4, 2)
+material = ExtResource("18_c3jde")
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28, -81.5)
+use_collision = true
+size = Vector3(21, 23, 2)
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 43.5, -81)
+use_collision = true
+size = Vector3(21, 10, 3)
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41.5, -74.5)
+use_collision = true
+size = Vector3(21, 6, 2)
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 43.5, -77.5)
+use_collision = true
+size = Vector3(2, 10, 4)
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 41.5, -77.5)
+use_collision = true
+size = Vector3(15, 6, 4)
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 41.5, -66.5)
+use_collision = true
+size = Vector3(4, 6, 14)
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 41.5, -61.5)
+use_collision = true
+size = Vector3(4, 6, 4)
+
+[node name="CSGBox3D41" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51.5, -74.5)
+use_collision = true
+size = Vector3(21, 6, 2)
+
+[node name="CSGBox3D42" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 51.5, -77.5)
+use_collision = true
+size = Vector3(19, 6, 4)
+
+[node name="CSGBox3D43" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 51.5, -66.5)
+use_collision = true
+size = Vector3(4, 6, 14)
+
+[node name="CSGBox3D44" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 51.5, -61.5)
+use_collision = true
+size = Vector3(8, 6, 4)
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 43.5, -61.5)
+use_collision = true
+size = Vector3(1, 10, 6)
+
+[node name="CSGBox3D37" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 46.5, -63.5)
+use_collision = true
+size = Vector3(1, 4, 10)
+
+[node name="CSGBox3D39" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 46.5, -59)
+use_collision = true
+size = Vector3(12, 4, 1)
+
+[node name="CSGBox3D38" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 46.5, -78)
+use_collision = true
+size = Vector3(1, 4, 9)
+
+[node name="CSGBox3D45" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.56897, 46.5, -71)
+use_collision = true
+size = Vector3(0.09741211, 4, 5)
+material = ExtResource("19_r21y4")
+
+[node name="CSGBox3D51" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.558838, 45.55957, -71)
+use_collision = true
+size = Vector3(0.11767578, 0.119140625, 5)
+material = SubResource("StandardMaterial3D_h18w4")
+
+[node name="CSGBox3D53" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.558838, 47.55957, -71)
+use_collision = true
+size = Vector3(0.11767578, 0.119140625, 5)
+material = SubResource("StandardMaterial3D_h18w4")
+
+[node name="CSGBox3D50" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 46.5, -71)
+use_collision = true
+size = Vector3(1, 4, 5)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="geo/CSGBox3D50"]
+transform = Transform3D(-0.34361055, -0.46955612, 0.81329507, -2.1855694e-08, 0.8660254, 0.5, -0.93911225, 0.17180526, -0.29757547, -1, 1.6777916, -1.4662094)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 12.0
+
+[node name="SpotLight3D2" type="OmniLight3D" parent="geo/CSGBox3D50"]
+transform = Transform3D(-0.34361055, -0.46955612, 0.81329507, -2.1855694e-08, 0.8660254, 0.5, -0.93911225, 0.17180526, -0.29757547, -2.249135, 1.6777916, -0.066329956)
+shadow_enabled = true
+omni_range = 30.0
+
+[node name="CSGBox3D46" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 44, -71)
+use_collision = true
+size = Vector3(5, 1, 5)
+
+[node name="CSGBox3D47" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 49, -71)
+use_collision = true
+size = Vector3(5, 1, 5)
+
+[node name="CSGBox3D48" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 46.5, -68)
+use_collision = true
+size = Vector3(5, 6, 1)
+
+[node name="CSGBox3D49" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 46.5, -74)
+use_collision = true
+size = Vector3(5, 6, 1)
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41.5, -59)
+use_collision = true
+size = Vector3(5, 6, 1)
+
+[node name="CSGBox3D36" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41.5, -64)
+use_collision = true
+size = Vector3(5, 6, 1)
+
+[node name="CSGBox3D40" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 46.5, -69.5)
+use_collision = true
+size = Vector3(16, 4, 12)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 18.5, -77.5)
+use_collision = true
+size = Vector3(1, 4, 18)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 18.5, -77.5)
+use_collision = true
+size = Vector3(1, 4, 18)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38, -62)
+use_collision = true
+size = Vector3(21, 1, 41)
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="geo/CSGBox3D11" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, -1.5, -15.5)
+operation = 2
+use_collision = true
+size = Vector3(4, 4, 4)
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="geo/CSGBox3D11" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -1.5, 0.5)
+operation = 2
+use_collision = true
+size = Vector3(4, 4, 4)
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38, -26)
+use_collision = true
+size = Vector3(21, 1, 31)
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="geo/CSGBox3D24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+operation = 2
+size = Vector3(1.5, 1, 1.5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 15.5, -25.5)
+use_collision = true
+size = Vector3(1, 46, 30)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 15.5, -47)
+use_collision = true
+size = Vector3(1, 46, 13)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 15.5, -47)
+use_collision = true
+size = Vector3(1, 46, 13)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 15.5, -60)
+use_collision = true
+size = Vector3(1, 46, 13)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 15.5, -60)
+use_collision = true
+size = Vector3(1, 46, 13)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="geo/CSGBox3D20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20501709, 0)
+operation = 2
+size = Vector3(1, 3.7947998, 5)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 29, -73.5)
+use_collision = true
+size = Vector3(1, 19, 14)
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 29.5, -73.5)
+use_collision = true
+size = Vector3(1, 18, 14)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 15.5, -25.5)
+use_collision = true
+size = Vector3(1, 46, 30)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, -10)
+use_collision = true
+size = Vector3(21, 6, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.5, -10)
+use_collision = true
+size = Vector3(21, 20, 1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -53.5)
+use_collision = true
+size = Vector3(21, 20, 28)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.5, -10)
+use_collision = true
+size = Vector3(20, 20, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="geo/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(7, 6, 1)
+
+[node name="Player2" parent="." instance=ExtResource("13_wq642")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.058602, 17.5, -76.735)
+visible = false
+
+[node name="Turret4" parent="." instance=ExtResource("12_yidma")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.058602, 17.5, -76.735)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(0, -1.0000001, -4.371139e-08, 0, -4.371139e-08, 1, -1.0000001, 0, -8.881784e-16, 8, 13.163513, -17.5)
+flip_faces = true
+size = Vector3(500, 500, 500)
+material = SubResource("StandardMaterial3D_am3c6")
+
+[node name="Player4" parent="." instance=ExtResource("13_wq642")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.029256, 45.5, -73.79036)
+visible = false
+
+[node name="Player5" parent="." instance=ExtResource("13_wq642")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7288857, 45.5, -62.052265)
+visible = false
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.86237246, -0.35355332, -0.36237243, -0.49999994, 0.70710677, 0.50000006, 0.07945931, 0.61237246, -0.78656614, -5, 5, -27)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 23.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.5, -0.70710677, 0.50000006, -0.49999994, 0.7071068, 0.50000006, -0.7071069, -1.2783051e-09, -0.7071067, 7, 5, -27)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 23.0
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.49999997, -0.70710677, 0.5000001, 0.7071069, -9.515621e-09, 0.70710665, -0.4999999, 0.7071068, 0.50000006, 7, 28, -57)
+light_energy = 24.0
+shadow_enabled = true
+spot_range = 23.0
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.49999997, -0.70710677, 0.5000002, 0.6659756, -0.6830128, -0.29995024, 0.5536033, 0.18301277, 0.81242216, 7, 28, -71)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 23.0
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.7098143, -0.70387876, 0.026801782, 0.22943452, -0.19505961, 0.95357835, -0.6659756, 0.6830128, 0.2999502, 7, 32, -73)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 23.0
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.7098143, -0.70387876, 0.026801793, 0.5316839, -0.51043296, 0.67584795, -0.4620345, 0.49397662, 0.73655367, 7, 32, -34)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 60.0
+
+[node name="SpotLight3D7" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.3836999, -0.85656524, -0.34506583, 0.5316839, -0.51043296, 0.67584795, -0.7550409, 0.075856864, 0.6512751, -9, 32, -34)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 60.0
+
+[node name="prefab_geomesh_button" parent="." instance=ExtResource("20_srng3")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.883099, 13.512198, -55.101032)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_geomesh_button" node_paths=PackedStringArray("activated")]
+script = ExtResource("5_0rpkl")
+activated = [NodePath("../../door_exit/FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight4/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite")]
+UseActivationDelay = true
+UseActivationDelayOnExit = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_geomesh_button/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_r8bm5")
+
+[node name="IndicatorLight" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("21_ej0lg")
+region_enabled = true
+region_rect = Rect2(0, 0, 384, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight" node_paths=PackedStringArray("sprite")]
+script = ExtResource("22_6txst")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight2" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8044138, 0, 1.919869)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("21_ej0lg")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 704)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight2" node_paths=PackedStringArray("sprite")]
+script = ExtResource("22_6txst")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.05
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight3" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8044138, 0.89196867, 3.5942702)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+texture = ExtResource("21_ej0lg")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 704)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight3" node_paths=PackedStringArray("sprite")]
+script = ExtResource("22_6txst")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.1
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight4" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5669184, 2.4964716, 3.5942702)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+alpha_cut = 2
+texture = ExtResource("21_ej0lg")
+region_enabled = true
+region_rect = Rect2(0, 0, 832, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight4" node_paths=PackedStringArray("sprite")]
+script = ExtResource("22_6txst")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.15
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="sign" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1390228, 2.4964716, 3.5892627)
+flip_h = true
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("23_fmibw")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign" node_paths=PackedStringArray("sprite")]
+script = ExtResource("24_liylv")
+sprite = NodePath("..")
+texture_b = ExtResource("25_8ijcp")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="signlite" type="Node" parent="prefab_geomesh_button/sign" node_paths=PackedStringArray("light")]
+script = ExtResource("26_oyudv")
+light = NodePath("../OmniLight3D")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.15
+metadata/_custom_type_script = "uid://bibdote7bt40k"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="prefab_geomesh_button/sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.18152237)
+light_color = Color(1, 0.5058824, 0.007843138, 1)
+shadow_enabled = true
+
+[editable path="PrefabBoxDropper"]
+[editable path="PrefabPedestalButton"]
+[editable path="PrefabPedestalButton2"]

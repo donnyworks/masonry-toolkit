@@ -317,7 +317,7 @@ var fov = 75.0
 
 var legacy_buttons = false
 var propvis = true
-var disable_box_dropper_logic = true
+var disable_box_dropper_logic = false
 
 func CMDLine(command:String):
 	var cmda = command.split(" ")

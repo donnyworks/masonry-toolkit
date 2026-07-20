@@ -46,7 +46,7 @@ meta = """
 {
 	"GameName":"Masonry Toolkit Base",
 	"Version":"1.0",
-	"GameInternalName":"replaceme",
+	"GameInternalName":"%in",
 	"Chapters":{
         "devtest/devtest2":"chapter0_image.png"
 	},
@@ -74,10 +74,19 @@ meta = """
     }
 }"""
 
-import os, shutil
+import os, shutil, sys
+
+target_dir = "masonry-toolkit-clean"
+
+game_internal_name = "replaceme"
+
+if len(sys.argv) > 1:
+    target_dir = sys.argv[1]
+if len(sys.argv) > 2:
+    game_internal_name = sys.argv[2]
 
 try:
-    os.mkdir("../masonry-toolkit-clean")
+    os.mkdir("../" + target_dir)
 except:
     print("WARN: Failed to create Masonry Toolkit dir. Does it already exist?")
 
@@ -87,9 +96,9 @@ print("Copying files that aren't minus'd!")
 for f in content_noncopyright:
     if not f.startswith("-"):
         if os.path.isdir(f): # directory. rawdog copy it.
-            shutil.copytree(f, "../masonry-toolkit-clean/" + f)
+            shutil.copytree(f, "../" + target_dir + "/" + f)
         if os.path.isfile(f): # file. file file file file-
-            shutil.copy(f, "../masonry-toolkit-clean/" + f)
+            shutil.copy(f, "../" + target_dir + "/" + f)
     else:
         variants = []
         if not "*" in f: # i hate those astrisks
@@ -105,18 +114,18 @@ for f in content_noncopyright:
             else:
                 raise Exception("Unimplemented.")
         for v in variants:
-            if os.path.isdir("../masonry-toolkit-clean/" + v):
-                shutil.rmtree("../masonry-toolkit-clean/" + v)
-            if os.path.isfile("../masonry-toolkit-clean/" + v):
-                os.remove("../masonry-toolkit-clean/" + v)
+            if os.path.isdir("../" + target_dir + "/" + v):
+                shutil.rmtree("../" + target_dir + "/" + v)
+            if os.path.isfile("../" + target_dir + "/" + v):
+                os.remove("../" + target_dir + "/" + v)
 
-os.mkdir("../masonry-toolkit-clean/resources")
+os.mkdir("../" + target_dir + "/resources")
 
-f = open("../masonry-toolkit-clean/resources/FPSC_GameMetadata.json","w")
-f.write(meta)
+f = open("../" + target_dir + "/resources/FPSC_GameMetadata.json","w")
+f.write(meta.replace("%in",game_internal_name))
 f.close()
 
-f = open("../masonry-toolkit-clean/resources/FPSC_lang_en_US.json","w")
+f = open("../" + target_dir + "/resources/FPSC_lang_en_US.json","w")
 f.write("""{
 	"Player.InteractionFailed":"[i][Can't Use][/i]",
 	"Player.Death":"[i][Death][/i]",
