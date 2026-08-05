@@ -1,0 +1,662 @@
+[gd_scene load_steps=39 format=3 uid="uid://b5f3exps2f4eh"]
+
+[ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_c0i4j"]
+[ext_resource type="PackedScene" uid="uid://cihvtue137xn7" path="res://instances/afc/prefab_chamber_entryway.tscn" id="3_kg8xv"]
+[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="4_qiah1"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="5_8faqe"]
+[ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoiceline.gd" id="6_l0kjb"]
+[ext_resource type="AudioStream" uid="uid://2utujleujubv" path="res://sound/vo/announcer/ch2/Chamber2.Intro.wav" id="7_der0h"]
+[ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="8_vtfj1"]
+[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="9_xspli"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="10_7m4ei"]
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="11_voy4n"]
+[ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="12_lyjhl"]
+[ext_resource type="PackedScene" uid="uid://csu8lu6rm6k7t" path="res://maps/afc_ch1_trust_fling_redesign_hard.tscn" id="12_mbeoc"]
+[ext_resource type="PackedScene" uid="uid://f0qlfetn1pdk" path="res://instances/afc/prefab_catapult.tscn" id="14_ym6bo"]
+[ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="15_hqepq"]
+[ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="16_8lacf"]
+[ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="17_t7vod"]
+[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="18_1u7q5"]
+[ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleModulationColor.gd" id="19_v1cn8"]
+[ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="20_l8iwx"]
+[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="21_dcfwh"]
+[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="22_1hbbw"]
+[ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleLightModulationColor.gd" id="23_ujdvt"]
+[ext_resource type="PackedScene" uid="uid://dgu5jhd4hnjek" path="res://instances/afc/prefab_pedestal_button.tscn" id="24_tw2hp"]
+[ext_resource type="Texture2D" uid="uid://wmpactx1jwkd" path="res://textures/target_endpoint.png" id="25_acfdw"]
+[ext_resource type="PackedScene" uid="uid://dq51aafo7rnkc" path="res://models/fencingtest.glb" id="26_ph4jh"]
+[ext_resource type="PackedScene" uid="uid://bmwgm7cropbr4" path="res://models/fencingtest-bend.glb" id="27_iqoy4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ah5jf"]
+
+[sub_resource type="Sky" id="Sky_di4mo"]
+sky_material = SubResource("ProceduralSkyMaterial_ah5jf")
+
+[sub_resource type="Environment" id="Environment_di4mo"]
+background_mode = 2
+sky = SubResource("Sky_di4mo")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v8r46"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tikpg"]
+size = Vector3(7, 5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qo7qv"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eo43v"]
+height = 2.845581
+radius = 0.7866211
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7i5gt"]
+size = Vector3(71, 8, 69)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b4g7d"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f7soh"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6rt8"]
+transparency = 1
+albedo_color = Color(0.30980393, 0.4862745, 0.12156863, 0.5058824)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2co56"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_di4mo")
+
+[node name="Player" parent="." instance=ExtResource("1_c0i4j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1694927, 0)
+
+[node name="prefab_chamber_entryway" parent="." instance=ExtResource("3_kg8xv")]
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4689817, 1.6302683, -7.5)
+use_collision = true
+size = Vector3(0.26220703, 3, 2)
+
+[node name="Label3D" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 1.2564766, 0)
+text = "TEST CHAMBER 02"
+
+[node name="Label3D2" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.84315467, -0.8630085)
+text = "Potential hazards:
+"
+horizontal_alignment = 0
+
+[node name="Label3D4" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.74041283, -0.8630085)
+text = "[||                                     ]
+TESTING COURSE C"
+horizontal_alignment = 0
+
+[node name="Label3D3" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
+text = "Acidic pools
+Aerial Faith Plates
+Boxes
+Buttons
+ERROR! 49992.?? Invalid chamber ID for afc_ch1_fling_over_goo_hard"
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="FPSC_PlayerPropertiesActivatable" type="Node" parent="prefab_chamber_entryway"]
+script = ExtResource("4_qiah1")
+chapter_title = "ATC_Chapter1_Title"
+chapter_subtext = "ATC_Chapter1_Subtitle"
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="prefab_chamber_entryway" node_paths=PackedStringArray("activated")]
+script = ExtResource("5_8faqe")
+activated = [NodePath("../FPSC_PlayerPropertiesActivatable")]
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_entryway/FPSC_TriggerRelay2"]
+shape = SubResource("BoxShape3D_v8r46")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="prefab_chamber_entryway"]
+
+[node name="FPSC_VoicelineActivatable" type="Node" parent="prefab_chamber_entryway/AudioStreamPlayer" node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("6_l0kjb")
+voiceline_player = NodePath("..")
+character_voiceline = ExtResource("7_der0h")
+localized_caption = "Announcer.Chamber2.Intro"
+metadata/_custom_type_script = "uid://whqnccb8m4hc"
+
+[node name="FPSC_TriggerRelay3" type="Area3D" parent="prefab_chamber_entryway" node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
+script = ExtResource("5_8faqe")
+activated = [NodePath("../AudioStreamPlayer/FPSC_VoicelineActivatable")]
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_entryway/FPSC_TriggerRelay3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_tikpg")
+
+[node name="prefab_chamber_exithall" parent="." instance=ExtResource("8_vtfj1")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -64)
+
+[node name="door_entrance" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6635132, -9.944824)
+use_collision = true
+size = Vector3(5, 4, 0.8330078)
+material = SubResource("StandardMaterial3D_qo7qv")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="prefab_chamber_exithall/door_entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3960664, 0, 0)
+stream = ExtResource("9_xspli")
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="prefab_chamber_exithall/door_entrance" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("10_7m4ei")
+stream_player = NodePath("../AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="prefab_chamber_exithall/door_entrance"]
+autoplay = true
+
+[node name="entry_door" type="Node" parent="prefab_chamber_exithall" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("11_voy4n")
+object_as_door = NodePath("../door_entrance")
+delay = 0.15
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_exithall"]
+script = ExtResource("12_lyjhl")
+other_level = ExtResource("12_mbeoc")
+delay = 2.0
+metadata/_custom_type_script = "uid://cn3f2saw8lsmn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_exithall/FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3953769, 0)
+shape = SubResource("CylinderShape3D_eo43v")
+
+[node name="catapult_across" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("14_ym6bo")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -18)
+destination = NodePath("Marker3D")
+
+[node name="Marker3D" parent="catapult_across" instance=ExtResource("15_hqepq")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 6, 6.119594e-07)
+
+[node name="catapult_back" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("14_ym6bo")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -44)
+destination = NodePath("../catapult_across/Marker3D")
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -30)
+script = ExtResource("5_8faqe")
+activated = [NodePath("FPSC_DamageActivatable")]
+interact_with = 1
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="FPSC_DamageActivatable" type="Node" parent="FPSC_TriggerRelay"]
+script = ExtResource("16_8lacf")
+damage_delt = 100.0
+kill_rigidibodies = true
+metadata/_custom_type_script = "uid://bilm264c25p6e"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3)
+shape = SubResource("BoxShape3D_7i5gt")
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -30)
+script = ExtResource("5_8faqe")
+activated = [NodePath("")]
+interact_with = 4
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -3)
+shape = SubResource("BoxShape3D_7i5gt")
+
+[node name="prefab_geomesh_button" parent="." instance=ExtResource("17_t7vod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.50503606, -50)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_geomesh_button" node_paths=PackedStringArray("activated")]
+script = ExtResource("5_8faqe")
+activated = [NodePath("../../prefab_chamber_exithall/entry_door"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight5/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite"), NodePath("../../prefab_chamber_exithall/door_entrance/FPSC_SoundPlayerActivatable")]
+UseActivationDelay = true
+UseActivationDelayOnExit = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_geomesh_button/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_b4g7d")
+
+[node name="IndicatorLight" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 0.021605015, -2.608982)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("18_1u7q5")
+region_enabled = true
+region_rect = Rect2(0, -576, 64, 640)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight" node_paths=PackedStringArray("sprite")]
+script = ExtResource("19_v1cn8")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight5" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 0.4885546, -3.4628754)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+texture = ExtResource("18_1u7q5")
+region_enabled = true
+region_rect = Rect2(0, -576, 64, 640)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight5" node_paths=PackedStringArray("sprite")]
+script = ExtResource("19_v1cn8")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.05
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="sign" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.043437004, 2.3848436, -3.4723434)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("20_l8iwx")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign" node_paths=PackedStringArray("sprite")]
+script = ExtResource("21_dcfwh")
+sprite = NodePath("..")
+texture_b = ExtResource("22_1hbbw")
+switch_back_on_exit = true
+delay = 0.1
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="signlite" type="Node" parent="prefab_geomesh_button/sign" node_paths=PackedStringArray("light")]
+script = ExtResource("23_ujdvt")
+light = NodePath("../OmniLight3D")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.1
+metadata/_custom_type_script = "uid://bibdote7bt40k"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="prefab_geomesh_button/sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1275053)
+light_color = Color(1, 0.5058824, 0.007843138, 1)
+shadow_enabled = true
+
+[node name="prefab_geomesh_button2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.50503606, -50)
+
+[node name="PrefabPedestalButton" parent="prefab_geomesh_button2" instance=ExtResource("24_tw2hp")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.2101481, 0, -1.1481056)
+
+[node name="buttonSoundEffect" parent="prefab_geomesh_button2/PrefabPedestalButton/pedestalButtonDoor" index="5"]
+localized_caption = "Generic.ButtonDisabled"
+
+[node name="IndicatorLight" type="Sprite3D" parent="prefab_geomesh_button2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 0.021605015, -2.608982)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("18_1u7q5")
+region_enabled = true
+region_rect = Rect2(0, -576, 64, 640)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button2/IndicatorLight" node_paths=PackedStringArray("sprite")]
+script = ExtResource("19_v1cn8")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight2" type="Sprite3D" parent="prefab_geomesh_button2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 17.984499, 6.145996)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("18_1u7q5")
+region_enabled = true
+region_rect = Rect2(0, -4672, 64, 4736)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button2/IndicatorLight2" node_paths=PackedStringArray("sprite")]
+script = ExtResource("19_v1cn8")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.1
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight3" type="Sprite3D" parent="prefab_geomesh_button2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.651293, 17.984499, 18.154543)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("18_1u7q5")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button2/IndicatorLight3" node_paths=PackedStringArray("sprite")]
+script = ExtResource("19_v1cn8")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.15
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight5" type="Sprite3D" parent="prefab_geomesh_button2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 8.294741, -3.4628754)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+texture = ExtResource("18_1u7q5")
+region_enabled = true
+region_rect = Rect2(0, -3840, 64, 3904)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button2/IndicatorLight5" node_paths=PackedStringArray("sprite")]
+script = ExtResource("19_v1cn8")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.05
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="cube_spawnpoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26, -32)
+
+[node name="chamber_geometry" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -15.5)
+use_collision = true
+size = Vector3(11, 7, 10)
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="chamber_geometry/CSGBox3D" groups=["Decoration", "Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 0)
+operation = 2
+use_collision = true
+size = Vector3(15, 4, 5)
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="chamber_geometry/CSGBox3D" groups=["Decoration", "Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -2.5)
+operation = 2
+use_collision = true
+size = Vector3(11, 4, 5)
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="chamber_geometry/CSGBox3D" groups=["Decoration", "Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
+operation = 2
+use_collision = true
+size = Vector3(11, 4, 2)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -50.5)
+use_collision = true
+size = Vector3(11, 7, 8)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -44)
+use_collision = true
+size = Vector3(5, 7, 5)
+
+[node name="Sprite3D" type="Sprite3D" parent="chamber_geometry/CSGBox3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.51, -2)
+pixel_size = 0.04
+axis = 1
+texture = ExtResource("25_acfdw")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 5, -10)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 5, -10)
+use_collision = true
+size = Vector3(11, 25, 1)
+material = SubResource("StandardMaterial3D_f7soh")
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="chamber_geometry" groups=["Decoration", "Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, -32)
+size = Vector3(71, 6, 43)
+material = SubResource("StandardMaterial3D_k6rt8")
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="chamber_geometry" groups=["Decoration", "Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, -32)
+size = Vector3(71, 1, 43)
+material = SubResource("StandardMaterial3D_2co56")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -36, 5, -16)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -36, 5, -27)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -36, 5, -49)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -30, 5, -54)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -19, 5, -54)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8, 5, -54)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 30, 5, -54)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 19, 5, -54)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 8, 5, -54)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -36, 5, -38)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 36, 5, -16)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 36, 5, -27)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 36, 5, -49)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 36, 5, -38)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 5, -10)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, -10)
+use_collision = true
+size = Vector3(7, 13, 1)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, -54)
+use_collision = true
+size = Vector3(7, 13, 1)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 5, -10)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 5, -10)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="chamber_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 5, -10)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="chamber_geometry" groups=["Decoration", "Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, -20, 4.6907234, -13.255669)
+use_collision = true
+size = Vector3(11, 25, 1)
+
+[node name="fencingtest" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.8543096, -0.5000062, -20.249708)
+
+[node name="fencingtest2" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.334683, -0.5000062, -20.249708)
+
+[node name="fencingtest5" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.7421455, -0.5000062, -20.249708)
+
+[node name="fencingtest7" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0805635, -0.5000062, -12.320038)
+
+[node name="fencingtest13" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0805635, -0.5000062, -10.736912)
+
+[node name="fencingtest8" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0805635, -0.5000062, -13.883484)
+
+[node name="fencingtest9" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0805635, -0.5000062, -15.363857)
+
+[node name="fencingtest10" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.080563, -0.5000062, -16.883484)
+
+[node name="fencingtest14" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1680856, -0.5000062, -12.287094)
+
+[node name="fencingtest15" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1680856, -0.5000062, -10.736912)
+
+[node name="fencingtest16" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1680856, -0.5000062, -13.883484)
+
+[node name="fencingtest17" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1680856, -0.5000062, -15.363857)
+
+[node name="fencingtest18" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1680856, -0.5000062, -16.883484)
+
+[node name="fencingtest19" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1680856, -0.5000062, -18.182133)
+
+[node name="fencingtest11" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.080563, -0.5000062, -18.960312)
+
+[node name="fencingtest12" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.080563, -0.5000062, -17.858212)
+
+[node name="fencingtest20" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.283304, -0.5000062, -43.66842)
+
+[node name="fencingtest27" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.520419, -0.5000062, -46.902946)
+
+[node name="fencingtest22" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.283304, -0.5000062, -45.231865)
+
+[node name="fencingtest21" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1702676, -0.5000062, -43.241932)
+
+[node name="fencingtest30" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1702676, -0.5000062, -44.805378)
+
+[node name="fencingtest31" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1702676, -0.5000062, -45.746403)
+
+[node name="fencingtest23" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7865295, -0.5000062, -49.15315)
+
+[node name="fencingtest24" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.786529, -0.5000062, -50.672775)
+
+[node name="fencingtest25" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.786529, -0.5000062, -52.749603)
+
+[node name="fencingtest26" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.786529, -0.5000062, -51.647503)
+
+[node name="fencingtest32" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.272328, -0.5000062, -49.15315)
+
+[node name="fencingtest36" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.272328, -0.5000062, -48.25951)
+
+[node name="fencingtest33" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2723284, -0.5000062, -50.672775)
+
+[node name="fencingtest34" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2197638, -0.5000062, -52.749603)
+
+[node name="fencingtest35" parent="." groups=["Non-Portalable"] instance=ExtResource("26_ph4jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.213471, -0.5000062, -51.647503)
+
+[node name="fencingtest-bend" parent="." groups=["Non-Portalable"] instance=ExtResource("27_iqoy4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.3282337, -0.5000062, -20.249708)
+
+[node name="fencingtest-bend5" parent="." groups=["Non-Portalable"] instance=ExtResource("27_iqoy4")]
+transform = Transform3D(-0.99999994, 0, 1.1920929e-07, 0, 1, 0, -1.1920929e-07, 0, -0.99999994, 4.78926, -0.5000062, -47.65922)
+
+[node name="fencingtest-bend10" parent="." groups=["Non-Portalable"] instance=ExtResource("27_iqoy4")]
+transform = Transform3D(1.6292066e-07, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, 1.6292066e-07, -4.5073977, -0.5000062, -46.96569)
+
+[node name="fencingtest-bend7" parent="." groups=["Non-Portalable"] instance=ExtResource("27_iqoy4")]
+transform = Transform3D(-0.99999994, 0, 1.1920929e-07, 0, 1, 0, -1.1920929e-07, 0, -0.99999994, 2.288292, -0.5000062, -42.65922)
+
+[node name="fencingtest-bend8" parent="." groups=["Non-Portalable"] instance=ExtResource("27_iqoy4")]
+transform = Transform3D(0.3709222, -0.28898188, 0.88255656, 0.37737167, 0.91525155, 0.14108504, -0.8485324, 0.2807203, 0.44854072, -1.533104, -0.53117645, -41.829266)
+
+[node name="fencingtest-bend11" parent="." groups=["Non-Portalable"] instance=ExtResource("27_iqoy4")]
+transform = Transform3D(-0.5259283, 0.08641827, -0.84612733, 0.59112173, 0.7524231, -0.29057616, -0.6115349, 0.65298635, 0.44680429, 1.3333353, -0.8833856, -41.628593)
+
+[node name="fencingtest-bend9" parent="." groups=["Non-Portalable"] instance=ExtResource("27_iqoy4")]
+transform = Transform3D(-7.549787e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -7.549787e-08, -2.9345016, -0.5000062, -46.97285)
+
+[node name="fencingtest-bend6" parent="." groups=["Non-Portalable"] instance=ExtResource("27_iqoy4")]
+transform = Transform3D(0.9999999, 0, -3.178652e-08, 0, 1, 0, 3.178652e-08, 0, 0.9999999, 2.26704, -0.5000062, -46.14356)
+
+[node name="fencingtest-bend2" parent="." groups=["Non-Portalable"] instance=ExtResource("27_iqoy4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1745343, -0.5000062, -19.490883)
+
+[node name="fencingtest-bend3" parent="." groups=["Non-Portalable"] instance=ExtResource("27_iqoy4")]
+transform = Transform3D(0.29566714, 0.07546903, 0.9523053, -0.24732038, 0.9689339, 1.1571683e-08, -0.92272097, -0.2355245, 0.30514696, 1.2121067, -0.48950177, -20.343334)
+
+[node name="fencingtest-bend4" parent="." groups=["Non-Portalable"] instance=ExtResource("27_iqoy4")]
+transform = Transform3D(-0.57419705, -0.15086804, -0.8046967, -0.3857339, 0.9168023, 0.103357084, -0.72215456, -0.36974615, 0.5846201, -0.8589128, -0.5280698, -20.48572)
+
+[editable path="prefab_geomesh_button2/PrefabPedestalButton"]

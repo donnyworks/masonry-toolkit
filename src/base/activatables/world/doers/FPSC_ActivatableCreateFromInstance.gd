@@ -9,9 +9,13 @@ class_name FPSC_InstanceActivatable
 
 @export var destroy_preexisting := false ## Destroy the one that already exists
 
+@export var follow_position_rotation := false ## Set the instances' rotation to the rotation of the instantation marker
+
 @export var maximum_amount_allowed := 1
 
 @onready var inst
+
+static var instance_id = 0
 
 var just_spawned_node = false
 
@@ -45,8 +49,12 @@ func on_enter(_body:Node3D):
 		new_insts.remove_at(0)
 	var new_inst = inst.duplicate()
 	get_tree().current_scene.add_child(new_inst)
-	new_inst.name = inst.name + str(len(new_insts))
+	new_inst.name = inst.name + str(instance_id)
+	instance_id += 1
 	new_inst.global_position = instantiation_position.global_position
+	print("rot is ",instantiation_position.global_rotation)
+	if follow_position_rotation: new_inst.global_rotation = instantiation_position.global_rotation
 	new_insts.append(new_inst)
 	FPSC_MultiplayerFramework.cached_entities.append(new_inst)
+	FPSC_MultiplayerFramework.ObjectOUIDs[instance_id] = new_inst
 	just_spawned_node = true

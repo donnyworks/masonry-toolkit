@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://0uibck3r1xsr"]
+
+[ext_resource type="Script" uid="uid://yb3rn8qc64xk" path="res://src/afc/FPSC_AFC_Energy_Ball.gd" id="1_iwr3s"]
+[ext_resource type="Script" uid="uid://tr3ltvhgthf3" path="res://src/afc/FPSC_AFC_BallRotatingTorus.gd" id="2_e1upy"]
+[ext_resource type="AudioStream" uid="uid://dg8hcsejoqshw" path="res://sound/energy-ball-moving.wav" id="3_cbb5w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbb5w"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.3882353)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nveyv"]
+radius = 0.15262434
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x56ey"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1upy"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nveyv"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e1upy"]
+radius = 0.2
+
+[node name="Energyball" type="CharacterBody3D"]
+script = ExtResource("1_iwr3s")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radius = 0.15262434
+material = SubResource("StandardMaterial3D_cbb5w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_nveyv")
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
+inner_radius = 0.09217268
+outer_radius = 0.11636633
+material = SubResource("StandardMaterial3D_x56ey")
+script = ExtResource("2_e1upy")
+AxisOfRotation = 0
+
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="."]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+inner_radius = 0.09217268
+outer_radius = 0.11636633
+material = SubResource("StandardMaterial3D_e1upy")
+script = ExtResource("2_e1upy")
+AxisOfRotation = 1
+
+[node name="CSGTorus3D3" type="CSGTorus3D" parent="."]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1, 0, 1.9106855e-15, 0, 0, 0)
+inner_radius = 0.09217268
+outer_radius = 0.11636633
+material = SubResource("StandardMaterial3D_nveyv")
+script = ExtResource("2_e1upy")
+AxisOfRotation = 2
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_e1upy")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_cbb5w")
+autoplay = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

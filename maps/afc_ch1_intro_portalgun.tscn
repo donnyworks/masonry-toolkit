@@ -2843,18 +2843,8 @@ shadow_enabled = true
 [node name="prefab_geomesh_button2" parent="section2" instance=ExtResource("16_rcfvx")]
 transform = Transform3D(1.3113417e-07, -2.3651823e-30, 0.99999994, 1.6420279e-15, 1.0000002, -3.5527137e-15, -1.0000001, -2.940967e-23, 1.3113416e-07, -13.009281, -4.510007, -68.89807)
 
-[node name="FPSC_TriggerRelay2" type="Area3D" parent="section2/prefab_geomesh_button2" node_paths=PackedStringArray("activated")]
-script = ExtResource("4_otmw1")
-activated = [NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight5/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite"), NodePath("../../FPSC_CounterActivatable")]
-UseActivationDelay = true
-UseActivationDelayOnExit = true
-metadata/_custom_type_script = "uid://co0pdj3pf8nga"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="section2/prefab_geomesh_button2/FPSC_TriggerRelay2"]
-shape = SubResource("BoxShape3D_jitf1")
-
 [node name="IndicatorLight" type="Sprite3D" parent="section2/prefab_geomesh_button2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 0.021605015, -2.608982)
+transform = Transform3D(1.0000002, 1.490116e-08, 7.490115e-10, 1.4901156e-08, 1, 4.6566473e-10, -4.4743302e-09, 3.7252887e-09, 1.0000001, 0.21662903, 0.021605968, -2.6260424)
 modulate = Color(1, 0.5058824, 0.007843138, 1)
 pixel_size = 0.005
 axis = 1
@@ -2870,7 +2860,7 @@ on_color = Color(0.007843138, 1, 1, 1)
 metadata/_custom_type_script = "uid://bqnrdvouphbtn"
 
 [node name="IndicatorLight5" type="Sprite3D" parent="section2/prefab_geomesh_button2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 0.4885546, -3.4628754)
+transform = Transform3D(1.0000002, 1.490116e-08, 7.490115e-10, 1.4901156e-08, 1, 4.6566473e-10, -4.4743302e-09, 3.7252887e-09, 1.0000001, 0.21662903, 0.48855639, -3.4799337)
 modulate = Color(1, 0.5058824, 0.007843138, 1)
 pixel_size = 0.005
 texture = ExtResource("22_usdpj")
@@ -2886,7 +2876,7 @@ delay = 0.05
 metadata/_custom_type_script = "uid://bqnrdvouphbtn"
 
 [node name="sign" type="Sprite3D" parent="section2/prefab_geomesh_button2"]
-transform = Transform3D(1, 0, 0, -1.0587912e-22, 1, 3.567696e-24, 0, -3.761582e-37, 1, 0.3265915, 2.3848436, -3.4723444)
+transform = Transform3D(1.0000002, 1.490116e-08, 7.490115e-10, 1.4901156e-08, 1, 4.6566473e-10, -4.4743302e-09, 3.7252887e-09, 1.0000001, 0.3265915, 2.3848445, -3.4894018)
 pixel_size = 0.015
 render_priority = 1
 texture = ExtResource("24_8iduo")
@@ -2911,6 +2901,16 @@ metadata/_custom_type_script = "uid://bibdote7bt40k"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1275053)
 light_color = Color(1, 0.5058824, 0.007843138, 1)
 shadow_enabled = true
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="section2/prefab_geomesh_button2" node_paths=PackedStringArray("activated")]
+script = ExtResource("4_otmw1")
+activated = [NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight5/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite"), NodePath("../../FPSC_CounterActivatable")]
+UseActivationDelay = true
+UseActivationDelayOnExit = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="section2/prefab_geomesh_button2/FPSC_TriggerRelay2"]
+shape = SubResource("BoxShape3D_jitf1")
 
 [node name="CSGBox3D88" type="CSGBox3D" parent="section2" groups=["Non-Portalable"]]
 transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, -10, -5, -73.5)

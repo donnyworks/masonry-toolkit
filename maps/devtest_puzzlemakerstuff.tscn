@@ -1,0 +1,294 @@
+[gd_scene load_steps=19 format=3 uid="uid://b0c0lllx0ng0u"]
+
+[ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_ypx13"]
+[ext_resource type="Script" uid="uid://c31gr4qnx52ps" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsRotatingDoor.gd" id="2_5n0fb"]
+[ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/logic/FPSC_ActivatableRelay.gd" id="2_gamec"]
+[ext_resource type="Material" uid="uid://cbuoxl6trvib2" path="res://materials/portallable_surface.tres" id="2_qwgbp"]
+[ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="3_6mgyn"]
+[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="4_mr0mn"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="5_6mgyn"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="6_mr0mn"]
+[ext_resource type="PackedScene" uid="uid://b3o7n0obts8tv" path="res://instances/afc/prefab_pellet_catcher.tscn" id="9_5ik4a"]
+[ext_resource type="PackedScene" uid="uid://bsbnt8hfyu3je" path="res://instances/afc/prefab_pellet_launcher.tscn" id="9_6ouui"]
+[ext_resource type="PackedScene" uid="uid://bujgt2o11dkxq" path="res://instances/afc/prefab_box.tscn" id="9_gd37t"]
+[ext_resource type="PackedScene" uid="uid://plpnja5gt1i4" path="res://instances/portal/weapon_portalgun.tscn" id="10_gd37t"]
+[ext_resource type="Script" uid="uid://ckyi0gdrrolk1" path="res://src/base/skybox/FPSC_SkyboxCamera.gd" id="13_mks32"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5iu46"]
+
+[sub_resource type="Sky" id="Sky_commd"]
+sky_material = SubResource("ProceduralSkyMaterial_5iu46")
+
+[sub_resource type="Environment" id="Environment_gamec"]
+background_mode = 2
+sky = SubResource("Sky_commd")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6mgyn"]
+size = Vector3(4, 4, 3)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oh46i"]
+viewport_path = NodePath("CSGBox3D6/Sprite3D/SubViewport")
+
+[node name="DevtestPuzzlemakerstuff" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gamec")
+
+[node name="Player" parent="." instance=ExtResource("1_ypx13")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4.5)
+use_collision = true
+size = Vector3(10, 4, 1)
+material = ExtResource("2_qwgbp")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4.7673764)
+use_collision = true
+size = Vector3(10, 4, 1)
+material = ExtResource("2_qwgbp")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5, 0.5, -0.5)
+use_collision = true
+size = Vector3(10, 4, 1)
+material = ExtResource("2_qwgbp")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.5258427, 0.5, -0.5)
+use_collision = true
+size = Vector3(10, 4, 1)
+material = ExtResource("2_qwgbp")
+
+[node name="door" type="Node3D" parent="."]
+
+[node name="door_relay" type="Node" parent="door" node_paths=PackedStringArray("activatables")]
+script = ExtResource("2_gamec")
+activatables = [NodePath("../doorTop/FPSC_RotatingDoorActivatable"), NodePath("../doorBottom/FPSC_RotatingDoorActivatable"), NodePath("../FPSC_SoundPlayerActivatable")]
+metadata/_custom_type_script = "uid://cgae4dmf6xfos"
+
+[node name="doorTop" type="CSGBox3D" parent="door"]
+transform = Transform3D(1, 0, 0, 0, -3.5527137e-15, -1.0000001, 0, 1.0000001, -3.5527137e-15, 0, 1.5253544, -0.5034007)
+use_collision = true
+size = Vector3(0.001, 0.001, 0.001)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="door/doorTop"]
+transform = Transform3D(-1, 8.742278e-08, 0, -5.553581e-28, 0, 0.9999999, 8.742277e-08, 0.9999999, 0, 0, 0.48708218, 1.020608)
+use_collision = true
+size = Vector3(2, 1, 0.001)
+material = ExtResource("3_6mgyn")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="door/doorTop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002746582, -0.0004079342, 0.48896468)
+use_collision = true
+size = Vector3(0.142, 0.146, 0.966)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="door/doorTop/CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, 0, 0.9999999, 0, -0.9999999, 0, 0, 0.20153022, 0.5522733)
+use_collision = true
+size = Vector3(0.14172363, 0.14575195, 0.55810547)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="door/doorTop/CSGBox3D5/CSGBox3D4"]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, -0.002746582, 0.020629883, 0.2898779)
+use_collision = true
+size = Vector3(2, 1, 0.028320313)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="door/doorTop/CSGBox3D5/CSGBox3D4"]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0.005554199, 0.023651123, 0.2898779)
+operation = 2
+use_collision = true
+size = Vector3(1.9101563, 0.9022827, 0.028320313)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="door/doorTop/CSGBox3D5/CSGBox3D4/CSGBox3D4"]
+transform = Transform3D(1, -3.2840569e-15, 0, -3.2840569e-15, 1, 0, 0, 0, 1, 0.0076905014, 0, 9.313226e-10)
+operation = 2
+use_collision = true
+size = Vector3(0.32885742, 0.9022827, 0.028320313)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="door/doorTop/CSGBox3D5/CSGBox3D4/CSGBox3D4"]
+transform = Transform3D(1, -3.2840569e-15, 0, -3.2840569e-15, 1, 0, 0, 0, 1, 0.024697525, 0.022285461, -1.3038516e-08)
+operation = 2
+use_collision = true
+size = Vector3(2, 0.11265564, 0.028320313)
+
+[node name="FPSC_RotatingDoorActivatable" type="Node" parent="door/doorTop" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("2_5n0fb")
+object_as_door = NodePath("..")
+move_direction = 3
+metadata/_custom_type_script = "uid://c31gr4qnx52ps"
+
+[node name="doorBottom" type="CSGBox3D" parent="door"]
+transform = Transform3D(-1, -8.7422784e-08, -3.8213714e-15, 0, -4.3711392e-08, 1.0000001, -8.742278e-08, 1.0000001, 4.3711392e-08, 0, -1.5521765, -0.5034007)
+use_collision = true
+size = Vector3(0.001, 0.001, 0.001)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="door/doorBottom"]
+transform = Transform3D(1, 2.1316282e-14, 0, -2.1316282e-14, 1, 1.0658141e-14, 4.2351647e-22, -1.0658141e-14, 1, 0.002746582, -0.0004079342, 0.5220262)
+use_collision = true
+size = Vector3(0.142, 0.146, 0.966)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="door/doorBottom/CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, 0, 0.9999999, 0, -0.9999999, 0, 0, 0.20153022, 0.5522733)
+use_collision = true
+size = Vector3(0.14172363, 0.14575195, 0.55810547)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="door/doorBottom/CSGBox3D5/CSGBox3D4"]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, -0.002746582, 0.020629883, 0.2898779)
+use_collision = true
+size = Vector3(2, 1, 0.028320313)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="door/doorBottom/CSGBox3D5/CSGBox3D4"]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0.005554199, 0.023651123, 0.2898779)
+operation = 2
+use_collision = true
+size = Vector3(1.9101563, 0.9022827, 0.028320313)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="door/doorBottom/CSGBox3D5/CSGBox3D4/CSGBox3D4"]
+transform = Transform3D(1, -3.2840569e-15, 0, -3.2840569e-15, 1, 0, 0, 0, 1, 0.0076905014, 0, 9.313226e-10)
+operation = 2
+use_collision = true
+size = Vector3(0.32885742, 0.9022827, 0.028320313)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="door/doorBottom/CSGBox3D5/CSGBox3D4/CSGBox3D4"]
+transform = Transform3D(1, -3.2840569e-15, 0, -3.2840569e-15, 1, 0, 0, 0, 1, 0.024697525, 0.022285461, -1.3038516e-08)
+operation = 2
+use_collision = true
+size = Vector3(2, 0.11265564, 0.028320313)
+
+[node name="FPSC_RotatingDoorActivatable" type="Node" parent="door/doorBottom" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("2_5n0fb")
+object_as_door = NodePath("..")
+move_direction = 3
+metadata/_custom_type_script = "uid://c31gr4qnx52ps"
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="door/doorBottom"]
+transform = Transform3D(-1, 8.742278e-08, 0, -5.553581e-28, 0, 0.9999999, 8.742277e-08, 0.9999999, 0, 0, 0.48708218, 1.020608)
+use_collision = true
+size = Vector3(2, 1, 0.001)
+material = ExtResource("3_6mgyn")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="door"]
+transform = Transform3D(1, 0, 0, 0, 0, -1.0000001, 0, 1.0000001, 0, 0, 1.0062383, -0.5034007)
+use_collision = true
+size = Vector3(2, 1, 0.001)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="door"]
+transform = Transform3D(1, 0, 0, 0, 0, -1.0000001, 0, 1.0000001, 0, 0, -1.0074779, -0.5034007)
+use_collision = true
+size = Vector3(2, 1, 0.001)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="door"]
+stream = ExtResource("4_mr0mn")
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="door" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("5_6mgyn")
+stream_player = NodePath("../AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
+script = ExtResource("6_mr0mn")
+activated = [NodePath("../pelletLauncher/pelletCatcher/ActivatePelletLauncher")]
+interact_with = 1
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+shape = SubResource("BoxShape3D_6mgyn")
+
+[node name="box" parent="." instance=ExtResource("9_gd37t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3113542, -1, 1.7905918)
+
+[node name="pelletCatcher" parent="." instance=ExtResource("9_5ik4a")]
+transform = Transform3D(4.3711385e-08, -1, -8.940697e-08, -1, -4.371139e-08, 0, -2.6645353e-15, 8.940697e-08, -1, 3.75, -0.42192847, 3)
+
+[node name="OnPelletCatcherActivated" parent="pelletCatcher" index="3" node_paths=PackedStringArray("activatables")]
+activatables = [NodePath("../../door/door_relay")]
+
+[node name="WeaponPortalgun" parent="." instance=ExtResource("10_gd37t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5824943, -1.3699995, -1.4146023)
+
+[node name="pelletLauncher" parent="." instance=ExtResource("9_6ouui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2535477, -0.41050166, -4)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08306885, 0.14746094, -3.2647545)
+size = Vector3(0.8338623, 0.7050781, 0.7149048)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0010528564, 0.009185791, 0.4444635)
+operation = 2
+size = Vector3(0.7596741, 0.60443115, 0.22375488)
+
+[node name="Sprite3D" type="Sprite3D" parent="CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01587385, 0.3376341)
+pixel_size = 0.0012
+texture = SubResource("ViewportTexture_oh46i")
+
+[node name="SubViewport" type="SubViewport" parent="CSGBox3D6/Sprite3D"]
+own_world_3d = true
+size = Vector2i(640, 480)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CSGBox3D6/Sprite3D/SubViewport"]
+environment = SubResource("Environment_gamec")
+
+[node name="FPSC_SkyboxCamera" type="Camera3D" parent="CSGBox3D6/Sprite3D/SubViewport" node_paths=PackedStringArray("CameraOrigin")]
+transform = Transform3D(0.41862598, -0.67440903, 0.6082144, 0, 0.66972256, 0.7426114, -0.9081587, -0.31087643, 0.28036326, 4.7291408, 6.590353, 3.935406)
+fov = 70.01
+script = ExtResource("13_mks32")
+CameraOrigin = NodePath("../../../..")
+MovementScale = 1
+metadata/_custom_type_script = "uid://ckyi0gdrrolk1"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D6/Sprite3D/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D6/Sprite3D/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4.5)
+use_collision = true
+size = Vector3(10, 4, 1)
+material = ExtResource("2_qwgbp")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGBox3D6/Sprite3D/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4.7673764)
+use_collision = true
+size = Vector3(10, 4, 1)
+material = ExtResource("2_qwgbp")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D6/Sprite3D/SubViewport"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5, 0.5, -0.5)
+use_collision = true
+size = Vector3(10, 4, 1)
+material = ExtResource("2_qwgbp")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGBox3D6/Sprite3D/SubViewport"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.5258427, 0.5, -0.5)
+use_collision = true
+size = Vector3(10, 4, 1)
+material = ExtResource("2_qwgbp")
+
+[node name="FPSC_SkyboxCamera2" type="Camera3D" parent="CSGBox3D6/Sprite3D/SubViewport" node_paths=PackedStringArray("CameraOrigin")]
+transform = Transform3D(0.41862598, -0.67440903, 0.6082144, 0, 0.66972256, 0.7426114, -0.9081587, -0.31087643, 0.28036326, 4.7291408, 6.590353, 3.935406)
+fov = 70.01
+script = ExtResource("13_mks32")
+CameraOrigin = NodePath("../../../..")
+MovementScale = 1
+metadata/_custom_type_script = "uid://ckyi0gdrrolk1"
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.055099487, -0.2583937, -3.212555)
+size = Vector3(0.4801941, 0.107421875, 0.48901367)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.055099487, -0.317681, -3.212555)
+size = Vector3(0.795, 0.001, 0.934)
+
+[editable path="pelletCatcher"]
+[editable path="pelletLauncher"]

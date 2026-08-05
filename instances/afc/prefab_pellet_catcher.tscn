@@ -1,0 +1,126 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3o7n0obts8tv"]
+
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="1_x4qq7"]
+[ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/logic/FPSC_ActivatableRelay.gd" id="2_r0hlb"]
+[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/world/doers/FPSC_ActivatablePlayAnimation.gd" id="3_jti2b"]
+[ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="4_r0hlb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ouui"]
+size = Vector3(1, 0.48583984, 1)
+
+[sub_resource type="Animation" id="Animation_qwgbp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGCylinder3D/CSGCylinder3D4:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5161133]
+}
+
+[sub_resource type="Animation" id="Animation_6ouui"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGCylinder3D/CSGCylinder3D4:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.21022414, 1),
+"update": 0,
+"values": [0.5161133, 0.001]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gd37t"]
+_data = {
+&"RESET": SubResource("Animation_qwgbp"),
+&"new_animation": SubResource("Animation_6ouui")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jti2b"]
+size = Vector3(1, 0.1171875, 1)
+
+[node name="pelletCatcher" type="CSGCylinder3D"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+use_collision = true
+radius = 0.7182617
+height = 0.5
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24253178, 0)
+radius = 0.6538086
+height = 0.5
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0601397e-08, 0.15488529, 0)
+operation = 2
+radius = 0.53564453
+height = 0.67529297
+
+[node name="FPSC_Trigger" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
+script = ExtResource("1_x4qq7")
+activated = [NodePath("../AnimationPlayer/FPSC_AnimationActivatable"), NodePath("../OnPelletCatcherActivated")]
+UseActivationDelay = true
+UseActivationDelayOnExit = true
+FireOnExitAtAll = false
+interact_with = 0
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_Trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0816682e-17, 0.0012207031, 0)
+shape = SubResource("BoxShape3D_6ouui")
+
+[node name="OnPelletCatcherActivated" type="Node" parent="."]
+script = ExtResource("2_r0hlb")
+delay = 0.5
+metadata/_custom_type_script = "uid://cgae4dmf6xfos"
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, 0.46062183, 0)
+radius = 0.5527344
+height = 0.011779785
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, 0, 0)
+operation = 2
+radius = 0.5161133
+height = 0.465
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3192315, 0)
+light_color = Color(1, 0, 0, 1)
+shadow_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gd37t")
+}
+
+[node name="FPSC_AnimationActivatable" type="Node" parent="AnimationPlayer" node_paths=PackedStringArray("player")]
+script = ExtResource("3_jti2b")
+player = NodePath("..")
+animation = "new_animation"
+metadata/_custom_type_script = "uid://cd37fw45rkj5r"
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4654078e-10, -0.010215662, 0)
+script = ExtResource("1_x4qq7")
+activated = [NodePath("FPSC_ImpulseDamageActivatable"), NodePath("../OnPelletCatcherActivated"), NodePath("../AnimationPlayer/FPSC_AnimationActivatable")]
+FireOnExitAtAll = false
+interact_with = 8
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18066406, 0)
+shape = SubResource("BoxShape3D_jti2b")
+
+[node name="FPSC_ImpulseDamageActivatable" type="Node" parent="FPSC_TriggerRelay"]
+script = ExtResource("4_r0hlb")
+damage_delt = 100.0
+metadata/_custom_type_script = "uid://bilm264c25p6e"

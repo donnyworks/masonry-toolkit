@@ -1,0 +1,206 @@
+[gd_scene load_steps=12 format=3 uid="uid://bxsad2yn6s4rr"]
+
+[ext_resource type="Texture2D" uid="uid://dxtrfikjwrokp" path="res://textures/teleporter_teleportation.png" id="2_la16j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rj70k"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.8)
+albedo_texture = ExtResource("2_la16j")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ojjay"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.8)
+albedo_texture = ExtResource("2_la16j")
+uv1_scale = Vector3(1.385, 1.385, 1.385)
+uv1_offset = Vector3(-0.215, -0.185, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d6q2t"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jn40s"]
+transparency = 1
+albedo_color = Color(0, 0.8392157, 0.81960785, 0.40784314)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_py426"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1a04"]
+transparency = 1
+albedo_color = Color(0, 0.8392157, 0.81960785, 0.40784314)
+
+[sub_resource type="Animation" id="Animation_f86n1"]
+resource_name = "entry"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door_teleporter_exit:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.054, -1.138, 1.007), Vector3(-0.054, 1.74, 1.007), Vector3(-0.054, 1.74, 1.007)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("door_keeptheplayertrappedinthepod:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.472, 0), Vector3(0, 1.472, 0), Vector3(0, -1.826, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t4k50"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door_teleporter_exit:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.054, -1.138, 1.007)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("door_keeptheplayertrappedinthepod:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.472, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jiu48"]
+resource_name = "exit"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door_teleporter_exit:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.054, 1.74, 1.007), Vector3(-0.054, -1.138, 1.007)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("door_keeptheplayertrappedinthepod:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.826, 0), Vector3(0, 1.472, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jiu48"]
+_data = {
+&"RESET": SubResource("Animation_t4k50"),
+&"entry": SubResource("Animation_f86n1"),
+&"exit": SubResource("Animation_jiu48")
+}
+
+[node name="teleporter_entrance" type="Node3D"]
+
+[node name="door_teleporter_exit" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054, -1.138, 1.007)
+size = Vector3(0.119628906, 2.8782654, 0.15032959)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="door_teleporter_exit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053987145, 1.2361991, -1.0067444)
+radius = 1.0
+height = 0.185
+material = SubResource("StandardMaterial3D_rj70k")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="door_teleporter_exit/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8626451e-08, 0.5922203, 0)
+operation = 2
+size = Vector3(3, 1, 3)
+material = SubResource("StandardMaterial3D_ojjay")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="door_teleporter_exit/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8626451e-08, -0.58899, 0)
+operation = 2
+size = Vector3(3, 1, 3)
+material = SubResource("StandardMaterial3D_ojjay")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09994507, 0)
+use_collision = true
+radius = 1.1108398
+height = 0.15386963
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0682621, 1.5949488, 0.0067443848)
+size = Vector3(0.119628906, 3.291687, 0.15032959)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCylinder3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0545906, 1.5949488, 0.0067443848)
+size = Vector3(0.119628906, 3.291687, 0.15032959)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCylinder3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.053987145, 1.5949488, 1.0067444)
+size = Vector3(0.119628906, 3.291687, 0.15032959)
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4721832, 0)
+use_collision = true
+radius = 1.1108398
+height = 3.2981262
+material = SubResource("StandardMaterial3D_d6q2t")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="CSGCylinder3D3"]
+operation = 2
+use_collision = true
+radius = 1.0019531
+height = 3.2981262
+material = SubResource("StandardMaterial3D_jn40s")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.056396484, -0.30215454, -1.0855076)
+operation = 2
+size = Vector3(4.1157227, 4.635803, 2.3378906)
+
+[node name="door_keeptheplayertrappedinthepod" type="CSGCylinder3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.472, 0)
+use_collision = true
+radius = 1.1108398
+height = 3.2981262
+material = SubResource("StandardMaterial3D_py426")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="door_keeptheplayertrappedinthepod"]
+operation = 2
+use_collision = true
+radius = 1.0019531
+height = 3.2981262
+material = SubResource("StandardMaterial3D_y1a04")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="door_keeptheplayertrappedinthepod"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.056396484, -0.30215454, -1.0855076)
+operation = 2
+size = Vector3(4.1157227, 4.635803, 2.3378906)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jiu48")
+}

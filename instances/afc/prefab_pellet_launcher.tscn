@@ -1,0 +1,260 @@
+[gd_scene load_steps=14 format=3 uid="uid://bsbnt8hfyu3je"]
+
+[ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/logic/FPSC_ActivatableRelay.gd" id="1_6jp3n"]
+[ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/world/doers/FPSC_ActivatableCreateFromInstance.gd" id="2_3ejlq"]
+[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/world/doers/FPSC_ActivatablePlayAnimation.gd" id="3_vy0d0"]
+[ext_resource type="PackedScene" uid="uid://0uibck3r1xsr" path="res://instances/afc/energyball.tscn" id="4_x4kwy"]
+[ext_resource type="Script" uid="uid://tr3ltvhgthf3" path="res://src/afc/FPSC_AFC_BallRotatingTorus.gd" id="5_3ejlq"]
+[ext_resource type="AudioStream" uid="uid://ckcbtfwhvjlnm" path="res://sound/energy-ball-launcher.wav" id="6_vy0d0"]
+
+[sub_resource type="Animation" id="Animation_oh46i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGCylinder3D/CSGCylinder3D4:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.001]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Node3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Node3D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Node3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AudioStreamPlayer3D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mks32"]
+resource_name = "the thing"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGCylinder3D/CSGCylinder3D4:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(6.4980164, 1, 2.732081, 1),
+"update": 0,
+"values": [0.001, 0.516, 0.516, 0.001]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Node3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.99, 1, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Node3D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Node3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.56, 0.99),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.112226784), Vector3(0, 0, 0.22387108)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AudioStreamPlayer3D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yuisx"]
+_data = {
+&"RESET": SubResource("Animation_oh46i"),
+&"the thing": SubResource("Animation_mks32")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vy0d0"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.3882353)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4kwy"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1w0et"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ee0ln"]
+albedo_color = Color(0, 1, 0, 1)
+
+[node name="pelletLauncher" type="Node3D"]
+
+[node name="pelletCatcher" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+use_collision = true
+radius = 0.7182617
+height = 0.5
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="pelletCatcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24253178, 0)
+radius = 0.6538086
+height = 0.5
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="pelletCatcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0601397e-08, 0.15488529, 0)
+operation = 2
+radius = 0.53564453
+height = 0.67529297
+
+[node name="ActivatePelletLauncher" type="Node" parent="pelletCatcher" node_paths=PackedStringArray("activatables")]
+script = ExtResource("1_6jp3n")
+activatables = [NodePath("../FPSC_InstanceActivatable"), NodePath("../AnimationPlayer/FPSC_AnimationActivatable")]
+use_delay_on_enter = true
+use_delay_on_exit = true
+delay = 0.5
+metadata/_custom_type_script = "uid://cgae4dmf6xfos"
+
+[node name="FPSC_InstanceActivatable" type="Node" parent="pelletCatcher" node_paths=PackedStringArray("instance", "instantiation_position")]
+script = ExtResource("2_3ejlq")
+instance = NodePath("../../Marker3D/Energyball")
+instantiation_position = NodePath("../../Marker3D")
+preserve_original = false
+destroy_preexisting = true
+follow_position_rotation = true
+maximum_amount_allowed = 999
+delay = 1.0
+metadata/_custom_type_script = "uid://cmfhvuspob06n"
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="pelletCatcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, 0.46062183, 0)
+radius = 0.5527344
+height = 0.011779785
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="pelletCatcher/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, 0, 0)
+operation = 2
+radius = 0.001
+height = 0.465
+
+[node name="OmniLight3D" type="OmniLight3D" parent="pelletCatcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3192315, 0)
+light_color = Color(1, 0, 0, 1)
+shadow_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pelletCatcher"]
+libraries = {
+&"": SubResource("AnimationLibrary_yuisx")
+}
+
+[node name="FPSC_AnimationActivatable" type="Node" parent="pelletCatcher/AnimationPlayer" node_paths=PackedStringArray("player")]
+script = ExtResource("3_vy0d0")
+player = NodePath("..")
+animation = "the thing"
+metadata/_custom_type_script = "uid://cd37fw45rkj5r"
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0.22678852)
+
+[node name="Energyball" parent="Marker3D" instance=ExtResource("4_x4kwy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0034871101)
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, 0)
+visible = false
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Node3D"]
+radius = 0.15262434
+material = SubResource("StandardMaterial3D_vy0d0")
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="Node3D"]
+inner_radius = 0.09217268
+outer_radius = 0.11636633
+material = SubResource("StandardMaterial3D_x4kwy")
+script = ExtResource("5_3ejlq")
+AxisOfRotation = 0
+
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="Node3D"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+inner_radius = 0.09217268
+outer_radius = 0.11636633
+material = SubResource("StandardMaterial3D_1w0et")
+script = ExtResource("5_3ejlq")
+AxisOfRotation = 1
+
+[node name="CSGTorus3D3" type="CSGTorus3D" parent="Node3D"]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1, 0, 1.9106855e-15, 0, 0, 0)
+inner_radius = 0.09217268
+outer_radius = 0.11636633
+material = SubResource("StandardMaterial3D_ee0ln")
+script = ExtResource("5_3ejlq")
+AxisOfRotation = 2
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_vy0d0")
+volume_db = 39.506

@@ -1,0 +1,3085 @@
+[gd_scene load_steps=50 format=3 uid="uid://csu8lu6rm6k7t"]
+
+[ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="1_0v6xc"]
+[ext_resource type="Script" uid="uid://sl4hinpkxef0" path="res://src/base/FPSC_DevNote.gd" id="2_5s2ur"]
+[ext_resource type="Script" uid="uid://c10lkodrlqtba" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoicelines.gd" id="2_mocie"]
+[ext_resource type="AudioStream" uid="uid://cd41ce3r7gnle" path="res://sound/vo/announcer/ch3/Chamber3.Intro.01.wav" id="3_0v6xc"]
+[ext_resource type="AudioStream" uid="uid://bd7v6s4w0raet" path="res://sound/vo/announcer/ch3/Chamber3.Intro.02.wav" id="4_5s2ur"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="5_btfqv"]
+[ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="6_5alo5"]
+[ext_resource type="Material" uid="uid://cbuoxl6trvib2" path="res://materials/portallable_surface.tres" id="7_7on1g"]
+[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/world/doers/FPSC_ActivatablePlayAnimation.gd" id="7_btfqv"]
+[ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="8_xvque"]
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="9_4v7nu"]
+[ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="10_bpk5c"]
+[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="11_llggt"]
+[ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleModulationColor.gd" id="12_d0k4j"]
+[ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="13_sb5g5"]
+[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="14_tt035"]
+[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="15_v4nmm"]
+[ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleLightModulationColor.gd" id="16_w5wmx"]
+[ext_resource type="PackedScene" uid="uid://dgu5jhd4hnjek" path="res://instances/afc/prefab_pedestal_button.tscn" id="17_8rr02"]
+[ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="18_ku2o0"]
+[ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="19_8fbue"]
+[ext_resource type="PackedScene" uid="uid://da8fywn53c78t" path="res://maps/afc_ch1_gain_flings.tscn" id="20_wrgt1"]
+[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="21_2rs4q"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="22_48cf1"]
+[ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="23_w48bg"]
+[ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="24_ri8ol"]
+[ext_resource type="Script" uid="uid://l3j5m0d3m6rj" path="res://src/base/triggers/FPSC_TriggerCatapult.gd" id="25_7kxct"]
+[ext_resource type="PackedScene" uid="uid://f0qlfetn1pdk" path="res://instances/afc/prefab_catapult.tscn" id="26_da26f"]
+[ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="27_5hyem"]
+[ext_resource type="PackedScene" uid="uid://dq51aafo7rnkc" path="res://models/fencingtest.glb" id="28_tlguk"]
+[ext_resource type="PackedScene" uid="uid://bmwgm7cropbr4" path="res://models/fencingtest-bend.glb" id="29_2y7a6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6rt8"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rj70k"]
+
+[sub_resource type="Animation" id="Animation_17nuf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CSGCylinder3D5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CSGCylinder3D5:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CSGCylinder3D5/CSGCylinder3D9:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5707964)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../CSGCylinder3D3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, 0.007, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../CSGCylinder3D2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.5, 0.007, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ga8du"]
+resource_name = "pedestal_lower"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CSGCylinder3D5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -1.9225067, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CSGCylinder3D5:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -1.5707964, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CSGCylinder3D5/CSGCylinder3D9:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-3.1415927, 0, 1.5707964), Vector3(-1.5707964, 0, 1.5707964), Vector3(0, 0, 1.5707964)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../CSGCylinder3D3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.2333333, 2.2333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.007, 0), Vector3(0.5, 0.007, 0), Vector3(0, 0.007, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../CSGCylinder3D2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.2333333, 2.2333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.5, 0.007, 0), Vector3(-0.5, 0.007, 0), Vector3(0, 0.007, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qpk4i"]
+_data = {
+&"RESET": SubResource("Animation_17nuf"),
+&"pedestal_lower": SubResource("Animation_ga8du")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fvsl6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i51bh"]
+size = Vector3(7, 5, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_myc1a"]
+
+[sub_resource type="Sky" id="Sky_di4mo"]
+sky_material = SubResource("ProceduralSkyMaterial_myc1a")
+
+[sub_resource type="Environment" id="Environment_trqo6"]
+background_mode = 2
+sky = SubResource("Sky_di4mo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_myc1a"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgjho"]
+transparency = 1
+albedo_color = Color(0.30980393, 0.4862745, 0.12156863, 0.5058824)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fvxb"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.23137255)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w0j7r"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_647lt"]
+height = 2.845581
+radius = 0.75634766
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5uqj5"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qqv62"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hvpop"]
+size = Vector3(6, 1, 5)
+
+[node name="AfcIndevNewTrustFling" type="Node3D"]
+
+[node name="prefab_chamber_entryway" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8364868, -4)
+use_collision = true
+size = Vector3(5, 1.3270264, 13)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="prefab_chamber_entryway/CSGBox3D"]
+operation = 2
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+use_collision = true
+size = Vector3(5, 5, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.163513, -4)
+use_collision = true
+size = Vector3(5, 1.3270264, 13)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.3270264, -4)
+use_collision = true
+size = Vector3(1, 7, 13)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.3270264, -4)
+use_collision = true
+size = Vector3(1, 7, 13)
+
+[node name="teleporter_entrance" parent="prefab_chamber_entryway" instance=ExtResource("1_0v6xc")]
+
+[node name="FPSC_DevNote" type="Label3D" parent="prefab_chamber_entryway/teleporter_entrance"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1, 0)
+render_priority = 2
+outline_render_priority = 1
+text = "PUT PLAYER IN POD!"
+script = ExtResource("2_5s2ur")
+metadata/_custom_type_script = "uid://sl4hinpkxef0"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="prefab_chamber_entryway" groups=["lights"]]
+transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 0, 2.512, -4)
+light_energy = 4.167
+shadow_enabled = true
+spot_range = 33.0
+
+[node name="door_entrance" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6635132, -9.9626465)
+use_collision = true
+size = Vector3(5, 4, 0.92529297)
+material = SubResource("StandardMaterial3D_k6rt8")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="prefab_chamber_entryway/door_entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3960664, 0, 0)
+stream = ExtResource("21_2rs4q")
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="prefab_chamber_entryway/door_entrance" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("22_48cf1")
+stream_player = NodePath("../AudioStreamPlayer3D")
+delay = 3.0
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="prefab_chamber_entryway/door_entrance"]
+autoplay = true
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_entryway" node_paths=PackedStringArray("activated")]
+script = ExtResource("5_btfqv")
+activated = [NodePath("../entry_door"), NodePath("../door_entrance/FPSC_SoundPlayerActivatable")]
+UseActivationDelay = true
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_entryway/FPSC_TriggerRelay"]
+transform = Transform3D(-3.6717566e-08, 0, -0.84, 0, 0.84, 0, 0.84, 0, -3.6717566e-08, 0.10735798, 1.5074793, -3.649968)
+shape = SubResource("BoxShape3D_rj70k")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="prefab_chamber_entryway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -8)
+shadow_enabled = true
+
+[node name="PrefabNewPortalgunPedestal" type="Node3D" parent="prefab_chamber_entryway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011641026, -0.13813639, -3.9991665)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.030517578, 0)
+operation = 2
+radius = 0.44482422
+height = 1.9389648
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.017028809, 0)
+use_collision = true
+radius = 0.6254883
+height = 0.034057617
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.030517578, 0)
+operation = 2
+height = 1.9389648
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal" groups=["Non-Portalable"]]
+use_collision = true
+radius = 0.42626953
+height = 0.034057617
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7285811, 0)
+radius = 0.11621094
+height = 1.4240417
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5"]
+transform = Transform3D(2.9802322e-08, 1, 0, -1, 2.9802322e-08, 0, 0, 0, 1, 0, 1.4963689, 0)
+radius = 0.1508789
+height = 0.482
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5/CSGCylinder3D7"]
+operation = 2
+radius = 0.13232422
+height = 0.482
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5/CSGCylinder3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2434082, 0.018371582, 0)
+operation = 2
+size = Vector3(0.5131836, 0.58288574, 1)
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5"]
+transform = Transform3D(-4.3711385e-08, 0.9999999, 0, -0.9999999, -4.3711385e-08, 0, 0, 0, 1, 0, 1.4963689, 0)
+radius = 0.1508789
+height = 0.482
+material = ExtResource("8_xvque")
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5/CSGCylinder3D9"]
+operation = 2
+radius = 0.13232422
+height = 0.482
+material = ExtResource("8_xvque")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5/CSGCylinder3D9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2434082, 0.0041503897, 0)
+operation = 2
+size = Vector3(0.5131836, 0.41357422, 1)
+material = ExtResource("8_xvque")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5/CSGCylinder3D9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2711122, 0.012664779, 0)
+operation = 2
+size = Vector3(0.5131836, 0.7503052, 1)
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 1.5005347, 0)
+operation = 2
+radius = 0.13232422
+height = 0.482
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.007, 0)
+use_collision = true
+height = 0.015625
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+operation = 2
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.007, 0)
+use_collision = true
+height = 0.015625
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+operation = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal"]
+root_node = NodePath("../FPSC_TriggerRelay")
+libraries = {
+&"": SubResource("AnimationLibrary_qpk4i")
+}
+
+[node name="FPSC_AnimationActivatable" type="Node" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal" node_paths=PackedStringArray("player")]
+script = ExtResource("7_btfqv")
+player = NodePath("../AnimationPlayer")
+animation = "pedestal_lower"
+metadata/_custom_type_script = "uid://cd37fw45rkj5r"
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal" node_paths=PackedStringArray("activated")]
+transform = Transform3D(0.825, 0, 0, 0, 0.825, 0, 0, 0, 0.825, 0, 1.4902012, 0)
+script = ExtResource("5_btfqv")
+activated = [NodePath("../FPSC_AnimationActivatable")]
+trigger_once = true
+interact_with = 1
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_fvsl6")
+
+[node name="entry_door" type="Node" parent="prefab_chamber_entryway" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("9_4v7nu")
+object_as_door = NodePath("../door_entrance")
+stay_open = true
+delay = 3.0
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4689817, 1.6302683, -7.5)
+use_collision = true
+size = Vector3(0.26220703, 3, 2)
+
+[node name="Label3D" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 1.2564766, 0)
+text = "TEST CHAMBER 03"
+
+[node name="Label3D2" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.84315467, -0.8630085)
+text = "Potential hazards:
+"
+horizontal_alignment = 0
+
+[node name="Label3D4" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.6144767, -0.8630085)
+text = "[|||                                   ]
+TESTING COURSE B"
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="Label3D3" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
+text = "Acidic Pools
+Portals
+Aerial Faith Plates
+Boxes
+Buttons
+Portalable surfaces"
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="FPSC_MultiVoicelineActivatable" type="Node" parent="prefab_chamber_entryway" node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("2_mocie")
+voiceline_player = NodePath("AudioStreamPlayer")
+character_voicelines = Array[AudioStream]([ExtResource("3_0v6xc"), ExtResource("4_5s2ur")])
+localized_caption_prefix = "Announcer.Chamber3."
+metadata/_custom_type_script = "uid://c10lkodrlqtba"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="prefab_chamber_entryway/FPSC_MultiVoicelineActivatable"]
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="prefab_chamber_entryway" node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
+script = ExtResource("5_btfqv")
+activated = [NodePath("../FPSC_MultiVoicelineActivatable")]
+trigger_once = true
+interact_with = 1
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_entryway/FPSC_TriggerRelay2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_i51bh")
+
+[node name="Player" parent="." instance=ExtResource("6_5alo5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2987212, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_trqo6")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(0, -1.0000001, -4.371139e-08, 0, -4.371139e-08, 1, -1.0000001, 0, -8.881784e-16, 8, 13.163513, -17.5)
+flip_faces = true
+size = Vector3(500, 500, 500)
+material = SubResource("StandardMaterial3D_myc1a")
+
+[node name="chambergeometry" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -6.000002, -133.5, -19)
+use_collision = true
+size = Vector3(19, 266, 17)
+
+[node name="CSGBox3D56" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -22, 18.5, -41.5)
+use_collision = true
+size = Vector3(103, 6, 90)
+
+[node name="CSGBox3D64" type="CSGBox3D" parent="chambergeometry/CSGBox3D56" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.25, 0, 10)
+operation = 2
+use_collision = true
+size = Vector3(2, 6, 2)
+
+[node name="CSGBox3D59" type="CSGBox3D" parent="chambergeometry/CSGBox3D56" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -37.5)
+operation = 2
+use_collision = true
+size = Vector3(5, 6, 5)
+
+[node name="CSGBox3D60" type="CSGBox3D" parent="chambergeometry"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -35, 16, -79)
+use_collision = true
+size = Vector3(5, 1, 5)
+material = ExtResource("7_7on1g")
+
+[node name="walls" type="Node3D" parent="chambergeometry"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -5.722046e-06, 0, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, -131, -31.5)
+use_collision = true
+size = Vector3(19, 305, 42)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 7, -31.5)
+use_collision = true
+size = Vector3(9, 29, 42)
+
+[node name="CSGBox3D59" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.5, 7, -31.5)
+use_collision = true
+size = Vector3(12, 29, 42)
+
+[node name="CSGBox3D61" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.5, -0.5, -31.5)
+use_collision = true
+size = Vector3(6, 14, 42)
+
+[node name="CSGBox3D62" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.5, 14, -31.5)
+use_collision = true
+size = Vector3(6, 3, 42)
+
+[node name="CSGBox3D63" type="CSGBox3D" parent="chambergeometry/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.5, 9.5, -51)
+use_collision = true
+size = Vector3(6, 6, 1)
+material = ExtResource("7_7on1g")
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="chambergeometry/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71, -2, -67)
+use_collision = true
+size = Vector3(1, 9, 29)
+material = ExtResource("7_7on1g")
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71, 12, -67)
+use_collision = true
+size = Vector3(1, 19, 29)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 3, -64.5)
+use_collision = true
+size = Vector3(1, 37, 24)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, -10)
+use_collision = true
+size = Vector3(7, 17, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, -163.5, -10)
+use_collision = true
+size = Vector3(57, 370, 1)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 3, -77)
+use_collision = true
+size = Vector3(54, 37, 1)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D10" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.5, 0)
+operation = 2
+use_collision = true
+size = Vector3(16, 6, 2)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D10" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999998, 6.5, 0)
+operation = 2
+use_collision = true
+size = Vector3(6, 6, 2)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D10" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(7, 15, 2)
+
+[node name="CSGBox3D58" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.982422, 9, -77)
+use_collision = true
+size = Vector3(0.96484375, 25, 1)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5, 3, -82)
+use_collision = true
+size = Vector3(6, 37, 1)
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5, 3, -82)
+use_collision = true
+size = Vector3(34, 37, 1)
+
+[node name="CSGBox3D64" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D28" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.3393555, 0)
+operation = 2
+use_collision = true
+size = Vector3(5, 3.678711, 1)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5, 3, -85.5)
+use_collision = true
+size = Vector3(16, 37, 16)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.499997, 3, -79.5)
+use_collision = true
+size = Vector3(16, 37, 4)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.500001, 5, -77)
+use_collision = true
+size = Vector3(16, 15, 0.1)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D36" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D37" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D38" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D39" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D40" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D41" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D42" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D43" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D44" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D45" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D46" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D47" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D48" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D49" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D50" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D51" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D52" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D53" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D54" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D55" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D56" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D57" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D58" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D59" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D60" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D61" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D62" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D63" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D64" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D65" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D66" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, 2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D67" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D68" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D69" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D70" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D71" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D72" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D73" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D74" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D75" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D76" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D77" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D78" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D79" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D80" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D81" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D82" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D83" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, 3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D84" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D85" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D86" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D87" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D88" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D89" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D90" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D91" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D92" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D93" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D94" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D95" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D96" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D97" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D98" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D99" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D100" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, 4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D101" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D102" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D103" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D104" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D105" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D106" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D107" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D108" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D109" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D110" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D111" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D112" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D113" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D114" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D115" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D116" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D117" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, 5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D118" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D119" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D120" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D121" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D122" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D123" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D124" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D125" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D126" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D127" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D128" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D129" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D130" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D131" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D132" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D133" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D134" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, 6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D135" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D136" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D137" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D138" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D139" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D140" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D141" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D142" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D143" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D144" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D145" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D146" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D147" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D148" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D149" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D150" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D151" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, 7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D152" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D153" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D154" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D155" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D156" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D157" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D158" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D159" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D160" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D161" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D162" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D163" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D164" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D165" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D166" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D167" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D168" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, -8, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D169" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D170" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D171" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D172" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D173" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D174" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D175" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D176" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D177" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D178" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D179" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D180" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D181" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D182" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D183" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D184" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D185" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, -7, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D186" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D187" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D188" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D189" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D190" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D191" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D192" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D193" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D194" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D195" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D196" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D197" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D198" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D199" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D200" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D201" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D202" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, -6, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D203" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D204" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D205" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D206" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D207" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D208" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D209" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D210" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D211" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D212" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D213" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D214" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D215" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D216" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D217" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D218" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D219" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, -5, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D220" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D221" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D222" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D223" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D224" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D225" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D226" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D227" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D228" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D229" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D230" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D231" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D232" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D233" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D234" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D235" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D236" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, -4, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D237" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D238" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D239" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D240" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D241" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D242" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D243" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D244" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D245" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D246" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D247" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D248" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D249" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D250" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D251" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D252" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D253" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, -3, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D254" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D255" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D256" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D257" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D258" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D259" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D260" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D261" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D262" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D263" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D264" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D265" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D266" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D267" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D268" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D269" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D270" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, -2, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D271" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D272" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D273" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D274" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999995, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D275" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D276" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D277" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D278" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D279" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D280" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.999999, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D281" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D282" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.999999, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D283" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9999995, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D284" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.999999, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D285" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.999999, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D286" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9999986, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D287" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D15" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999986, -1, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.9, 0.9, 1)
+
+[node name="CSGBox3D57" type="CSGBox3D" parent="chambergeometry/walls" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 6, -79)
+use_collision = true
+size = Vector3(5, 19, 5)
+material = ExtResource("8_xvque")
+
+[node name="CSGBox3D58" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D57" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.032958984, -7.5, 0)
+operation = 2
+use_collision = true
+size = Vector3(4.934082, 4, 5)
+material = ExtResource("8_xvque")
+
+[node name="CSGBox3D60" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D57" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.032958984, 3.5, 0)
+operation = 2
+use_collision = true
+size = Vector3(4.934, 18, 4.934)
+material = ExtResource("8_xvque")
+
+[node name="CSGBox3D59" type="CSGBox3D" parent="chambergeometry/walls/CSGBox3D57" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14117432, 7.5, -0.31860352)
+operation = 2
+use_collision = true
+size = Vector3(5.1396484, 4, 5.362793)
+material = ExtResource("8_xvque")
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -55.500004, 3, -67)
+use_collision = true
+size = Vector3(6, 7, 29)
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -57.5, -155, -67)
+use_collision = true
+size = Vector3(28, 297, 29)
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(0.9999933, 0, -0.003682637, 0, 1, 0, 0.003682637, 0, 0.9999933, -52, 3, -66.5)
+use_collision = true
+size = Vector3(1, 7, 2)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 18.5, -295, -64.5)
+use_collision = true
+size = Vector3(8, 581, 24)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="chambergeometry"]
+transform = Transform3D(0.5, -0.8660253, -2.035537e-08, 0.8660253, 0.5, 0, 1.01776845e-08, -1.7628265e-08, 1.0000001, 17.55, 0.121, -58.5)
+use_collision = true
+size = Vector3(6, 1, 5)
+material = ExtResource("7_7on1g")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -33.5, -208.5, -79)
+use_collision = true
+size = Vector3(8, 410, 5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -5, -120, -31.499998)
+use_collision = true
+size = Vector3(17, 239, 8)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -33, -8, -31.5)
+use_collision = true
+size = Vector3(3, 15, 2)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -33, -8, -58.5)
+use_collision = true
+size = Vector3(3, 15, 2)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -8.000001, -8, -58.5)
+use_collision = true
+size = Vector3(3, 15, 2)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -18, -8, -69.5)
+use_collision = true
+size = Vector3(3, 15, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -4.000001, -691.5, -37.5)
+use_collision = true
+size = Vector3(15, 1382, 4)
+
+[node name="acid" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -122.5, -42)
+size = Vector3(98, 230, 75)
+material = SubResource("StandardMaterial3D_fgjho")
+
+[node name="pitOfDarknessAndDespair" type="Node3D" parent="chambergeometry"]
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -232.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -224.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -216.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -208.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D36" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -200.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D37" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -192.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D38" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -184.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D39" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -176.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D40" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -168.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D41" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -160.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D42" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -152.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D43" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -144.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D44" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -137.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D45" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -129.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D46" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -121.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D47" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -113.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D48" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -105.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D49" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -97.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D50" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -89.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D51" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -81.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D52" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -73.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D53" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -65.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D54" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -57.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D55" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -49.5, -48.5)
+size = Vector3(98, 8, 88)
+material = SubResource("StandardMaterial3D_6fvxb")
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, -172.5, -31.5)
+use_collision = true
+size = Vector3(3, 314, 2)
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, -172.5, -58.5)
+use_collision = true
+size = Vector3(3, 314, 2)
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -172.5, -58.5)
+use_collision = true
+size = Vector3(3, 314, 2)
+
+[node name="CSGBox3D56" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, -172.5, -69.5)
+use_collision = true
+size = Vector3(3, 314, 2)
+
+[node name="CSGBox3D57" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.5, -173, -31.5)
+use_collision = true
+size = Vector3(28, 331, 42)
+
+[node name="CSGBox3D58" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -140.5, -77)
+use_collision = true
+size = Vector3(54, 250, 1)
+
+[node name="CSGBox3D59" type="CSGBox3D" parent="chambergeometry/pitOfDarknessAndDespair" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5, -135.5, -82)
+use_collision = true
+size = Vector3(34, 240, 1)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, -26.5, -4, -79.5)
+use_collision = true
+size = Vector3(22, 1, 6)
+
+[node name="FPSC_DoorActivatable" type="Node" parent="CSGBox3D13" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("9_4v7nu")
+object_as_door = NodePath("..")
+move_direction = 6
+stay_open = true
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="prefab_geomesh_button" parent="." instance=ExtResource("10_bpk5c")]
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -35, -3.5, -79)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_geomesh_button" node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0003042221, 0)
+script = ExtResource("5_btfqv")
+activated = [NodePath("../../door_exit/FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite"), NodePath("../../door_exit/FPSC_SoundPlayerActivatable")]
+UseActivationDelay = true
+UseActivationDelayOnExit = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_geomesh_button/FPSC_TriggerRelay"]
+transform = Transform3D(0.9999965, 0, 0, 0, 1, 0, 0, 0, 0.9999965, 0, 0, 0)
+shape = SubResource("BoxShape3D_w0j7r")
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="prefab_geomesh_button" node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0003042221, 0)
+script = ExtResource("5_btfqv")
+activated = [NodePath("../../CSGBox3D13/FPSC_DoorActivatable")]
+interact_with = 1
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_geomesh_button/FPSC_TriggerRelay2"]
+transform = Transform3D(0.9999965, 0, 0, 0, 1, 0, 0, 0, 0.9999965, 0, 0, 0)
+shape = SubResource("BoxShape3D_w0j7r")
+
+[node name="IndicatorLight" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.667, 0, 0, 0, 1, 0, 0, 0, 0.667, 0.21661949, 5.941963, -1.6572266)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+texture = ExtResource("11_llggt")
+region_enabled = true
+region_rect = Rect2(0, -2368, 64, 2432)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight" node_paths=PackedStringArray("sprite")]
+script = ExtResource("12_d0k4j")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight2" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.667, 0, 0, 0, 1, 0, 0, 0, 0.667, -5.84968, 11.892424, -1.6572266)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+texture = ExtResource("11_llggt")
+region_enabled = true
+region_rect = Rect2(0, 0, 3584, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight2" node_paths=PackedStringArray("sprite")]
+script = ExtResource("12_d0k4j")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.05
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight3" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.667, 0, 0, 0, 1, 0, 0, 0, 0.667, -13.024319, 6.429135, -1.3289986)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+texture = ExtResource("11_llggt")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 320)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight3" node_paths=PackedStringArray("sprite")]
+script = ExtResource("12_d0k4j")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.1
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="sign" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.667, 0, 0, 0, 1, 0, 0, 0, 0.667, -11.559313, 11.846957, -1.6405678)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("13_sb5g5")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign" node_paths=PackedStringArray("sprite")]
+script = ExtResource("14_tt035")
+sprite = NodePath("..")
+texture_b = ExtResource("15_v4nmm")
+switch_back_on_exit = true
+delay = 0.1
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="signlite" type="Node" parent="prefab_geomesh_button/sign" node_paths=PackedStringArray("light")]
+script = ExtResource("16_w5wmx")
+light = NodePath("../OmniLight3D")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.1
+metadata/_custom_type_script = "uid://bibdote7bt40k"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="prefab_geomesh_button/sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1275053)
+light_color = Color(1, 0.5058824, 0.007843138, 1)
+shadow_enabled = true
+
+[node name="PrefabPedestalButton" parent="." instance=ExtResource("17_8rr02")]
+transform = Transform3D(-0.0036826807, 0, -0.9999933, 0, 1, 0, 0.9999933, 0, -0.0036826807, -52, 6.524305, -66.5)
+
+[node name="buttonPressed" parent="PrefabPedestalButton/pedestalButtonDoor" index="2" node_paths=PackedStringArray("activatables")]
+activatables = [NodePath("../buttonDoor"), NodePath("../buttonDoorUnpress"), NodePath("../buttonSoundEffect"), NodePath("../../../PrefabBoxDropper/dropper")]
+
+[node name="prefab_chamber_exithall" parent="." instance=ExtResource("18_ku2o0")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -55.5, 6.6846046, -93)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_exithall"]
+script = ExtResource("19_8fbue")
+other_level = ExtResource("20_wrgt1")
+delay = 2.0
+trigger_once = true
+interact_with = 1
+metadata/_custom_type_script = "uid://cn3f2saw8lsmn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_exithall/FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3953769, 0.17739749)
+shape = SubResource("CylinderShape3D_647lt")
+
+[node name="door_exit" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.5, 8.413647, -82)
+use_collision = true
+size = Vector3(5, 3.530418, 0.9)
+material = SubResource("StandardMaterial3D_5uqj5")
+
+[node name="Node3D" type="Node3D" parent="door_exit"]
+
+[node name="rim" type="CSGBox3D" parent="door_exit/Node3D" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8380356, 0)
+use_collision = true
+size = Vector3(5, 0.15151167, 0.9)
+material = SubResource("StandardMaterial3D_5uqj5")
+
+[node name="FPSC_DoorActivatable" type="Node" parent="door_exit" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("9_4v7nu")
+object_as_door = NodePath("..")
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="door_exit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7293854, 0, 0)
+stream = ExtResource("21_2rs4q")
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="door_exit" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("22_48cf1")
+stream_player = NodePath("../AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="PrefabBoxDropper" parent="." instance=ExtResource("23_w48bg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.75, 14, -31.5)
+
+[node name="killboxes" type="Node3D" parent="."]
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="killboxes" node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12, 0)
+script = ExtResource("5_btfqv")
+activated = [NodePath("FPSC_ImpulseDamageActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="FPSC_ImpulseDamageActivatable" type="Node" parent="killboxes/FPSC_TriggerRelay"]
+script = ExtResource("24_ri8ol")
+damage_delt = 100.0
+metadata/_custom_type_script = "uid://bilm264c25p6e"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="killboxes/FPSC_TriggerRelay"]
+shape = SubResource("WorldBoundaryShape3D_qqv62")
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="killboxes" node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -236, 0)
+script = ExtResource("5_btfqv")
+activated = [NodePath("FPSC_ImpulseDamageActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="FPSC_ImpulseDamageActivatable" type="Node" parent="killboxes/FPSC_TriggerRelay2"]
+script = ExtResource("24_ri8ol")
+damage_delt = 100.0
+kill_rigidibodies = true
+metadata/_custom_type_script = "uid://bilm264c25p6e"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="killboxes/FPSC_TriggerRelay2"]
+shape = SubResource("WorldBoundaryShape3D_qqv62")
+
+[node name="lighting" type="Node3D" parent="."]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="lighting"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -52, 15.189345, -69.5)
+light_energy = 4.667
+shadow_enabled = true
+spot_range = 15.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="lighting"]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071068, 0, -0.7071068, 0.7071067, -55, 15.189345, -74.5)
+light_energy = 4.667
+shadow_enabled = true
+spot_range = 15.0
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="lighting"]
+transform = Transform3D(1, 0, 0, 0, -0.50000006, 0.8660254, 0, -0.8660254, -0.50000006, -55, 15.189345, -61.5)
+light_energy = 4.667
+shadow_enabled = true
+spot_range = 15.0
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="lighting"]
+transform = Transform3D(-0.18301272, -0.2379529, -0.9538788, -0.18301271, -0.9450598, 0.27086604, -0.9659258, 0.22414388, 0.12940955, -42, 13.189345, -75.5)
+light_energy = 4.667
+shadow_enabled = true
+spot_range = 15.0
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="lighting"]
+transform = Transform3D(-0.18301272, -0.2379529, -0.9538788, -0.18301271, -0.9450598, 0.270866, -0.9659258, 0.22414388, 0.12940955, -42, 3.1893454, -75.5)
+light_energy = 4.667
+shadow_enabled = true
+spot_range = 15.0
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="lighting"]
+transform = Transform3D(-0.25000003, -0.6786032, -0.6906502, -0.06698728, -0.69946927, 0.7115163, -0.9659258, 0.22414386, 0.12940955, -6, 13.189345, -60.5)
+light_energy = 4.667
+shadow_enabled = true
+spot_range = 126.0
+
+[node name="SpotLight3D7" type="SpotLight3D" parent="lighting"]
+transform = Transform3D(-0.6994693, -0.47561556, -0.5334159, -0.0669873, -0.6994693, 0.7115162, -0.71151626, 0.53341585, 0.4573971, -29, 13.189345, -60.5)
+light_energy = 4.667
+shadow_enabled = true
+spot_range = 35.0
+
+[node name="SpotLight3D11" type="SpotLight3D" parent="lighting"]
+transform = Transform3D(0.8178991, -0.23421636, 0.525532, -0.4879074, -0.7664338, 0.41776273, 0.3049386, -0.59809864, -0.7411414, 1, 8.189346, -88.5)
+light_energy = 4.667
+shadow_enabled = true
+spot_range = 57.0
+
+[node name="SpotLight3D12" type="SpotLight3D" parent="lighting"]
+transform = Transform3D(0.7939662, -0.5885356, -0.15245873, -0.48790738, -0.7664338, 0.41776273, -0.36271787, -0.2573036, -0.89567316, -12, 8.189346, -88.5)
+light_energy = 4.667
+shadow_enabled = true
+spot_range = 57.0
+
+[node name="SpotLight3D8" type="SpotLight3D" parent="lighting"]
+transform = Transform3D(0.24999997, 0.67860323, 0.6906502, -0.0669873, -0.6994693, 0.7115163, 0.9659258, -0.22414386, -0.12940952, -29, 13.189345, -60.5)
+light_energy = 4.667
+shadow_enabled = true
+spot_range = 35.0
+
+[node name="SpotLight3D9" type="SpotLight3D" parent="lighting"]
+transform = Transform3D(0.24999999, 0.67860323, 0.6906503, -0.066987306, -0.6994693, 0.71151626, 0.9659259, -0.22414385, -0.12940952, -20, 13.189345, -30.5)
+light_energy = 4.667
+shadow_enabled = true
+spot_range = 35.0
+
+[node name="SpotLight3D10" type="SpotLight3D" parent="lighting"]
+transform = Transform3D(0.7115163, -0.53341585, -0.45739704, -0.06698724, -0.6994692, 0.7115164, -0.69946927, -0.47561574, -0.53341585, -15, 13.189345, -43.5)
+light_energy = 4.667
+shadow_enabled = true
+spot_range = 35.0
+
+[node name="faithPlates" type="Node3D" parent="."]
+
+[node name="FPSC_TriggerCatapult" type="Area3D" parent="faithPlates" node_paths=PackedStringArray("destination")]
+transform = Transform3D(0.49999997, -0.8660253, 0, 0.8660253, 0.49999997, 0, 0, 0, 1, 17.55, 0.121, -57.5)
+script = ExtResource("25_7kxct")
+destination = NodePath("../Marker3D5")
+minimal_threshold = 8.0
+metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="faithPlates/FPSC_TriggerCatapult"]
+transform = Transform3D(1, 5.9604645e-08, 0, -5.9604645e-08, 1, 0, 0, 0, 1, 2.861023e-06, 1.0000038, -1)
+shape = SubResource("BoxShape3D_hvpop")
+
+[node name="FPSC_TriggerCatapult3" parent="faithPlates" node_paths=PackedStringArray("destination") instance=ExtResource("26_da26f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 0, -69.5)
+destination = NodePath("../Marker3D6")
+
+[node name="FPSC_TriggerCatapult4" parent="faithPlates" node_paths=PackedStringArray("destination") instance=ExtResource("26_da26f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5, 0, -31.5)
+destination = NodePath("../Marker3D3")
+
+[node name="FPSC_TriggerCatapult5" parent="faithPlates" node_paths=PackedStringArray("destination") instance=ExtResource("26_da26f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5, 0, -58.5)
+destination = NodePath("../Marker3D2")
+
+[node name="FPSC_TriggerCatapult6" parent="faithPlates" node_paths=PackedStringArray("destination") instance=ExtResource("26_da26f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -58.5)
+destination = NodePath("../Marker3D4")
+
+[node name="FPSC_TriggerCatapult2" parent="faithPlates" node_paths=PackedStringArray("destination") instance=ExtResource("26_da26f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.237301, 9.536743e-07, -31.60984)
+destination = NodePath("../Marker3D")
+
+[node name="Marker3D" parent="faithPlates" instance=ExtResource("27_5hyem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 6, -31.5)
+
+[node name="Marker3D2" parent="faithPlates" instance=ExtResource("27_5hyem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 7, -58.5)
+
+[node name="Marker3D4" parent="faithPlates" instance=ExtResource("27_5hyem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 5, -58.5)
+
+[node name="Marker3D5" parent="faithPlates" instance=ExtResource("27_5hyem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.026348, 1.6782713, -66.034294)
+
+[node name="Marker3D6" parent="faithPlates" instance=ExtResource("27_5hyem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 12, -69.5)
+
+[node name="Marker3D3" parent="faithPlates" instance=ExtResource("27_5hyem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 6, -44.5)
+
+[node name="fencingtest" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -11.300207)
+
+[node name="fencingtest37" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -52.30021)
+
+[node name="fencingtest38" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -53.86455)
+
+[node name="fencingtest39" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -55.482365)
+
+[node name="fencingtest40" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -57.046707)
+
+[node name="fencingtest41" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -58.614155)
+
+[node name="fencingtest42" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -60.178497)
+
+[node name="fencingtest43" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -61.6425)
+
+[node name="fencingtest44" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -63.206844)
+
+[node name="fencingtest45" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -64.82466)
+
+[node name="fencingtest46" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -66.389)
+
+[node name="fencingtest47" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -67.95645)
+
+[node name="fencingtest48" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -69.52079)
+
+[node name="fencingtest49" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -71.1191)
+
+[node name="fencingtest50" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -72.68344)
+
+[node name="fencingtest51" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -74.301254)
+
+[node name="fencingtest52" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -75.8656)
+
+[node name="fencingtest53" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -77.433044)
+
+[node name="fencingtest54" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -78.99739)
+
+[node name="fencingtest55" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -80.461395)
+
+[node name="fencingtest56" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -82.02574)
+
+[node name="fencingtest61" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -52.30021)
+
+[node name="fencingtest62" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -53.86455)
+
+[node name="fencingtest63" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -55.482365)
+
+[node name="fencingtest64" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -57.046707)
+
+[node name="fencingtest65" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -58.614155)
+
+[node name="fencingtest66" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -60.178497)
+
+[node name="fencingtest67" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -61.6425)
+
+[node name="fencingtest68" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -63.206844)
+
+[node name="fencingtest72" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -69.52079)
+
+[node name="fencingtest73" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -71.1191)
+
+[node name="fencingtest74" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -72.68344)
+
+[node name="fencingtest75" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -74.301254)
+
+[node name="fencingtest76" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -75.8656)
+
+[node name="fencingtest77" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -77.433044)
+
+[node name="fencingtest78" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -78.99739)
+
+[node name="fencingtest79" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -80.461395)
+
+[node name="fencingtest80" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -82.02574)
+
+[node name="fencingtest57" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -83.643555)
+
+[node name="fencingtest58" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -85.20789)
+
+[node name="fencingtest59" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -86.775345)
+
+[node name="fencingtest60" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.39219, 6.499994, -88.33968)
+
+[node name="fencingtest2" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -12.300207)
+
+[node name="fencingtest3" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -13.300207)
+
+[node name="fencingtest4" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -14.300207)
+
+[node name="fencingtest5" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -15.300207)
+
+[node name="fencingtest6" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -16.300207)
+
+[node name="fencingtest7" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -17.300207)
+
+[node name="fencingtest8" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -18.300207)
+
+[node name="fencingtest9" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -19.300207)
+
+[node name="fencingtest10" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -20.300207)
+
+[node name="fencingtest11" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -21.300207)
+
+[node name="fencingtest12" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -22.300207)
+
+[node name="fencingtest13" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -23.300207)
+
+[node name="fencingtest14" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -24.300207)
+
+[node name="fencingtest15" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -25.300207)
+
+[node name="fencingtest17" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.827345, -0.5000062, -29.438581)
+
+[node name="fencingtest18" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.827345, -0.5000062, -30.438581)
+
+[node name="fencingtest19" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.827345, -0.5000062, -31.438581)
+
+[node name="fencingtest20" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.827345, -0.5000062, -32.438583)
+
+[node name="fencingtest21" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.827345, -0.5000062, -33.438583)
+
+[node name="fencingtest23" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.237175, -0.5000062, -36.86386)
+
+[node name="fencingtest-bend" parent="." groups=["Non-Portalable"] instance=ExtResource("29_2y7a6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392191, -0.5000062, -26.300207)
+
+[node name="fencingtest-bend3" parent="." groups=["Non-Portalable"] instance=ExtResource("29_2y7a6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.834153, -0.5000062, -34.30021)
+
+[node name="fencingtest-bend4" parent="." instance=ExtResource("29_2y7a6")]
+transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, -10.241098, -0.5000062, -35.820034)
+
+[node name="fencingtest-bend2" parent="." groups=["Non-Portalable"] instance=ExtResource("29_2y7a6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -12.823641, -0.5000062, -27.826578)
+
+[node name="fencingtest16" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -14.100563, -0.5000062, -27.06253)
+
+[node name="fencingtest22" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.539786, -0.5000062, -35.06253)
+
+[node name="fencingtest-bend5" parent="." groups=["Non-Portalable"] instance=ExtResource("29_2y7a6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.240352, -0.5000062, -38.002068)
+
+[node name="fencingtest24" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8.945985, -0.5000062, -38.76439)
+
+[node name="fencingtest25" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.945985, -0.5000062, -38.76439)
+
+[node name="fencingtest26" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.945985, -0.5000062, -38.76439)
+
+[node name="fencingtest27" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.945985, -0.5000062, -38.76439)
+
+[node name="fencingtest28" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4.945985, -0.5000062, -38.76439)
+
+[node name="fencingtest29" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.9459848, -0.5000062, -38.76439)
+
+[node name="fencingtest30" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.9459848, -0.5000062, -38.76439)
+
+[node name="fencingtest31" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.9459848, -0.5000062, -38.76439)
+
+[node name="fencingtest32" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.94598484, -0.5000062, -38.76439)
+
+[node name="fencingtest33" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.05401516, -0.5000062, -38.76439)
+
+[node name="fencingtest34" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.0540152, -0.5000062, -38.76439)
+
+[node name="fencingtest35" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.0540152, -0.5000062, -38.76439)
+
+[node name="fencingtest36" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.0540152, -0.5000062, -38.76439)
+
+[editable path="PrefabPedestalButton"]
+[editable path="PrefabBoxDropper"]

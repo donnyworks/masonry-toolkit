@@ -1,3 +1,4 @@
+@tool
 extends CharacterBody3D
 class_name FPSC_Player
 
@@ -139,7 +140,128 @@ func FPSC_ShowChapterTitle(title:String,color:Color,duration:float,subtext=""):
 	new_color.a = 0
 	f.tween_property($ChapterTitle,"self_modulate",new_color,0.5)
 
+@export_group("Editor Buttons")
+
+@export_tool_button("Toggle Simulation", "Callable")
+var my_button = _on_button_clicked
+
+var simulator = false
+
+var simulatedBody = CharacterBody3D.new()
+
+var fps = true
+
+var spos = Vector3.ZERO
+var srot = Vector3.ZERO
+
+func _togglefps():
+	fps = not fps
+
+
+func _on_button_clicked() -> void:
+	if not simulatedBody.is_inside_tree():
+		spos = EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_position
+		srot = EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_rotation
+		EditorInterface.get_edited_scene_root().add_child(simulatedBody)
+		simulatedBody.velocity = Vector3.ZERO
+		simulatedBody.global_position = spos
+		simulatedBody.global_rotation.y = srot.y
+		simulatedBody.rotation.x = 0
+		simulatedBody.rotation.z = 0
+		simulator = true
+	else:
+		EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_position = spos
+		EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_rotation = srot
+		EditorInterface.get_edited_scene_root().remove_child(simulatedBody)
+		simulator = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 func _ready():
+	if Engine.is_editor_hint():
+		var mesh = preload("res://instances/player_scalemarker.tscn").instantiate()
+		simulatedBody.add_child(mesh)
+		var cs = CollisionShape3D.new()
+		cs.shape = CapsuleShape3D.new()
+		simulatedBody.add_child(cs)
+		var camstandin = Node3D.new()
+		camstandin.name = "camstandin"
+		camstandin.position.y = 0.7
+		simulatedBody.add_child(camstandin)
+		var ts = GDScript.new()
+		ts.source_code = """@tool
+extends CharacterBody3D
+
+@onready var cam = get_node("camstandin")
+
+var parentcatapult = null
+
+func _ready():
+	if parentcatapult.fps:
+		EditorInterface.get_editor_viewport_3d(0).get_parent().grab_focus()
+		register_runtime_input("p_fwd",KEY_W)
+		register_runtime_input("p_bwd",KEY_S)
+		register_runtime_input("p_lft",KEY_A)
+		register_runtime_input("p_rht",KEY_D)
+		register_runtime_input("p_jmp",KEY_SPACE)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func register_runtime_input(action_name: String, key_code: Key) -> void:
+	# 1. Create the action if it doesn't exist yet
+	if not InputMap.has_action(action_name):
+		InputMap.add_action(action_name)
+	
+	# 2. Clear existing events if you are doing a runtime key rebind
+	InputMap.action_erase_events(action_name)
+	
+	# 3. Create the physical input event
+	var new_key_event := InputEventKey.new()
+	new_key_event.physical_keycode = key_code # Use physical_keycode to ignore keyboard layout changes
+	
+	# 4. Map the event to your action
+	InputMap.action_add_event(action_name, new_key_event)
+
+func _process(delta):
+	if parentcatapult.fps:
+		# Force editor camera alignment
+		EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_position = cam.global_position
+		EditorInterface.get_editor_viewport_3d(0).get_camera_3d().global_rotation = cam.global_rotation
+		
+		# UNLOCK THE FACE: Fetch accumulated mouse movement directly from the engine singleton 
+		# This ignores whether Godot's event system is routing events to this node or not.
+		var mouse_delta = Input.get_last_mouse_velocity() * delta
+		if mouse_delta != Vector2.ZERO:
+			rotation_degrees.y -= mouse_delta.x * 0.05
+			cam.rotation_degrees.x = clamp(cam.rotation_degrees.x - mouse_delta.y * 0.05, -90, 90)
+
+func _physics_process(delta):
+	if not is_on_floor():
+		velocity.y -= 9.8 * delta
+	if is_on_floor() and Input.is_action_just_pressed("p_jmp"):
+		velocity.y = 4.5
+		
+	var input_dir := Input.get_vector("p_lft", "p_rht", "p_fwd", "p_bwd")
+	if input_dir:
+		get_viewport().set_input_as_handled()
+		
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if (not abs(velocity.x) > 6.0) or is_on_floor():
+		velocity.x = lerp(velocity.x, direction.x * 5.0, 14.0 * delta)
+	if (not abs(velocity.z) > 6.0) or is_on_floor():
+		velocity.z = lerp(velocity.z, direction.z * 5.0, 14.0 * delta)
+	move_and_slide()
+
+# Reverting this completely back to an emergency button
+func _input(event):
+	if parentcatapult.fps:
+		if event is InputEventKey and event.keycode == KEY_ESCAPE and event.is_pressed():
+			parentcatapult.fps = false
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			get_viewport().set_input_as_handled()
+"""
+		ts.reload()
+		simulatedBody.set_script(ts)
+		simulatedBody.parentcatapult = self
+		return
 	if entrance_number != FPSC_LevelManager.entrance_number:
 		queue_free()
 		return
@@ -296,6 +418,7 @@ func FPSC_DealDamageTurret():
 	health += 0.5
 
 func _process(delta):
+	if Engine.is_editor_hint(): return
 	isSimulated = Monolyth.isMultiplayer and ((not Monolyth.isClient and not isListenServer) or (Monolyth.isClient and name != str(Monolyth.get_unique_id())))
 	if isSimulated:
 		#print("Simulating character " + name)
@@ -638,6 +761,7 @@ func FPSC_ApplyInputs(m_args):
 	rotation = m_args[2]
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint(): return
 	if not is_inside_tree(): return
 	if paused: return
 	if health <= 0: return
@@ -680,6 +804,7 @@ func _physics_process(delta: float) -> void:
 			# For 2D: collider.apply_impulse(push_dir * push_force)
 			collider.apply_impulse(push_dir * push_force, collision.get_position() - collider.global_position)
 func _input(event):
+	if Engine.is_editor_hint(): return
 	if not is_inside_tree(): return
 	if isSimulated: return
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://fabh0jfxxi51"]
+[gd_scene load_steps=57 format=3 uid="uid://fabh0jfxxi51"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_wtdix"]
 [ext_resource type="PackedScene" uid="uid://fsyjqmmliyan" path="res://instances/afc/prefab_new_portalgun_pedestal.tscn" id="2_8pegt"]
@@ -73,6 +73,15 @@ render_priority = 0
 shader = SubResource("Shader_30d18")
 shader_parameter/TEXTURE = SubResource("ViewportTexture_o1coc")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_6omfo"]
+viewport_path = NodePath("Portal1Texture")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o300u"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_30d18")
+shader_parameter/TEXTURE = SubResource("ViewportTexture_6omfo")
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_yaj6l"]
 viewport_path = NodePath("Portal1Texture")
 
@@ -109,6 +118,33 @@ size = Vector3(3, 1, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o300u"]
 size = Vector3(3, 3, 2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3l3q4"]
+viewport_path = NodePath("Portal1Texture")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vtqh4"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_30d18")
+shader_parameter/TEXTURE = SubResource("ViewportTexture_3l3q4")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_foh8q"]
+viewport_path = NodePath("Portal1Texture")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hkli7"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_30d18")
+shader_parameter/TEXTURE = SubResource("ViewportTexture_foh8q")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vk36x"]
+viewport_path = NodePath("Portal1Texture")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ns6f"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_30d18")
+shader_parameter/TEXTURE = SubResource("ViewportTexture_vk36x")
 
 [node name="Node3D" type="Node3D"]
 
@@ -339,6 +375,57 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.7
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -6.4764752, -0.5000062, 24.337309)
 
 [node name="Camera3D" type="Camera3D" parent="viewshift"]
+
+[node name="button_catapult3" parent="viewshift" instance=ExtResource("2_ed8bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1751814, -0.4878006, 15.898966)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="viewshift/button_catapult3" node_paths=PackedStringArray("activated")]
+script = ExtResource("3_cmfjx")
+activated = [NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../FPSC_TriggerStatusActivatable")]
+UseActivationDelay = true
+UseActivationDelayOnExit = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="viewshift/button_catapult3/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_ov65s")
+
+[node name="IndicatorLight" type="Sprite3D" parent="viewshift/button_catapult3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1481948, 0, 0)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("4_mxkik")
+region_enabled = true
+region_rect = Rect2(0, 0, 448, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="viewshift/button_catapult3/IndicatorLight" node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_g5xqv")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight2" type="Sprite3D" parent="viewshift/button_catapult3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1274056, 0, -2.0873308)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("4_mxkik")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 768)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="viewshift/button_catapult3/IndicatorLight2" node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_g5xqv")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.05
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="FPSC_TriggerStatusActivatable" type="Node" parent="viewshift/button_catapult3" node_paths=PackedStringArray("trigger")]
+script = ExtResource("9_87tng")
+trigger = NodePath("../../../FPSC_TriggerCatapult3")
+metadata/_custom_type_script = "uid://b84g1xo7620ij"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." groups=["lights"]]
 transform = Transform3D(-0.70710677, -1.4594538e-07, 0.70710677, 0.6123725, 0.49999997, 0.6123726, -0.35355347, 0.86602545, -0.35355327, 0, 0, 0)
@@ -725,6 +812,11 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0
 material = SubResource("ShaderMaterial_8pegt")
 portal_pair_linkage_id = 1
 
+[node name="MTK_Portal3" parent="intro_area" instance=ExtResource("21_kn4uj")]
+transform = Transform3D(-5.9604645e-08, 0, 1, 0, 1, 0, -1, 0, -5.9604645e-08, 8.936219, -0.98966235, 4.104737)
+material = SubResource("ShaderMaterial_o300u")
+portal_pair_linkage_id = 3
+
 [node name="MTK_Portal2" parent="intro_area" instance=ExtResource("21_kn4uj")]
 transform = Transform3D(0.99999994, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, 0.99999994, -1.1207303, 0.010337591, -1.6970857)
 material = SubResource("ShaderMaterial_w55ah")
@@ -755,7 +847,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.7
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -6.4764752, -0.5000062, 24.337309)
 
 [node name="camcontiainer2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -36, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39024, -36, 0)
 
 [node name="PrefabNewPortalgunPedestal2" parent="camcontiainer2" instance=ExtResource("2_8pegt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -0.46105883, -8)
@@ -1258,5 +1350,573 @@ size = Vector3(4, 4, 4)
 [node name="Turret" parent="." instance=ExtResource("27_6omfo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6730156, 0.4616086, -11.419884)
 
+[node name="PrefabNewPortalgunPedestal2" parent="." instance=ExtResource("2_8pegt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, -9, -0.46105883, -7923.079)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, 0, -1, -7940.899)
+use_collision = true
+size = Vector3(30, 1, 50)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -18)
+operation = 2
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, 14.999999, 0, -7940.899)
+use_collision = true
+size = Vector3(1, 3, 50)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGBox3D23" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5310173, 1.6302683, -9.5)
+use_collision = true
+size = Vector3(0.26220703, 3, 2)
+
+[node name="Label3D" type="Label3D" parent="CSGBox3D23/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 1.2564766, 0)
+text = "TEST CHAMBER --"
+
+[node name="Label3D2" type="Label3D" parent="CSGBox3D23/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.84315467, -0.8630085)
+text = "Potential hazards:
+"
+horizontal_alignment = 0
+
+[node name="Label3D4" type="Label3D" parent="CSGBox3D23/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351341, -1.2124683, -0.8630085)
+text = "[|||||||||||||||||||]
+"
+horizontal_alignment = 0
+
+[node name="Label3D3" type="Label3D" parent="CSGBox3D23/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
+text = "Acidic pools
+Portals
+Aerial Faith Plates
+Boxes
+Buttons
+Activatable droppers
+Game design
+Portalable surfaces"
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, 14.999999, 3.5, -7925.5537)
+use_collision = true
+size = Vector3(1, 4, 19)
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, -15.497085, 3.5, -7926.0493)
+use_collision = true
+size = Vector3(1, 4, 20)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, -16, 0, -7940.899)
+use_collision = true
+size = Vector3(2, 3, 50)
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="."]
+transform = Transform3D(4.327428e-08, 0, -1.0000001, 0, 1, 0, -0.9900001, 0, -4.3711392e-08, 0.5, 0, -7965.649)
+use_collision = true
+size = Vector3(1, 3, 31)
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="."]
+transform = Transform3D(4.327428e-08, 0, -1.0000001, 0, 1, 0, -0.9900001, 0, -4.3711392e-08, 0.5, 2, -7934.959)
+use_collision = true
+size = Vector3(1, 7, 31)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="CSGBox3D29"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50000024, -1, -4.5)
+operation = 2
+use_collision = true
+size = Vector3(6, 5, 5)
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.9999998, 0, -8.654856e-08, 0, 1, 0, -8.742276e-08, 0, 0.9900001, -2.5, 2, -7949.809)
+use_collision = true
+size = Vector3(1, 7, 31)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="CSGBox3D30"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50000024, -1, -4.5)
+operation = 2
+use_collision = true
+size = Vector3(6, 5, 5)
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="."]
+transform = Transform3D(4.327428e-08, 0, -1.0000001, 0, 1, 0, -0.9900001, 0, -4.3711392e-08, 0, 0, -7915.159)
+use_collision = true
+size = Vector3(3, 3, 32)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." groups=["lights"]]
+transform = Transform3D(-0.68210673, 1.0979386e-07, 0.68210685, 0.59072185, -0.45669866, 0.5907218, -0.34105346, -0.7910254, -0.34105325, 0, 0, -7930.999)
+shadow_enabled = true
+
+[node name="prefab_geomesh_button3" parent="." instance=ExtResource("2_ed8bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, 9.175181, -0.48780122, -7930.899)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_geomesh_button3" node_paths=PackedStringArray("activated")]
+script = ExtResource("3_cmfjx")
+activated = [NodePath("../../door_entrance/FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight4/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../sign/signlite")]
+UseActivationDelay = true
+UseActivationDelayOnExit = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_geomesh_button3/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_ov65s")
+
+[node name="IndicatorLight" type="Sprite3D" parent="prefab_geomesh_button3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("4_mxkik")
+region_enabled = true
+region_rect = Rect2(0, 0, 384, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button3/IndicatorLight" node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_g5xqv")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight2" type="Sprite3D" parent="prefab_geomesh_button3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8044138, 0, 1.919869)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("4_mxkik")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 704)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button3/IndicatorLight2" node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_g5xqv")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.05
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight3" type="Sprite3D" parent="prefab_geomesh_button3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8044138, 0.89196867, 3.5942702)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+texture = ExtResource("4_mxkik")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 704)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button3/IndicatorLight3" node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_g5xqv")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.1
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight4" type="Sprite3D" parent="prefab_geomesh_button3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5669184, 2.4964716, 3.5942702)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+alpha_cut = 2
+texture = ExtResource("4_mxkik")
+region_enabled = true
+region_rect = Rect2(0, 0, 832, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button3/IndicatorLight4" node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_g5xqv")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.15
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="sign" type="Sprite3D" parent="prefab_geomesh_button3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1390228, 2.4964716, 3.5892627)
+flip_h = true
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("5_mxkik")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button3/sign" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_gmxsc")
+sprite = NodePath("..")
+texture_b = ExtResource("8_t2u4x")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="signlite" type="Node" parent="prefab_geomesh_button3/sign" node_paths=PackedStringArray("light")]
+script = ExtResource("10_w55ah")
+light = NodePath("../OmniLight3D")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.15
+metadata/_custom_type_script = "uid://bibdote7bt40k"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="prefab_geomesh_button3/sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.18152237)
+light_color = Color(1, 0.5058824, 0.007843138, 1)
+shadow_enabled = true
+
+[node name="button_catapult2" parent="." instance=ExtResource("2_ed8bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, 6.1751814, -0.48780122, -7946.7393)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="button_catapult2" node_paths=PackedStringArray("activated")]
+script = ExtResource("3_cmfjx")
+activated = [NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../FPSC_TriggerStatusActivatable")]
+UseActivationDelay = true
+UseActivationDelayOnExit = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button_catapult2/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_ov65s")
+
+[node name="IndicatorLight" type="Sprite3D" parent="button_catapult2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1481948, 0, 0)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("4_mxkik")
+region_enabled = true
+region_rect = Rect2(0, 0, 448, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="button_catapult2/IndicatorLight" node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_g5xqv")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight2" type="Sprite3D" parent="button_catapult2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1274056, 0, -2.0873308)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("4_mxkik")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 768)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="button_catapult2/IndicatorLight2" node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_g5xqv")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.05
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="FPSC_TriggerStatusActivatable" type="Node" parent="button_catapult2" node_paths=PackedStringArray("trigger")]
+script = ExtResource("9_87tng")
+trigger = NodePath("../../FPSC_TriggerCatapult3")
+metadata/_custom_type_script = "uid://b84g1xo7620ij"
+
+[node name="PrefabBoxDropper2" parent="." instance=ExtResource("9_4sprw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.450577, 3, -7922.089)
+
+[node name="FPSC_SpawninActivatable" parent="PrefabBoxDropper2/dropper_logic" index="2" node_paths=PackedStringArray("activatables")]
+activatables = []
+
+[node name="prefab_geomesh_button4" parent="." instance=ExtResource("2_ed8bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, 9.175181, -0.48780122, -7924.959)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_geomesh_button4" node_paths=PackedStringArray("activated")]
+script = ExtResource("3_cmfjx")
+activated = [NodePath("../../PrefabBoxDropper/dropper"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable")]
+UseActivationDelay = true
+UseActivationDelayOnExit = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_geomesh_button4/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_ov65s")
+
+[node name="IndicatorLight" type="Sprite3D" parent="prefab_geomesh_button4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0787373, 0, 0)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("4_mxkik")
+region_enabled = true
+region_rect = Rect2(0, 0, 896, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button4/IndicatorLight" node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_g5xqv")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight2" type="Sprite3D" parent="prefab_geomesh_button4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3127203, 2.426458, 0)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 0
+texture = ExtResource("4_mxkik")
+region_enabled = true
+region_rect = Rect2(0, -896, 64, 960)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button4/IndicatorLight2" node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_g5xqv")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight3" type="Sprite3D" parent="prefab_geomesh_button4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3127203, 4.661505, -1.4346285)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 0
+texture = ExtResource("4_mxkik")
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button4/IndicatorLight3" node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_g5xqv")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="door_entrance2" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, 5, 1.6000001, -7934.959)
+use_collision = true
+size = Vector3(5, 3.8, 0.91)
+material = SubResource("StandardMaterial3D_ed8bu")
+
+[node name="Node3D" type="Node3D" parent="door_entrance2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="door_entrance2" type="CSGBox3D" parent="door_entrance2/Node3D" groups=["Non-Portalable"]]
+use_collision = true
+size = Vector3(5, 0.2, 0.91)
+material = SubResource("StandardMaterial3D_ed8bu")
+
+[node name="FPSC_DoorActivatable" type="Node" parent="door_entrance2/Node3D/door_entrance2" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("9_le08f")
+object_as_door = NodePath("..")
+delay = 0.2
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="FPSC_DoorActivatable" type="Node" parent="door_entrance2" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("9_le08f")
+object_as_door = NodePath("..")
+delay = 0.2
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="door_entrance2"]
+autoplay = true
+
+[node name="FPSC_TriggerCatapult4" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("10_t2u4x")]
+transform = Transform3D(4.327428e-08, 0, -1.0000001, 0, 1, 0, -0.9900001, 0, -4.3711392e-08, 2.710163, 0, -7924.5527)
+destination = NodePath("Marker3D")
+
+[node name="Marker3D" parent="FPSC_TriggerCatapult4" instance=ExtResource("11_le08f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 9, 4.7683716e-07)
+
+[node name="FPSC_TriggerCatapult5" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("10_t2u4x")]
+transform = Transform3D(-1.2982284e-07, 0, 1.0000002, 0, 1, 0, 0.9900001, 0, 1.3113419e-07, 2.710163, 0, -7942.373)
+destination = NodePath("../FPSC_TriggerCatapult2/Marker3D")
+
+[node name="teleporter_entrance2" parent="." instance=ExtResource("15_48spo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, -7.483535, -0.3502245, -7919.335)
+
+[node name="teleporter_exit2" parent="." instance=ExtResource("16_g0gtr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, -11.113396, -0.28610182, -7919.1875)
+
+[node name="intro_area2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, -11.079636, 1.4300556, -7930.398)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="intro_area2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1.1279907, 0)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="intro_area2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.681671, -0.5077697, -1.7059221)
+use_collision = true
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="intro_area2/CSGBox3D17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08547187, 0)
+operation = 2
+use_collision = true
+size = Vector3(1, 1, 0.8)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="intro_area2/CSGBox3D17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08547187, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.8, 1, 1)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="intro_area2"]
+transform = Transform3D(-0.23361522, 0, -0.97232914, 0, 1, 0, 0.97232914, 0, -0.23361522, 2.681671, 0.011888862, -1.530699)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="intro_area2/RigidBody3D"]
+transform = Transform3D(1.9106855e-15, -1, 4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1, 0, -4.371139e-08, 0, 0, 0)
+use_collision = true
+size = Vector3(1, 0.5, 0.02784375)
+
+[node name="Sprite3D" type="Sprite3D" parent="intro_area2/RigidBody3D/CSGBox3D10"]
+transform = Transform3D(-2.9802322e-08, -1, 8.7422784e-08, 1, -2.9802322e-08, -4.440892e-15, -3.5527137e-15, 8.7422784e-08, 1, 0, 0, -0.019269109)
+flip_h = true
+pixel_size = 0.0019
+shaded = true
+texture = ExtResource("16_g1f0s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="intro_area2/RigidBody3D"]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+shape = SubResource("BoxShape3D_kishi")
+
+[node name="CSGBox3D26" type="RigidBody3D" parent="intro_area2"]
+transform = Transform3D(0.6882533, 0, 0.7254704, 0, 1, 0, -0.7254704, 0, 0.6882533, 2.7102437, 0.1890097, -2.021309)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="intro_area2/CSGBox3D26"]
+size = Vector3(0.157, 0.38, 0.535)
+material = SubResource("StandardMaterial3D_b528i")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="intro_area2/CSGBox3D26"]
+transform = Transform3D(-0.258819, 0, 0.9659259, 0, 1, 0, -0.9659259, 0, -0.258819, 0, 0, 0)
+stream = ExtResource("18_8pegt")
+autoplay = true
+max_distance = 15.0
+emission_angle_enabled = true
+emission_angle_degrees = 66.0
+doppler_tracking = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="intro_area2/CSGBox3D26"]
+shape = SubResource("BoxShape3D_y6q04")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="intro_area2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2538996, 0.15859985, -1.6894531)
+use_collision = true
+size = Vector3(0.24230957, 2.8291626, 1.6210938)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="intro_area2"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1, 0.8720093, 2.3791013)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("19_w55ah")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="intro_area2"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1, 0.8720093, -2.6208987)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("19_w55ah")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="intro_area2"]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, -1.5, 0.8720093, -0.120898835)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("19_w55ah")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="intro_area2/CSGBox3D5"]
+transform = Transform3D(-4.371139e-08, 0, 1, -1, -4.371139e-08, -4.371139e-08, 4.371139e-08, -1, 1.9106855e-15, -1.5685543, -0.05509484, 0.7134094)
+operation = 2
+use_collision = true
+size = Vector3(0.24230957, 2.8291626, 1.6210938)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="intro_area2"]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 3.5, 0.8720093, -0.12089861)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("19_w55ah")
+
+[node name="IamStealingthis" parent="intro_area2" instance=ExtResource("14_6xojh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18432593, -0.5328316, 1.4738483)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="intro_area2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83147085, 2, -0.3004375)
+shadow_enabled = true
+omni_range = 7.0
+
+[node name="MTK_Portal3" parent="." instance=ExtResource("21_kn4uj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.1434174, 0.44039333, -7934.4614)
+material = SubResource("ShaderMaterial_vtqh4")
+portal_pair_linkage_id = 3
+
+[node name="MTK_Portal" parent="." instance=ExtResource("21_kn4uj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.143416, 0.44039327, -7925.4644)
+material = SubResource("ShaderMaterial_hkli7")
+portal_pair_linkage_id = 2
+
+[node name="MTK_Portal2" parent="." instance=ExtResource("21_kn4uj")]
+transform = Transform3D(1, 0, 5.900861e-08, 0, 1, 0, -5.900861e-08, 0, 1, -12.200366, 1.4403932, -7928.718)
+material = SubResource("ShaderMaterial_5ns6f")
+portal_pair_linkage_id = 2
+
+[node name="fencingtest4" parent="." groups=["Non-Portalable"] instance=ExtResource("24_b528i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, -9.392191, -0.5000062, -7957.4316)
+
+[node name="fencingtest6" parent="." groups=["Non-Portalable"] instance=ExtResource("24_b528i")]
+transform = Transform3D(4.327428e-08, 0, -1.0000001, 0, 1, 0, -0.9900001, 0, -4.3711392e-08, -8.069048, -0.5000062, -7955.0815)
+
+[node name="fencingtest7" parent="." groups=["Non-Portalable"] instance=ExtResource("24_b528i")]
+transform = Transform3D(4.327428e-08, 0, -1.0000001, 0, 1, 0, -0.9900001, 0, -4.3711392e-08, -7.0271044, -0.5000062, -7958.739)
+
+[node name="fencingtest-bend5" parent="." groups=["Non-Portalable"] instance=ExtResource("25_y6q04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, -9.392191, -0.5000062, -7955.844)
+
+[node name="fencingtest-bend6" parent="." groups=["Non-Portalable"] instance=ExtResource("25_y6q04")]
+transform = Transform3D(4.327428e-08, 0, 0.9999999, 0, 1, 0, 0.9900001, 0, -4.3711385e-08, -8.633365, -0.5000062, -7958.739)
+
+[node name="fencingtest8" parent="." groups=["Non-Portalable"] instance=ExtResource("24_b528i")]
+transform = Transform3D(-1.0000002, 0, 8.654856e-08, 0, 1, 0, 8.74228e-08, 0, 0.9900001, -5.7176495, -0.5000062, -7956.4)
+
+[node name="fencingtest-bend7" parent="." groups=["Non-Portalable"] instance=ExtResource("25_y6q04")]
+transform = Transform3D(-1.0000002, 0, 8.654856e-08, 0, 1, 0, 8.74228e-08, 0, 0.9900001, -5.7176495, -0.5000062, -7957.988)
+
+[node name="fencingtest-bend8" parent="." groups=["Non-Portalable"] instance=ExtResource("25_y6q04")]
+transform = Transform3D(-1.2982284e-07, 0, -0.9999997, 0, 1, 0, -0.9900001, 0, 1.3113412e-07, -6.4764757, -0.5000062, -7955.093)
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, 8.5, -13.8405075, -7972.9287)
+use_collision = true
+size = Vector3(4, 4, 0.16589355)
+material = SubResource("StandardMaterial3D_y6q04")
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="CSGBox3D32" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146484375, 0.20233154, -14.055176)
+use_collision = true
+size = Vector3(0.76953125, 0.6920166, 28)
+material = SubResource("StandardMaterial3D_6omfo")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CSGBox3D32"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+shadow_enabled = true
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="CSGBox3D32" node_paths=PackedStringArray("activated")]
+script = ExtResource("3_cmfjx")
+activated = [NodePath("../FPSC_DoorActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D32/FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+shape = SubResource("BoxShape3D_o300u")
+
+[node name="FPSC_DoorActivatable" type="Node" parent="CSGBox3D32" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("9_le08f")
+object_as_door = NodePath("../CSGBox3D28")
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, 14.999999, -8, -7960.204)
+use_collision = true
+size = Vector3(21, 17, 20)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D33" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 6.5, -1)
+operation = 2
+use_collision = true
+size = Vector3(4, 4, 4)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="CSGBox3D33" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 6.5, 0)
+operation = 2
+use_collision = true
+size = Vector3(4, 4, 4)
+
+[node name="Turret2" parent="." instance=ExtResource("27_6omfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.9900001, 5.6730156, 0.4616086, -7919.6934)
+
 [editable path="PrefabBoxDropper"]
 [editable path="camcontiainer2/PrefabBoxDropper2"]
+[editable path="PrefabBoxDropper2"]

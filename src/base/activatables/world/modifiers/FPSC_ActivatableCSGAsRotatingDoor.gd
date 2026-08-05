@@ -5,7 +5,7 @@ class_name FPSC_RotatingDoorActivatable
 
 @export var time : float = 1.0 ## Time it takes to happen
 
-@export_enum("Left:1","Right:2") var move_direction := 1
+@export_enum("Y+:1","Y-:2","X+:3","X-:4","Z+:5","Z-:6") var move_direction := 1
 
 @export var stay_open : bool = false
 
@@ -39,13 +39,13 @@ func _ready():
 		2:
 			ep_vector = Vector3(0,deg_to_rad(-90),0)
 		3:
-			ep_vector = -Vector3.RIGHT
+			ep_vector = Vector3(deg_to_rad(90),0,0)
 		4:
-			ep_vector = Vector3.RIGHT
+			ep_vector = Vector3(deg_to_rad(-90),0,0)
 		5:
-			ep_vector = Vector3.FORWARD
+			ep_vector = Vector3(0,0,deg_to_rad(90))
 		6:
-			ep_vector = -Vector3.FORWARD
+			ep_vector = Vector3(0,0,deg_to_rad(-90))
 	ending_position = object_as_door.rotation + ep_vector
 	await get_tree().process_frame # Wait a frame, recalcuate to be safe
 	ending_position = object_as_door.rotation + ep_vector

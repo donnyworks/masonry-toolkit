@@ -7,10 +7,12 @@ class_name FPSC_TriggerRelay
 
 @export var UseActivationDelayOnExit := false ## Use the delay set up in the activator when leaving the trigger
 
+@export var FireOnExitAtAll := true ## Fire on_exit
 @export var FireOnExitAfterDelay := false
 @export var DelayAmount := 0.0
 
 func on_enter(body:Node3D):
+	print("on_enter: ",body.name)
 	for trigger in activated:
 		if trigger == null: continue
 		if not UseActivationDelay:
@@ -25,6 +27,8 @@ func on_enter(body:Node3D):
 				trigger.on_exit(body)
 
 func on_exit(body:Node3D):
+	if not FireOnExitAtAll: return
+	print("on_exit: ",body.name)
 	for trigger in activated:
 		if trigger == null: continue
 		if not UseActivationDelayOnExit:

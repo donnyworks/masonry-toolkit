@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://cofcwahptm2ts"]
+[gd_scene load_steps=47 format=3 uid="uid://cofcwahptm2ts"]
 
 [ext_resource type="PackedScene" uid="uid://cihvtue137xn7" path="res://instances/afc/prefab_chamber_entryway.tscn" id="1_8p1ic"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="2_jj7wd"]
@@ -22,6 +22,7 @@
 [ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="19_r21y4"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="20_srng3"]
 [ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="21_ej0lg"]
+[ext_resource type="Texture2D" uid="uid://bqurdksnudlqu" path="res://textures/oser_doctor_exitsignage???.png" id="21_jj7wd"]
 [ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleModulationColor.gd" id="22_6txst"]
 [ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="23_fmibw"]
 [ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="24_liylv"]
@@ -157,7 +158,7 @@ size = Vector3(0.26220703, 3, 2)
 
 [node name="Label3D" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 1.2564766, 0)
-text = "TEST CHAMBER 06"
+text = "TEST CHAMBER 31"
 script = SubResource("GDScript_8j3vc")
 
 [node name="Label3D2" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
@@ -168,7 +169,7 @@ horizontal_alignment = 0
 
 [node name="Label3D4" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -1.0395492, -0.8630085)
-text = "[|||||||||||                  ]
+text = "[||||||                            ]
 TESTING COURSE ∞"
 horizontal_alignment = 0
 vertical_alignment = 0
@@ -178,7 +179,7 @@ script = SubResource("GDScript_dp8gx")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
 text = "Player Dissolvers
 Physics Dissolvers
-Aaaehi Ftitl Prales
+Aerial Faith Plates
 Boxes
 Buttons
 Portalable Surfaces
@@ -231,7 +232,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2987212, 0)
 environment = SubResource("Environment_qq12g")
 
 [node name="Marker3D" parent="." instance=ExtResource("7_qjc4i")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.9583225, 31, -55.8263)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.9583225, 32.295822, -57.8263)
+
+[node name="Player" parent="Marker3D" instance=ExtResource("13_wq642")]
+visible = false
 
 [node name="FPSC_TriggerCatapult2" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("8_0wsno")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.041677713, -9.536743e-07, -21.826302)
@@ -239,6 +243,7 @@ destination = NodePath("../Marker3D")
 
 [node name="door_exit" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 15.294983, -60)
+use_collision = true
 size = Vector3(1, 3.7947998, 5)
 material = SubResource("StandardMaterial3D_b3ckc")
 
@@ -428,9 +433,14 @@ use_collision = true
 size = Vector3(21, 4, 1)
 
 [node name="CSGBox3D60" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 29, -59)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 35.5, -59)
 use_collision = true
-size = Vector3(6, 17, 1)
+size = Vector3(6, 4, 1)
+
+[node name="CSGBox3D91" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 23, -59)
+use_collision = true
+size = Vector3(6, 5, 1)
 
 [node name="CSGBox3D61" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 35.5, -59)
@@ -482,8 +492,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 21, -55)
 use_collision = true
 size = Vector3(7, 1, 1)
 
+[node name="CSGBox3D87" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 22.5, -58)
+use_collision = true
+size = Vector3(6, 4, 1)
+
+[node name="CSGBox3D88" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 22, -57)
+use_collision = true
+size = Vector3(6, 3, 1)
+
+[node name="CSGBox3D89" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 21.5, -56)
+use_collision = true
+size = Vector3(6, 2, 1)
+
+[node name="CSGBox3D90" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 21, -55)
+use_collision = true
+size = Vector3(6, 1, 1)
+
 [node name="CSGBox3D85" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 6, 22.624702, -56.333134)
+visible = false
+use_collision = true
+size = Vector3(7, 7.1485596, 1)
+
+[node name="CSGBox3D92" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -7, 22.624702, -56.333134)
 visible = false
 use_collision = true
 size = Vector3(7, 7.1485596, 1)
@@ -509,34 +545,61 @@ use_collision = true
 size = Vector3(7, 1, 1)
 
 [node name="CSGBox3D67" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 22.5, -60)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 22.5, -60)
 use_collision = true
-size = Vector3(7, 4, 1)
+size = Vector3(6, 4, 1)
 
 [node name="CSGBox3D68" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 22, -61)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 22, -61)
 use_collision = true
-size = Vector3(7, 3, 1)
+size = Vector3(6, 3, 1)
 
 [node name="CSGBox3D69" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 21.5, -62)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 21.5, -62)
 use_collision = true
-size = Vector3(7, 2, 1)
+size = Vector3(6, 2, 1)
 
 [node name="CSGBox3D70" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 21, -63)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 21, -63)
 use_collision = true
-size = Vector3(7, 1, 1)
-
-[node name="CSGBox3D55" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 29, -64)
-use_collision = true
-size = Vector3(4, 17, 1)
+size = Vector3(6, 1, 1)
 
 [node name="CSGBox3D56" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 29, -59)
 use_collision = true
 size = Vector3(4, 17, 1)
+material = ExtResource("19_r21y4")
+
+[node name="Sprite3D" type="Sprite3D" parent="geo/CSGBox3D56"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.9186306, -4, -3)
+flip_h = true
+pixel_size = 0.005
+render_priority = -1
+texture = ExtResource("21_jj7wd")
+
+[node name="Label3D" type="Label3D" parent="geo/CSGBox3D56/Sprite3D"]
+transform = Transform3D(-4.3711385e-08, 1, -4.371139e-08, -1, -4.371139e-08, -4.371139e-08, -4.371139e-08, 4.371139e-08, 1, 0, -2, 0)
+pixel_size = 0.02
+text = "=>"
+font_size = 64
+
+[node name="Sprite3D2" type="Sprite3D" parent="geo/CSGBox3D56"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.9875312, -4, -3)
+pixel_size = 0.005
+render_priority = -1
+texture = ExtResource("21_jj7wd")
+
+[node name="Label3D" type="Label3D" parent="geo/CSGBox3D56/Sprite3D2"]
+transform = Transform3D(-4.3711385e-08, 1, -4.371139e-08, -1, -4.371139e-08, -4.371139e-08, -4.371139e-08, 4.371139e-08, 1, 0, -2, 0)
+pixel_size = 0.02
+text = "=>"
+font_size = 64
+
+[node name="CSGBox3D86" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 31, -64)
+use_collision = true
+size = Vector3(4, 13, 1)
+material = ExtResource("19_r21y4")
 
 [node name="CSGBox3D57" type="CSGBox3D" parent="geo" groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 29, -61.5)

@@ -16,6 +16,7 @@ func on_enter(_body:Node3D):
 	if AwaitFrame:
 		await get_tree().process_frame
 	@warning_ignore("standalone_ternary")
+	print("hi it's me relay ",name)
 	for a in activatables:
 		if not use_delay_on_enter:
 			a.on_enter(_body)
@@ -33,6 +34,7 @@ func fireonexit(_body,a):
 
 func on_exit(_body:Node3D):
 	@warning_ignore("standalone_ternary")
+	print("bye")
 	for a in activatables:
 		if not use_delay_on_exit:
 			a.on_exit(_body)

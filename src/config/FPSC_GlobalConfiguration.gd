@@ -123,7 +123,7 @@ func cmd_print(arg):
 	if console is Callable:
 		console.call(str(arg))
 
-const MTK_Version = 8
+const MTK_Version = 9
 
 var demoname = ""
 
@@ -319,6 +319,8 @@ var legacy_buttons = false
 var propvis = true
 var disable_box_dropper_logic = false
 
+var server = TCPServer.new()
+
 func CMDLine(command:String):
 	var cmda = command.split(" ")
 	var cmd_found = false
@@ -464,6 +466,12 @@ func AddConCommand(cmd_name,cmd_function,cmd_helpmessage="TODO: Replace this hel
 func _ready():
 	FPSC_LocalizationSystem.FPSC_LoadLocalization("en_US")
 	FPSC_LoadGameConfig()
+	server = TCPServer.new()
+	server.listen(4328)
+	connect("tree_exiting",func():
+		#if wConsole.ownedBy == self: wConsole.get_parent().queue_free() # This line will never be useful if you're using SeekHostConsole.
+		server.stop()
+	)
 	if not DirAccess.dir_exists_absolute("user://" + metadata.GameInternalName):
 		DirAccess.make_dir_absolute("user://" + metadata.GameInternalName)
 	if FileAccess.file_exists("user://" + metadata.GameInternalName + "/gameconfig.mconf"):
@@ -503,7 +511,10 @@ func _ready():
 	var argv: PackedStringArray = args.split("+")
 	for command in argv:
 		print("Command: " + command)
-		CMDLine(command)
+		if command.split(" ")[0] != "await":
+			CMDLine(command)
+		else:
+			await get_tree().create_timer(float(command.split(" ")[1])).timeout
 
 func ChangeLevel(target_path: String):
 	target_scene_path = target_path
@@ -538,7 +549,88 @@ func savedemo():
 	interloper_active = false
 var lastmapname = ""
 var ctval = Vector2.ZERO
-func _process(_delta):
+
+var connections : Array[GenericClientConnection] = []
+
+func GetGodotMeshesAsVertexArrays(node:Node):
+	var arrs = ""
+	for sub in node.get_children():
+		if sub is CSGShape3D and sub.visible:
+			if sub.get_meshes() == []:
+				continue
+			var arr : ArrayMesh = sub.get_meshes()[1]
+			# get_faces gets all faces split by the rule of threes.
+			var faces : PackedVector3Array = arr.get_faces()
+			var rot_basis = Basis.from_euler(sub.global_rotation) # Rotate by ninety.
+			var transform = Transform3D()
+			transform.basis = rot_basis
+			transform.origin = sub.global_position
+			for v3 in faces:
+				v3 = transform * v3
+				arrs += str(v3.x*32) + "," + str(v3.y*32) + "," + str(v3.z*32) + "$$"
+			arrs = arrs.substr(0,len(arrs) - 2)
+			arrs += "\n"
+			for subsub in sub.get_children():
+				if subsub is Node3D and not subsub is CSGShape3D:
+					arrs += GetGodotMeshesAsVertexArrays(sub)
+		elif sub is MeshInstance3D:
+			var arr = sub.mesh
+			# get_faces gets all faces split by the rule of threes.
+			var faces : PackedVector3Array = arr.get_faces()
+			var rot_basis = Basis.from_euler(sub.global_rotation) # Rotate by ninety.
+			var transform = Transform3D()
+			transform.basis = rot_basis
+			transform.origin = sub.global_position
+			for v3 in faces:
+				v3 = transform * v3
+				arrs += str(v3.x*32) + "," + str(v3.y*32) + "," + str(v3.z*32) + "$$"
+			arrs = arrs.substr(0,len(arrs) - 2)
+			arrs += "\n"
+		else:
+			arrs += GetGodotMeshesAsVertexArrays(sub)
+	return arrs
+
+class GenericClientConnection extends Node:
+	var client : StreamPeerTCP
+	var host : FPSC_GlobalState
+	
+	func delete_self(): # This function is called seperately for the connection and is used to uninitialize whatever data you stored
+		pass # So basically, add your "delete me from clients list" code here.
+	
+	func _process(_delta):
+		if client.get_status() == StreamPeerTCP.STATUS_NONE or client.get_status() == StreamPeerTCP.STATUS_ERROR:
+			host.addline("Connection terminated: Something went wrong or client disconnected")
+			host.connections.erase(self)
+			delete_self()
+			queue_free()
+			return
+		if client.get_available_bytes() != 0:
+			var buf : PackedByteArray = client.get_data(client.get_available_bytes())[1]
+			if len(buf) == 0:
+				host.addline("Connection terminated: Invalid data length for non-zero get_available_bytes")
+				host.connections.erase(self)
+				delete_self()
+				queue_free()
+				return
+			var text : String = buf.get_string_from_utf8()
+			var data : Array = text.split("\n")
+			var url = data[0].split(" ")[1].split("?")[0]
+			if url == "/GetGodotMeshes":
+				var datas = host.GetGodotMeshesAsVertexArrays(get_tree().current_scene)
+				var obuf = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: %s\n\n%s" % [len(datas),datas]
+				client.put_data(obuf.to_ascii_buffer())
+				#client.put_data("HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 9\n\nuhh todo?".to_ascii_buffer())
+			else:
+				client.put_data("HTTP/1.1 404 NOT FOUND\nContent-Type: text/plain\nContent-Length: 2\n\nno".to_ascii_buffer())
+
+func _process(_delta): # Server _process takes care of establishing connections and assigning them.
+	if server.is_connection_available():
+		var client : StreamPeerTCP = server.take_connection()
+		var cc = GenericClientConnection.new()
+		cc.client = client
+		cc.host = self
+		add_child(cc)
+		connections.append(cc)
 	if demoname != "":
 		if interloper_active and FPSC_Player.sessionPlayer != null:
 			if type == 0:
@@ -576,11 +668,11 @@ func _process(_delta):
 					continue
 				if object.has_method("FPSC_GetMPState"):
 					var state = object.FPSC_GetMPState()
-					var pathy = str(object.get_path())
+					var pathy = str(FPSC_MultiplayerFramework.GetOUIDForObject(object))
 					frame.append({"FPSC_UpdateMPState":[state,pathy]}) # Godot format since I have no idea what the hell it wants from me
 				elif object is RigidBody3D:
 					var state = [object.position,object.rotation,object.scale,object.collision_mask,object.collision_layer,object.angular_velocity,object.linear_velocity]
-					var pathy = str(object.get_path())
+					var pathy = str(FPSC_MultiplayerFramework.GetOUIDForObject(object))
 					frame.append({"FPSC_UpdateRigidbody":[state,pathy]})
 			demo_timeline.append(frame)
 	if demo_data != {}:
@@ -593,12 +685,18 @@ func _process(_delta):
 					var m_name = frame.keys()[0]
 					var m_args = frame[frame.keys()[0]]
 					var m_sender = 1 # ported MP code. it just needs to do this.
-					if get_node_or_null(m_args[1]) == null: continue # Probably just hasn't spawned in yet.
+					var node = null
+					if demo_data.version == 9:
+						if FPSC_MultiplayerFramework.GetObjectFromOUID(m_args[1]) == null: continue # Probably just hasn't spawned in yet.
+						node = FPSC_MultiplayerFramework.GetObjectFromOUID(m_args[1])
+					if demo_data.version == 8:
+						if get_node_or_null(m_args[1]) == null: continue # Probably just hasn't spawned in yet.
+						node = get_node_or_null(m_args[1])
 					if m_name == "FPSC_UpdateMPState" and m_sender == 1:
 						#print("Updating state for ",m_args[1])
-						get_node(m_args[1]).FPSC_ApplyMPState(m_args[0])
+						node.FPSC_ApplyMPState(m_args[0])
 					if m_name == "FPSC_UpdateRigidbody" and m_sender == 1:#[object.position,object.rotation,object.scale,object.collision_mask,object.collision_layer,object.angular_velocity,object.linear_velocity]
-						var object : RigidBody3D = get_node(m_args[1])
+						var object : RigidBody3D = node
 						object.position = m_args[0][0]
 						object.rotation = m_args[0][1]
 						object.scale = m_args[0][2]
@@ -645,8 +743,13 @@ func change_to_loaded_scene():
 	get_tree().change_scene_to_packed(new_scene)
 	FPSC_LoadingScreen.visible = false
 	await get_tree().process_frame
+	#var fi = FileAccess.open("/home/donovanb/.steam/steam/steamapps/common/GarrysMod/garrysmod/data/meshes.txt",FileAccess.WRITE)
+	#fi.store_string(GetGodotMeshesAsVertexArrays(get_tree().current_scene))
+	#fi.close()
+	FPSC_InstanceActivatable.instance_id = 0
 	LevelChanged.emit()
 	# Clean up and delete the loading screen overlay
+	## No. I won't.
 
 func drop_current_level():
 	get_tree().unload_current_scene()

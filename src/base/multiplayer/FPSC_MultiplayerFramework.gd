@@ -18,6 +18,8 @@ var cached_players = []
 
 var connected_players = []
 
+var ObjectOUIDs = {}
+
 func _ready():
 	FPSC_LevelManager.connect("LevelChanged",build_tree_up)
 	#get_tree().connect("scene_changed",mp_changelevel)
@@ -28,8 +30,9 @@ func build_tree_up():
 		return
 	cached_entities = []
 	cached_players = []
-	build_tree(get_tree().current_scene)
 	print("build_tree_up -- maxplayers ",maxplayers)
+	await get_tree().process_frame
+	build_tree(get_tree().current_scene)
 	if sv_listen:
 		for object in get_tree().current_scene.get_children():
 			if object is FPSC_Player:
@@ -57,12 +60,12 @@ func recurse_me(_node:Node):
 		if is_instance_valid(object):
 			if not object is RigidBody3D:
 				var state = object.FPSC_GetMPState()
-				var pathy = str(object.get_path())
+				var pathy = str(GetOUIDForObject(object))
 				messages.append([state,pathy,"MPState"])
 				#Monolyth.SendMessage("FPSC_UpdateMPState",[state,pathy],Monolyth.get_remote_sender_id()) # Godot format since I have no idea what the hell it wants from me
 			else:
 				var state = [object.position,object.rotation,object.scale,object.collision_mask,object.collision_layer,object.angular_velocity,object.linear_velocity]
-				var pathy = str(object.get_path())
+				var pathy = str(GetOUIDForObject(object))
 				#Monolyth.SendMessage("FPSC_UpdateRigidbody",[state,pathy],Monolyth.get_remote_sender_id())
 				messages.append([state,pathy,"RigidBody"])
 	for player in cached_players:
@@ -76,11 +79,16 @@ func build_tree(node:Node):
 		# Scene and whatnot
 		if object.has_method("FPSC_GetMPState"):
 			if not object is FPSC_Weapon:
+				#print(str(object.get_path()).split("/",true,3))
+				print("Multiplayer object found - ",object.name, " with OUID of ",str(object.get_path()).split("/",true,3)[3].hash())
 				cached_entities.append(object)
+				ObjectOUIDs[str(object.get_path()).split("/",true,3)[3].hash()] = object
 				if not object.is_connected("tree_exiting", handle_node_deletion):
 					object.connect("tree_exiting",handle_node_deletion)
 		elif object is RigidBody3D:
+			print("RigidBody object found - ",object.name)
 			cached_entities.append(object)
+			ObjectOUIDs[str(object.get_path()).split("/",true,3)[3].hash()] = object
 			if not object.is_connected("tree_exiting", handle_node_deletion):
 				object.connect("tree_exiting",handle_node_deletion)
 		else:
@@ -149,17 +157,17 @@ func CL_MessageHandler(m_name,m_args,m_sender):
 				CL_MessageHandler("FPSC_UpdateRigidbody",message,1)
 	if m_name == "FPSC_UpdateMPState" and m_sender == 1:
 		#print("Updating state for ",m_args[1])
-		if get_node_or_null(m_args[1]) == null: return
-		get_node(m_args[1]).FPSC_ApplyMPState(m_args[0])
+		if GetObjectFromOUID(m_args[1]) == null: return
+		GetObjectFromOUID(m_args[1]).FPSC_ApplyMPState(m_args[0])
 	if m_name == "FPSC_StateExhausted" and m_sender == 1:
 		await get_tree().process_frame # We literally wait a frame before we say we're ready.
 		FPSC_ReadyForNewState = true
 	if m_name == "FPSC_DeleteNode" and m_sender == 1:
-		if get_node_or_null(m_args[0]) != null:
-			get_node(m_args[0]).queue_free() # yay! get it out of my house RIGHT NOW
+		if GetObjectFromOUID(m_args[0]) != null:
+			GetObjectFromOUID(m_args[0]).queue_free() # yay! get it out of my house RIGHT NOW
 	if m_name == "FPSC_UpdateRigidbody" and m_sender == 1:#[object.position,object.rotation,object.scale,object.collision_mask,object.collision_layer,object.angular_velocity,object.linear_velocity]
-		if get_node_or_null(m_args[1]) == null: return
-		var object : RigidBody3D = get_node(m_args[1])
+		if GetObjectFromOUID(m_args[1]) == null: return
+		var object : RigidBody3D = GetObjectFromOUID(m_args[1])
 		object.position = m_args[0][0]
 		object.rotation = m_args[0][1]
 		object.scale = m_args[0][2]
@@ -180,6 +188,21 @@ func CL_MessageHandler(m_name,m_args,m_sender):
 				var namey = object.name
 				var pathy = object.get_path()
 				Monolyth.SendMessage("FPSC_UpdateMPState",[state,classy,namey,pathy])"""
+
+func GetOUIDForObject(object:Node):
+	# nodepath.split("/",3)[1].hash()?
+	# we need a reversable process.
+	# it's fragile, but so is every other implementation using the scenetree
+	#print(object)
+	#print(ObjectOUIDs)
+	return ObjectOUIDs.find_key(object)
+
+func GetObjectFromOUID(ids:String) -> Node:
+	var id = int(ids)
+	if not id in ObjectOUIDs.keys():
+		return null
+	return ObjectOUIDs[id]
+
 func start_server():
 	if maxplayers < 2: return
 	if maxplayers < MAXPLAYERS_MIN: maxplayers = MAXPLAYERS_MIN

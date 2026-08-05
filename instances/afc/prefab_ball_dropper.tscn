@@ -1,0 +1,377 @@
+[gd_scene load_steps=17 format=3 uid="uid://pd817nm477q5"]
+
+[ext_resource type="Script" uid="uid://sl4hinpkxef0" path="res://src/base/FPSC_DevNote.gd" id="1_uo54b"]
+[ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/logic/FPSC_ActivatableRelay.gd" id="2_7o873"]
+[ext_resource type="Script" uid="uid://bqo5fqttqr6fa" path="res://src/base/activatables/logic/FPSC_ActivatableSettingRelay.gd" id="3_m0unk"]
+[ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/world/doers/FPSC_ActivatableCreateFromInstance.gd" id="4_qg876"]
+[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/world/doers/FPSC_ActivatablePlayAnimation.gd" id="5_t08ck"]
+[ext_resource type="Script" uid="uid://cguq0l7w5loj6" path="res://src/base/activatables/logic/FPSC_ActivatableActivateOnSpawning.gd" id="6_3ber6"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="7_f4fg2"]
+[ext_resource type="Script" uid="uid://tqson2e0626t" path="res://src/base/conditionals/FPSC_BodyNameBeginsWithCaseCondition.gd" id="8_aa55v"]
+[ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="9_6m0qp"]
+[ext_resource type="PackedScene" uid="uid://bo704ekcxy7e1" path="res://instances/afc/prefab_ball.tscn" id="10_uo54b"]
+[ext_resource type="Script" uid="uid://b6e7p2uycpn08" path="res://src/base/FPSC_SettingVisibilityController.gd" id="11_u8qpm"]
+
+[sub_resource type="Animation" id="Animation_ym6sx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dropper_geometry/CSGCylinder3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dropper_geometry/CSGCylinder3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ym2ws"]
+resource_name = "drop_box"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dropper_geometry/CSGCylinder3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.66, 1.3333334, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.7901627, -0.800487, 0), Vector3(-0.7901627, -0.800487, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dropper_geometry/CSGCylinder3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.66, 1.3333334, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.5550884), Vector3(0, 0, -1.5550884), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oshwm"]
+_data = {
+&"RESET": SubResource("Animation_ym6sx"),
+&"drop_box": SubResource("Animation_ym2ws")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ym2ws"]
+size = Vector3(1.5, 0.05, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oshwm"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.09411765)
+
+[node name="PrefabBoxDropper" type="Node3D"]
+
+[node name="FPSC_DevNote" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+text = "In order to operate the dropper,
+you need to set it to have editable children,
+and hook the \"dropper\" activatable to your FPSC_TriggerRelay!"
+script = ExtResource("1_uo54b")
+metadata/_custom_type_script = "uid://sl4hinpkxef0"
+
+[node name="dropper" type="Node" parent="." node_paths=PackedStringArray("activatables")]
+script = ExtResource("2_7o873")
+activatables = [NodePath("../_animated_dropper"), NodePath("../_static_dropper")]
+use_delay_on_enter = true
+AwaitFrame = true
+metadata/_custom_type_script = "uid://cgae4dmf6xfos"
+
+[node name="_animated_dropper" type="Node" parent="." node_paths=PackedStringArray("activatables")]
+script = ExtResource("3_m0unk")
+activatables = [NodePath("../dropper_logic/FPSC_AnimationActivatable")]
+setting = "disable_box_dropper_logic"
+use_delay_on_enter = true
+metadata/_custom_type_script = "uid://bqo5fqttqr6fa"
+
+[node name="_static_dropper" type="Node" parent="." node_paths=PackedStringArray("activatables")]
+script = ExtResource("3_m0unk")
+activatables = [NodePath("../dropper_logic/FPSC_InstanceActivatable")]
+setting = "disable_box_dropper_logic"
+invert = true
+use_delay_on_enter = true
+metadata/_custom_type_script = "uid://bqo5fqttqr6fa"
+
+[node name="dropper_logic" type="Node" parent="."]
+
+[node name="FPSC_InstanceActivatable" type="Node" parent="dropper_logic" node_paths=PackedStringArray("instance", "instantiation_position")]
+script = ExtResource("4_qg876")
+instance = NodePath("../../dropper_geometry/PrefabBall")
+instantiation_position = NodePath("../../dropper_geometry/dropper_spawnpoint")
+preserve_original = false
+destroy_preexisting = true
+maximum_amount_allowed = 2
+metadata/_custom_type_script = "uid://cmfhvuspob06n"
+
+[node name="FPSC_AnimationActivatable" type="Node" parent="dropper_logic" node_paths=PackedStringArray("player")]
+script = ExtResource("5_t08ck")
+player = NodePath("AnimationPlayer")
+animation = "drop_box"
+metadata/_custom_type_script = "uid://cd37fw45rkj5r"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dropper_logic/FPSC_AnimationActivatable"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_oshwm")
+}
+
+[node name="FPSC_SpawninActivatable" type="Node" parent="dropper_logic" node_paths=PackedStringArray("activatables")]
+script = ExtResource("6_3ber6")
+activatables = [NodePath("../start_drop_spawnin_animated")]
+metadata/_custom_type_script = "uid://cguq0l7w5loj6"
+
+[node name="start_drop_spawnin_animated" type="Node" parent="dropper_logic" node_paths=PackedStringArray("activatables")]
+script = ExtResource("3_m0unk")
+activatables = [NodePath("../FPSC_InstanceActivatable")]
+setting = "disable_box_dropper_logic"
+metadata/_custom_type_script = "uid://bqo5fqttqr6fa"
+
+[node name="dropper_geometry" type="Node3D" parent="."]
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="dropper_geometry" node_paths=PackedStringArray("activated", "logicalCondition")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07418558, 0)
+script = ExtResource("7_f4fg2")
+activated = [NodePath("../../dropper_logic/FPSC_InstanceActivatable")]
+logicalCondition = NodePath("FPSC_BodyNameBeginsWithCaseCondition")
+interact_with = 4
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="dropper_geometry/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_ym2ws")
+
+[node name="FPSC_BodyNameBeginsWithCaseCondition" type="Node" parent="dropper_geometry/FPSC_TriggerRelay"]
+script = ExtResource("8_aa55v")
+ideal_name_beginning = "box"
+metadata/_custom_type_script = "uid://tqson2e0626t"
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="dropper_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+use_collision = true
+radius = 0.85
+height = 0.077
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="dropper_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0441098, 0)
+use_collision = true
+radius = 0.85
+material = ExtResource("9_6m0qp")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="dropper_geometry/CSGCylinder3D2"]
+operation = 2
+radius = 0.75
+material = ExtResource("9_6m0qp")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="dropper_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+use_collision = true
+size = Vector3(2, 1, 2)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="dropper_geometry/CSGBox3D"]
+operation = 2
+radius = 0.75
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="dropper_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
+size = Vector3(2, 3, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="dropper_geometry/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08756113, 0)
+operation = 2
+size = Vector3(1.9, 3, 1.9)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="dropper_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+visible = false
+use_collision = true
+size = Vector3(2, 3, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="dropper_geometry/CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08756113, 0)
+operation = 2
+size = Vector3(1.5, 3, 1.5)
+
+[node name="CSGBox3D4" type="CSGCylinder3D" parent="dropper_geometry/CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, -2.1315145, 0)
+operation = 2
+radius = 0.8691406
+cone = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="dropper_geometry" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+use_collision = true
+flip_faces = true
+size = Vector3(2, 2, 2)
+
+[node name="PrefabBall" parent="dropper_geometry" instance=ExtResource("10_uo54b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+
+[node name="dropper_spawnpoint" type="Marker3D" parent="dropper_geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7216296, 0)
+
+[node name="dropper_geometry_hollow" type="Node3D" parent="."]
+visible = false
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="dropper_geometry_hollow" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0441098, 0)
+use_collision = true
+radius = 0.85
+material = ExtResource("9_6m0qp")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="dropper_geometry_hollow/CSGCylinder3D2"]
+operation = 2
+radius = 0.75
+material = ExtResource("9_6m0qp")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="dropper_geometry_hollow" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+use_collision = true
+size = Vector3(2, 1, 2)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="dropper_geometry_hollow/CSGBox3D"]
+operation = 2
+radius = 0.75
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="dropper_geometry_hollow" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
+size = Vector3(2, 3, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="dropper_geometry_hollow/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08756113, 0)
+operation = 2
+size = Vector3(1.9, 3, 1.9)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="dropper_geometry_hollow" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+visible = false
+use_collision = true
+size = Vector3(2, 3, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="dropper_geometry_hollow/CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08756113, 0)
+operation = 2
+size = Vector3(1.5, 3, 1.5)
+
+[node name="CSGBox3D4" type="CSGCylinder3D" parent="dropper_geometry_hollow/CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, -2.1315145, 0)
+operation = 2
+radius = 0.8691406
+cone = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="dropper_geometry_hollow" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+use_collision = true
+flip_faces = true
+size = Vector3(2, 2, 2)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.145796, 0)
+autoplay = true
+
+[node name="FPSC_SettingPropertyController" type="Node" parent="." node_paths=PackedStringArray("show_if_enabled", "hide_if_enabled")]
+script = ExtResource("11_u8qpm")
+LM_property = "disable_box_dropper_logic"
+TARGET_property = "visible"
+show_if_enabled = NodePath("../dropper_geometry")
+hide_if_enabled = NodePath("../dropper_geometry_hollow")
+metadata/_custom_type_script = "uid://b6e7p2uycpn08"
+
+[node name="FPSC_SettingPropertyController2" type="Node" parent="." node_paths=PackedStringArray("show_if_enabled")]
+script = ExtResource("11_u8qpm")
+LM_property = "disable_box_dropper_logic"
+TARGET_property = "use_collision"
+show_if_enabled = NodePath("../dropper_geometry/CSGCylinder3D")
+metadata/_custom_type_script = "uid://b6e7p2uycpn08"
+
+[node name="FPSC_SettingPropertyController3" type="Node" parent="." node_paths=PackedStringArray("hide_if_enabled")]
+script = ExtResource("11_u8qpm")
+LM_property = "disable_box_dropper_logic"
+TARGET_property = "disabled"
+hide_if_enabled = NodePath("../dropper_geometry/FPSC_TriggerRelay/CollisionShape3D")
+metadata/_custom_type_script = "uid://b6e7p2uycpn08"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.35, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.3350048, 0)
+light_color = Color(1, 0, 0, 1)
+shadow_enabled = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.1, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.85, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.35, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.85, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.35, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_oshwm")
