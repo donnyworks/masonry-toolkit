@@ -58,43 +58,43 @@ So let's run through the breakdown of what all is here:
 	  This is the folder containing all the game's actual logical source code.
 		  - /src/base
 		   This is the folder containing all "entities" and managerial components the game uses, from the player to the title screen.
-		   - /src/config
-		    This is the folder containing the build flags container, the localization system, and the _LevelManager_, which is arguably the most important piece of the MSTK code as it manages demos, versioning, level transitions, the console command system, and loading localization and game configuration files.
-		    - /src/afc
-		     This folder contains Aerial Testing Course specific entities, like the turrets.
-		     - /src/portal
+		  - /src/config
+		   This is the folder containing the build flags container, the localization system, and the _LevelManager_, which is arguably the most important piece of the MSTK code as it manages demos, versioning, level transitions, the console command system, and loading localization and game configuration files.
+		  - /src/afc
+		   This folder contains Aerial Testing Course specific entities, like the turrets.
+		  - /src/portal
 		      This folder contains all "portal" related mechanics, including:
 			      - The Portalgun
 			      - The portals themselves
 			      - The portal rendering surfaces
 			      - The portal cleansers (currently unused in AFC)
-			  - /src/weapons
-			   Arguably, this should be /src/base/weapons, but it contains the base test weapons (both of which are controlled by feature flags)
-			  - /src/bsploader
-			   Masonry Toolkit has a stripped-down copy of LibBSP under the bsploader folder. It's currently capable of loading most BSP 20 levels, minus displacements, certain materials, lightmaps, and models.
+		  - /src/weapons
+		   Arguably, this should be /src/base/weapons, but it contains the base test weapons (both of which are controlled by feature flags)
+		  - /src/bsploader
+		   Masonry Toolkit has a stripped-down copy of LibBSP under the bsploader folder. It's currently capable of loading most BSP 20 levels, minus displacements, certain materials, lightmaps, and models.
 	- /instances
 		 This is the folder containing all the game's "prefabs", otherwise known as instances. These are objects you can drag-and-drop into the level with varying levels of prerequisite setup required.
-	 - /materials
+	- /materials
 		  This folder contains all the (.tres) materials the game uses, the most common and important ones being InnoGlass, portallable_surface, SkyboxShader, and TemplateMaterial
-	 - /models
+	- /models
 		  This folder contains all the models, of which right now there are only 3, being the cube, the "straight fence", and the "bent fence".
-	  - /resources
+	- /resources
 	   This folder contains localization and game metadata, including: The game's name, its chapter list, all subtitles and closed captions, buildvars, the debug map list, the values shown in the settings miscellaneous tab, the game's version, the game's save folder name (GameInternalName)
-	  - /textures
+	- /textures
 	   Big shocker, this folder contains every texture in the game.
-	  - /vgui
+	- /vgui
 	   This folder contains the DWGUI VGUI window frame and theme recreation framework.
-	  - /sound
+	- /sound
 	   Big shocker again, this folder contains every sound in the game.
-	  - /viewmodel
+	- /viewmodel
 	   A folder containing every viewmodel in the game, all of which are loaded by the weapon scripts.
-	   - /maps
+	- /maps
 	    A folder containing every map the game uses. It's currently split into two subdirectories:
-		  - /maps
+		- /maps
 		   This folder contains the main campeign content for Aerial Testing Course
-		  - /maps/devtest
+		- /maps/devtest
 		   This folder contains all Masonry Toolkit developer test maps.
-		  - /maps/nullified
+		- /maps/nullified
 		   This folder contains every map that was formerly part of Aerial Testing Course, but has since been deprecated and/or moved to being bonus content (Scrapter 2)
 
 
