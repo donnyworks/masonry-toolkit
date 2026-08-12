@@ -292,6 +292,9 @@ func _input(event):
 	get_parent().add_child.call_deferred(wpn)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	sessionPlayer = self
+	await get_tree().process_frame
+	mapNames = FPSC_GlobalState.maps_listed.keys()
+	mapPaths = FPSC_GlobalState.maps_listed.values()
 	var button = $MenuGUIElement/TemplateButton
 	for item in FPSC_GlobalState.maps_listed:
 		var button_item = button.duplicate()
