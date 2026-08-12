@@ -40,6 +40,7 @@ content_noncopyright = [
     "-textures/clipboard",
     "-instances/teleporter_exit_model_scaled.tscn",
     "-sound/afc-sfx",
+    "-src/afc",
     "textures/chapter0_image.png"
 ]
 
