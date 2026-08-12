@@ -111,6 +111,10 @@ func _ready():
 		setting.text = s_name + " - " + keystring + " (Click to rebind)"
 		bindval[s_name] = setting
 		setting.connect("pressed",startKeybindSetting.bind(s_name))
+	if not FPSC_LevelManager.metadata.SupportsBonusChapters:
+		BonusGameButton.disabled = true
+	if not FPSC_LevelManager.metadata.SupportsChapters:
+		NewGameButton.connect("pressed",FPSC_LevelManager.ChangeLevel.bind(FPSC_LevelManager.Chapters.keys()[0])) # Tells new game to use the first chapter instead of showing the chapter select dialog
 
 var bindval = {}
 

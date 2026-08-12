@@ -15,6 +15,8 @@
 	"BackgroundMaps":[
 		"afc_ch1_background"
 	],
+	"SupportsChapters":true,
+	"SupportsBonusChapters":true,
 	"BuildFeatures":{
 		"FEATURE_SRCBOX":true,
 		"FEATURE_TESTWPN":false,

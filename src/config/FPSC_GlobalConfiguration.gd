@@ -8,6 +8,7 @@ static var metadata = {}
 static func FPSC_LoadGameConfig():
 	metadata = JSON.parse_string(FileAccess.get_file_as_string("res://resources/FPSC_GameMetadata.json"))
 	maps_listed = metadata.DebugMapList
+	FPSC_BuildFeatures.BuildFeatures = metadata.BuildFeatures
 
 var target_scene_path: String
 var is_loading: bool = false

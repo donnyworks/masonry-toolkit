@@ -56,7 +56,9 @@ meta = """
 	},
 	"BackgroundMaps":[
         "devtest/background_devtest2"
-	],
+	],,
+	"SupportsChapters":true,
+	"SupportsBonusChapters":false,
 	"BuildFeatures":{
 		"FEATURE_SRCBOX":true,
 		"FEATURE_TESTWPN":true,
