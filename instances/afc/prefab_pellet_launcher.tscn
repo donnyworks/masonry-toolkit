@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/world/doers/FPSC_ActivatablePlayAnimation.gd" id="3_vy0d0"]
 [ext_resource type="PackedScene" uid="uid://0uibck3r1xsr" path="res://instances/afc/energyball.tscn" id="4_x4kwy"]
 [ext_resource type="Script" uid="uid://tr3ltvhgthf3" path="res://src/afc/FPSC_AFC_BallRotatingTorus.gd" id="5_3ejlq"]
-[ext_resource type="AudioStream" uid="uid://ckcbtfwhvjlnm" path="res://sound/energy-ball-launcher.wav" id="6_vy0d0"]
+[ext_resource type="AudioStream" uid="uid://ckcbtfwhvjlnm" path="res://sound/afc-sfx/energy-ball-launcher.wav" id="6_vy0d0"]
 
 [sub_resource type="Animation" id="Animation_oh46i"]
 length = 0.001

@@ -1,0 +1,383 @@
+[gd_scene load_steps=20 format=3 uid="uid://ddr3afeptyfg2"]
+
+[ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_sxpfx"]
+[ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="2_pewlm"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="3_4kt0b"]
+[ext_resource type="Script" uid="uid://sl4hinpkxef0" path="res://src/base/FPSC_DevNote.gd" id="3_ueq8n"]
+[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/afc-sfx/doorOpen.wav" id="4_uniiq"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="5_ix5ui"]
+[ext_resource type="PackedScene" uid="uid://dr2eh5chvu1qx" path="res://instances/afc/weapon_levedit_gimbal.tscn" id="7_maqcu"]
+[ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="8_opbbi"]
+[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/world/doers/FPSC_ActivatablePlayAnimation.gd" id="9_toblg"]
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="10_t1cqp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6rt8"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rj70k"]
+
+[sub_resource type="Animation" id="Animation_17nuf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CSGCylinder3D5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CSGCylinder3D5:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CSGCylinder3D5/CSGCylinder3D9:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5707964)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../CSGCylinder3D3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, 0.007, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../CSGCylinder3D2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.5, 0.007, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ga8du"]
+resource_name = "pedestal_lower"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CSGCylinder3D5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -1.9225067, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CSGCylinder3D5:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -1.5707964, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CSGCylinder3D5/CSGCylinder3D9:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-3.1415927, 0, 1.5707964), Vector3(-1.5707964, 0, 1.5707964), Vector3(0, 0, 1.5707964)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../CSGCylinder3D3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.2333333, 2.2333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.007, 0), Vector3(0.5, 0.007, 0), Vector3(0, 0.007, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../CSGCylinder3D2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.2333333, 2.2333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.5, 0.007, 0), Vector3(-0.5, 0.007, 0), Vector3(0, 0.007, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qpk4i"]
+_data = {
+&"RESET": SubResource("Animation_17nuf"),
+&"pedestal_lower": SubResource("Animation_ga8du")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fvsl6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hhket"]
+
+[sub_resource type="Sky" id="Sky_commd"]
+sky_material = SubResource("ProceduralSkyMaterial_hhket")
+
+[sub_resource type="Environment" id="Environment_vmvme"]
+background_mode = 2
+sky = SubResource("Sky_commd")
+
+[node name="ProtoLveditor" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_sxpfx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="prefab_chamber_entryway" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8364868, -4)
+use_collision = true
+size = Vector3(5, 1.3270264, 13)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="prefab_chamber_entryway/CSGBox3D"]
+operation = 2
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+use_collision = true
+size = Vector3(5, 5, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.163513, -4)
+use_collision = true
+size = Vector3(5, 1.3270264, 13)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.3270264, -4)
+use_collision = true
+size = Vector3(1, 7, 13)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.3270264, -4)
+use_collision = true
+size = Vector3(1, 7, 13)
+
+[node name="teleporter_entrance" parent="prefab_chamber_entryway" instance=ExtResource("2_pewlm")]
+
+[node name="FPSC_DevNote" type="Label3D" parent="prefab_chamber_entryway/teleporter_entrance"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1, 0)
+render_priority = 2
+outline_render_priority = 1
+text = "PUT PLAYER IN POD!"
+script = ExtResource("3_ueq8n")
+metadata/_custom_type_script = "uid://sl4hinpkxef0"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="prefab_chamber_entryway" groups=["lights"]]
+transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 0, 2.512, -4)
+light_energy = 4.167
+shadow_enabled = true
+spot_range = 33.0
+
+[node name="door_entrance" type="CSGBox3D" parent="prefab_chamber_entryway" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6635132, -9.9626465)
+use_collision = true
+size = Vector3(5, 4, 0.92529297)
+material = SubResource("StandardMaterial3D_k6rt8")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="prefab_chamber_entryway/door_entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3960664, 0, 0)
+stream = ExtResource("4_uniiq")
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="prefab_chamber_entryway/door_entrance" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("5_ix5ui")
+stream_player = NodePath("../AudioStreamPlayer3D")
+delay = 3.0
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="prefab_chamber_entryway/door_entrance"]
+autoplay = true
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_entryway" node_paths=PackedStringArray("activated")]
+script = ExtResource("3_4kt0b")
+activated = [NodePath("../entry_door"), NodePath("../door_entrance/FPSC_SoundPlayerActivatable")]
+UseActivationDelay = true
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_entryway/FPSC_TriggerRelay"]
+transform = Transform3D(-3.6717566e-08, 0, -0.84, 0, 0.84, 0, 0.84, 0, -3.6717566e-08, 0.10735798, 1.5074793, -3.649968)
+shape = SubResource("BoxShape3D_rj70k")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="prefab_chamber_entryway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -8)
+shadow_enabled = true
+
+[node name="PrefabNewPortalgunPedestal" type="Node3D" parent="prefab_chamber_entryway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011641026, -0.13813639, -3.9991665)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.030517578, 0)
+operation = 2
+radius = 0.44482422
+height = 1.9389648
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.017028809, 0)
+use_collision = true
+radius = 0.6254883
+height = 0.034057617
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.030517578, 0)
+operation = 2
+height = 1.9389648
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal" groups=["Non-Portalable"]]
+use_collision = true
+radius = 0.42626953
+height = 0.034057617
+
+[node name="WeaponPortalgun2" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5" instance=ExtResource("7_maqcu")]
+transform = Transform3D(-3.649901e-08, 0, -0.835, 0, 0.835, 0, 0.835, 0, -3.649901e-08, 0, 1.5008832, 0)
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7285811, 0)
+radius = 0.11621094
+height = 1.4240417
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5"]
+transform = Transform3D(2.9802322e-08, 1, 0, -1, 2.9802322e-08, 0, 0, 0, 1, 0, 1.4963689, 0)
+radius = 0.1508789
+height = 0.482
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5/CSGCylinder3D7"]
+operation = 2
+radius = 0.13232422
+height = 0.482
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5/CSGCylinder3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2434082, 0.018371582, 0)
+operation = 2
+size = Vector3(0.5131836, 0.58288574, 1)
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5"]
+transform = Transform3D(-4.3711385e-08, 0.9999999, 0, -0.9999999, -4.3711385e-08, 0, 0, 0, 1, 0, 1.4963689, 0)
+radius = 0.1508789
+height = 0.482
+material = ExtResource("8_opbbi")
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5/CSGCylinder3D9"]
+operation = 2
+radius = 0.13232422
+height = 0.482
+material = ExtResource("8_opbbi")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5/CSGCylinder3D9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2434082, 0.0041503897, 0)
+operation = 2
+size = Vector3(0.5131836, 0.41357422, 1)
+material = ExtResource("8_opbbi")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5/CSGCylinder3D9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2711122, 0.012664779, 0)
+operation = 2
+size = Vector3(0.5131836, 0.7503052, 1)
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D5"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 1.5005347, 0)
+operation = 2
+radius = 0.13232422
+height = 0.482
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.007, 0)
+use_collision = true
+height = 0.015625
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+operation = 2
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.007, 0)
+use_collision = true
+height = 0.015625
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/CSGCylinder3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+operation = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal"]
+root_node = NodePath("../FPSC_TriggerRelay")
+libraries = {
+&"": SubResource("AnimationLibrary_qpk4i")
+}
+
+[node name="FPSC_AnimationActivatable" type="Node" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal" node_paths=PackedStringArray("player")]
+script = ExtResource("9_toblg")
+player = NodePath("../AnimationPlayer")
+animation = "pedestal_lower"
+metadata/_custom_type_script = "uid://cd37fw45rkj5r"
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal" node_paths=PackedStringArray("activated")]
+transform = Transform3D(0.825, 0, 0, 0, 0.825, 0, 0, 0, 0.825, 0, 1.4902012, 0)
+script = ExtResource("3_4kt0b")
+activated = [NodePath("../FPSC_AnimationActivatable")]
+trigger_once = true
+interact_with = 1
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_entryway/PrefabNewPortalgunPedestal/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_fvsl6")
+
+[node name="entry_door" type="Node" parent="prefab_chamber_entryway" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("10_t1cqp")
+object_as_door = NodePath("../door_entrance")
+stay_open = true
+delay = 3.0
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -12)
+use_collision = true
+size = Vector3(3, 3, 3)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vmvme")

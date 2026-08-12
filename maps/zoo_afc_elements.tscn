@@ -1,14 +1,14 @@
-[gd_scene load_steps=57 format=3 uid="uid://fabh0jfxxi51"]
+[gd_scene load_steps=58 format=3 uid="uid://fabh0jfxxi51"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_wtdix"]
 [ext_resource type="PackedScene" uid="uid://fsyjqmmliyan" path="res://instances/afc/prefab_new_portalgun_pedestal.tscn" id="2_8pegt"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="2_ed8bu"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="3_cmfjx"]
-[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="4_mxkik"]
+[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/afc/indicator_light.png" id="4_mxkik"]
 [ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleModulationColor.gd" id="5_g5xqv"]
-[ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="5_mxkik"]
+[ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/afc/sign_incomplete.png" id="5_mxkik"]
 [ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="7_gmxsc"]
-[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="8_t2u4x"]
+[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/afc/sign_complete.png" id="8_t2u4x"]
 [ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="9_4sprw"]
 [ext_resource type="Script" uid="uid://b84g1xo7620ij" path="res://src/base/activatables/logic/FPSC_ActivatableToggleTriggerEnablement.gd" id="9_87tng"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="9_le08f"]
@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="15_48spo"]
 [ext_resource type="PackedScene" uid="uid://ddyq77yf5jul4" path="res://instances/afc/teleporter_exit.tscn" id="16_g0gtr"]
 [ext_resource type="Texture2D" uid="uid://bn1xcnqcyqtjt" path="res://textures/clipboard/texture_clipboard_3.png" id="16_g1f0s"]
-[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="17_kn4uj"]
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/afc/sign_base.png" id="17_kn4uj"]
 [ext_resource type="AudioStream" uid="uid://ce5mu1a2228xg" path="res://sound/music/radio-greener.wav" id="18_8pegt"]
 [ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="19_w55ah"]
 [ext_resource type="PackedScene" uid="uid://b6lemoo8ic8o2" path="res://instances/portal/PortalInstance.tscn" id="21_kn4uj"]
@@ -52,7 +52,7 @@ albedo_texture = ExtResource("17_kn4uj")
 [sub_resource type="BoxShape3D" id="BoxShape3D_y6q04"]
 size = Vector3(0.157, 0.38, 0.535)
 
-[sub_resource type="Shader" id="Shader_30d18"]
+[sub_resource type="Shader" id="Shader_6omfo"]
 code = "shader_type spatial;
 render_mode unshaded;
 
@@ -64,32 +64,44 @@ void fragment() {
 }
 "
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_o1coc"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_vtqh4"]
 viewport_path = NodePath("Portal1Texture")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8pegt"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_30d18")
-shader_parameter/TEXTURE = SubResource("ViewportTexture_o1coc")
+shader = SubResource("Shader_6omfo")
+shader_parameter/TEXTURE = SubResource("ViewportTexture_vtqh4")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_6omfo"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_hkli7"]
 viewport_path = NodePath("Portal1Texture")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o300u"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_30d18")
-shader_parameter/TEXTURE = SubResource("ViewportTexture_6omfo")
+shader = SubResource("Shader_6omfo")
+shader_parameter/TEXTURE = SubResource("ViewportTexture_hkli7")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yaj6l"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_5ns6f"]
 viewport_path = NodePath("Portal1Texture")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w55ah"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_30d18")
-shader_parameter/TEXTURE = SubResource("ViewportTexture_yaj6l")
+shader = SubResource("Shader_6omfo")
+shader_parameter/TEXTURE = SubResource("ViewportTexture_5ns6f")
+
+[sub_resource type="Shader" id="Shader_1uy3q"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform sampler2D TEXTURE;
+
+void fragment() {
+	vec4 vtex = texture(TEXTURE, SCREEN_UV);
+	ALBEDO = vtex.rgb;
+}
+"
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_y6q04"]
 viewport_path = NodePath("Portal1Texture")
@@ -97,7 +109,7 @@ viewport_path = NodePath("Portal1Texture")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6omfo"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_30d18")
+shader = SubResource("Shader_1uy3q")
 shader_parameter/TEXTURE = SubResource("ViewportTexture_y6q04")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_o300u"]
@@ -106,7 +118,7 @@ viewport_path = NodePath("Portal1Texture")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3l3q4"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_30d18")
+shader = SubResource("Shader_1uy3q")
 shader_parameter/TEXTURE = SubResource("ViewportTexture_o300u")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b528i"]
@@ -125,7 +137,7 @@ viewport_path = NodePath("Portal1Texture")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vtqh4"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_30d18")
+shader = SubResource("Shader_1uy3q")
 shader_parameter/TEXTURE = SubResource("ViewportTexture_3l3q4")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_foh8q"]
@@ -134,7 +146,7 @@ viewport_path = NodePath("Portal1Texture")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hkli7"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_30d18")
+shader = SubResource("Shader_1uy3q")
 shader_parameter/TEXTURE = SubResource("ViewportTexture_foh8q")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_vk36x"]
@@ -143,7 +155,7 @@ viewport_path = NodePath("Portal1Texture")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5ns6f"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("Shader_30d18")
+shader = SubResource("Shader_1uy3q")
 shader_parameter/TEXTURE = SubResource("ViewportTexture_vk36x")
 
 [node name="Node3D" type="Node3D"]

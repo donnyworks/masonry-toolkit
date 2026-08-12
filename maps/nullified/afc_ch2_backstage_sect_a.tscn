@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="4_4ncts"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="4_3584k"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="5_j3tpa"]
-[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="6_2folt"]
+[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/afc/indicator_light.png" id="6_2folt"]
 [ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="6_m5osx"]
 [ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleModulationColor.gd" id="7_0n7kl"]
-[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="8_ao23p"]
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/afc/sign_base.png" id="8_ao23p"]
 [ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="9_ddeve"]
-[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="10_1t0p5"]
+[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/afc/sign_complete.png" id="10_1t0p5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lslf3"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://chugofns3we3s"]
+[gd_scene load_steps=61 format=3 uid="uid://chugofns3we3s"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_0d5lw"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="2_pgqp4"]
@@ -10,16 +10,7 @@
 [ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="6_e7t16"]
 [ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/world/doers/FPSC_ActivatablePlayAnimation.gd" id="7_ymh1l"]
 [ext_resource type="Script" uid="uid://c10lkodrlqtba" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoicelines.gd" id="8_60y3v"]
-[ext_resource type="AudioStream" uid="uid://c4is3teurfxti" path="res://sound/vo/announcer/ch4/Chamber4.01.wav" id="9_tc45y"]
-[ext_resource type="AudioStream" uid="uid://ddh7xbgw0uyj6" path="res://sound/vo/announcer/ch4/Chamber4.02.wav" id="10_m2tsa"]
-[ext_resource type="AudioStream" path="res://sound/vo/announcer/Chamber4.03.wav" id="11_3g3bj"]
-[ext_resource type="AudioStream" path="res://sound/vo/announcer/Chamber4.04.wav" id="12_64yyd"]
-[ext_resource type="AudioStream" path="res://sound/vo/announcer/Chamber4.05.wav" id="13_8bpl3"]
-[ext_resource type="AudioStream" uid="uid://gky1fe2sn7k8" path="res://sound/teleporter_exit.wav" id="14_nbv2r"]
-[ext_resource type="AudioStream" uid="uid://b2baunjdib85k" path="res://sound/vo/announcer/oldies/IntroA.01.wav" id="15_1un45"]
-[ext_resource type="AudioStream" uid="uid://bo0gt48n4e0vn" path="res://sound/vo/announcer/oldies/IntroA.02.wav" id="16_4kipn"]
-[ext_resource type="AudioStream" uid="uid://djpggjv7vyap7" path="res://sound/vo/announcer/oldies/IntroA.03.wav" id="17_q5p0l"]
-[ext_resource type="AudioStream" uid="uid://bfo56e62b07g0" path="res://sound/vo/announcer/oldies/IntroA.04.wav" id="18_chkhy"]
+[ext_resource type="AudioStream" uid="uid://gky1fe2sn7k8" path="res://sound/afc-sfx/teleporter_exit.wav" id="14_nbv2r"]
 [ext_resource type="AudioStream" uid="uid://b4gqd317a66wo" path="res://sound/vo/announcer/ch0/Chamber1.01.wav" id="19_rbyyb"]
 [ext_resource type="AudioStream" uid="uid://bl5ojqj2f8yle" path="res://sound/vo/announcer/ch0/Chamber1.02.wav" id="20_m85in"]
 [ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoiceline.gd" id="21_nvpc0"]
@@ -33,12 +24,12 @@
 [ext_resource type="AudioStream" uid="uid://d1ngvcr7gparv" path="res://sound/vo/announcer/ch0/Chamber1.Complete.wav" id="29_2bnj4"]
 [ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/world/doers/FPSC_ActivatableCreateFromInstance.gd" id="30_afjii"]
 [ext_resource type="PackedScene" uid="uid://b6lemoo8ic8o2" path="res://instances/portal/PortalInstance.tscn" id="31_1ksx3"]
-[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="32_60y3v"]
+[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/afc/indicator_light.png" id="32_60y3v"]
 [ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="32_ablk6"]
 [ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleModulationColor.gd" id="33_tc45y"]
-[ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="34_m2tsa"]
+[ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/afc/sign_incomplete.png" id="34_m2tsa"]
 [ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="35_3g3bj"]
-[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="36_64yyd"]
+[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/afc/sign_complete.png" id="36_64yyd"]
 [ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="40_tc45y"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_kywdm"]
@@ -646,7 +637,6 @@ metadata/_custom_type_script = "uid://d25myaapjjml7"
 [node name="FPSC_MultiVoicelineActivatable" type="Node" parent="." node_paths=PackedStringArray("voiceline_player")]
 script = ExtResource("8_60y3v")
 voiceline_player = NodePath("../AudioStreamPlayer")
-character_voicelines = Array[AudioStream]([ExtResource("9_tc45y"), ExtResource("10_m2tsa"), ExtResource("11_3g3bj"), ExtResource("12_64yyd"), ExtResource("13_8bpl3"), ExtResource("14_nbv2r"), ExtResource("15_1un45"), ExtResource("16_4kipn"), ExtResource("17_q5p0l"), ExtResource("18_chkhy")])
 localized_caption_prefix = "Announcer.Chamber4."
 delay = 4.5
 metadata/_custom_type_script = "uid://c10lkodrlqtba"

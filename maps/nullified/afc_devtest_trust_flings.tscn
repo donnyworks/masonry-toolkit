@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://ckyi0gdrrolk1" path="res://src/base/skybox/FPSC_SkyboxCamera.gd" id="9_u3138"]
 [ext_resource type="PackedScene" uid="uid://cm04rqdktssx2" path="res://instances/stellaoctangula.tscn" id="10_oypg8"]
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="11_w4da1"]
-[ext_resource type="Texture2D" uid="uid://wmpactx1jwkd" path="res://textures/target_endpoint.png" id="12_i40of"]
+[ext_resource type="Texture2D" uid="uid://wmpactx1jwkd" path="res://textures/afc/target_endpoint.png" id="12_i40of"]
 [ext_resource type="PackedScene" uid="uid://plpnja5gt1i4" path="res://instances/portal/weapon_portalgun.tscn" id="13_a3033"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s15dw"]

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="1_kkakh"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="2_vnuue"]
-[ext_resource type="AudioStream" uid="uid://blb0v2bitmuch" path="res://sound/floor_button_down.wav" id="3_ihdyw"]
+[ext_resource type="AudioStream" uid="uid://blb0v2bitmuch" path="res://sound/afc-sfx/floor_button_down.wav" id="3_ihdyw"]
 [ext_resource type="Script" uid="uid://b6e7p2uycpn08" path="res://src/base/FPSC_SettingVisibilityController.gd" id="3_vnuue"]
-[ext_resource type="AudioStream" uid="uid://c1l17iw7qlxfv" path="res://sound/floor_button_up.wav" id="4_mfjji"]
+[ext_resource type="AudioStream" uid="uid://c1l17iw7qlxfv" path="res://sound/afc-sfx/floor_button_up.wav" id="4_mfjji"]
 [ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="5_mfjji"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ayas8"]

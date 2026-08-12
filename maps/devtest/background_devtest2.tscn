@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="7_ha04r"]
 [ext_resource type="Texture2D" uid="uid://dvt56pplj6tyx" path="res://textures/hud/nofired_surface.png" id="8_0u5tx"]
 [ext_resource type="Texture2D" uid="uid://c5blavtcsjokf" path="res://textures/hud/nofired_nosurface_onecolor.png" id="9_sfiis"]
-[ext_resource type="AudioStream" uid="uid://bdv5tp7sgyuv1" path="res://sound/elevbell1.wav" id="10_e7fhv"]
+[ext_resource type="AudioStream" uid="uid://bdv5tp7sgyuv1" path="res://sound/afc-sfx/elevbell1.wav" id="10_e7fhv"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="11_2cb8w"]
 
 [sub_resource type="Shader" id="Shader_wta8l"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://cl05ixfx2p5rv"]
 
-[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://d0cyn435gohv6" path="res://textures/metal_floor_opening.png" id="2_pmjc4"]
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/afc/sign_base.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://d0cyn435gohv6" path="res://textures/afc/metal_floor_opening.png" id="2_pmjc4"]
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="3"]
-[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/afc/sign_complete.png" id="4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ugfnh"]
 sky_horizon_color = Color(0.640368, 0.657618, 0.681618, 1)

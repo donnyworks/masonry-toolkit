@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://csu8lu6rm6k7t"]
+[gd_scene load_steps=53 format=3 uid="uid://csu8lu6rm6k7t"]
 
 [ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="1_0v6xc"]
 [ext_resource type="Script" uid="uid://sl4hinpkxef0" path="res://src/base/FPSC_DevNote.gd" id="2_5s2ur"]
@@ -12,23 +12,26 @@
 [ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="8_xvque"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="9_4v7nu"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="10_bpk5c"]
-[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/indicator_light.png" id="11_llggt"]
+[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/afc/indicator_light.png" id="11_llggt"]
 [ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleModulationColor.gd" id="12_d0k4j"]
-[ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/sign_incomplete.png" id="13_sb5g5"]
+[ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/afc/sign_incomplete.png" id="13_sb5g5"]
 [ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="14_tt035"]
-[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/sign_complete.png" id="15_v4nmm"]
+[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/afc/sign_complete.png" id="15_v4nmm"]
 [ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleLightModulationColor.gd" id="16_w5wmx"]
 [ext_resource type="PackedScene" uid="uid://dgu5jhd4hnjek" path="res://instances/afc/prefab_pedestal_button.tscn" id="17_8rr02"]
 [ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="18_ku2o0"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="19_8fbue"]
-[ext_resource type="PackedScene" uid="uid://da8fywn53c78t" path="res://maps/afc_ch1_gain_flings.tscn" id="20_wrgt1"]
-[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="21_2rs4q"]
+[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/afc-sfx/doorOpen.wav" id="21_2rs4q"]
 [ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="22_48cf1"]
+[ext_resource type="AudioStream" uid="uid://bcg4hmo676fxl" path="res://sound/afc-sfx/weird-route-jingle.mp3" id="23_5alo5"]
 [ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="23_w48bg"]
 [ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="24_ri8ol"]
+[ext_resource type="PackedScene" uid="uid://cqmjr2a42bfue" path="res://maps/afc_ch1_gain_flings_hard_alt.tscn" id="25_5alo5"]
 [ext_resource type="Script" uid="uid://l3j5m0d3m6rj" path="res://src/base/triggers/FPSC_TriggerCatapult.gd" id="25_7kxct"]
+[ext_resource type="PackedScene" uid="uid://mgp12vex6t7u" path="res://maps/afc_ch1_gain_flings_hard.tscn" id="26_btfqv"]
 [ext_resource type="PackedScene" uid="uid://f0qlfetn1pdk" path="res://instances/afc/prefab_catapult.tscn" id="26_da26f"]
 [ext_resource type="PackedScene" uid="uid://dllfki6pae3cx" path="res://instances/afc/AudioQueueMarker.tscn" id="27_5hyem"]
+[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="28_5alo5"]
 [ext_resource type="PackedScene" uid="uid://dq51aafo7rnkc" path="res://models/fencingtest.glb" id="28_tlguk"]
 [ext_resource type="PackedScene" uid="uid://bmwgm7cropbr4" path="res://models/fencingtest-bend.glb" id="29_2y7a6"]
 
@@ -437,13 +440,13 @@ horizontal_alignment = 0
 [node name="Label3D4" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.6144767, -0.8630085)
 text = "[|||                                   ]
-TESTING COURSE B"
+TESTING COURSE C"
 horizontal_alignment = 0
 vertical_alignment = 0
 
 [node name="Label3D3" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
-text = "Acidic Pools
+text = "Bottomful pits
 Portals
 Aerial Faith Plates
 Boxes
@@ -2297,6 +2300,11 @@ transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -55.500004, 3
 use_collision = true
 size = Vector3(6, 7, 29)
 
+[node name="CSGBox3D23" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
+transform = Transform3D(0.9384509, -0.34541282, 0, 0.34541285, 0.93845075, 0, 0, 0, 1, -45.140278, 8.342112, -79.5)
+use_collision = true
+size = Vector3(16.618835, 1, 4)
+
 [node name="CSGBox3D25" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -57.5, -155, -67)
 use_collision = true
@@ -2355,6 +2363,7 @@ size = Vector3(15, 1382, 4)
 
 [node name="acid" type="CSGBox3D" parent="chambergeometry" groups=["Non-Portalable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -122.5, -42)
+visible = false
 size = Vector3(98, 230, 75)
 material = SubResource("StandardMaterial3D_fgjho")
 
@@ -2516,9 +2525,9 @@ use_collision = true
 size = Vector3(34, 240, 1)
 
 [node name="CSGBox3D13" type="CSGBox3D" parent="." groups=["Non-Portalable"]]
-transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, -26.5, -4, -79.5)
+transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, -29.955025, -4.9257708, -79.23187)
 use_collision = true
-size = Vector3(22, 1, 6)
+size = Vector3(29.153809, 1, 6.536255)
 
 [node name="FPSC_DoorActivatable" type="Node" parent="CSGBox3D13" node_paths=PackedStringArray("object_as_door")]
 script = ExtResource("9_4v7nu")
@@ -2636,9 +2645,13 @@ activatables = [NodePath("../buttonDoor"), NodePath("../buttonDoorUnpress"), Nod
 [node name="prefab_chamber_exithall" parent="." instance=ExtResource("18_ku2o0")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -55.5, 6.6846046, -93)
 
+[node name="AudioStreamPlayer3D" parent="prefab_chamber_exithall/teleporter_exit/door_teleporter_exit" index="2"]
+stream = ExtResource("23_5alo5")
+volume_db = 0.0
+
 [node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_exithall"]
 script = ExtResource("19_8fbue")
-other_level = ExtResource("20_wrgt1")
+other_level = ExtResource("25_5alo5")
 delay = 2.0
 trigger_once = true
 interact_with = 1
@@ -2681,11 +2694,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.75, 14, -31.5)
 
 [node name="killboxes" type="Node3D" parent="."]
 
-[node name="FPSC_TriggerRelay" type="Area3D" parent="killboxes" node_paths=PackedStringArray("activated")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12, 0)
-script = ExtResource("5_btfqv")
-activated = [NodePath("FPSC_ImpulseDamageActivatable")]
-metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+[node name="FPSC_TriggerRelay" type="Area3D" parent="killboxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -236, 0)
+script = ExtResource("19_8fbue")
+other_level = ExtResource("26_btfqv")
+metadata/_custom_type_script = "uid://cn3f2saw8lsmn"
 
 [node name="FPSC_ImpulseDamageActivatable" type="Node" parent="killboxes/FPSC_TriggerRelay"]
 script = ExtResource("24_ri8ol")
@@ -2708,6 +2721,24 @@ kill_rigidibodies = true
 metadata/_custom_type_script = "uid://bilm264c25p6e"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="killboxes/FPSC_TriggerRelay2"]
+shape = SubResource("WorldBoundaryShape3D_qqv62")
+
+[node name="FPSC_TriggerRelay3" type="Area3D" parent="killboxes" node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -46, 0)
+script = ExtResource("5_btfqv")
+activated = [NodePath("FPSC_ImpulseDamageActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="FPSC_ImpulseDamageActivatable" type="Node" parent="killboxes/FPSC_TriggerRelay3"]
+script = ExtResource("28_5alo5")
+IgnoreEntryClass = true
+modify_jump_velocity = true
+activate_fade = true
+fade_type = 2
+fade_duration = 2.0
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="killboxes/FPSC_TriggerRelay3"]
 shape = SubResource("WorldBoundaryShape3D_qqv62")
 
 [node name="lighting" type="Node3D" parent="."]
@@ -2941,10 +2972,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -75.865
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -77.433044)
 
 [node name="fencingtest78" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -78.99739)
+transform = Transform3D(0.38579333, 0, -0.92258525, 0, 1, 0, 0.92258525, 0, 0.38579333, -52.060158, 6.499994, -78.53183)
 
 [node name="fencingtest79" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -80.461395)
+transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, -51.999702, 6.499994, -81.11337)
 
 [node name="fencingtest80" parent="." groups=["Non-Portalable"] instance=ExtResource("28_tlguk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.761074, 6.499994, -82.02574)
@@ -3082,4 +3113,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.05
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.0540152, -0.5000062, -38.76439)
 
 [editable path="PrefabPedestalButton"]
+[editable path="prefab_chamber_exithall"]
+[editable path="prefab_chamber_exithall/teleporter_exit"]
 [editable path="PrefabBoxDropper"]

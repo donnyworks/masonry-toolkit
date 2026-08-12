@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://iat4nek0lqcn"]
 
-[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="1_45cc4"]
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/afc/sign_base.png" id="1_45cc4"]
 [ext_resource type="AudioStream" uid="uid://dxrgmwd0wbxdl" path="res://sound/music/radio-justthesame.wav" id="2_45cc4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7grdf"]

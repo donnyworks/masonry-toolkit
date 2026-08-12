@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://l3j5m0d3m6rj" path="res://src/base/triggers/FPSC_TriggerCatapult.gd" id="1_63mqg"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="2_l7xpi"]
 [ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="3_f2llv"]
-[ext_resource type="AudioStream" uid="uid://c1p5jv5b15i0r" path="res://sound/faithPlateActivated.wav" id="4_sva4r"]
+[ext_resource type="AudioStream" uid="uid://c1p5jv5b15i0r" path="res://sound/afc-sfx/faithPlateActivated.wav" id="4_sva4r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gun10"]
 size = Vector3(2, 1, 1)

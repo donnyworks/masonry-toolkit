@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cayj1mokktfqk"]
 
-[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="1_62t4u"]
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/afc/sign_base.png" id="1_62t4u"]
 [ext_resource type="AudioStream" uid="uid://y2hpei4h4w0o" path="res://sound/music/radio-goodday.wav" id="2_62t4u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7grdf"]

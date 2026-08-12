@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bxsad2yn6s4rr"]
 
-[ext_resource type="Texture2D" uid="uid://dxtrfikjwrokp" path="res://textures/teleporter_teleportation.png" id="2_la16j"]
+[ext_resource type="Texture2D" uid="uid://dxtrfikjwrokp" path="res://textures/afc/teleporter_teleportation.png" id="2_la16j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rj70k"]
 transparency = 1

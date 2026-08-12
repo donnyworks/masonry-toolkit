@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/logic/FPSC_ActivatableRelay.gd" id="2_gamec"]
 [ext_resource type="Material" uid="uid://cbuoxl6trvib2" path="res://materials/portallable_surface.tres" id="2_qwgbp"]
 [ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="3_6mgyn"]
-[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="4_mr0mn"]
+[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/afc-sfx/doorOpen.wav" id="4_mr0mn"]
 [ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="5_6mgyn"]
 [ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="6_mr0mn"]
 [ext_resource type="PackedScene" uid="uid://b3o7n0obts8tv" path="res://instances/afc/prefab_pellet_catcher.tscn" id="9_5ik4a"]

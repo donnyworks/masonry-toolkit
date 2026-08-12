@@ -1,7 +1,7 @@
 [gd_scene load_steps=61 format=3 uid="uid://s720s2e6xipw"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_gn33l"]
-[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/sign_base.png" id="2_vutxy"]
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/afc/sign_base.png" id="2_vutxy"]
 [ext_resource type="Script" uid="uid://hllw2e6fs54j" path="res://src/base/FPSC_InteractivityMarker.gd" id="3_bxj45"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="4_b4py8"]
 [ext_resource type="Script" uid="uid://bi2qiwuw6d15b" path="res://src/base/activatables/FPSC_ActivatableExecuteCommand.gd" id="5_n3l6s"]
@@ -9,7 +9,7 @@
 [ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="7_c86u5"]
 [ext_resource type="Material" uid="uid://cbuoxl6trvib2" path="res://materials/portallable_surface.tres" id="8_ti0le"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="9_q3d37"]
-[ext_resource type="Texture2D" uid="uid://cessukhc7fg1e" path="res://textures/door_unlabelled.png" id="11_ih4uv"]
+[ext_resource type="Texture2D" uid="uid://cessukhc7fg1e" path="res://textures/afc/door_unlabelled.png" id="11_ih4uv"]
 [ext_resource type="Script" uid="uid://c31gr4qnx52ps" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsRotatingDoor.gd" id="12_wfggc"]
 [ext_resource type="Script" uid="uid://cguq0l7w5loj6" path="res://src/base/activatables/logic/FPSC_ActivatableActivateOnSpawning.gd" id="13_j0skb"]
 [ext_resource type="Script" uid="uid://b84g1xo7620ij" path="res://src/base/activatables/logic/FPSC_ActivatableToggleTriggerEnablement.gd" id="14_bc0px"]
@@ -20,9 +20,9 @@
 [ext_resource type="AudioStream" uid="uid://cqurgy3543ygk" path="res://sound/vo/radio_os95/07escaped.wav" id="19_fsovj"]
 [ext_resource type="Script" uid="uid://wx07wnk25blo" path="res://src/base/activatables/world/doers/FPSC_ActivatablePush.gd" id="20_xyggx"]
 [ext_resource type="PackedScene" uid="uid://btjkhkjtog1vo" path="res://instances/afc/prefab_radio.tscn" id="21_nh4yq"]
-[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="22_pa8hh"]
+[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/afc-sfx/doorOpen.wav" id="22_pa8hh"]
 [ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="23_7kg60"]
-[ext_resource type="Texture2D" uid="uid://c51obrtd7xqus" path="res://textures/door_ch1_intro_portalgun.png" id="24_ppnyn"]
+[ext_resource type="Texture2D" uid="uid://c51obrtd7xqus" path="res://textures/afc/door_ch1_intro_portalgun.png" id="24_ppnyn"]
 [ext_resource type="PackedScene" uid="uid://bjj403lwphbjj" path="res://instances/player_scalemarker.tscn" id="25_lvol8"]
 [ext_resource type="PackedScene" uid="uid://plpnja5gt1i4" path="res://instances/portal/weapon_portalgun.tscn" id="26_l4qqu"]
 [ext_resource type="AudioStream" uid="uid://ffcclyipvpmj" path="res://sound/music/os95_abridged-introtheme.wav" id="27_raast"]
@@ -454,9 +454,8 @@ fade_duration = 1.0
 delay = 20.0
 metadata/_custom_type_script = "uid://d25myaapjjml7"
 
-[node name="podsettle" type="Node" parent="A" node_paths=PackedStringArray("target_door")]
+[node name="podsettle" type="Node" parent="A"]
 script = ExtResource("15_8polv")
-target_door = NodePath("")
 target_state = 1
 delay = 3.0
 metadata/_custom_type_script = "uid://b4c6tlpkvw6tk"
@@ -477,7 +476,7 @@ metadata/_custom_type_script = "uid://bi2qiwuw6d15b"
 [node name="FPSC_TriggerRelay" type="Area3D" parent="A" node_paths=PackedStringArray("activated")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
 script = ExtResource("16_siavy")
-activated = [NodePath(""), NodePath("../podsettle"), NodePath("../ending-podleave"), NodePath("../podleave-fadeout"), NodePath("../podleave-reload")]
+activated = [null, NodePath("../podsettle"), NodePath("../ending-podleave"), NodePath("../podleave-fadeout"), NodePath("../podleave-reload")]
 UseActivationDelay = true
 trigger_once = true
 interact_with = 1
@@ -490,7 +489,7 @@ shape = SubResource("CylinderShape3D_actbo")
 [node name="FPSC_TriggerRelay2" type="Area3D" parent="A" node_paths=PackedStringArray("activated")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -5)
 script = ExtResource("16_siavy")
-activated = [NodePath(""), NodePath("../disable-podleave")]
+activated = [null, NodePath("../disable-podleave")]
 UseActivationDelay = true
 trigger_once = true
 interact_with = 1

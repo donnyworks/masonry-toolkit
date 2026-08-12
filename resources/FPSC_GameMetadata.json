@@ -9,7 +9,8 @@
 	"BonusChapters":{
 		"nullified/afc_ch1_escape_attempt":"scrapter2_backoffices.png",
 		"nullified/afc_ch2_surprise":"chapter0_image.png",
-		"nullified/afc_devtest_trust_flings":"devtest_trustflings.png"
+		"nullified/afc_devtest_trust_flings":"devtest_trustflings.png",
+		"afc_ch1_intro_hard":"chapter0_image.png",
 	},
 	"BackgroundMaps":[
 		"afc_ch1_background"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://vdd61n4ia1mp"]
 
 [ext_resource type="Texture2D" uid="uid://sav8ot3s5160" path="res://godotengine-icon.svg" id="1_tamar"]
-[ext_resource type="AudioStream" uid="uid://gky1fe2sn7k8" path="res://sound/teleporter_exit.wav" id="2_qr7bx"]
+[ext_resource type="AudioStream" uid="uid://gky1fe2sn7k8" path="res://sound/afc-sfx/teleporter_exit.wav" id="2_qr7bx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n870h"]
 transparency = 1

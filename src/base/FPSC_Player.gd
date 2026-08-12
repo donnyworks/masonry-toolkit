@@ -729,6 +729,11 @@ func FPSC_ApplyMPState(state):
 			return # no.
 		if abs(position.distance_to(state[1])) > 5.0: # That's a little extreme. No amount of prediction can save this.
 			position = state[1]
+			velocity = state[0]
+			await get_tree().process_frame
+			await get_tree().process_frame
+			if FPSC_LevelManager.demo_data == {}:
+				if name == str(Monolyth.get_unique_id()): return
 		if FPSC_LevelManager.demo_data == {}:
 			if name == str(Monolyth.get_unique_id()): return
 		velocity = state[0]

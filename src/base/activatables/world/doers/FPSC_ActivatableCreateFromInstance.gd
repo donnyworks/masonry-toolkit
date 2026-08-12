@@ -55,6 +55,7 @@ func on_enter(_body:Node3D):
 	print("rot is ",instantiation_position.global_rotation)
 	if follow_position_rotation: new_inst.global_rotation = instantiation_position.global_rotation
 	new_insts.append(new_inst)
-	FPSC_MultiplayerFramework.cached_entities.append(new_inst)
-	FPSC_MultiplayerFramework.ObjectOUIDs[instance_id] = new_inst
+	if new_inst.has_method("FPSC_GetMPState") or new_inst is RigidBody3D:
+		FPSC_MultiplayerFramework.cached_entities.append(new_inst)
+		FPSC_MultiplayerFramework.ObjectOUIDs[instance_id] = new_inst
 	just_spawned_node = true

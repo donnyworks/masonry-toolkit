@@ -1,0 +1,129 @@
+[gd_scene load_steps=11 format=3 uid="uid://dr2eh5chvu1qx"]
+
+[ext_resource type="Script" uid="uid://8d6yu1ss6wum" path="res://src/afc/FPSC_AFC_WeaponLevelEditor.gd" id="1_ckbuk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kbhtp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oelvl"]
+shading_mode = 0
+albedo_color = Color(0.5137255, 0.8039216, 0.08627451, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckbuk"]
+shading_mode = 0
+albedo_color = Color(0.5137255, 0.80784315, 0.09411765, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbcut"]
+shading_mode = 0
+albedo_color = Color(0.18039216, 0.53333336, 0.92156863, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0q612"]
+shading_mode = 0
+albedo_color = Color(0.9607843, 0.2, 0.32156864, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7w2u"]
+shading_mode = 0
+albedo_color = Color(0.18039216, 0.5294118, 0.92156863, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cvfv3"]
+shading_mode = 0
+albedo_color = Color(0.92156863, 0.21176471, 0.31764707, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ewsla"]
+shading_mode = 0
+albedo_color = Color(0.92156863, 0.21176471, 0.31764707, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cd3b"]
+shading_mode = 0
+albedo_color = Color(0.5137255, 0.8039216, 0.08627451, 1)
+
+[node name="WeaponPortalgun" type="Node3D"]
+script = ExtResource("1_ckbuk")
+
+[node name="PickupRadius" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupRadius"]
+shape = SubResource("BoxShape3D_kbhtp")
+
+[node name="floorAndCeilingPicker" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+visible = false
+size = Vector3(3, 3, 0.001)
+material = SubResource("StandardMaterial3D_oelvl")
+
+[node name="worldmodel" type="Node3D" parent="."]
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="worldmodel"]
+inner_radius = 0.55895716
+outer_radius = 0.5789755
+sides = 16
+ring_sides = 32
+material = SubResource("StandardMaterial3D_ckbuk")
+
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="worldmodel"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+inner_radius = 0.55895716
+outer_radius = 0.5789755
+sides = 16
+ring_sides = 32
+material = SubResource("StandardMaterial3D_wbcut")
+
+[node name="CSGTorus3D3" type="CSGTorus3D" parent="worldmodel"]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+inner_radius = 0.55895716
+outer_radius = 0.5789755
+sides = 16
+ring_sides = 32
+material = SubResource("StandardMaterial3D_0q612")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="worldmodel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.33977085)
+size = Vector3(0.04, 0.04, 0.67333984)
+material = SubResource("StandardMaterial3D_q7w2u")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="worldmodel/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1817657, 0.196529, -0.33616993)
+size = Vector3(0.12932372, 0.11521484, 0.001)
+material = SubResource("StandardMaterial3D_q7w2u")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="worldmodel/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 3.9323975e-08, 0.42581862)
+radius = 0.06933594
+height = 0.20074463
+cone = true
+material = SubResource("StandardMaterial3D_q7w2u")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="worldmodel"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.33607614, 0, 0.0037454665)
+size = Vector3(0.04, 0.04, 0.67333984)
+material = SubResource("StandardMaterial3D_cvfv3")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="worldmodel/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 3.9323975e-08, 0.42581862)
+radius = 0.06933594
+height = 0.20074463
+cone = true
+material = SubResource("StandardMaterial3D_cvfv3")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="worldmodel/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19595811, 0.196529, -0.33616993)
+size = Vector3(0.12932372, 0.11521484, 0.001)
+material = SubResource("StandardMaterial3D_ewsla")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="worldmodel"]
+transform = Transform3D(8.881784e-16, -1, 0, -4.371139e-08, 0, 1, -1, 0, -4.371139e-08, 0.004150152, 0.3428393, 0.0037454665)
+size = Vector3(0.04, 0.04, 0.67333984)
+material = SubResource("StandardMaterial3D_0cd3b")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="worldmodel/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 3.9323975e-08, 0.42581862)
+radius = 0.06933594
+height = 0.20074463
+cone = true
+material = SubResource("StandardMaterial3D_0cd3b")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="worldmodel/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19595811, -0.19847536, -0.33616993)
+size = Vector3(0.12932372, 0.11521484, 0.001)
+material = SubResource("StandardMaterial3D_oelvl")
+
+[connection signal="body_entered" from="PickupRadius" to="." method="_on_pickup_radius_body_entered"]

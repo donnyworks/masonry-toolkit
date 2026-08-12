@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://de4g5kmt4ny16" path="res://textures/muzzleFlash.png" id="1_ovrc6"]
 [ext_resource type="Script" uid="uid://6f75mmvax31u" path="res://src/afc/FPSC_AFC_Turret.gd" id="1_ptokd"]
-[ext_resource type="AudioStream" uid="uid://ctn53kajvl23y" path="res://sound/button_pressed.wav" id="3_k2kbo"]
+[ext_resource type="AudioStream" uid="uid://ctn53kajvl23y" path="res://sound/afc-sfx/button_pressed.wav" id="3_k2kbo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptokd"]
 albedo_color = Color(1, 0, 0, 1)

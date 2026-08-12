@@ -10,8 +10,8 @@
 [ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="8_3tyqa"]
 [ext_resource type="Texture2D" uid="uid://dvt56pplj6tyx" path="res://textures/hud/nofired_surface.png" id="9_400f2"]
 [ext_resource type="Texture2D" uid="uid://c5blavtcsjokf" path="res://textures/hud/nofired_nosurface_onecolor.png" id="10_m2krt"]
-[ext_resource type="AudioStream" uid="uid://bdv5tp7sgyuv1" path="res://sound/elevbell1.wav" id="11_s72hg"]
-[ext_resource type="Texture2D" uid="uid://wmpactx1jwkd" path="res://textures/target_endpoint.png" id="12_jlqwc"]
+[ext_resource type="AudioStream" uid="uid://bdv5tp7sgyuv1" path="res://sound/afc-sfx/elevbell1.wav" id="11_s72hg"]
+[ext_resource type="Texture2D" uid="uid://wmpactx1jwkd" path="res://textures/afc/target_endpoint.png" id="12_jlqwc"]
 
 [sub_resource type="Shader" id="Shader_wta8l"]
 code = "shader_type spatial;

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://yb3rn8qc64xk" path="res://src/afc/FPSC_AFC_Energy_Ball.gd" id="1_iwr3s"]
 [ext_resource type="Script" uid="uid://tr3ltvhgthf3" path="res://src/afc/FPSC_AFC_BallRotatingTorus.gd" id="2_e1upy"]
-[ext_resource type="AudioStream" uid="uid://dg8hcsejoqshw" path="res://sound/energy-ball-moving.wav" id="3_cbb5w"]
+[ext_resource type="AudioStream" uid="uid://dg8hcsejoqshw" path="res://sound/afc-sfx/energy-ball-moving.wav" id="3_cbb5w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbb5w"]
 transparency = 1

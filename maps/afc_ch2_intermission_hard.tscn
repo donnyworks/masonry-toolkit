@@ -1,0 +1,1376 @@
+[gd_scene load_steps=62 format=3 uid="uid://dudivh1t345hg"]
+
+[ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_kdapp"]
+[ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="2_v8n5y"]
+[ext_resource type="Script" uid="uid://b4c6tlpkvw6tk" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableDoorForceStateChange.gd" id="4_h4p6p"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="5_wympe"]
+[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/afc-sfx/doorOpen.wav" id="6_ht12x"]
+[ext_resource type="Script" uid="uid://c2mdj6ggghyd7" path="res://src/base/conditionals/FPSC_BodyNameCaseCondition.gd" id="6_jlr6t"]
+[ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="7_6gno1"]
+[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="8_qvljg"]
+[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/world/doers/FPSC_ActivatablePlayAnimation.gd" id="9_j37q8"]
+[ext_resource type="Script" uid="uid://c10lkodrlqtba" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoicelines.gd" id="10_nrndn"]
+[ext_resource type="AudioStream" uid="uid://mbsgq3ff3ijc" path="res://sound/vo/announcer/IntroSideB.wav" id="10_whufw"]
+[ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoiceline.gd" id="13_7w43j"]
+[ext_resource type="AudioStream" uid="uid://bh07njj4gqb4a" path="res://sound/vo/announcer/ch0/Chamber1.SideB.01.wav" id="14_ht12x"]
+[ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="15_frl6r"]
+[ext_resource type="AudioStream" uid="uid://dcfcwym66ntke" path="res://sound/vo/announcer/ch0/Chamber1.SideB.02.wav" id="15_lr0xe"]
+[ext_resource type="Script" uid="uid://sl4hinpkxef0" path="res://src/base/FPSC_DevNote.gd" id="16_h7uai"]
+[ext_resource type="AudioStream" uid="uid://cv62chti7ye5f" path="res://sound/vo/announcer/ch0/Chamber1.BoxTrapSB.wav" id="16_whufw"]
+[ext_resource type="Texture2D" uid="uid://sav8ot3s5160" path="res://godotengine-icon.svg" id="17_t74ex"]
+[ext_resource type="AudioStream" uid="uid://gky1fe2sn7k8" path="res://sound/afc-sfx/teleporter_exit.wav" id="18_8vl8a"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="19_sm2pq"]
+[ext_resource type="Script" uid="uid://bks6dpsmk0aep" path="res://src/base/activatables/world/doers/FPSC_ActivatableUnfreezePhysicsBody.gd" id="20_nxnlp"]
+[ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="21_75rq5"]
+[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/afc/indicator_light.png" id="23_rj1j7"]
+[ext_resource type="AudioStream" uid="uid://bm5atumfpo1ax" path="res://sound/vo/announcer/ch0/Chamber1.CompleteSB.wav" id="23_whufw"]
+[ext_resource type="Script" uid="uid://bqnrdvouphbtn" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleModulationColor.gd" id="24_pyl7t"]
+[ext_resource type="Texture2D" uid="uid://d7l7ukkyywfk" path="res://textures/afc/sign_incomplete.png" id="25_x33m8"]
+[ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="26_ialme"]
+[ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/afc/sign_complete.png" id="27_158ug"]
+[ext_resource type="Script" uid="uid://cmfhvuspob06n" path="res://src/base/activatables/world/doers/FPSC_ActivatableCreateFromInstance.gd" id="28_w2eq5"]
+[ext_resource type="Texture2D" uid="uid://cxd1a6wpgs77g" path="res://textures/afc/sign_base.png" id="29_nw6c3"]
+[ext_resource type="PackedScene" uid="uid://b86kc32fhyjj3" path="res://instances/afc/teleporter_entrance.tscn" id="30_7c2op"]
+[ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="31_6kjfu"]
+[ext_resource type="Texture2D" uid="uid://rtiywcq0ivwj" path="res://textures/clipboard/texture_clipboard_3sb.png" id="33_ws7lp"]
+[ext_resource type="AudioStream" uid="uid://cyknn6or7iug6" path="res://sound/music/radio-greener-sb.wav" id="34_noab0"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kywdm"]
+viewport_path = NodePath("Player/ViewmodelRenderer")
+
+[sub_resource type="Animation" id="Animation_clhun"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera_intro:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.7, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("camera_intro:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("camera_intro:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player/Camera3D:current")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Player/Camera3D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Player:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hhrmo"]
+resource_name = "intro"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera_intro:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3, 3.49, 4, 4.4333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.38842428, -0.10017091, 1.5356419), Vector3(-0.31073943, 0.33169073, 1.2285135), Vector3(0.024128675, 0.378, 1.4396054), Vector3(0.022439668, 0.7687123, 1.1661718), Vector3(0.020681722, 0.3980509, 0.7276703), Vector3(0, 0.7, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("camera_intro:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 3, 3.49, 3.8, 4.02, 4.4333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5707964, -1.5707963, 0), Vector3(0.07288506, -1.5707963, 4.0585757e-08), Vector3(0.064577185, 0, 0), Vector3(-0.21568778, 0, 0), Vector3(-0.21568778, 0, 0), Vector3(0.18707332, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("camera_intro:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player/Camera3D:current")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Player/Camera3D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Player:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ek6mi"]
+_data = {
+&"RESET": SubResource("Animation_clhun"),
+&"intro": SubResource("Animation_hhrmo")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qxqr5"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_u6cgt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1coc"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x8ytm"]
+size = Vector3(2, 3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pixqk"]
+size = Vector3(1, 3, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gjs5u"]
+size = Vector3(6, 8, 13)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_x8ytm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0i7bm"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_keklg"]
+
+[sub_resource type="Sky" id="Sky_di4mo"]
+sky_material = SubResource("ProceduralSkyMaterial_keklg")
+
+[sub_resource type="Environment" id="Environment_k6xhx"]
+background_mode = 2
+sky = SubResource("Sky_di4mo")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0r3cr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rj70k"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.8)
+albedo_texture = ExtResource("17_t74ex")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pc1o8"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f71x0"]
+transparency = 1
+albedo_color = Color(0, 0.8392157, 0.81960785, 0.40784314)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_k6rt8"]
+height = 2.845581
+radius = 0.75634766
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cuvvd"]
+height = 0.154
+radius = 1.111
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jwhhy"]
+size = Vector3(0.12, 3.292, 0.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vp0w6"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dvg1l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j76s4"]
+size = Vector3(1, 0.5, 0.028)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vpoaj"]
+albedo_texture = ExtResource("29_nw6c3")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yrqh2"]
+size = Vector3(0.157, 0.38, 0.535)
+
+[node name="AFC Ch1 Intro" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_kdapp")]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
+visible = false
+fade_type = 2
+fade_duration = 0.0
+
+[node name="TextureRect" parent="Player" index="3"]
+texture = SubResource("ViewportTexture_kywdm")
+
+[node name="camera_intro" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.7, 0)
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ek6mi")
+}
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1.1279907, 0)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2538996, 0.15859985, -1.6894531)
+use_collision = true
+size = Vector3(0.24230957, 2.8291626, 1.6210938)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2.1279907, 0.5)
+use_collision = true
+size = Vector3(10, 0.256, 11)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -2.1279907, -0.5)
+use_collision = true
+size = Vector3(8, 0.256, 13)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 15.491127, -14.5)
+size = Vector3(50, 0.256, 52)
+material = SubResource("StandardMaterial3D_qxqr5")
+
+[node name="FPSC_TriggerRelay3" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -513.5089, -12)
+script = ExtResource("2_v8n5y")
+trigger_once = true
+interact_with = 0
+metadata/_custom_type_script = "uid://cn3f2saw8lsmn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3953769, 0)
+shape = SubResource("WorldBoundaryShape3D_u6cgt")
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -515.50885, -12)
+use_collision = true
+size = Vector3(50, 0.256, 57)
+material = SubResource("StandardMaterial3D_qxqr5")
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -36, -273.50888, -14)
+use_collision = true
+size = Vector3(1024, 0.256, 53)
+material = SubResource("StandardMaterial3D_qxqr5")
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 13.999999, -273.50888, -14)
+use_collision = true
+size = Vector3(1024, 0.256, 53)
+material = SubResource("StandardMaterial3D_qxqr5")
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="."]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -10.999999, -273.50888, -40.5)
+use_collision = true
+size = Vector3(1024, 0.256, 50)
+material = SubResource("StandardMaterial3D_qxqr5")
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="."]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -11.000001, -274.50888, 11.499999)
+use_collision = true
+size = Vector3(1024, 0.256, 50)
+material = SubResource("StandardMaterial3D_qxqr5")
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 3.8720093, 1.5)
+use_collision = true
+size = Vector3(8, 0.256, 17)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D25"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3.5)
+operation = 2
+size = Vector3(2, 0.256, 2)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 10.013448, 1.5)
+visible = false
+use_collision = true
+size = Vector3(8, 12, 17)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D26"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -7.8719997, -4)
+operation = 2
+size = Vector3(3, 8, 3)
+material = SubResource("StandardMaterial3D_o1coc")
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="CSGBox3D26"]
+transform = Transform3D(0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, 0, 1, -1.0372171, -2.3336325, -4)
+operation = 2
+size = Vector3(3, 4, 3)
+material = SubResource("StandardMaterial3D_o1coc")
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="CSGBox3D26"]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, 0.5185404, -0.3070402, -4)
+operation = 2
+size = Vector3(3, 4, 3)
+material = SubResource("StandardMaterial3D_o1coc")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, -2.1279907, 4)
+use_collision = true
+size = Vector3(3, 0.256, 4)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2.8720093, 4)
+use_collision = true
+size = Vector3(2, 0.256, 4)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.7440095, -1.5)
+use_collision = true
+size = Vector3(2, 6, 7)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGBox3D11"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.0463071, -1, -1)
+size = Vector3(0.26220703, 3, 2)
+
+[node name="Label3D" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 1.2564766, 0)
+text = "TEST CHAMBER 00"
+
+[node name="Label3D2" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.84315467, -0.8630085)
+text = "Potential hazards:
+"
+horizontal_alignment = 0
+
+[node name="Label3D4" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -0.5467202, -0.8630084)
+text = "[                                         ]
+TESTING COURSE A?"
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="Label3D3" type="Label3D" parent="CSGBox3D11/CSGBox3D6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
+text = "??????????????????????????????????????????????????????????????????????????"
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7440095, -6)
+use_collision = true
+size = Vector3(12, 6, 2)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7440095, 6.5)
+use_collision = true
+size = Vector3(12, 6, 1)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0.7440095, 8)
+use_collision = true
+size = Vector3(8, 6, 4)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D21"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, -0.5)
+operation = 2
+size = Vector3(2, 3, 4)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CSGBox3D21"]
+transform = Transform3D(0.8426028, 0, 0.53853554, -0.26387766, 0.8717274, 0.41286793, -0.4694562, -0.48999116, 0.73451996, 2.5692034, 2.49827, -1.2892447)
+shadow_enabled = true
+spot_range = 15.729588
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0.7440095, -6)
+use_collision = true
+size = Vector3(3, 6, 2)
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 2.7440095, -6)
+use_collision = true
+size = Vector3(5, 2, 2)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0.7440095, 0)
+use_collision = true
+size = Vector3(1, 6, 14)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2.2440095, 0)
+use_collision = true
+size = Vector3(1, 3, 14)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, -0.7559905, -2.5)
+use_collision = true
+size = Vector3(1, 3, 9)
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 0.7440095, 0)
+use_collision = true
+size = Vector3(1, 6, 14)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, -0.7559905, 6.5)
+use_collision = true
+size = Vector3(1, 3, 1)
+
+[node name="FPSC_DoorStateActivatable" type="Node" parent="." node_paths=PackedStringArray("target_door")]
+script = ExtResource("4_h4p6p")
+target_door = NodePath("../FPSC_DoorActivatable")
+target_state = 1
+metadata/_custom_type_script = "uid://b4c6tlpkvw6tk"
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, -0.7559905, 4)
+script = ExtResource("5_wympe")
+activated = [NodePath("../PrefabBoxDropper/dropper"), NodePath("../ChamberEntryVo"), NodePath("../FPSC_DoorStateActivatable")]
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -3)
+shape = SubResource("BoxShape3D_x8ytm")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="FPSC_TriggerRelay2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -0.5)
+shape = SubResource("BoxShape3D_pixqk")
+
+[node name="AntiSoftlockDetection" type="Area3D" parent="." node_paths=PackedStringArray("activated", "logicalCondition")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, -0.7559905, -10)
+script = ExtResource("5_wympe")
+activated = [NodePath("../ChamberSoftlockVo"), NodePath("../PrefabBoxDropper/dropper")]
+logicalCondition = NodePath("FPSC_BodyNameCaseCondition")
+interact_with = 4
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AntiSoftlockDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, -3)
+shape = SubResource("BoxShape3D_gjs5u")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="AntiSoftlockDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -10.5, 6.5)
+shape = SubResource("WorldBoundaryShape3D_x8ytm")
+
+[node name="FPSC_BodyNameCaseCondition" type="Node" parent="AntiSoftlockDetection"]
+script = ExtResource("6_jlr6t")
+ideal_name = "teleporter_exit"
+inverse = true
+metadata/_custom_type_script = "uid://c2mdj6ggghyd7"
+
+[node name="door_opener" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4595947, -0.7559905, 4)
+use_collision = true
+size = Vector3(0.79467773, 3, 4)
+material = SubResource("StandardMaterial3D_0i7bm")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="door_opener"]
+transform = Transform3D(1, 0, 8.3518705e-23, 0, 1, 0, -8.3518705e-23, 0, 1, 0.15117645, 0.14101315, 0)
+stream = ExtResource("6_ht12x")
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="door_opener" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("19_sm2pq")
+stream_player = NodePath("../AudioStreamPlayer3D")
+delay = 7.282
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="door_chamber" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.5, -0.2559905, -6)
+use_collision = true
+size = Vector3(1, 4, 6)
+material = SubResource("StandardMaterial3D_0i7bm")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="door_chamber"]
+transform = Transform3D(1, 0, 8.3518705e-23, 0, 1, 0, -8.3518705e-23, 0, 1, 0.15117645, 0.14101315, 0)
+stream = ExtResource("6_ht12x")
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="door_chamber" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("19_sm2pq")
+stream_player = NodePath("../AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.9423032, 0.5)
+use_collision = true
+size = Vector3(10, 0.256, 11)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.8720093, 0)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1, 0.8720093, 2.3791013)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("7_6gno1")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1, -3.1279907, -2.6208987)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("7_6gno1")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, -1.5, 0.8720093, -0.120898835)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("7_6gno1")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="CSGBox3D5"]
+transform = Transform3D(-4.371139e-08, 0, 1, -1, -4.371139e-08, -4.371139e-08, 4.371139e-08, -1, 1.9106855e-15, -1.5685543, -0.05509484, 0.7134094)
+operation = 2
+use_collision = true
+size = Vector3(0.24230957, 2.8291626, 1.6210938)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 3.5, 0.8720093, -0.12089861)
+use_collision = true
+size = Vector3(5, 0.25598145, 5)
+material = ExtResource("7_6gno1")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k6xhx")
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="." node_paths=PackedStringArray("activated")]
+script = ExtResource("5_wympe")
+activated = [NodePath("FPSC_PlayerPropertiesActivatable"), NodePath("FPSC_AnimationActivatable"), NodePath("FPSC_PlayerPropertiesActivatable2"), NodePath("../FPSC_MultiVoicelineActivatable"), NodePath("../FPSC_DoorActivatable"), NodePath("../door_opener/FPSC_SoundPlayerActivatable")]
+UseActivationDelay = true
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_TriggerRelay"]
+shape = SubResource("CylinderShape3D_0r3cr")
+
+[node name="FPSC_PlayerPropertiesActivatable" type="Node" parent="FPSC_TriggerRelay"]
+script = ExtResource("8_qvljg")
+new_speed = 0.0
+modify_jump_velocity = true
+activate_fade = true
+fade_type = 1
+fade_duration = 1.0
+chapter_title = "ATC_Chapter2b_Title"
+chapter_subtext = "ATC_Chapter2b_Subtitle"
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="FPSC_AnimationActivatable" type="Node" parent="FPSC_TriggerRelay" node_paths=PackedStringArray("player")]
+script = ExtResource("9_j37q8")
+player = NodePath("../../AnimationPlayer")
+animation = "intro"
+metadata/_custom_type_script = "uid://cd37fw45rkj5r"
+
+[node name="FPSC_PlayerPropertiesActivatable2" type="Node" parent="FPSC_TriggerRelay"]
+script = ExtResource("8_qvljg")
+modify_jump_velocity = true
+delay = 4.5
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="FPSC_MultiVoicelineActivatable" type="Node" parent="." node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("13_7w43j")
+voiceline_player = NodePath("../AudioStreamPlayer")
+character_voiceline = ExtResource("10_whufw")
+localized_caption = "Announcer.Ch2SideB.Intro"
+delay = 4.5
+metadata/_custom_type_script = "uid://whqnccb8m4hc"
+
+[node name="ChamberEntryVo" type="Node" parent="." node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("10_nrndn")
+voiceline_player = NodePath("../AudioStreamPlayer")
+character_voicelines = Array[AudioStream]([ExtResource("14_ht12x"), ExtResource("15_lr0xe")])
+localized_caption_prefix = "Announcer.Ch2SideB."
+delay = 4.5
+metadata/_custom_type_script = "uid://c10lkodrlqtba"
+
+[node name="ChamberSoftlockVo" type="Node" parent="." node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("13_7w43j")
+voiceline_player = NodePath("../AudioStreamPlayer")
+character_voiceline = ExtResource("16_whufw")
+localized_caption = "Announcer.Chamber1.BoxTrapSB"
+metadata/_custom_type_script = "uid://whqnccb8m4hc"
+
+[node name="FPSC_DoorActivatable" type="Node" parent="." node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("15_frl6r")
+object_as_door = NodePath("../door_opener")
+stay_open = true
+delay = 7.282
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83147085, 2, -0.3004375)
+shadow_enabled = true
+omni_range = 7.0
+
+[node name="prefab_chamber_exithall" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9.523797, -1.8296161, -16.181341)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8364868, -4)
+use_collision = true
+size = Vector3(5, 1.3270264, 13)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9073486e-06, -0.16351318, 3.9999971)
+operation = 2
+use_collision = true
+size = Vector3(3, 3, 3)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.336487, -3.9999971)
+size = Vector3(5, 20, 13)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9073486e-06, -4.663513, 3.9999943)
+operation = 2
+use_collision = true
+size = Vector3(3, 52, 3)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8364868, -4)
+size = Vector3(5, 1.3270264, 13)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D6" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9073486e-06, -0.16351318, 3.9999971)
+operation = 1
+use_collision = true
+size = Vector3(3, 3, 3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.536743e-07, 1, 2)
+use_collision = true
+size = Vector3(5, 5, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.163513, -4)
+use_collision = true
+size = Vector3(5, 1.3270264, 13)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.3270264, -4)
+use_collision = true
+size = Vector3(1, 7, 13)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.3270264, -4)
+use_collision = true
+size = Vector3(1, 7, 13)
+
+[node name="FPSC_DevNote" type="Label3D" parent="prefab_chamber_exithall"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1, 0)
+render_priority = 2
+outline_render_priority = 1
+text = "PUT CHANGELEVEL
+IN POD!
+Fadeout takes 2 
+seconds,
+trigger should
+have 2 sec delay!"
+script = ExtResource("16_h7uai")
+metadata/_custom_type_script = "uid://sl4hinpkxef0"
+
+[node name="teleporter_exit" type="RigidBody3D" parent="prefab_chamber_exithall" groups=["Non-Pickup", "Non-Portalable"]]
+freeze = true
+
+[node name="door_teleporter_exit" type="CSGBox3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054, 1.74, 1.007)
+size = Vector3(0.119628906, 2.8782654, 0.15032959)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="prefab_chamber_exithall/teleporter_exit/door_teleporter_exit" groups=["lights"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053987145, 1.2924975, -1.0067444)
+light_color = Color(0.1976453, 0.8427788, 1, 1)
+shadow_enabled = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="prefab_chamber_exithall/teleporter_exit/door_teleporter_exit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053987145, 1.2361991, -1.0067444)
+radius = 1.0
+height = 0.17687988
+material = SubResource("StandardMaterial3D_rj70k")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="prefab_chamber_exithall/teleporter_exit/door_teleporter_exit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054, 1.138, -1.007)
+stream = ExtResource("18_8vl8a")
+volume_db = -4.706
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="prefab_chamber_exithall/teleporter_exit" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09994507, 0)
+radius = 1.1108398
+height = 0.15386963
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_exithall/teleporter_exit/CSGCylinder3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0682621, 1.5949488, 0.0067443848)
+size = Vector3(0.119628906, 3.291687, 0.15032959)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="prefab_chamber_exithall/teleporter_exit/CSGCylinder3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0545906, 1.5949488, 0.0067443848)
+size = Vector3(0.119628906, 3.291687, 0.15032959)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="prefab_chamber_exithall/teleporter_exit/CSGCylinder3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.053987145, 1.5949488, 1.0067444)
+size = Vector3(0.119628906, 3.291687, 0.15032959)
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="prefab_chamber_exithall/teleporter_exit" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4721832, 0)
+radius = 1.1108398
+height = 3.2981262
+material = SubResource("StandardMaterial3D_pc1o8")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="prefab_chamber_exithall/teleporter_exit/CSGCylinder3D3"]
+operation = 2
+use_collision = true
+radius = 1.0019531
+height = 3.2981262
+material = SubResource("StandardMaterial3D_f71x0")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_exithall/teleporter_exit/CSGCylinder3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.056396484, -0.30215454, -1.0855076)
+operation = 2
+size = Vector3(4.1157227, 4.635803, 2.3378906)
+
+[node name="door_keeptheplayertrappedinthepod" type="CSGCylinder3D" parent="prefab_chamber_exithall/teleporter_exit" groups=["Non-Portalable"]]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1.826, 0)
+radius = 1.1108398
+height = 3.2981262
+material = SubResource("StandardMaterial3D_pc1o8")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="prefab_chamber_exithall/teleporter_exit/door_keeptheplayertrappedinthepod"]
+operation = 2
+use_collision = true
+radius = 1.0019531
+height = 3.2981262
+material = SubResource("StandardMaterial3D_f71x0")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_exithall/teleporter_exit/door_keeptheplayertrappedinthepod"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.056396484, -0.30215454, -1.0855076)
+operation = 2
+size = Vector3(4.1157227, 4.635803, 2.3378906)
+
+[node name="FPSC_PlayerSpeedActivatable" type="Node" parent="prefab_chamber_exithall/teleporter_exit"]
+script = ExtResource("8_qvljg")
+new_speed = 0.0
+modify_jump_velocity = true
+activate_fade = true
+fade_type = 2
+fade_color = Color(1, 1, 1, 1)
+fade_duration = 2.0
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="FPSC_DropActivatable" type="Node" parent="prefab_chamber_exithall/teleporter_exit"]
+script = ExtResource("8_qvljg")
+new_speed = 0.0
+modify_jump_velocity = true
+activate_fade = true
+fade_type = 1
+fade_color = Color(1, 1, 1, 1)
+fade_duration = 0.001
+delay = 2.0
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="FPSC_DoorActivatable" type="Node" parent="prefab_chamber_exithall/teleporter_exit" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("15_frl6r")
+object_as_door = NodePath("../door_teleporter_exit")
+time = 2.0
+move_direction = 2
+stay_open = true
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="FPSC_DoorActivatable2" type="Node" parent="prefab_chamber_exithall/teleporter_exit" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("15_frl6r")
+object_as_door = NodePath("../door_keeptheplayertrappedinthepod")
+time = 2.0
+stay_open = true
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="prefab_chamber_exithall/teleporter_exit" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("19_sm2pq")
+stream_player = NodePath("../door_teleporter_exit/AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="FPSC_UnfreezeActivatable" type="Node" parent="prefab_chamber_exithall/teleporter_exit" node_paths=PackedStringArray("prop")]
+script = ExtResource("20_nxnlp")
+prop = NodePath("..")
+delay = 2.0
+metadata/_custom_type_script = "uid://bks6dpsmk0aep"
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_exithall/teleporter_exit" node_paths=PackedStringArray("activated")]
+script = ExtResource("5_wympe")
+activated = [NodePath("../FPSC_DoorActivatable"), NodePath("../FPSC_PlayerSpeedActivatable"), NodePath("../FPSC_DoorActivatable2"), NodePath("../FPSC_SoundPlayerActivatable"), NodePath("../FPSC_UnfreezeActivatable"), NodePath("../FPSC_DropActivatable")]
+UseActivationDelay = true
+trigger_once = true
+interact_with = 1
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit/FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3953769, 0.17739749)
+shape = SubResource("CylinderShape3D_k6rt8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+shape = SubResource("CylinderShape3D_cuvvd")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.068, 1.502, 0.007)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(0.953254, 0, -0.30217025, 0, 1, 0, 0.30217025, 0, 0.953254, 1.0159588, 1.502, 0.32938957)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(0.8718727, 0, -0.48973247, 0, 1, 0, 0.48973247, 0, 0.8718727, 0.92773056, 1.502, 0.52913666)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(0.68304443, 0, -0.7303769, 0, 1, 0, 0.7303769, 0, 0.68304443, 0.72437763, 1.502, 0.7848244)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(0.5202199, 0, -0.8540324, 0, 1, 0, 0.8540324, 0, 0.5202199, 0.54961586, 1.502, 0.9157486)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(0.34613338, 0, -0.9381853, 0, 1, 0, 0.9381853, 0, 0.34613338, 0.36310196, 1.502, 1.0044041)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(0.14808553, 0, -0.98897445, 0, 1, 0, 0.98897445, 0, 0.14808553, 0.15123177, 1.502, 1.0572605)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(-0.15779608, 0, -0.98747176, 0, 1, 0, 0.98747176, 0, -0.15779608, -0.17543888, 1.502, 1.0535145)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(-0.35533535, 0, -0.93473893, 0, 1, 0, 0.93473893, 0, -0.35533535, -0.38604164, 1.502, 0.99581337)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(-0.16384253, 0, -0.98648643, 0, 1, 0, 0.98648643, 0, -0.16384253, -0.18189049, 1.502, 1.0524197)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D14" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(-0.361055, 0, -0.9325444, 0, 1, 0, 0.9325444, 0, -0.361055, -0.39213562, 1.502, 0.9934292)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D15" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(-0.6260595, 0, -0.77977526, 0, 1, 0, 0.77977526, 0, -0.6260595, -0.6740904, 1.502, 0.8284168)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D16" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(-0.7715691, 0, -0.6361456, 0, 1, 0, 0.6361456, 0, -0.7715691, -0.8284893, 1.502, 0.6740017)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D17" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(-0.6281668, 0, -0.7780787, 0, 1, 0, 0.7780787, 0, -0.6281668, -0.6763296, 1.502, 0.8265915)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D18" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(-0.7732871, 0, -0.63405585, 0, 1, 0, 0.63405585, 0, -0.7732871, -0.83030987, 1.502, 0.67175865)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D19" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(-0.92877716, 0, -0.37063852, 0, 1, 0, 0.37063852, 0, -0.92877716, -0.9945288, 1.502, 0.38934135)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D20" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(-0.98474705, 0, -0.17399198, 0, 1, 0, 0.17399198, 0, -0.98474705, -1.052928, 1.502, 0.17893028)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.057128, 1.502, 0.0069999695)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="prefab_chamber_exithall/teleporter_exit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04436779, 1.502, 0.992857)
+shape = SubResource("BoxShape3D_jwhhy")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="prefab_chamber_exithall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -8)
+shadow_enabled = true
+
+[node name="prefab_geomesh_button" parent="." instance=ExtResource("21_75rq5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.543925, -2, 3.6755035)
+
+[node name="FPSC_DoorActivatable" type="Node" parent="prefab_geomesh_button" node_paths=PackedStringArray("object_as_door")]
+script = ExtResource("15_frl6r")
+object_as_door = NodePath("../../door_chamber")
+delay = 0.25
+metadata/_custom_type_script = "uid://cwyc54ot6v2lb"
+
+[node name="FPSC_VoicelineActivatable" type="Node" parent="prefab_geomesh_button" node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("13_7w43j")
+voiceline_player = NodePath("../../AudioStreamPlayer")
+character_voiceline = ExtResource("23_whufw")
+localized_caption = "Announcer.Chamber1.CompleteSB"
+metadata/_custom_type_script = "uid://whqnccb8m4hc"
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_geomesh_button" node_paths=PackedStringArray("activated")]
+script = ExtResource("5_wympe")
+activated = [NodePath("../FPSC_DoorActivatable"), NodePath("../IndicatorLight/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight2/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight3/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight5/FPSC_SpriteColorActivatable"), NodePath("../IndicatorLight4/FPSC_SpriteColorActivatable"), NodePath("../sign/FPSC_TextureChangeActivatable"), NodePath("../../door_chamber/FPSC_SoundPlayerActivatable")]
+UseActivationDelay = true
+UseActivationDelayOnExit = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_geomesh_button/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_vp0w6")
+
+[node name="DialogRelay" type="Area3D" parent="prefab_geomesh_button" node_paths=PackedStringArray("activated")]
+script = ExtResource("5_wympe")
+activated = [NodePath("../FPSC_VoicelineActivatable")]
+trigger_once = true
+interact_with = 4
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_geomesh_button/DialogRelay"]
+shape = SubResource("BoxShape3D_vp0w6")
+
+[node name="IndicatorLight" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9528913, 0.024439335, 0)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("23_rj1j7")
+region_enabled = true
+region_rect = Rect2(0, 0, 384, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight" node_paths=PackedStringArray("sprite")]
+script = ExtResource("24_pyl7t")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight2" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.99073124, 0, -0.13583662, 0, 1, 0, 0.13583662, 0, 0.99073124, 3.1030245, 0.024439335, -2.8733854)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+render_priority = 1
+texture = ExtResource("23_rj1j7")
+region_enabled = true
+region_rect = Rect2(0, -1024, 64, 1088)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight2" node_paths=PackedStringArray("sprite")]
+script = ExtResource("24_pyl7t")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.05
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight6" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 2.7713938, 0.024439335, -2.8733854)
+modulate = Color(0.49803922, 0.49803922, 0.49803922, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("23_rj1j7")
+region_enabled = true
+region_rect = Rect2(0, -1024, 64, 1088)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight6" node_paths=PackedStringArray("sprite")]
+script = ExtResource("24_pyl7t")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.05
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight3" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21661663, 0.024439335, -7.1996274)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("23_rj1j7")
+region_enabled = true
+region_rect = Rect2(0, -576, 64, 640)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight3" node_paths=PackedStringArray("sprite")]
+script = ExtResource("24_pyl7t")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.15
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight5" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.97958577, -0.20102663, 0, 0.20102663, 0.97958577, 0, 0, 0, 1, 0.40325737, 0.21020973, -8.652351)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+render_priority = 1
+texture = ExtResource("23_rj1j7")
+region_enabled = true
+region_rect = Rect2(0, -576, 64, 640)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight5" node_paths=PackedStringArray("sprite")]
+script = ExtResource("24_pyl7t")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.2
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight7" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20450592, 0.21020973, -8.652351)
+modulate = Color(0.49803922, 0.49803922, 0.49803922, 1)
+pixel_size = 0.005
+texture = ExtResource("23_rj1j7")
+region_enabled = true
+region_rect = Rect2(0, -576, 64, 640)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight7" node_paths=PackedStringArray("sprite")]
+script = ExtResource("24_pyl7t")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.2
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="IndicatorLight4" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3294439, 0.024439335, -5.432688)
+modulate = Color(1, 0.5058824, 0.007843138, 1)
+pixel_size = 0.005
+axis = 1
+texture = ExtResource("23_rj1j7")
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 64)
+
+[node name="FPSC_SpriteColorActivatable" type="Node" parent="prefab_geomesh_button/IndicatorLight4" node_paths=PackedStringArray("sprite")]
+script = ExtResource("24_pyl7t")
+sprite = NodePath("..")
+off_color = Color(1, 0.5058824, 0, 1)
+on_color = Color(0.007843138, 1, 1, 1)
+delay = 0.1
+metadata/_custom_type_script = "uid://bqnrdvouphbtn"
+
+[node name="sign" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9711176, -0.23860125, 0, 0.23860125, 0.9711176, 0, 0, 0, 1, -0.055713654, 2.1654801, -8.66182)
+pixel_size = 0.015
+render_priority = 2
+texture = ExtResource("25_x33m8")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign" node_paths=PackedStringArray("sprite")]
+script = ExtResource("26_ialme")
+sprite = NodePath("..")
+texture_b = ExtResource("27_158ug")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="sign2" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9711176, -0.23860125, 0, 0.23860125, 0.9711176, 0, 0, 0, 1, -0.24561977, 2.1654801, -8.634014)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("29_nw6c3")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign2" node_paths=PackedStringArray("sprite")]
+script = ExtResource("26_ialme")
+sprite = NodePath("..")
+texture_b = ExtResource("27_158ug")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="sign3" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9711176, -0.23860125, 0, 0.23860125, 0.9711176, 0, 0, 0, 1, -0.48633862, 2.1654801, -8.634014)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("29_nw6c3")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign3" node_paths=PackedStringArray("sprite")]
+script = ExtResource("26_ialme")
+sprite = NodePath("..")
+texture_b = ExtResource("27_158ug")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="sign4" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9711176, -0.23860125, 0, 0.23860125, 0.9711176, 0, 0, 0, 1, -0.66042614, 2.1654801, -8.634014)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("29_nw6c3")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign4" node_paths=PackedStringArray("sprite")]
+script = ExtResource("26_ialme")
+sprite = NodePath("..")
+texture_b = ExtResource("27_158ug")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="sign5" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9711176, -0.23860125, 0, 0.23860125, 0.9711176, 0, 0, 0, 1, -0.8141327, 2.1654801, -8.634014)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("29_nw6c3")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign5" node_paths=PackedStringArray("sprite")]
+script = ExtResource("26_ialme")
+sprite = NodePath("..")
+texture_b = ExtResource("27_158ug")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="sign6" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9711176, -0.23860125, 0, 0.23860125, 0.9711176, 0, 0, 0, 1, -0.94005394, 2.1654801, -8.634014)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("29_nw6c3")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign6" node_paths=PackedStringArray("sprite")]
+script = ExtResource("26_ialme")
+sprite = NodePath("..")
+texture_b = ExtResource("27_158ug")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="sign7" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9711176, -0.23860125, 0, 0.23860125, 0.9711176, 0, 0, 0, 1, -1.0311718, 2.1654801, -8.634014)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("29_nw6c3")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign7" node_paths=PackedStringArray("sprite")]
+script = ExtResource("26_ialme")
+sprite = NodePath("..")
+texture_b = ExtResource("27_158ug")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="sign8" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9711176, -0.23860125, 0, 0.23860125, 0.9711176, 0, 0, 0, 1, -1.2103748, 2.1654801, -8.634014)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("29_nw6c3")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign8" node_paths=PackedStringArray("sprite")]
+script = ExtResource("26_ialme")
+sprite = NodePath("..")
+texture_b = ExtResource("27_158ug")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="sign9" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9711176, -0.23860125, 0, 0.23860125, 0.9711176, 0, 0, 0, 1, -1.3538733, 2.1654801, -8.634014)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("29_nw6c3")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign9" node_paths=PackedStringArray("sprite")]
+script = ExtResource("26_ialme")
+sprite = NodePath("..")
+texture_b = ExtResource("27_158ug")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="sign10" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9711176, -0.23860125, 0, 0.23860125, 0.9711176, 0, 0, 0, 1, -1.5740442, 2.1654801, -8.634014)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("29_nw6c3")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign10" node_paths=PackedStringArray("sprite")]
+script = ExtResource("26_ialme")
+sprite = NodePath("..")
+texture_b = ExtResource("27_158ug")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="sign11" type="Sprite3D" parent="prefab_geomesh_button"]
+transform = Transform3D(0.9711176, -0.23860125, 0, 0.23860125, 0.9711176, 0, 0, 0, 1, -1.7290516, 2.1654801, -8.634014)
+pixel_size = 0.015
+render_priority = 1
+texture = ExtResource("29_nw6c3")
+
+[node name="FPSC_TextureChangeActivatable" type="Node" parent="prefab_geomesh_button/sign11" node_paths=PackedStringArray("sprite")]
+script = ExtResource("26_ialme")
+sprite = NodePath("..")
+texture_b = ExtResource("27_158ug")
+switch_back_on_exit = true
+delay = 0.2
+metadata/_custom_type_script = "uid://cfqhdd8f1sq3h"
+
+[node name="FPSC_InstanceActivatable" type="Node" parent="." node_paths=PackedStringArray("instance", "instantiation_position")]
+script = ExtResource("28_w2eq5")
+instance = NodePath("box")
+instantiation_position = NodePath("instance_create_box")
+preserve_original = false
+destroy_preexisting = true
+metadata/_custom_type_script = "uid://cmfhvuspob06n"
+
+[node name="instance_create_box" type="Marker3D" parent="FPSC_InstanceActivatable"]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -10.010261, 10.173786, -2.5)
+
+[node name="box" type="RigidBody3D" parent="FPSC_InstanceActivatable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 18, -3)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="FPSC_InstanceActivatable/box"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FPSC_InstanceActivatable/box"]
+shape = SubResource("BoxShape3D_dvg1l")
+
+[node name="teleporter_entrance" parent="." instance=ExtResource("30_7c2op")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8394415, 1.0101253)
+
+[node name="PrefabBoxDropper" parent="." instance=ExtResource("31_6kjfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, -2)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.681671, -0.5077697, -1.7059221)
+use_collision = true
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08547187, 0)
+operation = 2
+use_collision = true
+size = Vector3(1, 1, 0.8)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="CSGBox3D17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08547187, 0)
+operation = 2
+use_collision = true
+size = Vector3(0.8, 1, 1)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(-0.23361522, 0, -0.97232914, 0, 1, 0, 0.97232914, 0, -0.23361522, 2.681671, 0.011888862, -1.530699)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="RigidBody3D"]
+transform = Transform3D(1.9106855e-15, -1, 4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1, 0, -4.371139e-08, 0, 0, 0)
+use_collision = true
+size = Vector3(1, 0.5, 0.02784375)
+
+[node name="Sprite3D" type="Sprite3D" parent="RigidBody3D/CSGBox3D10"]
+transform = Transform3D(-2.9802322e-08, -1, 8.7422784e-08, 1, -2.9802322e-08, -4.440892e-15, -3.5527137e-15, 8.7422784e-08, 1, 0, 0, -0.019269109)
+flip_h = true
+pixel_size = 0.0019
+shaded = true
+texture = ExtResource("33_ws7lp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+shape = SubResource("BoxShape3D_j76s4")
+
+[node name="CSGBox3D33" type="RigidBody3D" parent="."]
+transform = Transform3D(0.6882533, 0, 0.7254704, 0, 1, 0, -0.7254704, 0, 0.6882533, 2.7102437, 0.1890097, -2.021309)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CSGBox3D33"]
+size = Vector3(0.157, 0.38, 0.535)
+material = SubResource("StandardMaterial3D_vpoaj")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CSGBox3D33"]
+transform = Transform3D(-0.258819, 0, 0.9659259, 0, 1, 0, -0.9659259, 0, -0.258819, 0, 0, 0)
+stream = ExtResource("34_noab0")
+autoplay = true
+max_distance = 15.0
+emission_angle_enabled = true
+emission_angle_degrees = 66.0
+doppler_tracking = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D33"]
+shape = SubResource("BoxShape3D_yrqh2")
+
+[editable path="Player"]
+[editable path="PrefabBoxDropper"]

@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="4_gk5gn"]
 [ext_resource type="Script" uid="uid://b4c6tlpkvw6tk" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableDoorForceStateChange.gd" id="5_lxbxp"]
 [ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoiceline.gd" id="6_nesd1"]
-[ext_resource type="AudioStream" uid="uid://ctn53kajvl23y" path="res://sound/button_pressed.wav" id="7_gktag"]
+[ext_resource type="AudioStream" uid="uid://ctn53kajvl23y" path="res://sound/afc-sfx/button_pressed.wav" id="7_gktag"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oscjm"]
 albedo_color = Color(1, 0, 0, 1)

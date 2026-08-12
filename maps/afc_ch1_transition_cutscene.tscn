@@ -16,10 +16,10 @@
 [ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="12_5cpam"]
 [ext_resource type="PackedScene" uid="uid://btjkhkjtog1vo" path="res://instances/afc/prefab_radio.tscn" id="13_1yn72"]
 [ext_resource type="Material" uid="uid://cbuoxl6trvib2" path="res://materials/portallable_surface.tres" id="16_1noek"]
-[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/doorOpen.wav" id="17_euvbc"]
+[ext_resource type="AudioStream" uid="uid://cjt8g3mh4jbe" path="res://sound/afc-sfx/doorOpen.wav" id="17_euvbc"]
 [ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="18_ut1da"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="19_1s3hu"]
-[ext_resource type="Texture2D" uid="uid://c51obrtd7xqus" path="res://textures/door_ch1_intro_portalgun.png" id="20_v8vts"]
+[ext_resource type="Texture2D" uid="uid://c51obrtd7xqus" path="res://textures/afc/door_ch1_intro_portalgun.png" id="20_v8vts"]
 [ext_resource type="Script" uid="uid://wx07wnk25blo" path="res://src/base/activatables/world/doers/FPSC_ActivatablePush.gd" id="21_euvbc"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yhxu5"]
