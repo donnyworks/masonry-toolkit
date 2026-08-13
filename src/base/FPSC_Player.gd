@@ -598,7 +598,9 @@ func _process(delta):
 			if $Camera3D/GrabCast.get_collider() is CSGShape3D:
 				for object in $Camera3D/GrabCast.get_collider().get_children():
 					if object is FPSC_InteractivityMarker:
-						object.activatable.on_enter(self)
+						if object.activatable != null:
+							if is_instance_valid(object.activatable):
+								object.activatable.on_enter(self)
 		else:
 			if pocket_object != null and host_object != null:
 				host_object.set_physics_process(false)

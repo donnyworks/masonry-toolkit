@@ -2712,6 +2712,7 @@ shape = SubResource("WorldBoundaryShape3D_qqv62")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -236, 0)
 script = ExtResource("5_btfqv")
 activated = [NodePath("FPSC_ImpulseDamageActivatable")]
+interact_with = 4
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
 [node name="FPSC_ImpulseDamageActivatable" type="Node" parent="killboxes/FPSC_TriggerRelay2"]
@@ -2727,6 +2728,7 @@ shape = SubResource("WorldBoundaryShape3D_qqv62")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -46, 0)
 script = ExtResource("5_btfqv")
 activated = [NodePath("FPSC_ImpulseDamageActivatable")]
+interact_with = 1
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
 
 [node name="FPSC_ImpulseDamageActivatable" type="Node" parent="killboxes/FPSC_TriggerRelay3"]
@@ -2822,6 +2824,7 @@ transform = Transform3D(0.49999997, -0.8660253, 0, 0.8660253, 0.49999997, 0, 0, 
 script = ExtResource("25_7kxct")
 destination = NodePath("../Marker3D5")
 minimal_threshold = 8.0
+visibility_dependant = null
 metadata/_custom_type_script = "uid://l3j5m0d3m6rj"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="faithPlates/FPSC_TriggerCatapult"]
@@ -2831,22 +2834,27 @@ shape = SubResource("BoxShape3D_hvpop")
 [node name="FPSC_TriggerCatapult3" parent="faithPlates" node_paths=PackedStringArray("destination") instance=ExtResource("26_da26f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 0, -69.5)
 destination = NodePath("../Marker3D6")
+visibility_dependant = null
 
 [node name="FPSC_TriggerCatapult4" parent="faithPlates" node_paths=PackedStringArray("destination") instance=ExtResource("26_da26f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5, 0, -31.5)
 destination = NodePath("../Marker3D3")
+visibility_dependant = null
 
 [node name="FPSC_TriggerCatapult5" parent="faithPlates" node_paths=PackedStringArray("destination") instance=ExtResource("26_da26f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5, 0, -58.5)
 destination = NodePath("../Marker3D2")
+visibility_dependant = null
 
 [node name="FPSC_TriggerCatapult6" parent="faithPlates" node_paths=PackedStringArray("destination") instance=ExtResource("26_da26f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -58.5)
 destination = NodePath("../Marker3D4")
+visibility_dependant = null
 
 [node name="FPSC_TriggerCatapult2" parent="faithPlates" node_paths=PackedStringArray("destination") instance=ExtResource("26_da26f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.237301, 9.536743e-07, -31.60984)
 destination = NodePath("../Marker3D")
+visibility_dependant = null
 
 [node name="Marker3D" parent="faithPlates" instance=ExtResource("27_5hyem")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 6, -31.5)

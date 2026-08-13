@@ -1,0 +1,2560 @@
+[gd_scene load_steps=73 format=3 uid="uid://bbnwxj6uws0mi"]
+
+[ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_m03vf"]
+[ext_resource type="PackedScene" uid="uid://cihvtue137xn7" path="res://instances/afc/prefab_chamber_entryway.tscn" id="2_llkoq"]
+[ext_resource type="Script" uid="uid://bxrwaxtx06m0r" path="res://src/base/activatables/world/doers/FPSC_ActivatableTeleportNode3D.gd" id="4_hk64b"]
+[ext_resource type="PackedScene" uid="uid://bkp08lps6mwss" path="res://instances/weapon_emptyhands.tscn" id="4_k440e"]
+[ext_resource type="Script" uid="uid://cs8wakpga0qla" path="res://src/base/FPSC_BooleanPropertySetterRandomized.gd" id="5_2evq6"]
+[ext_resource type="FontFile" uid="uid://dy1bdcfffhql8" path="res://fnt_afc/DTM-Sans.otf" id="5_jxy0q"]
+[ext_resource type="Script" uid="uid://dlktdrvwevbt1" path="res://src/base/activatables/audio/FPSC_ActivatableSoundOnActivation.gd" id="5_kmm8j"]
+[ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="5_o6ekm"]
+[ext_resource type="AudioStream" uid="uid://dhpwoie8s5m50" path="res://sound/afc-sfx/thereisnotamanhere.wav" id="5_oed1g"]
+[ext_resource type="Texture2D" uid="uid://5vyc8hwkbbg2" path="res://textures/afc/around.png" id="6_041m3"]
+[ext_resource type="Script" uid="uid://whqnccb8m4hc" path="res://src/base/activatables/audio/FPSC_ActivatablePlayVoiceline.gd" id="6_iid3j"]
+[ext_resource type="PackedScene" uid="uid://bjj403lwphbjj" path="res://instances/player_scalemarker.tscn" id="6_k440e"]
+[ext_resource type="Texture2D" uid="uid://dl8pugea3uo8l" path="res://textures/afc/egg.png" id="6_nusyj"]
+[ext_resource type="Script" uid="uid://co0pdj3pf8nga" path="res://src/base/triggers/FPSC_TriggerRelay.gd" id="6_or1jw"]
+[ext_resource type="Script" uid="uid://cpmnahh0n8xn6" path="res://src/base/activatables/FPSC_ActivatableShowCaption.gd" id="6_xmbf8"]
+[ext_resource type="AudioStream" uid="uid://cot02xudtnots" path="res://sound/vo/announcerbfdi/hello.mp3" id="7_514q3"]
+[ext_resource type="AudioStream" uid="uid://c4va52noaoiim" path="res://sound/afc-sfx/fire.wav" id="7_chgqe"]
+[ext_resource type="AudioStream" uid="uid://ctn53kajvl23y" path="res://sound/afc-sfx/button_pressed.wav" id="8_bb4ty"]
+[ext_resource type="Script" uid="uid://cgae4dmf6xfos" path="res://src/base/activatables/logic/FPSC_ActivatableRelay.gd" id="8_ui3mt"]
+[ext_resource type="Script" uid="uid://bks6dpsmk0aep" path="res://src/base/activatables/world/doers/FPSC_ActivatableUnfreezePhysicsBody.gd" id="9_iid3j"]
+[ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/afc/indicator_light.png" id="10_6hs70"]
+[ext_resource type="AudioStream" uid="uid://c85463ixdlxbu" path="res://sound/afc-sfx/smokealarm.wav" id="11_yksk0"]
+[ext_resource type="Material" uid="uid://cabujhpo5jb05" path="res://materials/InnoGlass.tres" id="12_2e10s"]
+[ext_resource type="Script" uid="uid://hllw2e6fs54j" path="res://src/base/FPSC_InteractivityMarker.gd" id="12_yksk0"]
+[ext_resource type="Script" uid="uid://bilm264c25p6e" path="res://src/base/activatables/FPSC_ActivatableDealDamage.gd" id="15_ui3mt"]
+[ext_resource type="Texture2D" uid="uid://boj44gejq8pv4" path="res://textures/afc/capaldi.jpg" id="18_7y2xa"]
+[ext_resource type="AudioStream" uid="uid://bqkrcd8snxtnq" path="res://sound/afc-sfx/doctorwhowemustescapenow.wav" id="19_7m8qs"]
+[ext_resource type="Script" uid="uid://dd5j3m0ylh3c5" path="res://src/base/activatables/world/doers/FPSC_ActivatableChangeVisibilityRegions.gd" id="19_oed1g"]
+[ext_resource type="AudioStream" uid="uid://du2bsnmqbogf5" path="res://sound/afc-sfx/onfire.wav" id="19_wp3g7"]
+[ext_resource type="Script" uid="uid://cd37fw45rkj5r" path="res://src/base/activatables/world/doers/FPSC_ActivatablePlayAnimation.gd" id="24_7m8qs"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hhket"]
+
+[sub_resource type="Sky" id="Sky_commd"]
+sky_material = SubResource("ProceduralSkyMaterial_hhket")
+
+[sub_resource type="Environment" id="Environment_vmvme"]
+background_mode = 2
+sky = SubResource("Sky_commd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k440e"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xmbf8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2e10s"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ceid8"]
+albedo_color = Color(0.6616679, 0.34430298, 0.71874785, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7y2xa"]
+albedo_color = Color(0.41170827, 0.17868382, 0.4518379, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7m8qs"]
+albedo_color = Color(0.2325708, 0.08787105, 0.25707665, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_041m3"]
+albedo_color = Color(0.1638594, 0.05272533, 0.18488032, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxy0q"]
+albedo_color = Color(0.084075846, 0.017287944, 0.0965044, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7y2xa"]
+size = Vector3(1, 8, 13)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nusyj"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3uynk"]
+size = Vector3(7, 3, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqj68"]
+albedo_color = Color(0.3328807, 0.33288068, 0.33288068, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jxy0q"]
+viewport_path = NodePath("manroom/CSGCombiner3D/Sprite3D/SubViewport")
+
+[sub_resource type="GDScript" id="GDScript_nusyj"]
+resource_name = "dialog"
+script/source = "extends Control
+
+var sound = \"SND_TXT1.wav\"
+
+@export var texts : Array[String] = [\"La la la~\\nTime to wake up and smell the pain.\",\"Or{.{.{. $will the pain smell me?\"]
+
+var current_text = 0
+
+var current_character = 0
+
+var textSpeed = 0.05
+
+var playerRef = null
+
+@export var comp : CanvasItem = null
+
+func _ready():
+	visible = false
+
+# Called when the node enters the scene tree for the first time.
+func onTriggered() -> void:
+	await get_tree().process_frame
+	await get_tree().process_frame
+	visible = true
+	print(\"Dialog system waking up...\")
+	#$AudioStreamPlayer.stream = load(\"res://Sounds/\" + sound)
+	$chwait.start(textSpeed)
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if not visible: return
+	if Input.is_action_just_pressed(\"p_use\"):
+		print(\"Advance.\")
+		if current_text + 1 < len(texts):
+			current_text += 1
+			current_character = 0
+			$HBoxContainer/currentText.text = \"\"
+		else:
+			#GlobalScope.UIEvents.erase(GlobalScope.EventTypes.IN_DIALOG)
+			#GlobalScope.CurrentEvent = GlobalScope.EventTypes.FREED
+			if comp != null:
+				comp.visible = true
+			#	get_node(comp).activated(playerRef,self)
+			queue_free()
+	if Input.is_action_just_pressed(\"p_flashlight\"):
+		$HBoxContainer/currentText.text = texts[current_text].replace(\"$\",\"\").replace(\"{\",\"\")
+		current_character = len(texts[current_text])
+	pass
+
+
+func _on_chwait_timeout() -> void:
+	#print(\"Typing character...\")
+	if current_character < len(texts[current_text]):
+		if texts[current_text][current_character] == \"$\":
+			current_character += 1
+			$chwait.start(0.5)
+		elif texts[current_text][current_character] == \"{\":
+			current_character += 1
+			$chwait.start(0.25)
+		else:
+			$HBoxContainer/currentText.text += texts[current_text][current_character]
+			$AudioStreamPlayer.play()
+			current_character += 1
+			$chwait.start(textSpeed)
+	pass # Replace with function body.
+"
+
+[sub_resource type="GDScript" id="GDScript_041m3"]
+resource_name = "DLGActivatable"
+script/source = "extends FPSC_Activatable
+
+func on_enter(_body:Node3D):
+	if not get_parent().get_parent().get_parent().visible:
+		return
+	get_parent().get_node(\"Dialog\").onTriggered()
+	queue_free()
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_514q3"]
+shading_mode = 0
+albedo_color = Color(0.7764706, 0.7647059, 0.7764706, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3uynk"]
+shading_mode = 0
+albedo_color = Color(0.48235294, 0.49019608, 0.48235294, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2aieu"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83nx4"]
+shading_mode = 0
+albedo_color = Color(0.7764706, 0.7647059, 0.7764706, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2evq6"]
+albedo_color = Color(0.48051572, 0.24953714, 0.15453926, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bb4ty"]
+size = Vector3(3.5214844, 4, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_60gqp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bb4ty"]
+albedo_color = Color(1, 0.5367941, 0.35504562, 1)
+emission_enabled = true
+emission = Color(1, 0.5367941, 0.35504562, 1)
+emission_energy_multiplier = 0.55
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ceid8"]
+size = Vector3(6, 4, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_llkoq"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2e10s"]
+size = Vector3(6, 4, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m03vf"]
+render_priority = 1
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.31764707)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hk64b"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_60gqp"]
+size = Vector3(2, 3, 1)
+
+[sub_resource type="GDScript" id="GDScript_ui3mt"]
+resource_name = "jumper"
+script/source = "extends CSGBox3D
+
+@onready var basePos = position
+
+func _process(delta: float) -> void:
+	if position.y > basePos.y:
+		position.y -= 9.8*delta
+	if randi_range(0,1000) == 1000:
+		var t = create_tween()
+		t.tween_property(self,\"position\",Vector3(position.x,position.y + 1,position.z),0.5)
+"
+
+[sub_resource type="GDScript" id="GDScript_wp3g7"]
+script/source = "extends CSGBox3D
+
+@onready var basePos = position
+
+func _process(delta: float) -> void:
+	if position.y > basePos.y:
+		position.y -= 9.8*delta
+	if randi_range(0,1000) == 1000:
+		var t = create_tween()
+		t.tween_property(self,\"position\",Vector3(position.x,position.y + 1,position.z),0.5)
+"
+
+[sub_resource type="GDScript" id="GDScript_oed1g"]
+script/source = "extends CSGBox3D
+
+@onready var basePos = position
+
+func _process(delta: float) -> void:
+	if position.y > basePos.y:
+		position.y -= 9.8*delta
+	if randi_range(0,1000) == 1000:
+		var t = create_tween()
+		t.tween_property(self,\"position\",Vector3(position.x,position.y + 1,position.z),0.5)
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oed1g"]
+size = Vector3(16, 1, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m03vf"]
+size = Vector3(4, 0.25, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qoxt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_041m3"]
+size = Vector3(5, 4, 1)
+
+[sub_resource type="Animation" id="Animation_7m8qs"]
+resource_name = "drag"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CSGBox3D3/Sprite3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2, 8), Vector3(0, 2, 45)]
+}
+
+[sub_resource type="Animation" id="Animation_041m3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CSGBox3D3/Sprite3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2, 8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jxy0q"]
+_data = {
+&"RESET": SubResource("Animation_041m3"),
+&"drag": SubResource("Animation_7m8qs")
+}
+
+[node name="ProtoLveditor" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_m03vf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -373)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vmvme")
+
+[node name="prefab_chamber_entryway" parent="." instance=ExtResource("2_llkoq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -373)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_entryway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -11)
+size = Vector3(7, 5, 1)
+material = SubResource("StandardMaterial3D_k440e")
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="prefab_chamber_entryway" node_paths=PackedStringArray("activated")]
+script = ExtResource("6_or1jw")
+activated = [NodePath("../../FPSC_TeleportActivatable")]
+UseActivationDelay = true
+trigger_once = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_entryway/FPSC_TriggerRelay2"]
+transform = Transform3D(-3.6717566e-08, 0, -0.84, 0, 0.84, 0, 0.84, 0, -3.6717566e-08, 0.10735798, 1.5074793, -3.649968)
+shape = SubResource("BoxShape3D_xmbf8")
+
+[node name="FPSC_TeleportActivatable" type="Node" parent="." node_paths=PackedStringArray("destination")]
+script = ExtResource("4_hk64b")
+destination = NodePath("../preburndown/Marker3D")
+delay = 3.2
+metadata/_custom_type_script = "uid://bxrwaxtx06m0r"
+
+[node name="manroom" type="Node3D" parent="."]
+
+[node name="CSGBox3D52" type="CSGBox3D" parent="manroom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 11, -7)
+use_collision = true
+size = Vector3(1, 11, 29)
+material = SubResource("StandardMaterial3D_2e10s")
+
+[node name="CSGBox3D53" type="CSGBox3D" parent="manroom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 11, -6.5)
+use_collision = true
+size = Vector3(1, 11, 28)
+material = SubResource("StandardMaterial3D_2e10s")
+
+[node name="CSGBox3D54" type="CSGBox3D" parent="manroom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 43, 11, 7)
+use_collision = true
+size = Vector3(1, 11, 15)
+material = SubResource("StandardMaterial3D_2e10s")
+
+[node name="CSGBox3D56" type="CSGBox3D" parent="manroom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 43, 6, -7)
+use_collision = true
+size = Vector3(27, 1, 13)
+material = SubResource("StandardMaterial3D_2e10s")
+
+[node name="CSGBox3D58" type="CSGBox3D" parent="manroom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 43, 7, -4.5)
+use_collision = true
+size = Vector3(4, 1, 3)
+material = SubResource("StandardMaterial3D_ceid8")
+
+[node name="CSGBox3D61" type="CSGBox3D" parent="manroom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 43, 7, -8.5)
+use_collision = true
+size = Vector3(4, 1, 3)
+material = SubResource("StandardMaterial3D_7y2xa")
+
+[node name="CSGBox3D62" type="CSGBox3D" parent="manroom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 43, 7, -12.5)
+use_collision = true
+size = Vector3(4, 1, 3)
+material = SubResource("StandardMaterial3D_7m8qs")
+
+[node name="Marker3D" type="Marker3D" parent="manroom/CSGBox3D62"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2, 0)
+
+[node name="CSGBox3D63" type="CSGBox3D" parent="manroom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 43, 7, -16.5)
+use_collision = true
+size = Vector3(4, 1, 3)
+material = SubResource("StandardMaterial3D_041m3")
+
+[node name="CSGBox3D64" type="CSGBox3D" parent="manroom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 43, 7, -20.5)
+use_collision = true
+size = Vector3(4, 1, 3)
+material = SubResource("StandardMaterial3D_jxy0q")
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="manroom/CSGBox3D64" node_paths=PackedStringArray("activated")]
+script = ExtResource("6_or1jw")
+activated = [NodePath("FPSC_TeleportActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="manroom/CSGBox3D64/FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+shape = SubResource("BoxShape3D_7y2xa")
+
+[node name="FPSC_TeleportActivatable" type="Node" parent="manroom/CSGBox3D64/FPSC_TriggerRelay" node_paths=PackedStringArray("destination")]
+script = ExtResource("4_hk64b")
+destination = NodePath("../../../../preburndown/CSGBox3D56/Marker3D")
+metadata/_custom_type_script = "uid://bxrwaxtx06m0r"
+
+[node name="CSGBox3D59" type="CSGBox3D" parent="manroom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 43, 7, 1)
+use_collision = true
+size = Vector3(7, 1, 7)
+material = SubResource("StandardMaterial3D_ceid8")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="manroom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 43, 11.5, 1)
+radius = 2.0
+material = SubResource("StandardMaterial3D_nusyj")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="manroom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 44.21894, 11.5, 1)
+radius = 1.4872736
+material = SubResource("StandardMaterial3D_nusyj")
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="manroom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 41.414463, 11.5, 1)
+radius = 1.4872736
+material = SubResource("StandardMaterial3D_nusyj")
+
+[node name="FPSC_BooleanPropertySetterRandomized" type="Node" parent="manroom" node_paths=PackedStringArray("target_node", "inverse_nodes")]
+script = ExtResource("5_2evq6")
+target_node = NodePath("../CSGCombiner3D")
+target_variable = &"visible"
+inverse_nodes = [NodePath("../CSGCombiner3D2"), NodePath("../FPSC_TriggerRelay")]
+metadata/_custom_type_script = "uid://cs8wakpga0qla"
+
+[node name="FPSC_VoicelineActivatable" type="Node" parent="manroom" node_paths=PackedStringArray("voiceline_player")]
+script = ExtResource("6_iid3j")
+voiceline_player = NodePath("../CSGCombiner3D/Sprite3D/SubViewport/Dialog/AudioStreamPlayer")
+character_voiceline = ExtResource("7_514q3")
+localized_caption = "[b][Announcer (BFDI)][/b] Hello! You weren't expecting me, were you? Anyways, you should leave, I have nothing for you."
+execute_once = true
+metadata/_custom_type_script = "uid://whqnccb8m4hc"
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="manroom" node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 8, 2)
+script = ExtResource("6_or1jw")
+activated = [NodePath("../FPSC_VoicelineActivatable")]
+trigger_once = true
+interact_with = 1
+visibility_dependant = true
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="manroom/FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+shape = SubResource("BoxShape3D_3uynk")
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="manroom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 8, 2)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="manroom/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.041168213, 0, -0.20874023)
+size = Vector3(0.679, 1, 0.583)
+material = SubResource("StandardMaterial3D_oqj68")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="manroom/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.044200897, 0.17166042, 0)
+radius = 0.30666026
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="manroom"]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 43, 8.929861, 1.661401)
+visible = false
+use_collision = true
+
+[node name="Sprite3D" type="Sprite3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23495865, -0.6675472, 0.5110496)
+pixel_size = 0.005
+texture = SubResource("ViewportTexture_jxy0q")
+
+[node name="SubViewport" type="SubViewport" parent="manroom/CSGCombiner3D/Sprite3D"]
+transparent_bg = true
+size = Vector2i(800, 600)
+render_target_update_mode = 4
+
+[node name="Dialog" type="Control" parent="manroom/CSGCombiner3D/Sprite3D/SubViewport" node_paths=PackedStringArray("comp")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+script = SubResource("GDScript_nusyj")
+texts = ["Be honest with me, does anyone even remember me?", "You know, Roboto! From... AROUNDTALE?", "You know what, I'll make it worth your time. Here, have an egg.", "* You got the Egg."]
+comp = NodePath("../../TextureRect")
+
+[node name="ColorRect" type="ColorRect" parent="manroom/CSGCombiner3D/Sprite3D/SubViewport/Dialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -16.0
+offset_right = 79.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="manroom/CSGCombiner3D/Sprite3D/SubViewport/Dialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -14.0
+offset_right = 77.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="manroom/CSGCombiner3D/Sprite3D/SubViewport/Dialog"]
+layout_mode = 0
+offset_left = -56.0
+offset_top = 7.0
+offset_right = 1971.0
+offset_bottom = 354.0
+scale = Vector2(0.075, 0.075)
+
+[node name="TextureRect" type="TextureRect" parent="manroom/CSGCombiner3D/Sprite3D/SubViewport/Dialog/HBoxContainer"]
+layout_mode = 2
+
+[node name="currentText" type="Label" parent="manroom/CSGCombiner3D/Sprite3D/SubViewport/Dialog/HBoxContainer"]
+custom_minimum_size = Vector2(1707, 347)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_jxy0q")
+theme_override_font_sizes/font_size = 80
+autowrap_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="manroom/CSGCombiner3D/Sprite3D/SubViewport/Dialog"]
+
+[node name="chwait" type="Timer" parent="manroom/CSGCombiner3D/Sprite3D/SubViewport/Dialog"]
+
+[node name="Node" type="Node" parent="manroom/CSGCombiner3D/Sprite3D/SubViewport"]
+script = SubResource("GDScript_041m3")
+
+[node name="TextureRect" type="TextureRect" parent="manroom/CSGCombiner3D/Sprite3D"]
+visible = false
+texture_filter = 1
+offset_left = 37.0
+offset_top = 25.0
+offset_right = 77.0
+offset_bottom = 65.0
+texture = ExtResource("6_nusyj")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14794922, -1.3778658, 0.06506348)
+size = Vector3(0.19824219, 0.09301758, 0.26586914)
+material = SubResource("StandardMaterial3D_514q3")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24508667, -1.3778658, 0.06506348)
+size = Vector3(0.19824219, 0.09301758, 0.26586914)
+material = SubResource("StandardMaterial3D_514q3")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14794922, -1.1810989, 0.00053179264)
+size = Vector3(0.19824219, 0.09301758, 0.076)
+material = SubResource("StandardMaterial3D_514q3")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24508667, -1.1810989, 0.00053179264)
+size = Vector3(0.19824219, 0.09301758, 0.076)
+material = SubResource("StandardMaterial3D_514q3")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14794922, -0.98278236, 0.00053179264)
+size = Vector3(0.19824219, 0.09301758, 0.076)
+material = SubResource("StandardMaterial3D_514q3")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24508667, -0.98278236, 0.00053179264)
+size = Vector3(0.19824219, 0.09301758, 0.076)
+material = SubResource("StandardMaterial3D_514q3")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.042625427, -0.88018894, 0.00053179264)
+size = Vector3(0.19824219, 0.09301758, 0.076)
+material = SubResource("StandardMaterial3D_514q3")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05532074, -0.62800694, 0.00053179264)
+size = Vector3(0.60253906, 0.38879395, 0.076)
+material = SubResource("StandardMaterial3D_514q3")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20249176, -0.38746166, 0.00053179264)
+size = Vector3(0.08691406, 0.09616089, 0.076)
+material = SubResource("StandardMaterial3D_514q3")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2854309, -0.38721752, 0.00053167343)
+size = Vector3(0.08691406, 0.09567261, 0.076)
+material = SubResource("StandardMaterial3D_514q3")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14794922, -1.2773132, -0.0023642778)
+size = Vector3(0.19824219, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_3uynk")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24508667, -1.2773132, -0.0023642778)
+size = Vector3(0.19824219, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_3uynk")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14794922, -1.0873175, -0.0023642778)
+size = Vector3(0.19824219, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_3uynk")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24508667, -1.0873175, -0.0023642778)
+size = Vector3(0.19824219, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_3uynk")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14794922, -0.87725353, -0.0023642778)
+size = Vector3(0.19824219, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_3uynk")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34515, -0.6898432, 0.00053167343)
+size = Vector3(0.19824219, 0.09301758, 0.076)
+material = SubResource("StandardMaterial3D_514q3")
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34515, -0.4915266, 0.00053167343)
+size = Vector3(0.19824219, 0.09301758, 0.076)
+material = SubResource("StandardMaterial3D_514q3")
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34515, -0.7860575, -0.002364397)
+size = Vector3(0.19824219, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_3uynk")
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34515, -0.5960617, -0.002364397)
+size = Vector3(0.19824219, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_3uynk")
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34515, -0.38599777, -0.002364397)
+size = Vector3(0.19824219, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_3uynk")
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43408203, -0.6898432, 0.000531435)
+size = Vector3(0.19824219, 0.09301758, 0.076)
+material = SubResource("StandardMaterial3D_514q3")
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43408203, -0.4915266, 0.000531435)
+size = Vector3(0.19824219, 0.09301758, 0.076)
+material = SubResource("StandardMaterial3D_514q3")
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43408203, -0.7860575, -0.0023646355)
+size = Vector3(0.19824219, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_3uynk")
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43408203, -0.5960617, -0.0023646355)
+size = Vector3(0.19824219, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_3uynk")
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43408203, -0.38599777, -0.0023646355)
+size = Vector3(0.19824219, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_3uynk")
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.037719727, -0.38599777, -0.0023645163)
+size = Vector3(0.39111328, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_3uynk")
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11010742, 0.06768131, 0.006821513)
+size = Vector3(0.095458984, 0.19494629, 0.1)
+material = SubResource("StandardMaterial3D_2aieu")
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18091583, 0.06768131, 0.006821513)
+size = Vector3(0.095458984, 0.19494629, 0.1)
+material = SubResource("StandardMaterial3D_2aieu")
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18091583, -0.1733551, 0.006821513)
+size = Vector3(0.095458984, 0.094055176, 0.1)
+material = SubResource("StandardMaterial3D_2aieu")
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11124039, -0.1733551, 0.006821513)
+size = Vector3(0.095458984, 0.094055176, 0.1)
+material = SubResource("StandardMaterial3D_2aieu")
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03245163, -0.27354336, 0.006821513)
+size = Vector3(0.2142334, 0.094055176, 0.1)
+material = SubResource("StandardMaterial3D_2aieu")
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.037719727, -0.28102112, -0.0023645163)
+size = Vector3(0.39111328, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_83nx4")
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.037719727, 0.11765289, -0.0023645163)
+size = Vector3(0.39111328, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_83nx4")
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03930664, -0.086940765, -0.0023645163)
+size = Vector3(0.59399414, 0.31555176, 0.1)
+material = SubResource("StandardMaterial3D_83nx4")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="manroom/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24508667, -0.87725353, -0.0023642778)
+size = Vector3(0.19824219, 0.09301758, 0.1)
+material = SubResource("StandardMaterial3D_3uynk")
+
+[node name="FPSC_InteractivityMarker" type="Node" parent="manroom/CSGCombiner3D" node_paths=PackedStringArray("activatable")]
+script = ExtResource("12_yksk0")
+activatable = NodePath("../Sprite3D/SubViewport/Node")
+metadata/_custom_type_script = "uid://hllw2e6fs54j"
+
+[node name="CSGBox3D60" type="CSGBox3D" parent="manroom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 43, 9.5, 1)
+use_collision = true
+size = Vector3(1, 4, 1)
+material = SubResource("StandardMaterial3D_2evq6")
+
+[node name="Label3D" type="Label3D" parent="manroom/CSGBox3D60"]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 0.8393502, -0.57013893, 0)
+double_sided = false
+text = "* There is not a man here."
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="manroom/CSGBox3D60/Label3D"]
+stream = ExtResource("5_oed1g")
+autoplay = true
+max_distance = 20.0
+
+[node name="Sprite3D" type="Sprite3D" parent="manroom/CSGBox3D60/Label3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034461975, -0.632287, 0.00047779083)
+visible = false
+pixel_size = 0.1
+texture_filter = 0
+texture = ExtResource("6_041m3")
+hframes = 10
+
+[node name="CSGBox3D57" type="CSGBox3D" parent="manroom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 43, 17, -7)
+use_collision = true
+size = Vector3(27, 1, 13)
+material = SubResource("StandardMaterial3D_2e10s")
+
+[node name="CSGBox3D55" type="CSGBox3D" parent="manroom"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 43, 11, -21)
+use_collision = true
+size = Vector3(1, 11, 15)
+material = SubResource("StandardMaterial3D_2e10s")
+
+[node name="preburndown" type="Node3D" parent="."]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="preburndown"]
+use_collision = true
+radius = 7.5
+height = 1.0
+sides = 16
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="preburndown"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.2833362, 0)
+use_collision = true
+radius = 7.5
+height = 1.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="preburndown/CSGCylinder3D6"]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 5, 0, -2.5)
+operation = 1
+size = Vector3(5, 0.25, 2)
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="preburndown"]
+transform = Transform3D(-0.86602545, 0, 0.4999999, 0, 1, 0, -0.4999999, 0, -0.86602545, 0, 2.2833362, 0)
+use_collision = true
+radius = 7.5
+height = 1.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="preburndown/CSGCylinder3D7"]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 5, 0, -2.5)
+operation = 1
+size = Vector3(5, 0.25, 2)
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="preburndown"]
+transform = Transform3D(-0.50000006, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, -0.50000006, 0, 3.2833362, 0)
+use_collision = true
+radius = 7.5
+height = 1.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="preburndown/CSGCylinder3D8"]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 5, 0, -2.5)
+operation = 1
+size = Vector3(5, 0.25, 2)
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="preburndown"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 4.283336, 0)
+use_collision = true
+radius = 7.5
+height = 1.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="preburndown/CSGCylinder3D9"]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 5, 0, -2.5)
+operation = 1
+size = Vector3(5, 0.25, 2)
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="preburndown"]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 0, 5.283336, 0)
+use_collision = true
+radius = 7.5
+height = 1.0
+sides = 16
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="preburndown/CSGCylinder3D10" node_paths=PackedStringArray("activated")]
+script = ExtResource("6_or1jw")
+activated = [NodePath("../FPSC_PlayerPropertiesActivatable"), NodePath("../FPSC_VoicelineActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="preburndown/CSGCylinder3D10/FPSC_TriggerRelay"]
+transform = Transform3D(0.86602545, 0, 0.5, 0, 1, 0, -0.5, 0, 0.86602545, 5.2072034, 2.031509, -1.6747603)
+shape = SubResource("BoxShape3D_bb4ty")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="preburndown/CSGCylinder3D10"]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 5, 0, -2.5)
+operation = 1
+size = Vector3(5, 0.25, 2)
+
+[node name="FPSC_PlayerPropertiesActivatable" type="Node" parent="preburndown/CSGCylinder3D10"]
+script = ExtResource("5_o6ekm")
+IgnoreEntryClass = true
+new_speed = 0.0
+modify_jump_velocity = true
+activate_fade = true
+fade_type = 2
+fade_duration = 0.01
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="FPSC_PlayerPropertiesActivatable2" type="Node" parent="preburndown/CSGCylinder3D10"]
+script = ExtResource("5_o6ekm")
+IgnoreEntryClass = true
+modify_jump_velocity = true
+activate_fade = true
+fade_type = 1
+fade_duration = 0.5
+chapter_title = "Oh No,"
+chapter_subtext = "[font_size=24]Everything's On Fire[/font_size]"
+color_of_title = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://d25myaapjjml7"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="preburndown/CSGCylinder3D10"]
+
+[node name="FPSC_VoicelineActivatable" type="Node" parent="preburndown/CSGCylinder3D10" node_paths=PackedStringArray("voiceline_player", "execute_after_playing")]
+script = ExtResource("6_iid3j")
+voiceline_player = NodePath("../AudioStreamPlayer")
+character_voiceline = ExtResource("7_chgqe")
+localized_caption = "[i][SIRENS, EVERYONE DYING][/i]"
+execute_once = true
+execute_after_playing = NodePath("../FPSC_RelayActivatable")
+metadata/_custom_type_script = "uid://whqnccb8m4hc"
+
+[node name="FPSC_TeleportActivatable" type="Node" parent="preburndown/CSGCylinder3D10" node_paths=PackedStringArray("destination", "target")]
+script = ExtResource("4_hk64b")
+destination = NodePath("../../../burndown/Marker3D")
+target = NodePath("../../../Player")
+metadata/_custom_type_script = "uid://bxrwaxtx06m0r"
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="preburndown/CSGCylinder3D10" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("5_kmm8j")
+stream_player = NodePath("../../../burndown/Marker3D/AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="FPSC_RelayActivatable" type="Node" parent="preburndown/CSGCylinder3D10" node_paths=PackedStringArray("activatables")]
+script = ExtResource("8_ui3mt")
+activatables = [NodePath("../FPSC_TeleportActivatable"), NodePath("../FPSC_PlayerPropertiesActivatable2"), NodePath("../FPSC_UnfreezeActivatable"), NodePath("../FPSC_UnfreezeActivatable2"), NodePath("../FPSC_UnfreezeActivatable3"), NodePath("../FPSC_UnfreezeActivatable4"), NodePath("../FPSC_SoundPlayerActivatable")]
+metadata/_custom_type_script = "uid://cgae4dmf6xfos"
+
+[node name="FPSC_UnfreezeActivatable" type="Node" parent="preburndown/CSGCylinder3D10" node_paths=PackedStringArray("prop")]
+script = ExtResource("9_iid3j")
+prop = NodePath("../../../burndown/RigidBody3D")
+metadata/_custom_type_script = "uid://bks6dpsmk0aep"
+
+[node name="FPSC_UnfreezeActivatable2" type="Node" parent="preburndown/CSGCylinder3D10" node_paths=PackedStringArray("prop")]
+script = ExtResource("9_iid3j")
+prop = NodePath("../../../burndown/RigidBody3D2")
+metadata/_custom_type_script = "uid://bks6dpsmk0aep"
+
+[node name="FPSC_UnfreezeActivatable3" type="Node" parent="preburndown/CSGCylinder3D10" node_paths=PackedStringArray("prop")]
+script = ExtResource("9_iid3j")
+prop = NodePath("../../../burndown/RigidBody3D3")
+metadata/_custom_type_script = "uid://bks6dpsmk0aep"
+
+[node name="FPSC_UnfreezeActivatable4" type="Node" parent="preburndown/CSGCylinder3D10" node_paths=PackedStringArray("prop")]
+script = ExtResource("9_iid3j")
+prop = NodePath("../../../burndown/RigidBody3D4")
+metadata/_custom_type_script = "uid://bks6dpsmk0aep"
+
+[node name="CSGCylinder3D11" type="CSGCylinder3D" parent="preburndown"]
+transform = Transform3D(0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, 0.8660253, 0, 6.283336, 0)
+use_collision = true
+radius = 7.5
+height = 1.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="preburndown/CSGCylinder3D11"]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 5, 0, -2.5)
+operation = 1
+size = Vector3(5, 0.25, 2)
+
+[node name="CSGCylinder3D12" type="CSGCylinder3D" parent="preburndown"]
+transform = Transform3D(0.99999994, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, 0.99999994, 0, 7.283336, 0)
+use_collision = true
+radius = 7.5
+height = 1.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="preburndown/CSGCylinder3D12"]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 5, 0, -2.5)
+operation = 1
+size = Vector3(5, 0.25, 2)
+
+[node name="CSGCylinder3D13" type="CSGCylinder3D" parent="preburndown"]
+transform = Transform3D(0.86602545, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, 0.86602545, 0, 8.283337, 0)
+use_collision = true
+radius = 7.5
+height = 1.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="preburndown/CSGCylinder3D13"]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 5, 0, -2.5)
+operation = 1
+size = Vector3(5, 0.25, 2)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0)
+use_collision = true
+radius = 7.5
+height = 1.5
+sides = 16
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.068965, 0)
+use_collision = true
+radius = 0.27148438
+height = 2.5649414
+sides = 16
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.035546, 0)
+use_collision = true
+radius = 1.1948242
+height = 1.5548096
+sides = 16
+material = SubResource("StandardMaterial3D_60gqp")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="preburndown/CSGCylinder3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.79206276, 0)
+radius = 1.2113228
+material = SubResource("StandardMaterial3D_bb4ty")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="preburndown/CSGCylinder3D5/CSGSphere3D"]
+light_color = Color(1, 0.5367941, 0.35504562, 1)
+omni_range = 16.0
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+use_collision = true
+radius = 7.5
+height = 12.5
+sides = 16
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="preburndown/CSGCylinder3D3"]
+operation = 2
+use_collision = true
+radius = 7.0
+height = 12.5
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="preburndown/CSGCylinder3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -4, -8)
+operation = 2
+size = Vector3(2, 3, 5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="preburndown/CSGCylinder3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 4.5, 0)
+operation = 2
+size = Vector3(2, 4, 9)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 8, 0)
+use_collision = true
+size = Vector3(6, 1, 9)
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="preburndown/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, -2, 0)
+operation = 2
+use_collision = true
+radius = 7.5
+height = 12.5
+sides = 16
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 8, -17)
+use_collision = true
+size = Vector3(6, 1, 25)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 13, -17)
+use_collision = true
+size = Vector3(6, 1, 25)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -10)
+use_collision = true
+size = Vector3(6, 4, 1)
+
+[node name="CSGBox3D109" type="CSGBox3D" parent="preburndown/CSGBox3D10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9745197)
+operation = 2
+use_collision = true
+size = Vector3(6, 4, 1)
+material = ExtResource("12_2e10s")
+
+[node name="Marker3D" type="Marker3D" parent="preburndown/CSGBox3D10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="FPSC_TeleportActivatable" type="Node" parent="preburndown" node_paths=PackedStringArray("destination")]
+script = ExtResource("4_hk64b")
+destination = NodePath("../CSGBox3D10/Marker3D")
+metadata/_custom_type_script = "uid://bxrwaxtx06m0r"
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="preburndown" node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -10.97452)
+script = ExtResource("6_or1jw")
+activated = [NodePath("../FPSC_TeleportActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="preburndown/FPSC_TriggerRelay2"]
+shape = SubResource("BoxShape3D_ceid8")
+
+[node name="CSGBox3D52" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -29)
+use_collision = true
+size = Vector3(6, 4, 1)
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -5)
+use_collision = true
+size = Vector3(6, 4, 1)
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="preburndown/CSGBox3D29"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+operation = 2
+size = Vector3(2, 3, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 13, 0)
+use_collision = true
+size = Vector3(6, 1, 9)
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="preburndown/CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, -7, 0)
+operation = 2
+use_collision = true
+radius = 7.5
+height = 12.5
+sides = 16
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, 0)
+use_collision = true
+size = Vector3(1, 5, 9)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, -17)
+use_collision = true
+size = Vector3(1, 5, 25)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 11, -17)
+use_collision = true
+size = Vector3(1, 5, 25)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 8, 9)
+use_collision = true
+size = Vector3(6, 1, 9)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 13, 9)
+use_collision = true
+size = Vector3(6, 1, 9)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 23)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D71" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 24)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D72" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 25)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D73" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 26)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D74" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 27)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="preburndown/CSGBox3D74" node_paths=PackedStringArray("activated")]
+script = ExtResource("6_or1jw")
+activated = [NodePath("FPSC_TeleportActivatable")]
+trigger_once = true
+interact_with = 1
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="FPSC_TeleportActivatable" type="Node" parent="preburndown/CSGBox3D74/FPSC_TriggerRelay" node_paths=PackedStringArray("destination")]
+script = ExtResource("4_hk64b")
+destination = NodePath("../../../../manroom/CSGBox3D62/Marker3D")
+metadata/_custom_type_script = "uid://bxrwaxtx06m0r"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="preburndown/CSGBox3D74/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_2e10s")
+
+[node name="CSGBox3D75" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 31)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D76" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 32)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D77" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 30)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D80" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 34)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D81" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 35)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D82" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 33)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="preburndown/CSGBox3D82" node_paths=PackedStringArray("activated")]
+script = ExtResource("6_or1jw")
+activated = [NodePath("../../CSGCylinder3D10/FPSC_PlayerPropertiesActivatable2"), NodePath("../../CSGCylinder3D10/FPSC_UnfreezeActivatable"), NodePath("../../CSGCylinder3D10/FPSC_UnfreezeActivatable2"), NodePath("../../CSGCylinder3D10/FPSC_UnfreezeActivatable3"), NodePath("../../CSGCylinder3D10/FPSC_UnfreezeActivatable4"), NodePath("../../CSGCylinder3D10/FPSC_TeleportActivatable"), NodePath("../../CSGCylinder3D10/FPSC_SoundPlayerActivatable")]
+trigger_once = true
+interact_with = 1
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="preburndown/CSGBox3D82/FPSC_TriggerRelay2"]
+shape = SubResource("BoxShape3D_2e10s")
+
+[node name="CSGBox3D83" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 37)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D84" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 38)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D85" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 36)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D86" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 40)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D87" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 41)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D88" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 39)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D89" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 43)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D90" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 44)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D91" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 42)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D92" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 46)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D93" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 47)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D95" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 48)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D96" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 49)
+use_collision = true
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D94" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 45)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D78" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 28)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D79" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 29)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 14)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -8)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -9)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D36" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -10)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D37" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -11)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D38" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -12)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D39" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -13)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D40" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -14)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D41" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -15)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D42" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -16)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D43" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -17)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D44" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -18)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D45" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -19)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D46" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -20)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D47" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -21)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D48" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -22)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D49" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -23)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D50" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -24)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 15)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 16)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 17)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 18)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 19)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 20)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 21)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 22)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D54" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -28)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D56" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -27)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="Marker3D" type="Marker3D" parent="preburndown/CSGBox3D56"]
+
+[node name="CSGBox3D57" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -26)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D58" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -25)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D97" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -24)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D98" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -23)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D99" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -22)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D100" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -21)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D101" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -20)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D102" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -19)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D103" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -18)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D104" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -17)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D105" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -16)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D106" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -15)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D107" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -14)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D108" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -13)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, 9)
+use_collision = true
+size = Vector3(1, 5, 9)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 11, 9)
+use_collision = true
+size = Vector3(1, 5, 9)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 8, 18)
+use_collision = true
+size = Vector3(6, 1, 9)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 13, 18)
+size = Vector3(6, 1, 9)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, 18)
+use_collision = true
+size = Vector3(1, 5, 9)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 11, 18)
+use_collision = true
+size = Vector3(1, 5, 9)
+
+[node name="CSGBox3D59" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 8, 27)
+use_collision = true
+size = Vector3(6, 1, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D60" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 13, 27)
+size = Vector3(6, 1, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D61" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, 27)
+use_collision = true
+size = Vector3(1, 5, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D62" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 11, 27)
+use_collision = true
+size = Vector3(1, 5, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D63" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 8, 36)
+use_collision = true
+size = Vector3(6, 1, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D64" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 13, 36)
+size = Vector3(6, 1, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D65" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, 36)
+use_collision = true
+size = Vector3(1, 5, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D66" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 11, 36)
+use_collision = true
+size = Vector3(1, 5, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D67" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 8, 45)
+use_collision = true
+size = Vector3(6, 1, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D68" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 13, 45)
+size = Vector3(6, 1, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D69" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, 45)
+use_collision = true
+size = Vector3(1, 5, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D70" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 11, 45)
+use_collision = true
+size = Vector3(1, 5, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="Marker3D" type="Marker3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, 4)
+
+[node name="WeaponClearBox" parent="preburndown/Marker3D" instance=ExtResource("4_k440e")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -16)
+size = Vector3(2, 1, 19)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 4, -16)
+size = Vector3(2, 1, 19)
+
+[node name="CSGCylinder3D15" type="CSGCylinder3D" parent="preburndown/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 16)
+operation = 2
+use_collision = true
+radius = 7.5
+height = 12.5
+sides = 16
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -16)
+size = Vector3(1, 5, 19)
+
+[node name="CSGCylinder3D14" type="CSGCylinder3D" parent="preburndown/CSGBox3D30"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 16)
+operation = 2
+use_collision = true
+radius = 7.5
+height = 12.5
+sides = 16
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -16)
+size = Vector3(1, 5, 19)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="preburndown" node_paths=PackedStringArray("activated")]
+transform = Transform3D(0.96763873, 0, 0.2523396, 0, 1, 0, -0.2523396, 0, 0.96763873, -2.6276808, 2, -6.9494615)
+script = ExtResource("6_or1jw")
+activated = [NodePath("FPSC_CaptionPlayerActivatable"), NodePath("FPSC_SoundPlayerActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="preburndown/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_60gqp")
+
+[node name="FPSC_CaptionPlayerActivatable" type="Node" parent="preburndown/FPSC_TriggerRelay"]
+script = ExtResource("6_xmbf8")
+localized_caption = "[b]You can't change the inevetable.[/b]"
+caption_lasting_time = 2.0
+metadata/_custom_type_script = "uid://cpmnahh0n8xn6"
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="preburndown/FPSC_TriggerRelay" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("5_kmm8j")
+stream_player = NodePath("../AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="preburndown/FPSC_TriggerRelay"]
+stream = ExtResource("8_bb4ty")
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, -7)
+visible = false
+use_collision = true
+size = Vector3(2, 3, 1)
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, -25)
+use_collision = true
+size = Vector3(2, 3, 1)
+
+[node name="CSGBox3D51" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, -1.495425, 1.5, 3.6260955)
+size = Vector3(0.75, 2, 0.75)
+script = SubResource("GDScript_ui3mt")
+
+[node name="CSGBox3D52" type="CSGBox3D" parent="preburndown/CSGBox3D51"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6695614, 0.35033703)
+size = Vector3(0.25, 0.25, 1)
+
+[node name="CSGBox3D53" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(0.8660253, 0, -0.5000001, 0, 1, 0, 0.5000001, 0, 0.8660253, 2.6797435, 1.5, -0.6773052)
+size = Vector3(0.75, 2, 0.75)
+script = SubResource("GDScript_wp3g7")
+
+[node name="CSGBox3D54" type="CSGBox3D" parent="preburndown/CSGBox3D53"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3841858e-07, 0.6695614, 0.35033703)
+size = Vector3(0.25, 0.25, 1)
+
+[node name="CSGBox3D55" type="CSGBox3D" parent="preburndown"]
+transform = Transform3D(0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.7071068, -3.5317035, 1.5, -2.649468)
+size = Vector3(0.75, 2, 0.75)
+script = SubResource("GDScript_oed1g")
+
+[node name="CSGBox3D56" type="CSGBox3D" parent="preburndown/CSGBox3D55"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-07, 0.6695614, 0.3503375)
+size = Vector3(0.25, 0.25, 1)
+
+[node name="Player2" parent="preburndown" instance=ExtResource("6_k440e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4524493, 1.4930918, -13.769288)
+
+[node name="burndown" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54, 0, 0)
+
+[node name="FPSC_TriggerRelay2" type="Area3D" parent="burndown" node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+script = ExtResource("6_or1jw")
+activated = [NodePath("FPSC_ImpulseDamageActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="burndown/FPSC_TriggerRelay2"]
+shape = SubResource("BoxShape3D_oed1g")
+
+[node name="FPSC_ImpulseDamageActivatable" type="Node" parent="burndown/FPSC_TriggerRelay2"]
+script = ExtResource("15_ui3mt")
+damage_delt = 100.0
+metadata/_custom_type_script = "uid://bilm264c25p6e"
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="burndown"]
+use_collision = true
+radius = 7.5
+height = 1.0
+sides = 16
+
+[node name="RigidBody3D" type="RigidBody3D" parent="burndown"]
+transform = Transform3D(-0.8660253, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660253, -4.566986, 1.2833362, 2.250001)
+sleeping = true
+freeze = true
+
+[node name="CSGBox3D57" type="CSGBox3D" parent="burndown/RigidBody3D"]
+transform = Transform3D(1.0000001, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 1.0000001, 0, 0, 0)
+operation = 1
+size = Vector3(4, 0.25, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="burndown/RigidBody3D"]
+shape = SubResource("BoxShape3D_m03vf")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="burndown"]
+transform = Transform3D(-0.99999994, 0, -1.1920929e-07, 0, 1, 0, 1.1920929e-07, 0, -0.99999994, -5.0801353, 2.2833362, -0.33493936)
+sleeping = true
+freeze = true
+
+[node name="CSGBox3D58" type="CSGBox3D" parent="burndown/RigidBody3D2"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+operation = 1
+size = Vector3(4, 0.25, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="burndown/RigidBody3D2"]
+shape = SubResource("BoxShape3D_m03vf")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="burndown"]
+transform = Transform3D(-0.8660258, 0, 0.4999999, 0, 1, 0, -0.4999999, 0, -0.8660258, -4.232052, 3.2833362, -2.8301287)
+sleeping = true
+freeze = true
+
+[node name="CSGBox3D97" type="CSGBox3D" parent="burndown/RigidBody3D3"]
+transform = Transform3D(1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 1, 0, 0, 0)
+operation = 1
+size = Vector3(4, 0.25, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="burndown/RigidBody3D3"]
+shape = SubResource("BoxShape3D_m03vf")
+
+[node name="RigidBody3D4" type="RigidBody3D" parent="burndown"]
+transform = Transform3D(-0.50000006, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, -0.50000006, -2.25, 4.283336, -4.5669875)
+sleeping = true
+freeze = true
+
+[node name="CSGBox3D98" type="CSGBox3D" parent="burndown/RigidBody3D4"]
+operation = 1
+size = Vector3(4, 0.25, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="burndown/RigidBody3D4"]
+shape = SubResource("BoxShape3D_m03vf")
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="burndown"]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 0, 5.283336, 0)
+use_collision = true
+radius = 7.5
+height = 1.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="burndown/CSGCylinder3D10"]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 5, 0, -2.5)
+operation = 1
+size = Vector3(5, 0.25, 2)
+
+[node name="CSGCylinder3D11" type="CSGCylinder3D" parent="burndown"]
+transform = Transform3D(0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, 0.8660253, 0, 6.283336, 0)
+use_collision = true
+radius = 7.5
+height = 1.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="burndown/CSGCylinder3D11"]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 5, 0, -2.5)
+operation = 1
+size = Vector3(5, 0.25, 2)
+
+[node name="CSGCylinder3D12" type="CSGCylinder3D" parent="burndown"]
+transform = Transform3D(0.99999994, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, 0.99999994, 0, 7.283336, 0)
+use_collision = true
+radius = 7.5
+height = 1.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="burndown/CSGCylinder3D12"]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 5, 0, -2.5)
+operation = 1
+size = Vector3(5, 0.25, 2)
+
+[node name="CSGCylinder3D13" type="CSGCylinder3D" parent="burndown"]
+transform = Transform3D(0.86602545, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, 0.86602545, 0, 8.283337, 0)
+use_collision = true
+radius = 7.5
+height = 1.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="burndown/CSGCylinder3D13"]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 5, 0, -2.5)
+operation = 1
+size = Vector3(5, 0.25, 2)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0)
+use_collision = true
+radius = 7.5
+height = 1.5
+sides = 16
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.068965, 0)
+use_collision = true
+radius = 0.27148438
+height = 2.5649414
+sides = 16
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.035546, 0)
+use_collision = true
+radius = 1.1948242
+height = 1.5548096
+sides = 16
+material = SubResource("StandardMaterial3D_60gqp")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="burndown/CSGCylinder3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.79206276, 0)
+radius = 1.2113228
+material = SubResource("StandardMaterial3D_bb4ty")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="burndown/CSGCylinder3D5/CSGSphere3D"]
+light_color = Color(1, 0.5367941, 0.35504562, 1)
+omni_range = 16.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="burndown/CSGCylinder3D5/CSGSphere3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -6.100144, -4)
+light_color = Color(1, 0, 0, 1)
+light_energy = 9.396
+shadow_enabled = true
+omni_range = 16.0
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+use_collision = true
+radius = 7.5
+height = 12.5
+sides = 16
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="burndown/CSGCylinder3D3"]
+operation = 2
+use_collision = true
+radius = 7.0
+height = 12.5
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="burndown/CSGCylinder3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -4, -8)
+operation = 2
+size = Vector3(2, 3, 5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="burndown/CSGCylinder3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 4.5, 0)
+operation = 2
+size = Vector3(2, 4, 9)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 8, 0)
+use_collision = true
+size = Vector3(6, 1, 9)
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="burndown/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, -2, 0)
+operation = 2
+use_collision = true
+radius = 7.5
+height = 12.5
+sides = 16
+
+[node name="Sprite3D" type="Sprite3D" parent="burndown/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8)
+flip_h = true
+pixel_size = 0.005
+billboard = 2
+render_priority = 1
+texture = ExtResource("18_7y2xa")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="burndown/CSGBox3D3/Sprite3D"]
+stream = ExtResource("19_7m8qs")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 8, -9)
+use_collision = true
+size = Vector3(6, 1, 9)
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.325123, 12.416168, -7.6626925)
+use_collision = true
+radius = 0.2290039
+height = 0.16400146
+material = SubResource("StandardMaterial3D_4qoxt")
+
+[node name="Sprite3D" type="Sprite3D" parent="burndown/CSGCylinder3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15695953, -0.09478474, 0)
+modulate = Color(1, 0, 0, 1)
+pixel_size = 0.001
+billboard = 1
+texture = ExtResource("10_6hs70")
+
+[node name="Sprite3D2" type="Sprite3D" parent="burndown/CSGCylinder3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15695953, -0.09478474, 0)
+visible = false
+modulate = Color(0, 1, 0, 1)
+pixel_size = 0.001
+billboard = 1
+texture = ExtResource("10_6hs70")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="burndown/CSGCylinder3D6"]
+stream = ExtResource("11_yksk0")
+autoplay = true
+max_distance = 25.0
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="burndown/CSGCylinder3D6" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("5_kmm8j")
+stream_player = NodePath("../AudioStreamPlayer3D")
+stop = true
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="FPSC_InteractivityMarker" type="Node" parent="burndown/CSGCylinder3D6" node_paths=PackedStringArray("activatable")]
+script = ExtResource("12_yksk0")
+activatable = NodePath("../FPSC_RelayActivatable")
+metadata/_custom_type_script = "uid://hllw2e6fs54j"
+
+[node name="FPSC_VisibilityChangeActivatable" type="Node" parent="burndown/CSGCylinder3D6" node_paths=PackedStringArray("node_a", "node_b")]
+script = ExtResource("19_oed1g")
+node_a = NodePath("../Sprite3D")
+node_b = NodePath("../Sprite3D2")
+metadata/_custom_type_script = "uid://dd5j3m0ylh3c5"
+
+[node name="FPSC_RelayActivatable" type="Node" parent="burndown/CSGCylinder3D6" node_paths=PackedStringArray("activatables")]
+script = ExtResource("8_ui3mt")
+activatables = [NodePath("../FPSC_SoundPlayerActivatable"), NodePath("../FPSC_VisibilityChangeActivatable")]
+metadata/_custom_type_script = "uid://cgae4dmf6xfos"
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6748772, 12.213996, 1.3373075)
+use_collision = true
+radius = 0.2290039
+height = 0.16400146
+material = SubResource("StandardMaterial3D_4qoxt")
+
+[node name="Sprite3D" type="Sprite3D" parent="burndown/CSGCylinder3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15695953, -0.09478474, 0)
+modulate = Color(1, 0, 0, 1)
+pixel_size = 0.001
+billboard = 1
+texture = ExtResource("10_6hs70")
+
+[node name="Sprite3D2" type="Sprite3D" parent="burndown/CSGCylinder3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15695953, -0.09478474, 0)
+visible = false
+modulate = Color(0, 1, 0, 1)
+pixel_size = 0.001
+billboard = 1
+texture = ExtResource("10_6hs70")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="burndown/CSGCylinder3D7"]
+stream = ExtResource("11_yksk0")
+autoplay = true
+max_distance = 25.0
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="burndown/CSGCylinder3D7" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("5_kmm8j")
+stream_player = NodePath("../../CSGCylinder3D6/AudioStreamPlayer3D")
+stop = true
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="FPSC_InteractivityMarker" type="Node" parent="burndown/CSGCylinder3D7" node_paths=PackedStringArray("activatable")]
+script = ExtResource("12_yksk0")
+activatable = NodePath("../FPSC_RelayActivatable")
+metadata/_custom_type_script = "uid://hllw2e6fs54j"
+
+[node name="FPSC_VisibilityChangeActivatable" type="Node" parent="burndown/CSGCylinder3D7" node_paths=PackedStringArray("node_a", "node_b")]
+script = ExtResource("19_oed1g")
+node_a = NodePath("../../CSGCylinder3D6/Sprite3D")
+node_b = NodePath("../../CSGCylinder3D6/Sprite3D2")
+metadata/_custom_type_script = "uid://dd5j3m0ylh3c5"
+
+[node name="FPSC_RelayActivatable" type="Node" parent="burndown/CSGCylinder3D7" node_paths=PackedStringArray("activatables")]
+script = ExtResource("8_ui3mt")
+activatables = [NodePath("../FPSC_VisibilityChangeActivatable"), NodePath("../FPSC_SoundPlayerActivatable")]
+metadata/_custom_type_script = "uid://cgae4dmf6xfos"
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 13, -9)
+use_collision = true
+size = Vector3(6, 1, 9)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -10)
+use_collision = true
+size = Vector3(6, 4, 1)
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, -5)
+use_collision = true
+size = Vector3(6, 4, 1)
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="burndown/CSGBox3D29"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+operation = 2
+size = Vector3(2, 3, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 13, 0)
+use_collision = true
+size = Vector3(6, 1, 9)
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="burndown/CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, -7, 0)
+operation = 2
+use_collision = true
+radius = 7.5
+height = 12.5
+sides = 16
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, 0)
+use_collision = true
+size = Vector3(1, 5, 9)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, -9)
+use_collision = true
+size = Vector3(1, 5, 9)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 11, -9)
+use_collision = true
+size = Vector3(1, 5, 9)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 8, 9)
+use_collision = true
+size = Vector3(6, 1, 9)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="burndown/CSGBox3D11" node_paths=PackedStringArray("activated")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3)
+script = ExtResource("6_or1jw")
+activated = [NodePath("../FPSC_VoicelineActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="burndown/CSGBox3D11/FPSC_TriggerRelay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_041m3")
+
+[node name="FPSC_VoicelineActivatable" type="Node" parent="burndown/CSGBox3D11" node_paths=PackedStringArray("voiceline_player", "execute_after_playing")]
+script = ExtResource("6_iid3j")
+voiceline_player = NodePath("../../CSGBox3D3/Sprite3D/AudioStreamPlayer3D")
+character_voiceline = ExtResource("19_7m8qs")
+localized_caption = "[b][the doctor][/b] hello it is me doctor who we must escape now"
+execute_once = true
+execute_after_playing = NodePath("../AnimationPlayer/FPSC_AnimationActivatable")
+metadata/_custom_type_script = "uid://whqnccb8m4hc"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="burndown/CSGBox3D11"]
+libraries = {
+&"": SubResource("AnimationLibrary_jxy0q")
+}
+
+[node name="FPSC_AnimationActivatable" type="Node" parent="burndown/CSGBox3D11/AnimationPlayer" node_paths=PackedStringArray("player")]
+script = ExtResource("24_7m8qs")
+player = NodePath("..")
+animation = "drag"
+metadata/_custom_type_script = "uid://cd37fw45rkj5r"
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 13, 9)
+use_collision = true
+size = Vector3(6, 1, 9)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 23)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D71" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 24)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D72" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 25)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D73" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 26)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D74" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 27)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D75" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 31)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D76" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 32)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D77" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 30)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D80" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 34)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D81" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 35)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D82" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 33)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D83" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 37)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D84" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 38)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D85" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 36)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D86" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 40)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D87" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 41)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D88" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 39)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D89" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 43)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D90" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 44)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D91" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 42)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D92" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 46)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D93" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 47)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D95" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 48)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D96" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 49)
+use_collision = true
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D94" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 45)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D78" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 28)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D79" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 29)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_llkoq")
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 14)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -8)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -9)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D36" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -10)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D37" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -11)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D38" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -12)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D39" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -13)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D40" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -14)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D41" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -15)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D42" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -16)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D43" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -17)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D44" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -18)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D45" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -19)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D46" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -20)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D47" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -21)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D48" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -22)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D49" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -23)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D50" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -24)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 15)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 16)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 17)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 18)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 19)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 20)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 21)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 10.5, 22)
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_m03vf")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, 9)
+use_collision = true
+size = Vector3(1, 5, 9)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 11, 9)
+use_collision = true
+size = Vector3(1, 5, 9)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 8, 18)
+use_collision = true
+size = Vector3(6, 1, 9)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 13, 18)
+size = Vector3(6, 1, 9)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, 18)
+use_collision = true
+size = Vector3(1, 5, 9)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 11, 18)
+use_collision = true
+size = Vector3(1, 5, 9)
+
+[node name="CSGBox3D59" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 8, 27)
+use_collision = true
+size = Vector3(6, 1, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D60" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 13, 27)
+size = Vector3(6, 1, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D61" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, 27)
+use_collision = true
+size = Vector3(1, 5, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D62" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 11, 27)
+use_collision = true
+size = Vector3(1, 5, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D63" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 8, 36)
+use_collision = true
+size = Vector3(6, 1, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D64" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 13, 36)
+size = Vector3(6, 1, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D65" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, 36)
+use_collision = true
+size = Vector3(1, 5, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D66" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 11, 36)
+use_collision = true
+size = Vector3(1, 5, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D67" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 8, 45)
+use_collision = true
+size = Vector3(6, 1, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D68" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 13, 45)
+size = Vector3(6, 1, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D69" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, 45)
+use_collision = true
+size = Vector3(1, 5, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="CSGBox3D70" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 11, 45)
+use_collision = true
+size = Vector3(1, 5, 9)
+material = SubResource("StandardMaterial3D_hk64b")
+
+[node name="Marker3D" type="Marker3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 7, -5)
+
+[node name="WeaponClearBox" parent="burndown/Marker3D" instance=ExtResource("4_k440e")]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="burndown/Marker3D"]
+stream = ExtResource("19_wp3g7")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -16)
+size = Vector3(2, 1, 19)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 4, -16)
+size = Vector3(2, 1, 19)
+
+[node name="CSGCylinder3D15" type="CSGCylinder3D" parent="burndown/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, 16)
+operation = 2
+use_collision = true
+radius = 7.5
+height = 12.5
+sides = 16
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -16)
+size = Vector3(1, 5, 19)
+
+[node name="CSGCylinder3D14" type="CSGCylinder3D" parent="burndown/CSGBox3D30"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 16)
+operation = 2
+use_collision = true
+radius = 7.5
+height = 12.5
+sides = 16
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -16)
+size = Vector3(1, 5, 19)
+
+[node name="FPSC_TriggerRelay" type="Area3D" parent="burndown" node_paths=PackedStringArray("activated")]
+transform = Transform3D(0.96763873, 0, 0.2523396, 0, 1, 0, -0.2523396, 0, 0.96763873, -2.6276808, 2, -6.9494615)
+script = ExtResource("6_or1jw")
+activated = [NodePath("FPSC_CaptionPlayerActivatable"), NodePath("FPSC_SoundPlayerActivatable")]
+metadata/_custom_type_script = "uid://co0pdj3pf8nga"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="burndown/FPSC_TriggerRelay"]
+shape = SubResource("BoxShape3D_60gqp")
+
+[node name="FPSC_CaptionPlayerActivatable" type="Node" parent="burndown/FPSC_TriggerRelay"]
+script = ExtResource("6_xmbf8")
+localized_caption = "[b]You can't change the inevetable.[/b]"
+caption_lasting_time = 2.0
+metadata/_custom_type_script = "uid://cpmnahh0n8xn6"
+
+[node name="FPSC_SoundPlayerActivatable" type="Node" parent="burndown/FPSC_TriggerRelay" node_paths=PackedStringArray("stream_player")]
+script = ExtResource("5_kmm8j")
+stream_player = NodePath("../AudioStreamPlayer3D")
+metadata/_custom_type_script = "uid://dlktdrvwevbt1"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="burndown/FPSC_TriggerRelay"]
+stream = ExtResource("8_bb4ty")
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, -7)
+visible = false
+use_collision = true
+size = Vector3(2, 3, 1)
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, -25)
+use_collision = true
+size = Vector3(2, 3, 1)
+
+[node name="CSGBox3D51" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(-0.8660254, 0, 0.50000006, 0.50000006, -4.371139e-08, 0.8660254, 2.1855696e-08, 1, 3.7855173e-08, -1.4954262, 0.68308043, 3.1396146)
+size = Vector3(0.75, 2, 0.75)
+
+[node name="CSGBox3D52" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(-0.8660254, 0, 0.50000006, 0.50000006, -4.371139e-08, 0.8660254, 2.1855696e-08, 1, 3.7855173e-08, -1.3202553, 0.9864812, 3.809176)
+size = Vector3(0.25, 0.25, 1)
+
+[node name="CSGBox3D53" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(0.22414388, 0.9659258, -0.12940957, -0.8365162, 0.25881907, 0.48296303, 0.5000001, 0, 0.8660253, 2.2914543, 0.663532, -0.6773052)
+size = Vector3(0.75, 2, 0.75)
+
+[node name="CSGBox3D54" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(0.22414388, 0.9659258, -0.12940957, -0.8365162, 0.25881907, 0.48296303, 0.5000001, 0, 0.8660253, 2.8928642, 1.0060294, -0.37390447)
+size = Vector3(0.25, 0.25, 1)
+
+[node name="CSGBox3D55" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(0.18301272, 0.96592575, 0.18301277, -0.6830127, 0.2588191, -0.6830126, -0.7071067, -2.8786834e-08, 0.7071068, -3.7632713, 0.8677745, -2.649468)
+size = Vector3(0.75, 2, 0.75)
+
+[node name="CSGBox3D56" type="CSGBox3D" parent="burndown"]
+transform = Transform3D(0.18301272, 0.96592575, 0.18301277, -0.6830127, 0.2588191, -0.6830126, -0.7071067, -2.8786834e-08, 0.7071068, -3.0524101, 0.8017869, -2.4017417)
+size = Vector3(0.25, 0.25, 1)
+
+[node name="Player2" parent="burndown" instance=ExtResource("6_k440e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4524493, 1.4930918, -13.769288)
+
+[connection signal="timeout" from="manroom/CSGCombiner3D/Sprite3D/SubViewport/Dialog/chwait" to="manroom/CSGCombiner3D/Sprite3D/SubViewport/Dialog" method="_on_chwait_timeout"]

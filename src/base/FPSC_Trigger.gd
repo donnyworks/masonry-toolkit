@@ -11,11 +11,15 @@ var canBeTriggered : bool = true
 
 @export_flags("Player:1","World:2","Physics Props:4","NPCs:8","Everything:16") var interact_with : int = 5
 
+@export var visibility_dependant : bool = false ## Makes the trigger require that it be visible to work.
+
 func _ready():
 	connect("body_entered",_on_enter)
 	connect("body_exited",_on_exit)
 
 func _flagsEval(body:Node3D): # Evaluate interact_with flags
+	if visibility_dependant and not visible:
+		return false
 	if interact_with & 1 and body is FPSC_Player:
 		#print("This is the player crossing the border")
 		return true

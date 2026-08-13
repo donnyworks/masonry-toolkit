@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkp08lps6mwss"]
+
+[ext_resource type="Script" uid="uid://civn51mrdtntr" path="res://src/weapons/weapon_emptyhands.gd" id="1_bfbfx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kbhtp"]
+
+[node name="WeaponClearBox" type="Node3D"]
+script = ExtResource("1_bfbfx")
+
+[node name="PickupRadius" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupRadius"]
+shape = SubResource("BoxShape3D_kbhtp")
+
+[connection signal="body_entered" from="PickupRadius" to="." method="_on_pickup_radius_body_entered"]
