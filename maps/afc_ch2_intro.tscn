@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cofcwahptm2ts"]
+[gd_scene load_steps=44 format=3 uid="uid://cofcwahptm2ts"]
 
 [ext_resource type="PackedScene" uid="uid://cihvtue137xn7" path="res://instances/afc/prefab_chamber_entryway.tscn" id="1_8p1ic"]
 [ext_resource type="Script" uid="uid://d25myaapjjml7" path="res://src/base/activatables/player/FPSC_ActivatableModifyPlayerSpeed.gd" id="2_jj7wd"]
@@ -28,80 +28,6 @@
 [ext_resource type="Script" uid="uid://cfqhdd8f1sq3h" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableSpriteTextureModifier.gd" id="24_liylv"]
 [ext_resource type="Texture2D" uid="uid://b0e6bipfjqrfm" path="res://textures/afc/sign_complete.png" id="25_8ijcp"]
 [ext_resource type="Script" uid="uid://bibdote7bt40k" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableToggleLightModulationColor.gd" id="26_oyudv"]
-
-[sub_resource type="GDScript" id="GDScript_8j3vc"]
-resource_name = "custommap_tc_label"
-script/source = "@tool
-extends Label3D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	text = \"TEST CHAMBER \" + PackedByteArray([randi_range(0,255)]).hex_encode()
-	pass
-"
-
-[sub_resource type="GDScript" id="GDScript_dp8gx"]
-resource_name = "chamberbar"
-script/source = "@tool
-extends Label3D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	var bars = \"\" # |||||||||||||||||||
-	var rv = randi_range(0,20)
-	for i in range(rv):
-		bars += \"|\"
-	for i in range(20 - rv):
-		bars += \"  \"
-	text = \"\"\"[%b]
-TESTING COURSE ∞\"\"\".replace(\"%b\",bars)
-	pass
-"
-
-[sub_resource type="GDScript" id="GDScript_15dhr"]
-resource_name = "hazardlsit"
-script/source = "@tool
-extends Label3D
-
-
-@export_multiline var hazards = \"\"\"\"\"\"
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-func rearrange(text,amount):
-	if amount == 0:
-		return text
-	var r1 = randi_range(0,len(text) - 1)
-	var r2 = randi_range(0,len(text) - 1)
-	var stext = text
-	text[r1] = stext[r2]
-	text[r2] = stext[r1]
-	return rearrange(text,amount - 1)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	text = \"\"
-	for line in hazards.split(\"\\n\"):
-		if randi_range(0,5) == 5:
-			text += rearrange(line,10) + \"\\n\"
-		else:
-			text += line + \"\\n\"
-	pass
-"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ykspl"]
 size = Vector3(7, 5, 1)
@@ -158,8 +84,7 @@ size = Vector3(0.26220703, 3, 2)
 
 [node name="Label3D" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 1.2564766, 0)
-text = "TEST CHAMBER 31"
-script = SubResource("GDScript_8j3vc")
+text = "TEST CHAMBER 05"
 
 [node name="Label3D2" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.84315467, -0.8630085)
@@ -169,11 +94,10 @@ horizontal_alignment = 0
 
 [node name="Label3D4" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, -1.0395492, -0.8630085)
-text = "[||||||                            ]
-TESTING COURSE ∞"
+text = "[|||||                               ]
+TESTING COURSE B"
 horizontal_alignment = 0
 vertical_alignment = 0
-script = SubResource("GDScript_dp8gx")
 
 [node name="Label3D3" type="Label3D" parent="prefab_chamber_entryway/CSGBox3D6"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.17351389, 0.74152064, -0.66348267)
@@ -182,21 +106,12 @@ Physics Dissolvers
 Aerial Faith Plates
 Boxes
 Buttons
-Portalable Surfaces
-Acidic Pools
+Portallable Surfaces
+Acid Pools
 Automated Defense
 "
 horizontal_alignment = 0
 vertical_alignment = 0
-script = SubResource("GDScript_15dhr")
-hazards = "Player Dissolvers
-Physics Dissolvers
-Aerial Faith Plates
-Boxes
-Buttons
-Portalable Surfaces
-Acidic Pools
-Automated Defense"
 
 [node name="FPSC_PlayerPropertiesActivatable" type="Node" parent="prefab_chamber_entryway"]
 script = ExtResource("2_jj7wd")
@@ -216,7 +131,7 @@ metadata/_custom_type_script = "uid://c10lkodrlqtba"
 [node name="FPSC_TriggerRelay2" type="Area3D" parent="prefab_chamber_entryway" node_paths=PackedStringArray("activated")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
 script = ExtResource("5_0rpkl")
-activated = [NodePath("../FPSC_MultiVoicelineActivatable"), NodePath("../FPSC_PlayerPropertiesActivatable")]
+activated = [NodePath("../FPSC_MultiVoicelineActivatable")]
 trigger_once = true
 interact_with = 1
 metadata/_custom_type_script = "uid://co0pdj3pf8nga"
@@ -240,6 +155,7 @@ visible = false
 [node name="FPSC_TriggerCatapult2" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("8_0wsno")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.041677713, -9.536743e-07, -21.826302)
 destination = NodePath("../Marker3D")
+visibility_dependant = null
 
 [node name="door_exit" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 15.294983, -60)

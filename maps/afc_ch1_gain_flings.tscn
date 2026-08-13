@@ -37,7 +37,7 @@
 [ext_resource type="Script" uid="uid://bxrwaxtx06m0r" path="res://src/base/activatables/world/doers/FPSC_ActivatableTeleportNode3D.gd" id="29_tc4iw"]
 [ext_resource type="AudioStream" uid="uid://tx1dpdclypng" path="res://sound/vo/announcer/Ch1DemoFinishNEW.wav" id="30_n273v"]
 [ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="34_lmqjk"]
-[ext_resource type="PackedScene" uid="uid://lnxs6xokbvge" path="res://maps/afc_ch1_transition_cutscene.tscn" id="35_71u3e"]
+[ext_resource type="PackedScene" uid="uid://cofcwahptm2ts" path="res://maps/afc_ch2_intro.tscn" id="35_lmqjk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ah5jf"]
 
@@ -7757,6 +7757,7 @@ shadow_enabled = true
 [node name="FPSC_TriggerCatapult2" parent="." node_paths=PackedStringArray("destination") instance=ExtResource("14_mamfh")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 26.035934, 7.3270254, -63.473763)
 destination = NodePath("../Marker3D")
+visibility_dependant = null
 
 [node name="Marker3D" parent="." instance=ExtResource("15_y315y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.766045, 21.147024, -79.328926)
@@ -7788,7 +7789,7 @@ metadata/_custom_type_script = "uid://whqnccb8m4hc"
 
 [node name="FPSC_TriggerRelay2" type="Area3D" parent="prefab_chamber_exithall"]
 script = ExtResource("34_lmqjk")
-other_level = ExtResource("35_71u3e")
+other_level = ExtResource("35_lmqjk")
 delay = 2.0
 trigger_once = true
 interact_with = 1
