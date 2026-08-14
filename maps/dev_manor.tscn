@@ -2603,13 +2603,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4524493, 1.4930918, -13.76
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 3.500001, 156)
 
 [node name="prefab_chamber_exithall" parent="finale" instance=ExtResource("31_3uynk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 508)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 376)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="finale/prefab_chamber_exithall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -166)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -132.5)
 use_collision = true
 flip_faces = true
-size = Vector3(7, 5, 337)
+size = Vector3(7, 5, 270)
 material = SubResource("StandardMaterial3D_k440e")
 
 [node name="Marker3D" type="Marker3D" parent="finale"]
