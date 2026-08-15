@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://fguk5xpg5hn2"]
+[gd_scene load_steps=71 format=3 uid="uid://fguk5xpg5hn2"]
 
 [ext_resource type="PackedScene" uid="uid://cc4iwacm6rskv" path="res://instances/player.tscn" id="1_xaga6"]
 [ext_resource type="PackedScene" uid="uid://dnt5wa40ueymc" path="res://instances/afc/prefab_box_dropper.tscn" id="2_q4hj5"]
@@ -35,9 +35,6 @@
 [ext_resource type="AudioStream" uid="uid://5vn3mx0tlsk8" path="res://sound/vo/announcer_automated/ch0/LV1.ChamberEntry.02.mp3" id="33_q4hj5"]
 [ext_resource type="AudioStream" uid="uid://c1det240c0igh" path="res://sound/vo/announcer_automated/GenericCubestuck.mp3" id="34_xaga6"]
 [ext_resource type="Script" uid="uid://cwyc54ot6v2lb" path="res://src/base/activatables/world/modifiers/FPSC_ActivatableCSGAsDoor.gd" id="35_p253c"]
-[ext_resource type="PackedScene" uid="uid://b5a64hrilgh04" path="res://instances/afc/prefab_chamber_exithall.tscn" id="36_2o3tt"]
-[ext_resource type="Script" uid="uid://cn3f2saw8lsmn" path="res://src/base/triggers/FPSC_TriggerChangelevel.gd" id="37_5h7ul"]
-[ext_resource type="PackedScene" uid="uid://dcsa4g02jjajj" path="res://maps/afc_ch1_intro_portalgun.tscn" id="38_jyivq"]
 [ext_resource type="PackedScene" uid="uid://dkrwbd8coiujm" path="res://instances/afc/prefab_geomesh_button.tscn" id="39_s83wq"]
 [ext_resource type="AudioStream" uid="uid://w12n3kkdvohf" path="res://sound/vo/announcer_automated/ch0/LV1.ChamberComplete.mp3" id="40_q4hj5"]
 [ext_resource type="Texture2D" uid="uid://m4dbkv17xmm1" path="res://textures/afc/indicator_light.png" id="41_wdbus"]
@@ -268,9 +265,11 @@ sky = SubResource("Sky_commd")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0r3cr"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_srva0"]
-height = 2.845581
-radius = 0.9560547
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scnog"]
+albedo_color = Color(0.08468992, 0.08468992, 0.08468992, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ls52i"]
+albedo_color = Color(1, 1, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vp0w6"]
 size = Vector3(2, 1, 2)
@@ -740,18 +739,171 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83147085, 1.5162177, 0.0079
 shadow_enabled = true
 omni_range = 7.0
 
-[node name="prefab_chamber_exithall" parent="." instance=ExtResource("36_2o3tt")]
+[node name="prefab_chamber_exithall" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9.523797, -1.8296161, -16.181341)
 
-[node name="FPSC_TriggerRelay" type="Area3D" parent="prefab_chamber_exithall"]
-script = ExtResource("37_5h7ul")
-other_level = ExtResource("38_jyivq")
-delay = 2.0
-metadata/_custom_type_script = "uid://cn3f2saw8lsmn"
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8364868, -4)
+use_collision = true
+size = Vector3(5, 1.3270264, 13)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="prefab_chamber_exithall/FPSC_TriggerRelay"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3953769, 0)
-shape = SubResource("CylinderShape3D_srva0")
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9073486e-06, 0, 3.999999)
+operation = 2
+use_collision = true
+size = Vector3(3, 1.3270264, 3)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9073486e-06, -0.27279663, -1.9073486e-06)
+use_collision = true
+size = Vector3(3, 0.199646, 3)
+material = SubResource("StandardMaterial3D_scnog")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="prefab_chamber_exithall/CSGBox3D7"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -0.33, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -0.66, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -0.99, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -1.32, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -1.65, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -1.98, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -2.31, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -2.64, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -2.97, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="prefab_chamber_exithall/CSGBox3D7"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D2"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D2"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -0.33, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D2"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -0.66, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D2"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -0.99, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D2"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -1.32, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D2"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -1.65, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D2"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -1.98, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D2"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -2.31, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D2"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -2.64, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7/CSGCombiner3D2"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -2.97, 0, 0)
+size = Vector3(0.1, 0.2, 5)
+material = SubResource("StandardMaterial3D_ls52i")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7" groups=["Non-Portalable"]]
+operation = 2
+use_collision = true
+size = Vector3(2.75, 0.2, 2.75)
+material = SubResource("StandardMaterial3D_scnog")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="prefab_chamber_exithall/CSGBox3D7" groups=["Non-Portalable"]]
+operation = 1
+use_collision = true
+size = Vector3(3, 6.835, 3)
+material = SubResource("StandardMaterial3D_scnog")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+use_collision = true
+size = Vector3(5, 5, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.163513, -4)
+use_collision = true
+size = Vector3(5, 1.3270264, 13)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.3270264, -4)
+use_collision = true
+size = Vector3(1, 7, 13)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="prefab_chamber_exithall" groups=["Non-Portalable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.3270264, -4)
+use_collision = true
+size = Vector3(1, 7, 13)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="prefab_chamber_exithall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -8)
+shadow_enabled = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="prefab_chamber_exithall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.536743e-07, 3, -0.0020313263)
+light_color = Color(0.1976453, 0.8427788, 1, 1)
+shadow_enabled = true
 
 [node name="prefab_geomesh_button" parent="." instance=ExtResource("39_s83wq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.543925, -2, 3.6755035)
