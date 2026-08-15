@@ -1,6 +1,8 @@
 extends VBoxContainer
 class_name FPSC_MainMenuChapterIcon
 
+# wow
+
 @export var button : TextureButton
 @export var label : Label
 var id = -1

@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Masonry Toolkit"
+config/description="wow"
 config/tags=PackedStringArray("development")
 run/main_scene="uid://qqqdsd8ay4kd"
 config/use_custom_user_dir=true

@@ -265,21 +265,6 @@ size = Vector3(4, 0.25, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_041m3"]
 size = Vector3(5, 4, 1)
 
-[sub_resource type="Animation" id="Animation_7m8qs"]
-resource_name = "drag"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../CSGBox3D3/Sprite3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 2, 8), Vector3(0, 2, 45)]
-}
-
 [sub_resource type="Animation" id="Animation_041m3"]
 length = 0.001
 tracks/0/type = "value"
@@ -293,6 +278,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 2, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_7m8qs"]
+resource_name = "drag"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CSGBox3D3/Sprite3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2, 8), Vector3(0, 2, 45)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jxy0q"]
@@ -524,7 +524,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
 script = SubResource("GDScript_nusyj")
-texts = ["Be honest with me, does anyone even remember me?", "You know, Roboto! From... AROUNDTALE?", "You know what, I'll make it worth your time. Here, have an egg.", "* You got the Egg."]
+texts = Array[String](["Be honest with me, does anyone even remember me?", "You know, Roboto! From... AROUNDTALE?", "You know what, I'll make it worth your time. Here, have an egg.", "* You got the Egg."])
 comp = NodePath("../../TextureRect")
 
 [node name="ColorRect" type="ColorRect" parent="manroom/CSGCombiner3D/Sprite3D/SubViewport/Dialog"]
